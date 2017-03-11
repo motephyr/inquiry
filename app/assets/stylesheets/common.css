@@ -1,0 +1,43 @@
+
+/*必加語法*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote {
+  font-family: "微軟正黑體", Verdana, Geneva, sans-serif;/*全站字形*/
+}
+
+fieldset, img {
+  border:0;
+}
+
+ol, ul {
+  list-style:none;
+}
+
+abbr, acronym {
+  border:0;
+}
+
+.CLEAR{
+  clear:both;
+  height: 0;
+  font-size: 0px;
+  line-height: 0;
+}
+/*必加語法 END*/
+
+body {
+  background-color: #f4f4f4;
+  background-image: url(/images/bg.jpg);
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  padding-top: 80px;
+}
+
+/*===================共用=================*/
+h1, h2, h3, h4, h5, h6, p { color:#231815; letter-spacing:1px; font-family:"nimbus-sans","xingothic-tc-w4","微軟正黑體","Microsoft JhengHei",sans-serif;}
+p{ font-size:15px; _font-size:14px; line-height:24px;}
