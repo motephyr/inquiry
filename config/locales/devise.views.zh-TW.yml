@@ -1,4 +1,10 @@
 zh-TW:
+  users:
+    edit_password:
+      password: '密碼'
+      password_confirmation: '確認密碼'
+      current_password: '密碼'
+      update: '更新'
   devise:
     failure:
       user:
@@ -53,9 +59,6 @@ zh-TW:
         title: '修改使用者資料'
         we_need_your_current_password_to_confirm_your_changes: '我們需要您的目前的密碼以確認您的更改'
         update: '更新'
-        password: '密碼'
-        password_confirmation: '確認密碼'
-        current_password: '密碼'
         name: '顯示名稱'
       new:
         sign_up: '註冊'
