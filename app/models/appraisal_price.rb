@@ -1,4 +1,4 @@
 class AppraisalPrice < ApplicationRecord
-  belongs_to :appraisal
+  belongs_to :appraisal, :counter_cache => true
   belongs_to :user
 end

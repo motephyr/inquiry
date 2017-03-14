@@ -25,10 +25,20 @@
       <h4>
     </td>
     <td>
-      <p><%= a.title %></p>
+      標題：
+      <%= a.title %>
     </td>
     <td>
+      描述：
       <%= a.description %>
+    </td>
+    <td>
+      留言數：
+      <%= a.appraisal_messages.size %>
+    </td>
+    <td>
+      估價數：
+      <%= a.appraisal_prices.size  %>
     </td>
   </tr>
   <% end %>
