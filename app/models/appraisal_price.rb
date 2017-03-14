@@ -1,0 +1,2 @@
+class AppraisalPrice < ApplicationRecord
+end
