@@ -46,3 +46,5 @@ database.yml
 
 # setting
 config/config.yml
+
+db/seeds.rb
