@@ -10,10 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312060644) do
+ActiveRecord::Schema.define(version: 20170314063436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appraisal_messages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "appraisal_id"
+    t.text     "content"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["appraisal_id"], name: "index_appraisal_messages_on_appraisal_id", using: :btree
+    t.index ["user_id"], name: "index_appraisal_messages_on_user_id", using: :btree
+  end
+
+  create_table "appraisal_prices", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "appraisal_id"
+    t.integer  "price"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["appraisal_id"], name: "index_appraisal_prices_on_appraisal_id", using: :btree
+    t.index ["user_id"], name: "index_appraisal_prices_on_user_id", using: :btree
+  end
+
+  create_table "appraisals", force: :cascade do |t|
+    t.integer  "category_id"
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_appraisals_on_category_id", using: :btree
+    t.index ["user_id"], name: "index_appraisals_on_user_id", using: :btree
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.integer  "title"
+    t.integer  "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

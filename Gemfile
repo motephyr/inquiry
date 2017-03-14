@@ -85,6 +85,7 @@ group :development do
 
   gem 'sqlite3'
   gem "bullet"
+  gem "lol_dba"
 end
 
 group :test do
