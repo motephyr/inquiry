@@ -1,6 +1,9 @@
 class AppraisalsController < ApplicationController
+
+  before_action :login_required, except: [:index ]
+
   def index
-    @appraisal = Appraisal.all
+    @appraisals = Appraisal.all
   end
 
   def show
@@ -17,6 +20,7 @@ class AppraisalsController < ApplicationController
 
   def create
     @appraisal = Appraisal.new(appraisal_params)
+    @appraisal.user = current_user
     if @appraisal.save
       redirect_to appraisals_path
     else
@@ -44,7 +48,7 @@ class AppraisalsController < ApplicationController
   private
 
   def appraisal_params
-    params.require(:appraisal).permit(:title, :description)
+    params.require(:appraisal).permit(:category_id, :title, :description)
   end
 
 

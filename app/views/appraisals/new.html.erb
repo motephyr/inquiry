@@ -1,0 +1,22 @@
+    <%= sanitize(category_cloud) %>
+    <%= simple_form_for @appraisal do |f| -%>
+    <div class="form-inputs">
+      <div class="form-group">
+        <%= f.input_field :category_id, class: 'form-control string optional', placeholder: '類別序號' %>
+        <p class="help-block">依對照表填入序號</p>
+      </div>
+      <div class="form-group">
+        <%= f.input_field :title, class: 'form-control string optional', placeholder: '標題' %>
+        <p class="help-block">例如：PHP後台系統設計、商品攝影+修圖、女性服飾網拍修圖</p>
+      </div>
+      <div class="form-group">
+        <%= f.input_field :description, class: 'form-control text optional', placeholder: '請輸入內容' %>
+        <p class="help-block">描述案子的作業時程，限制條件等</p>
+
+      </div>
+    </div>
+    <div class="form-actions">
+      <p><%= f.button :submit, '送出', class: 'btm_c_org width50' %></p>
+      <p class="cancel"><%= link_to "回上頁", :back %></p>
+    </div>
+    <% end %>

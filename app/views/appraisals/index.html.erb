@@ -1,0 +1,41 @@
+<h1>估價功能</h1>
+<p>
+  Conkwe希望就各個行業的接案部分可以有某種機制可以出現一個數字給業主或是接案者做為參考，所以我們開發了這個小工具，希望大家可以試用看看。
+</p>
+<h2>目前設定條件</h2>
+<ul>
+  <li>1. 所有估價者提供email供認證</li>
+  <li>2. 發文者隱藏帳號</li>
+  <li>3. 可留言要求發文者提供更詳細的條件，留言者不隱藏帳號</li>
+  <li>4. 所有估價者隱藏帳號</li>
+  <li>5. 超過5個人估價，之後的人才可觀看結果</li>
+</ul>
+<%= link_to '新增估價', new_appraisal_path, class: 'btn btn-default' %>
+
+<% if @appraisals.present? %>
+<table class='table table-bordered'>
+  <% @appraisals.each do |a| %>
+  <tr>
+    <td>
+      <h4><%= a.category.title %>
+      <% if a.category.parent_category.present? %>
+      >
+      <%= a.category.try(:parent_category).try(:title) %>
+      <% end %>
+      <h4>
+    </td>
+    <td>
+      <p><%= a.title %></p>
+    </td>
+    <td>
+      <%= a.description %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<% else %>
+<div class="jumbotron">
+  <p>目前沒東西哦</p>
+</div>
+<% end %>

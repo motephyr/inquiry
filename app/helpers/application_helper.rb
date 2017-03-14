@@ -10,4 +10,19 @@ module ApplicationHelper
 		end
 		flash_messages.join("\n").html_safe
 	end
+
+	def category_cloud
+		@categories = Category.includes(:subcategories).where("id < ?", 100)
+
+		content = @categories.reduce('') do |all, c|
+			all + "<tr><td width='20%'>#{c.title} #{c.id}</td>" +
+			"<td width='80%'>" +
+			c.subcategories.reduce('') do |sum, sub_category|
+				sum + "#{sub_category.title} #{sub_category.id} "
+		 	end +
+		 	"</td></tr>"
+		end
+
+		"<table class='table table-bordered'>" + content + "</table>"
+	end
 end
