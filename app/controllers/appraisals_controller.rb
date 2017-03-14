@@ -8,6 +8,8 @@ class AppraisalsController < ApplicationController
 
   def show
     @appraisal = Appraisal.find(params[:id])
+    @appraisal_messages = @appraisal.appraisal_messages.all
+    @appraisal_message = AppraisalMessage.new
   end
 
   def new

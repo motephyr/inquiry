@@ -1,12 +1,11 @@
-  <table class='table table-bordered'>
+<table class='table table-bordered'>
   <tr>
     <td>
       <h4><%= @appraisal.category.title %>
-      <% if @appraisal.category.parent_category.present? %>
-      >
-      <%= @appraisal.category.try(:parent_category).try(:title) %>
-      <% end %>
-      <h4>
+        <% if @appraisal.category.parent_category.present? %>
+        > <%= @appraisal.category.try(:parent_category).try(:title) %>
+        <% end %>
+      </h4>
     </td>
     <td>
       標題：
@@ -25,4 +24,12 @@
       <%= @appraisal.appraisal_prices.size  %>
     </td>
   </tr>
-  <table>
+</table>
+<div class="tasks" id="incomplete_tasks">
+  <%= render @appraisal_messages %>
+</div>
+<%= form_for @appraisal_message, remote: true do |f| %>
+<%= f.hidden_field :appraisal_id, {value: @appraisal.id} %>
+<%= f.text_field :content %>
+<%= f.submit %>
+<% end %>

@@ -20,7 +20,7 @@
       <h4><%= a.category.title %>
       <% if a.category.parent_category.present? %>
       >
-      <%= a.category.try(:parent_category).try(:title) %>
+      <%= a.category.parent_category.try(:title) %>
       <% end %>
       <h4>
     </td>
