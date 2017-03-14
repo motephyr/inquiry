@@ -40,6 +40,10 @@
       估價數：
       <%= a.appraisal_prices.size  %>
     </td>
+    <td>
+      <%= link_to 'show', appraisal_path(a), class: 'btn btn-default'  %>
+      <%= link_to 'edit', edit_appraisal_path(a), class: 'btn btn-default'  %>
+    </td>
   </tr>
   <% end %>
 </table>

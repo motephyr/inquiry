@@ -1,0 +1,28 @@
+  <table class='table table-bordered'>
+  <tr>
+    <td>
+      <h4><%= @appraisal.category.title %>
+      <% if @appraisal.category.parent_category.present? %>
+      >
+      <%= @appraisal.category.try(:parent_category).try(:title) %>
+      <% end %>
+      <h4>
+    </td>
+    <td>
+      標題：
+      <%= @appraisal.title %>
+    </td>
+    <td>
+      描述：
+      <%= @appraisal.description %>
+    </td>
+    <td>
+      留言數：
+      <%= @appraisal.appraisal_messages.size %>
+    </td>
+    <td>
+      估價數：
+      <%= @appraisal.appraisal_prices.size  %>
+    </td>
+  </tr>
+  <table>
