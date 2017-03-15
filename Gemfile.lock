@@ -7,11 +7,6 @@ GIT
       capistrano-bundler
       puma (~> 3.4)
 
-PATH
-  remote: ../auto_build
-  specs:
-    auto_build (0.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -473,7 +468,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  auto_build!
   autoprefixer-rails
   awesome_print
   bootstrap-sass (~> 3.3.4)

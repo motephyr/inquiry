@@ -5,8 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem "auto_build", :path => "~/Projects/Ruby/auto_build"
-
 gem "settingslogic"
 gem 'bootstrap-sass', '~> 3.3.4'
 gem "bootstrap_helper", ">= 4.2.2.1"
