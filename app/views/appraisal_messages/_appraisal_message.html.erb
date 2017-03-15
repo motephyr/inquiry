@@ -1,6 +1,10 @@
 <%= form_for appraisal_message, remote: true do |f| %>
 <pre>
+  <% if appraisal_message.user == appraisal_message.appraisal.user %>
+  [發文者]: <%= appraisal_message.content %>
+  <% else %>
   <%= appraisal_message.user.name %>: <%= appraisal_message.content %>
+  <% end %>
   <% if current_user == appraisal_message.user %>
     <%= link_to "(remove)", appraisal_message, method: :delete, class: 'pull-right', data: {confirm: "Are you sure?"}, remote: true %>
   <% end %>
