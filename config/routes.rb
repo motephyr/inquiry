@@ -18,5 +18,6 @@ Rails.application.routes.draw do
 
   resources :appraisals
   resources :appraisal_messages
+  resources :appraisal_prices
 
 end

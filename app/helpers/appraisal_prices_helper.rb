@@ -1,0 +1,2 @@
+module AppraisalPricesHelper
+end

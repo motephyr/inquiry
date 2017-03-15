@@ -29,12 +29,21 @@
   <%= render @appraisal_messages %>
 </div>
 <%= form_for @appraisal_message, remote: true do |f| %>
-<%= f.hidden_field :appraisal_id, {value: @appraisal.id} %>
-<%= f.text_area :content %>
-<p class="help-block">按Enter鍵送出</p>
-
+  <%= f.hidden_field :appraisal_id, {value: @appraisal.id} %>
+  <%= f.text_area :content %>
+  <p class="help-block">按Enter鍵送出</p>
 <% end %>
-<p class="cancel"><%= link_to "回上頁", :back, class: 'btn btn-info' %></p>
+
+<% @appraisal_prices.each do |p| %>
+ <p><%= p.price %>元</p>
+<% end %>
+<%= form_for @appraisal_price do |f| %>
+  <%= f.hidden_field :appraisal_id, {value: @appraisal.id} %>
+  <%= f.number_field :price %>
+  <%= f.submit %>
+<% end %>
+
+<p class="cancel"><%= link_to "回上頁", appraisals_path, class: 'btn btn-info' %></p>
 
 <% content_for :javascripts do %>
 <script>
