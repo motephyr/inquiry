@@ -10,7 +10,10 @@
   <li>4. 所有估價者隱藏帳號</li>
   <li>5. 超過5個人估價，之後的人才可觀看結果</li>
 </ul>
-<%= link_to '新增估價', new_appraisal_path, class: 'btn btn-default' %>
+
+<% if current_user %>
+  <%= link_to '新增估價', new_appraisal_path, class: 'btn btn-default' %>
+<% end %>
 
 <% if @appraisals.present? %>
 <table class='table table-bordered'>
@@ -42,7 +45,9 @@
     </td>
     <td>
       <%= link_to 'show', appraisal_path(a), class: 'btn btn-default'  %>
-      <%= link_to 'edit', edit_appraisal_path(a), class: 'btn btn-default'  %>
+      <% if current_user == a.user %>
+        <%= link_to 'edit', edit_appraisal_path(a), class: 'btn btn-default'  %>
+      <% end %>
     </td>
   </tr>
   <% end %>

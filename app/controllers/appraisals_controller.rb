@@ -1,6 +1,7 @@
 class AppraisalsController < ApplicationController
 
-  before_action :login_required, except: [:index ]
+  before_action :login_required, except: [:index, :show ]
+  before_action :appraisal_owner, only: [:edit, :update, :destroy]
 
   def index
     @appraisals = Appraisal.all
@@ -13,16 +14,14 @@ class AppraisalsController < ApplicationController
   end
 
   def new
-    @appraisal = Appraisal.new
+    @appraisal = current_user.appraisals.build
   end
 
   def edit
-    @appraisal = Appraisal.find(params[:id])
   end
 
   def create
-    @appraisal = Appraisal.new(appraisal_params)
-    @appraisal.user = current_user
+    @appraisal = current_user.appraisals.build(appraisal_params)
     if @appraisal.save
       redirect_to appraisals_path
     else
@@ -31,7 +30,6 @@ class AppraisalsController < ApplicationController
   end
 
   def update
-    @appraisal = Appraisal.find(params[:id])
     if @appraisal.update(appraisal_params)
       redirect_to appraisal_path(@appraisal)
     else
@@ -40,7 +38,6 @@ class AppraisalsController < ApplicationController
   end
 
   def destroy
-    @appraisal = Appraisal.find(params[:id])
 
     @appraisal.destroy
 
@@ -53,6 +50,13 @@ class AppraisalsController < ApplicationController
     params.require(:appraisal).permit(:category_id, :title, :description)
   end
 
+  def appraisal_owner
+    @appraisal = Appraisal.find(params[:id])
+    unless @appraisal.user_id == current_user.id
+      flash[:notice] = '你不是這個資料的使用者'
+      redirect_to appraisals_path
+    end
+  end
 
 
 end

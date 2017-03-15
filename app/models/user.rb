@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :appraisals
+  has_many :appraisal_messages
+  has_many :appraisal_prices
+
 end
