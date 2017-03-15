@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :account do
+    resources :appraisals
+  end
+
   resources :appraisals
   resources :appraisal_messages
   resources :appraisal_prices

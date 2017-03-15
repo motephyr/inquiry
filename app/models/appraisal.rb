@@ -4,4 +4,7 @@ class Appraisal < ApplicationRecord
   has_many :appraisal_prices
   belongs_to :category
 
+  scope :recent, -> { order("id DESC")}
+
+
 end

@@ -9,16 +9,16 @@
     <% end %>
 
     <ul class="dropdown-menu">
-      <li> <%#= link_to("過去訂單", account_orders_path) %> </li>
+      <li> <%= link_to("個人估價單", account_appraisals_path) %> </li>
       <%# if current_user.admin? %>
 
       <li> <%#= link_to("Admin Panel", admin_products_path ) %> </li>
 
       <%# end %>
 
+      <li class="divider"></li>
       <li><%= link_to("設定","/users/edit" ) %></li>
       <li><%= link_to("修改密碼","/users/edit_password" ) %></li>
-      <li class="divider"></li>
       <li><%= link_to("登出",destroy_user_session_path, :method => :delete ) %></li>
     </ul>
 

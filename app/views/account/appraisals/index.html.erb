@@ -1,0 +1,36 @@
+<table class='table table-bordered'>
+  <% @appraisals.each do |a| %>
+  <tr>
+    <td>
+      <h4><%= a.category.title %>
+      <% if a.category.parent_category.present? %>
+      >
+      <%= a.category.parent_category.try(:title) %>
+      <% end %>
+      <h4>
+    </td>
+    <td>
+      標題：
+      <%= a.title %>
+    </td>
+    <td>
+      描述：
+      <%= a.description %>
+    </td>
+    <td>
+      留言數：
+      <%= a.appraisal_messages.size %>
+    </td>
+    <td>
+      估價數：
+      <%= a.appraisal_prices.size  %>
+    </td>
+    <td>
+      <%= link_to 'show', appraisal_path(a), class: 'btn btn-default'  %>
+      <% if current_user == a.user %>
+        <%= link_to 'edit', edit_appraisal_path(a), class: 'btn btn-default'  %>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>
