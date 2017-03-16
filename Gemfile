@@ -70,7 +70,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'capistrano-bundler', '~> 1.1.2'
-  gem "capistrano"
+  gem "capistrano", "~> 3.8"
   gem "capistrano-rails"
   gem "capistrano-rvm"
   gem 'capistrano-bower'
