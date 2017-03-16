@@ -27,7 +27,7 @@ gem "paranoia", "~> 2.0"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -69,17 +69,17 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'capistrano-bundler', '~> 1.1.2'
-  gem "capistrano", "~> 3.8"
-  gem "capistrano-rails"
+  gem 'capistrano', '~> 3.6'
+  gem 'capistrano-rails', '~> 1.2'
   gem "capistrano-rvm"
+  gem 'capistrano3-puma'
+  gem 'capistrano3-nginx'
   gem 'capistrano-bower'
 
   gem 'awesome_print'
 
   gem "letter_opener"
   gem 'meta_request'
-  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
 
   gem 'sqlite3'
   gem "bullet"

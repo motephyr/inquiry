@@ -1,12 +1,3 @@
-GIT
-  remote: https://github.com/seuros/capistrano-puma.git
-  revision: f461d37e96d1a19e1faaa2cb75407937d3d30bc0
-  specs:
-    capistrano3-puma (2.0.0)
-      capistrano (~> 3.5)
-      capistrano-bundler
-      puma (~> 3.4)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -86,6 +77,11 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano3-nginx (2.1.5)
+      capistrano (>= 3.0.0)
+    capistrano3-puma (1.2.1)
+      capistrano (~> 3.0)
+      puma (>= 2.6)
     carrierwave (1.0.0)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -474,12 +470,12 @@ DEPENDENCIES
   bootstrap_helper (>= 4.2.2.1)
   bullet
   byebug
-  capistrano (~> 3.8)
+  capistrano (~> 3.6)
   capistrano-bower
-  capistrano-bundler (~> 1.1.2)
-  capistrano-rails
+  capistrano-rails (~> 1.2)
   capistrano-rvm
-  capistrano3-puma!
+  capistrano3-nginx
+  capistrano3-puma
   carrierwave
   coffee-rails (~> 4.2)
   devise
