@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :appraisal_messages
   has_many :appraisal_prices
 
+  def online?
+    !Redis.new.get("user_#{self.id}_online").nil?
+  end
+
 end

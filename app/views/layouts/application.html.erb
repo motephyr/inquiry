@@ -5,6 +5,7 @@
   <%= render_page_description_meta_tag %>
   <%= render_page_image_link_tag %>
   <%= csrf_meta_tags %>
+  <%= action_cable_meta_tag %>
   <% if @og.present? %>
     <%= render "common/og_tag" %>
   <% end %>
