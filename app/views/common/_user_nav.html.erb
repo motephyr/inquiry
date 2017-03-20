@@ -9,6 +9,7 @@
     <% end %>
 
     <ul class="dropdown-menu">
+      <li> <%= link_to("個人頁", account_user_path(current_user)) %> </li>
       <li> <%= link_to("個人估價單", account_appraisals_path) %> </li>
       <%# if current_user.admin? %>
 

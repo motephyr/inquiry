@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :login_required
 
   def edit_password
     @user = User.find(current_user.id)

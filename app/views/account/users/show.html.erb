@@ -1,0 +1,58 @@
+    <div class="about-me clearfix" id="about-me">
+      <div class="container">
+        <div class="row">
+          <!-- Profile Pic -->
+          <div class='col-sm-4 col-xs-12'>
+            <div class="row">
+              <div class="my-pic center wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/128px-Creative-Tail-People-police-man.svg.png" alt="my profile">
+              </div>
+              <div class="profile wow fadeInUp text-center" data-wow-duration="0.5s" data-wow-offset="200">
+                <div class="heading-line"></div>
+                <div class="personal-wrapper">
+                  <span><strong><%= @user.name %></strong>上線中</span>
+                  <span><strong>狀態: </strong>未開放接案</span>
+                  <span><strong>服務地區: </strong><%= @user.work_area %></span>
+                  <span><strong>類別: </strong><%= @user.category.try(:title) %></span>
+                  <span><strong><%= @user.teach == 1 ? "教學" : "" %> <%= @user.speak == 1 ? "諮詢" : "" %> <%= @user.labor == 1 ? "勞力" : "" %> <%= @user.contract == 1 ? "接案" : "" %></strong></span>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='col-sm-8 col-xs-12'>
+            <div class="row">
+              <div class="introduction wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
+                <h2 class="h2"><%= @user.name %></h2>
+                <div class="heading-line"></div>
+                <p class="introduce">工作內容</p>
+                <p class="intro"><%= @user.work_content %></p>
+              </div>
+
+              <div class="why-me wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
+                <!-- Start Accordion -->
+                <div class="accordion">
+                  <div class="acc-item">
+                    <div class="acc-title"><i class="ion-android-navigate"></i>技能</div>
+                    <div class="acc-content">例如photoshop Ruby Python...等</div>
+                  </div>
+                  <div class="acc-item">
+                    <div class="acc-title"><i class="ion-android-navigate"></i>作品</div>
+                    <div class="acc-content"><img height="100" src="https://www.shareicon.net/data/128x128/2015/09/02/94531_logo_512x512.png"><img height="100" src="https://d13yacurqjgara.cloudfront.net/assets/dribbble-logo-graph-dnld-a5f51e6e8f6c6bd334b1dc962110bdbf8d19c56d81b767e144e7de7b15689618.png">
+                      <img height="100" src="http://www.iconsdb.com/icons/preview/black/youtube-4-xxl.png"></div>
+                  </div>
+                  <div class="acc-item">
+                    <div class="acc-title"><i class="ion-android-navigate"></i>相關經歷</div>
+                    <div class="acc-content"><%= @user.typical_work %></div>
+                  </div>
+                  <div class="acc-item">
+                    <div class="acc-title"><i class="ion-android-navigate"></i>問與答</div>
+                    <div class="acc-content">Compellingly evisculate standardized metrics with 2.0 value. Professionally impact magnetic technologies without.</div>
+                  </div>
+                </div> <!-- End Accordion -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
