@@ -30,4 +30,9 @@ module ApplicationHelper
 	  content_tag :span, user.name,
 	              class: "user-#{user.id} online_status #{'online' if user.online?}"
 	end
+
+  def rasf(text)
+    Rinku.auto_link(simple_format(text), :all, 'target="_blank"').html_safe
+  end
+
 end

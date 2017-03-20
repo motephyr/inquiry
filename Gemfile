@@ -24,6 +24,9 @@ gem "mini_magick"
 # soft delete
 gem "paranoia", "~> 2.0"
 
+# auto_link
+gem "rinku"  #base on c's auto_link
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'

@@ -383,6 +383,7 @@ GEM
     require_all (1.4.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rinku (2.0.2)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -496,6 +497,7 @@ DEPENDENCIES
   rails (~> 5.0.2)
   rails_best_practices
   redis (~> 3.0)
+  rinku
   rspec-rails
   sass-rails (~> 5.0)
   seo_helper
