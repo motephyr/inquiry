@@ -1,7 +1,7 @@
 class Account::UsersController < ApplicationController
 
   def show
-    @user = UserSurvey.find(params[:id])
+    @user = UserInfo.find(params[:id])
   end
 
 end

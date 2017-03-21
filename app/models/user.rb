@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :appraisals
   has_many :appraisal_messages
   has_many :appraisal_prices
+  has_one :user_info
 
   def online?
     !Redis.new.get("user_#{self.id}_online").nil?

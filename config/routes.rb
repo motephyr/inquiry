@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   namespace :account do
     resources :users
+    resources :user_surveys
     resources :appraisals
   end
 
