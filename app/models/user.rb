@@ -13,4 +13,12 @@ class User < ApplicationRecord
     !Redis.new.get("user_#{self.id}_online").nil?
   end
 
+  def next
+    User.where("id > ?", self.id).first || User.first
+  end
+
+  def prev
+    User.where("id < ?", self.id).last || User.last
+  end
+
 end

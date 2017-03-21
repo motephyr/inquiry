@@ -30,7 +30,7 @@
     <td>
       標題：
       <%= a.title %>
-      <%= online_status a.user %>
+      <%= link_to online_status(a.user),account_user_info_path(a.user)  %>
     </td>
     <td>
       描述：

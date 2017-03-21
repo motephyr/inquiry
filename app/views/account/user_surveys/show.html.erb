@@ -15,8 +15,8 @@
                   <span><strong>服務地區: </strong><%= simple_format @user.work_area %></span>
                   <span><strong>類別: </strong><%= @user.category.try(:title) %></span>
                   <span><strong><%= @user.teach == 1 ? "教學" : "" %> <%= @user.speak == 1 ? "諮詢" : "" %> <%= @user.labor == 1 ? "勞力" : "" %> <%= @user.contract == 1 ? "接案" : "" %></strong></span>
-                  <%= link_to '上一個', account_user_path(@user.prev)  %>
-                  <%= link_to '下一個', account_user_path(@user.next)  %>
+                  <%= link_to '上一個', account_user_survey_path(@user.prev)  %>
+                  <%= link_to '下一個', account_user_survey_path(@user.next)  %>
 
                 </div>
               </div>

@@ -1,0 +1,41 @@
+    <%= simple_form_for @user_info, :url => { :action => "update_info" }, :method => :patch  do |f| -%>
+
+    <%= f.error_notification class: 'alert alert-danger' %>
+
+    <div class="form-inputs">
+      <div class="form-group">
+        <%= f.input :category, label: '類別' do %>
+          <%= f.select :category_id, Category.where("id < ?", 100).map { |r| [r.title, r.id] } %>
+        <% end %>
+        <p class="help-block">依對照表填入序號</p>
+      </div>
+      <div class="form-group">
+        <%= f.input_field :work_content, class: 'form-control string optional', placeholder: '工作內容' %>
+        <p class="help-block">工作內容</p>
+      </div>
+      <div class="form-group">
+        <%= f.input_field :work_area, class: 'form-control text optional', placeholder: '服務地區' %>
+        <p class="help-block">服務地區</p>
+
+      </div>
+      <div class="form-group">
+        <%= f.input_field :typical_work, class: 'form-control text optional', placeholder: '相關經歷' %>
+        <p class="help-block">相關經歷</p>
+
+      </div>
+      <div class="form-group">
+        <%= f.collection_radio_buttons :teach, [[1, 'Yes'] ,[0, 'No']], :first, :last %>
+        <p class="help-block">教學</p>
+        <%= f.collection_radio_buttons :speak, [[1, 'Yes'] ,[0, 'No']], :first, :last %>
+        <p class="help-block">咨詢</p>
+        <%= f.collection_radio_buttons :labor, [[1, 'Yes'] ,[0, 'No']], :first, :last %>
+        <p class="help-block">勞力</p>
+        <%= f.collection_radio_buttons :contract, [[1, 'Yes'] ,[0, 'No']], :first, :last %>
+        <p class="help-block">接案</p>
+      </div>
+    </div>
+    <div class="form-actions">
+      <p><%= f.button :submit, '送出', class: 'btm_c_org width50' %></p>
+      <p class="cancel"><%= link_to "回上頁", :back, class: 'btn btn-info' %></p>
+    </div>
+    <% end %>
