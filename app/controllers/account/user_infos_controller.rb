@@ -1,6 +1,6 @@
 class Account::UserInfosController < ApplicationController
 
-  before_action :login_required
+  before_action :login_required, except: [:show]
 
   def show
     if current_user == User.find(params[:id])
@@ -8,6 +8,10 @@ class Account::UserInfosController < ApplicationController
     else
       never_edit_user_info
     end
+  end
+
+  def edit_status
+    never_edit_my_info
   end
 
   def edit_info
@@ -54,6 +58,6 @@ class Account::UserInfosController < ApplicationController
   end
 
   def user_info_params
-    params.require(:user_info).permit(:user_id, :work_content, :work_area, :typical_work, :teach, :speak, :labor, :contract, :category_id)
+    params.require(:user_info).permit(:user_id,:name, :work_content, :work_area, :typical_work, :teach, :speak, :labor, :contract, :category_id, :skill_and_tool)
   end
 end

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   namespace :account do
     resources :user_infos do
       collection do
+        get 'edit_status'
         get 'edit_info'
         patch 'update_info'
       end

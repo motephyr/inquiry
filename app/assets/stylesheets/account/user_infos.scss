@@ -26,10 +26,10 @@
 .about-me h3 {
   font-size: 1.3rem;
   margin-top: 0;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #333;
-    font-weight: bolder;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #333;
+  font-weight: bolder;
 }
 .about-me .profile {
   margin-bottom: 30px;
@@ -51,14 +51,14 @@
 }
 .about-me .why-me .accordion .acc-item .acc-title {
   padding: 10px;
-    margin: 0;
-    cursor: pointer;
-    position: relative;
-    border: 1px solid #ccc;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 1.8px;
-    -webkit-transition: all 0.3s ease-in-out;
+  margin: 0;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #ccc;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -88,9 +88,17 @@
 }
 .about-me .why-me .accordion .acc-item .acc-content {
   padding: 10px;
-    margin: 0;
-    letter-spacing: 1.3px;
-    color: #555;
-    background: #f4f4f4;
-    display: none;
+  margin: 0;
+  letter-spacing: 1.3px;
+  color: #555;
+  background: #f4f4f4;
+  display: none;
+}
+
+.about-me .why-me .accordion .acc-item .acc-content-show {
+  padding: 10px;
+  margin: 0;
+  letter-spacing: 1.3px;
+  color: #555;
+  background: #f4f4f4;
 }
