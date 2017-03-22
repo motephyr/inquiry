@@ -5,32 +5,32 @@
     <div class="form-inputs">
       <%=  f.hidden_field :name %>
       <div class="form-group">
-        <%= f.input :category, label: '類別' do %>
+        <%= f.input :category, label: '工作領域' do %>
           <%= f.select :category_id, Category.where("id < ?", 100).map { |r| [r.title, r.id] } %>
         <% end %>
-        <p class="help-block">依對照表填入序號</p>
+        <p class="help-block">您所主要提供的服務類別</p>
       </div>
       <div class="form-group">
-        <%= f.label '服務地區' %>
+        <%= f.label '所在地區' %>
         <%= f.input_field :work_area, class: 'form-control text optional' %>
-        <p class="help-block">服務地區</p>
+        <p class="help-block">所在地區(如果需要面談或開會時方便的地點)</p>
 
       </div>
       <div class="form-group">
         <%= f.label '工作內容' %>
         <%= f.input_field :work_content, class: 'form-control string optional' %>
-        <p class="help-block">工作內容</p>
+        <p class="help-block">您提供的主要服務</p>
       </div>
       <div class="form-group">
-        <%= f.label '相關經歷' %>
+        <%= f.label '相關經歷與作品連結' %>
         <%= f.input_field :typical_work, class: 'form-control text optional' %>
-        <p class="help-block">相關經歷</p>
+        <p class="help-block">您提供此服務的過去相關經歷以及作品連結</p>
 
       </div>
       <div class="form-group">
-        <%= f.label '擅長技能或工具' %>
+        <%= f.label '擅長技能或使用工具' %>
         <%= f.input_field :skill_and_tool, class: 'form-control text optional' %>
-        <p class="help-block">擅長技能或工具</p>
+        <p class="help-block">您提供此服務所使用的相關技能或工具，供他人有特殊考量時參考。</p>
       </div>
         <%=  f.hidden_field :teach %>
         <%=  f.hidden_field :speak %>
