@@ -4,13 +4,13 @@ class AppraisalsController < ApplicationController
   before_action :appraisal_owner, only: [:edit, :update, :destroy]
 
   def index
-    @appraisals = Appraisal.all
+    @appraisals = Appraisal.includes(category: :parent_category).all
   end
 
   def show
     @appraisal = Appraisal.find(params[:id])
 
-    @appraisal_messages = @appraisal.appraisal_messages.all
+    @appraisal_messages = @appraisal.appraisal_messages.includes(:user).all
     @appraisal_message = AppraisalMessage.new
 
     @appraisal_prices = @appraisal.appraisal_prices.all
