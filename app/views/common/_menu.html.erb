@@ -13,14 +13,19 @@
       <%= render_list :class => "nav navbar-nav" do |li|
         #li << link_to("首頁","/")
         #li << link_to("二手嬰兒用品交流團","/homes/index_products")
+        li << link_to("值多少", appraisals_path)
         end %>
 
         <%#= render :partial => "common/search_form" %>
 
-        <%= render :partial => "common/user_nav"%>
-      </div><!--/.nav-collapse -->
-    </div>
+      <ul class="nav navbar-nav navbar-right">
+        <%= render :partial => "common/user_nav" %>
+      </ul>
 
-    <%= yield :submenu %>
-
+      
+    </div><!--/.nav-collapse -->
   </div>
+
+  <%= yield :submenu %>
+
+</div>
