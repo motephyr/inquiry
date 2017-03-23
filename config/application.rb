@@ -13,6 +13,6 @@ module Inquiry
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.action_view.sanitized_allowed_tags = %w[table tr td]
-
+    config.autoload_paths += Dir[File.join(Rails.root, "lib", "core_ext", "*.rb")].each {|l| require l }
   end
 end
