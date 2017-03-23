@@ -17,9 +17,18 @@ Rails.application.routes.draw do
   end
 
   namespace :account do
+    resources :user_infos do
+      collection do
+        get 'edit_status'
+        get 'edit_info'
+        patch 'update_info'
+      end
+    end
+    resources :user_surveys
     resources :appraisals
   end
 
+  resources :activities
   resources :appraisals
   resources :appraisal_messages
   resources :appraisal_prices

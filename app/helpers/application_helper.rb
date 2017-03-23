@@ -27,7 +27,21 @@ module ApplicationHelper
 	end
 
 	def online_status(user)
-	  content_tag :span, user.name,
+	  content_tag :span, user.user_info.nickname,
 	              class: "user-#{user.id} online_status #{'online' if user.online?}"
 	end
+
+	def user_status(user)
+		if user.online?
+	  	content_tag :span, '上線中'
+	  else
+	  	content_tag :span, '(email or 電話)'
+	  end
+
+	end
+
+  def rasf(text)
+    Rinku.auto_link(simple_format(text), :all, 'target="_blank"').html_safe
+  end
+
 end

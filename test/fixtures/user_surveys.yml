@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  work_content: MyText
+  work_area: MyText
+  typical_work: MyText
+  name: MyString
+  email: MyString
+  think: MyText
+  teach: 1
+  speak: 1
+  labor: 1
+  contract: 1
+  category_id: 1
+
+two:
+  work_content: MyText
+  work_area: MyText
+  typical_work: MyText
+  name: MyString
+  email: MyString
+  think: MyText
+  teach: 1
+  speak: 1
+  labor: 1
+  contract: 1
+  category_id: 1

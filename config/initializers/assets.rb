@@ -11,7 +11,8 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile << Proc.new do |path|
   if path =~ /\.(css|js)\z/ && !path.include?('bootstrap')
-    full_path = Rails.application.assets.resolve(path)
+    @assets ||= Rails.application.assets || Sprockets::Railtie.build_environment(Rails.application)
+    full_path = @assets.resolve(path)
     count = Rails.application.config.assets.paths.select {|app_assets_path|  full_path.starts_with? app_assets_path.to_s }.length
     if count > 0
       puts "including asset: " + full_path
