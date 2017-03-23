@@ -1,3 +1,9 @@
+
+<% if current_user == @appraisal.user %>
+  <%= link_to 'Edit', edit_appraisal_path(@appraisal), :class => 'btn btn-success' %>
+<% end %>
+<br/>
+<br/>
 <table class='table table-bordered'>
   <tr>
     <td>
