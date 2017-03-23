@@ -1,0 +1,66 @@
+
+<% @categories = Category.includes(:subcategories).where("id < ?", 100) %>
+
+<table class='table table-bordered' id="appraisal_category_table">
+<tbody>
+	<% @categories.reduce('') do |all, c| %>
+	<tr>
+		<td class="main_category_region">
+			<button id="btn_category_<%= c.id %>" onclick="AppraisalCategory.onMainCateClick(this);" class="btn btn-default" type="button" value="<%= c.id %>"><%= c.title %></button></td>
+		<td class="sub_category_region">
+			<% c.subcategories.reduce('') do |sum, sub_category| %>
+			<button id="btn_category_<%= sub_category.id %>" onclick="AppraisalCategory.onSubCateClick(this);" class="btn btn-default" type="button" value="<%= sub_category.id %>" category-parent="btn_category_<%= c.id %>"><%= sub_category.title %></button>
+			<% end %>
+		</td>
+	</tr>
+	<% end %>
+</tbody>
+</table>
+
+<script type="text/javascript">
+
+window.AppraisalCategory = {
+	outputField: 'appraisal_category_id',
+	depressedClass: 'btn-default-depressed',
+	currentDepressed: [],
+	clearDepress: function(){
+		var self = this, look;
+		while(look = self.currentDepressed.pop()) $(look).removeClass(self.depressedClass);
+	},
+	addDepress: function(){
+		var self = this;
+		for(var i = 0, len = arguments.length; i < len; i++){
+			var el = arguments[i];
+			$(el).addClass(self.depressedClass);
+			self.currentDepressed.push(el);
+		}
+	},
+	onMainCateClick: function(o){
+		var self = this;
+		self.clearDepress();
+		self.addDepress(o);
+		document.getElementById(self.outputField).value = o.getAttribute('value');
+	},
+	onSubCateClick: function(o){
+		var self = this;
+		var parentBtn = document.getElementById(o.getAttribute('category-parent'));
+		self.clearDepress();
+		self.addDepress(parentBtn, o);
+		document.getElementById(self.outputField).value = o.getAttribute('value');
+	},
+	trigger: function(id){
+		$("#btn_category_" + id).trigger('click');
+	}
+};
+<% if appraisal.category_id %>
+AppraisalCategory.trigger("<%= appraisal.category_id %>");
+<% end %>
+
+</script>
+<style type="text/css">
+	.btn-default-depressed:focus{ outline: none; }
+	.btn-default-depressed, .btn-default-depressed:hover{
+		background-color: #c8c8c8 !important;
+    	border: 1.5px inset !important;
+	}
+</style>

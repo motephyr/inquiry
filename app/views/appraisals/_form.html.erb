@@ -4,10 +4,9 @@
 
     <div class="form-inputs">
       <div class="form-group">
-        <%= f.input :category, label: '類別' do %>
-          <%= f.select :category_id, Category.all.map { |r| [r.title, r.id] } %>
-        <% end %>
-        <p class="help-block">依對照表填入序號</p>
+        <p class="help-block">請點選分類</p>
+        <%= f.hidden_field :category_id %>
+        <%= render 'category', appraisal: @appraisal  %>
       </div>
       <div class="form-group">
         <%= f.input_field :title, class: 'form-control string optional', placeholder: '標題' %>
