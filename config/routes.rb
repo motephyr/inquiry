@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :appraisals
   end
 
+  resources :activities
   resources :appraisals
   resources :appraisal_messages
   resources :appraisal_prices
