@@ -1,7 +1,29 @@
 
 <% @categories = Category.includes(:subcategories).where("id < ?", 100) %>
 
-<table class='table table-bordered' id="appraisal_category_table">
+<style type="text/css">
+	.btn-default-depressed:focus{ outline: none; }
+	.btn-default-depressed, .btn-default-depressed:hover{
+		background-color: #c8c8c8 !important;
+    	border: 1.5px inset !important;
+	}
+	#appraisal_category_table{
+		border-collapse: separate; /* allow spacing between cell borders */
+    	border-spacing: 0 8px;
+	}
+	#appraisal_category_table tr td{
+		border: 0px;
+	}
+	#appraisal_category_table tr td:first-child{
+		border-right: 1px dotted;
+		background-color: inherit;
+	}
+	#appraisal_category_table tr td:last-child{
+		background-color: white;
+	}
+</style>
+
+<table class="table" id="appraisal_category_table">
 <tbody>
 	<% @categories.reduce('') do |all, c| %>
 	<tr>
@@ -57,10 +79,3 @@ AppraisalCategory.trigger("<%= appraisal.category_id %>");
 <% end %>
 
 </script>
-<style type="text/css">
-	.btn-default-depressed:focus{ outline: none; }
-	.btn-default-depressed, .btn-default-depressed:hover{
-		background-color: #c8c8c8 !important;
-    	border: 1.5px inset !important;
-	}
-</style>
