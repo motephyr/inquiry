@@ -1,1 +1,5 @@
+<% if @activities.present? %>
 $('#notify_result').html('<%= j render(@activities) %>')
+<% else %>
+$('#notify_result').html('<p class="list-group-item">無資料</p>')
+<% end %>
