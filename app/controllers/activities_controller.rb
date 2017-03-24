@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
   def index
-    @activities = PublicActivity::Activity.includes(:owner, :trackable, appraisal_message: :appraisal)
+    @activities = PublicActivity::Activity.includes(:owner, trackable: :appraisal)
     .where(recipient_type: "User", recipient_id: current_user.id)
     .order("created_at desc")
     .limit(10)
