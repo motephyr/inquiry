@@ -1,21 +1,26 @@
     <%= simple_form_for @appraisal do |f| -%>
 
     <%= f.error_notification class: 'alert alert-danger' %>
-
+    <style type="text/css">
+      span.help-block{
+        display: inline;
+        font-size: 0.8em;
+        margin-left: 15px;
+      }
+    </style>
     <div class="form-inputs">
-      <div class="form-group">
-        <p class="help-block">請點選分類</p>
+      <div class="form-group span2">
+        <h4><span>分類</span><span class="help-block">左半部主分類、右半部子分類。單選。</span></h4>
         <%= f.hidden_field :category_id %>
         <%= render 'category', appraisal: @appraisal  %>
       </div>
       <div class="form-group">
+        <h4><span>標題</span><span class="help-block">例如：PHP後台系統設計、商品攝影+修圖、女性服飾網拍修圖</span></h4>
         <%= f.input_field :title, class: 'form-control string optional', placeholder: '標題' %>
-        <p class="help-block">例如：PHP後台系統設計、商品攝影+修圖、女性服飾網拍修圖</p>
       </div>
       <div class="form-group">
-        <%= f.input_field :description, class: 'form-control text optional', placeholder: '請輸入內容' %>
-        <p class="help-block">描述案子的作業時程，限制條件等</p>
-
+        <h4><span>內容</span><span class="help-block">描述案子的作業時程，限制條件等</span></h4>
+        <%= f.input_field :description, as: :text, class: 'form-control', rows: '20', placeholder: '請輸入內容' %>
       </div>
     </div>
     <div class="form-actions">
