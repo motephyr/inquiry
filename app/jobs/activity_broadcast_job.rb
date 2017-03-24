@@ -9,8 +9,16 @@ class ActivityBroadcastJob < ApplicationJob
           ActivityChannel.broadcast_to(
             user,
             message: render_activity(activity)
-          )
+            )
+        else
+          #keep to mail
         end
+        user_activity = PublicActivity::Activity.new(activity.attributes.select{ |key, _|  PublicActivity::Activity.attribute_names.include? key })
+        user_activity.recipient_type = "User"
+        user_activity.recipient_id = user.id
+        user_activity.id = nil
+        user_activity.save
+
       end
     end
   end
@@ -20,4 +28,5 @@ class ActivityBroadcastJob < ApplicationJob
   def render_activity(activity)
     ApplicationController.renderer.render(partial: 'public_activity/activities/activity', locals: { activity: activity })
   end
+
 end
