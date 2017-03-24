@@ -27,10 +27,11 @@
     <div onclick="location.href='<%= appraisal_path(a) %>'" class="appraisal-item">
       <h4> <%= a.title %> </h4>
       <p class="description"><%= a.description %></p>
-      <p class="category"><%= a.category.title %>
+      <p class="category">
         <% if a.category.parent_category.present? %>
-        , <%= a.category.parent_category.try(:title) %>
+        <%= a.category.parent_category.try(:title) %> - 
         <% end %>
+        <%= a.category.title %>
       </p>
       <p class="info">
         <span class="info-number"><%= a.appraisal_messages.size %></span>
