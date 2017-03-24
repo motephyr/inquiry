@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322132401) do
+ActiveRecord::Schema.define(version: 20170324021953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,10 @@ ActiveRecord::Schema.define(version: 20170322132401) do
     t.integer  "recipient_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "task_id"
     t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
     t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
+    t.index ["task_id"], name: "index_activities_on_task_id", using: :btree
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
   end
 
@@ -62,6 +64,16 @@ ActiveRecord::Schema.define(version: 20170322132401) do
     t.integer  "appraisal_prices_count",   default: 0
     t.index ["category_id"], name: "index_appraisals_on_category_id", using: :btree
     t.index ["user_id"], name: "index_appraisals_on_user_id", using: :btree
+  end
+
+  create_table "cares", force: :cascade do |t|
+    t.string   "careable_type"
+    t.integer  "careable_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["careable_type", "careable_id"], name: "index_cares_on_careable_type_and_careable_id", using: :btree
+    t.index ["user_id"], name: "index_cares_on_user_id", using: :btree
   end
 
   create_table "categories", force: :cascade do |t|

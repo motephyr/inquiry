@@ -13,6 +13,6 @@ PublicActivity::Activity.class_eval do
   after_create :record_intercom_event
 
   def record_intercom_event
-      ActivityBroadcastJob.perform_later self
+      ActivityBroadcastJob.perform_now self
   end
 end

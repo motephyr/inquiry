@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :appraisals
   has_many :appraisal_messages
   has_many :appraisal_prices
+  has_many :cares
+
   has_one :user_info
 
   def nickname
