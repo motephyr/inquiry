@@ -69,8 +69,67 @@
 
 <br/>
 <h4>值多少</h4>
-<% @appraisal_prices.each do |p| %>
- <p><%= p.price %>元</p>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+var prices = [];
+<% if @appraisal_prices.presence %>
+prices = <%= @appraisal_prices.order("price DESC").pluck(:price) %>;
+<% end %>
+function getTrimDigit(number){
+  var digit = number.toString().length;
+  return (digit > 4)? (digit - 2) : (digit - 1);
+}
+if(prices.length){
+  var max = prices[0],
+      min = prices[prices.length-1],
+      diff = Math.floor((max - min) / 5),
+      diffTrimDigit = getTrimDigit(diff),
+      minTrimDigit = getTrimDigit(min),
+      step = Math.floor(diff / Math.pow(10, diffTrimDigit)) * Math.pow(10, diffTrimDigit),
+      current = Math.floor(min / Math.pow(10, minTrimDigit)) * Math.pow(10, minTrimDigit),
+      ranges = [],
+      priceCache = prices.slice(0),
+      collection = [];
+  while(current + step < max) ranges.push(current += step);
+  ranges.reverse();
+  ranges.forEach(function(item, idx){
+    var collect = [];
+    if(idx == 0) collect.push(item + "以上");
+    else if(idx == ranges.length - 1) collect.push(item + "以下");
+    else collect.push(ranges[idx-1] + "~" + item);
+    var count = 0;
+    for(var pidx = 0; pidx < priceCache.length; pidx++){
+      var p = priceCache[pidx];
+      if( (idx == 0 && p > item) || 
+        (idx == ranges.length - 1 && p < item) || 
+        (p > ranges[idx-1] && p < item) ){
+        priceCache.splice(pidx, 1);
+        pidx--;
+        count++;
+      }
+    }
+    collect.push(count);
+    collection.push(collect);
+  });
+
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([['Task', 'Hours per Day']].concat(collection));
+    var options = {
+      backgroundColor: 'transparent'
+    };
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+    chart.draw(data, options);
+  }
+}
+</script>
+<% if @appraisal_prices.presence %>
+<div class="row">
+  <div id="piechart" class="col-md-6" style="height: 250px;"></div>
+</div>
 <% end %>
 
 <br/>
