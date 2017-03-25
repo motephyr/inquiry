@@ -28,4 +28,19 @@ module Careable
       obj.cares.destroy_all
     end
   end
+
+  def care_by(user)
+    obj = self
+    obj.cares.find_or_create_by(careable_type: obj.class.to_s, careable_id: obj.id,  user: user)
+  end
+
+  def uncare_by(user)
+    obj = self
+    obj.cares.find_by(careable_type: obj.class.to_s, careable_id: obj.id,  user: user).destroy
+  end
+
+
+  def is_care_by?(user)
+    self.cares.any? {|h| h.user_id == user.id}
+  end
 end

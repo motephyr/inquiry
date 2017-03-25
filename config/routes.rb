@@ -25,7 +25,11 @@ Rails.application.routes.draw do
       end
     end
     resources :user_surveys
-    resources :appraisals
+    resources :appraisals do
+      member do
+        post 'update_care'
+      end
+    end
   end
 
   resources :activities

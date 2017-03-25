@@ -2,6 +2,9 @@
   <% @appraisals.each do |a| %>
   <tr>
     <td>
+      <%= link_to '取消關注', update_care_account_appraisal_path(a), method: :post %>
+    </td>
+    <td>
       <h4><%= a.category.title %>
       <% if a.category.parent_category.present? %>
       >
