@@ -1,7 +1,7 @@
 <%= form_for appraisal_message, remote: true do |f| %>
 <p>
   <% if current_user == appraisal_message.user %>
-    <%= link_to "", appraisal_message, method: :delete, class: 'glyphicon glyphicon-remove-circle', data: {confirm: "Are you sure?"}, remote: true %>
+    <%= link_to "", appraisal_message, method: :delete, class: 'glyphicon glyphicon-remove-circle', data: {confirm: "確定要刪除嗎？"}, remote: true %>
   <% end %>
   <% if appraisal_message.user == appraisal_message.appraisal.user %>
   [發文者]: <%= appraisal_message.content %>

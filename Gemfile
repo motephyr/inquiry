@@ -31,6 +31,12 @@ gem "rinku"  #base on c's auto_link
 gem 'public_activity', git: 'https://github.com/chaps-io/public_activity.git'
 gem 'bootstrap-growl-rails'
 
+# 排程
+gem 'whenever', :require => false
+
+# email 排版
+gem 'roadie-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use sqlite3 as the database for Active Record
