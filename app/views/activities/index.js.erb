@@ -1,5 +1,7 @@
 <% if @activities.present? %>
+<% cache [@activities] do %>
 $('#notify_result').html('<%= j render(@activities) %>')
+<% end %>
 <% else %>
 $('#notify_result').html('<p class="list-group-item">無資料</p>')
 <% end %>

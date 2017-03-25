@@ -116,7 +116,7 @@ function getTrimDigit(number){
   var digit = number.toString().length;
   return (digit > 4)? (digit - 2) : (digit - 1);
 }
-if(prices.length){
+if(prices.length > 1){
   var max = prices[0],
       min = prices[prices.length-1],
       diff = Math.floor((max - min) / 5),
