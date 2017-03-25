@@ -1,5 +1,5 @@
 <% if activity.trackable %>
-  <%= link_to "#{activity.owner.nickname} 修改了估價內容 #{activity.trackable.title}", activity.trackable, class: "list-group-item" %>
+  <%= link_to "[發文者] 修改了估價內容 #{activity.trackable.title}", activity.trackable, class: "list-group-item" %>
 <% else %>
   <%= activity.owner.nickname %>
   修改了估價內容 已被刪除
