@@ -1,4 +1,3 @@
-
 <% if current_user == @appraisal.user %>
   <%= link_to 'Edit', edit_appraisal_path(@appraisal), :class => 'btn btn-success' %>
   <br/>
@@ -7,7 +6,6 @@
   content = @appraisal.description
   content.gsub!(/\r\n?/, "\n")
 %>
-
 <h3><%= @appraisal.title %></h3>
 <div class="well">
   <% content.split("\n").each do |t| %>
@@ -16,17 +14,16 @@
 </div>
 <p class="category">
   <% if @appraisal.category.parent_category.present? %>
-  <%= @appraisal.category.try(:parent_category).try(:title) %> -
+    <%= @appraisal.category.try(:parent_category).try(:title) %> -
   <% end %>
   <%= @appraisal.category.title %>
 </p>
 <p class="info">
   <span class="info-number"><%= @appraisal.appraisal_messages.size %></span>
   <span> 留言</span>
-  <span class="info-number"><%= @appraisal.appraisal_prices.size %></span>
+  <span class="info-number"><%= (@appraisal_price.new_record?) ? @appraisal.appraisal_prices.size - 1 : @appraisal.appraisal_prices.size %></span>
   <span> 估價</span>
 </p>
-
 <h4>留言</h4>
 <div class="tasks" id="incomplete_tasks">
   <%= render @appraisal_messages %>
@@ -41,126 +38,148 @@
     </div>
   </div>
 <% end %>
-
 <br/>
 <h4>值多少</h4>
-
-<% if @appraisal_prices.presence %>
-<div class="row">
-  <div id="piechart" class="col-md-6" style="height: 250px;"></div>
-</div>
-<% end %>
-
-<br/>
 <h5>我的估價</h5>
 <%= form_for @appraisal_price do |f| %>
   <%= f.hidden_field :appraisal_id, {value: @appraisal.id} %>
   <div class="row">
-    <div class="col-md-2 col-sm-3 col-xs-6">
-      <%= f.number_field :price, class: 'form-control' %>
-    </div>
-    <div class="col-md-2 col-sm-3 col-xs-4">
-      <%= f.submit "更新", class: 'btn btn-primary' %>
+    <% if @appraisal_price.new_record? %>
+      <div class="col-md-2 col-sm-3 col-xs-6">
+        <%= f.number_field :price, class: 'form-control' %>
+      </div>
+      <div class="col-md-2 col-sm-3 col-xs-4">
+        <%= f.submit "送出", class: 'btn btn-primary' %>
+      </div>
+    <% else %>
+      <div class="col-md-2 col-sm-3 col-xs-6">
+        <%= f.number_field :price, class: 'form-control',:readonly => true %>
+      </div>
+      <div class="col-md-2 col-sm-3 col-xs-4">
+        <%= link_to '刪除', appraisal_price_path(@appraisal_price), method: :delete, data: { confirm: '確定要刪除嗎？' }, :class => 'btn btn-danger' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+<br/>
+<% if @appraisal_prices.size > 1 %>
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    估價統計
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">估價統計</h4>
+        </div>
+        <div class="modal-body">
+          <div id="piechart" class="col-md-6" style="height: 250px;"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>
-
-</br/>
+<br/>
+<br/>
 <p class="cancel"><%= link_to "回上頁", appraisals_path, class: 'btn btn-info' %></p>
-
-
 <% content_for :stylesheets do %>
-<style type="text/css">
-  .well p{
-    margin-bottom: 0px;
-  }
-  p.category, p.info{
-    text-align: right;
-    margin-bottom: 0.4em;
-  }
-  p.category{
-    color: #b8860b;
-  }
-  p.info span.info-number{
-    font-size:  1.2em;
-    color: #5f9ea0;
-  }
-  a.glyphicon{ text-decoration: none; }
-  a.glyphicon-remove-circle{ color: #f44336; }
-  .tasks p{
-    margin-bottom: 0.2em;
-  }
-  span.help-block{
-    display: inline;
-    font-size: 0.8em;
-    margin-left: 15px;
-  }
-</style>
+  <style type="text/css">
+    .well p{
+        margin-bottom: 0px;
+      }
+      p.category, p.info{
+        text-align: right;
+        margin-bottom: 0.4em;
+      }
+      p.category{
+        color: #b8860b;
+      }
+      p.info span.info-number{
+        font-size:  1.2em;
+        color: #5f9ea0;
+      }
+      a.glyphicon{ text-decoration: none; }
+      a.glyphicon-remove-circle{ color: #f44336; }
+      .tasks p{
+        margin-bottom: 0.2em;
+      }
+      span.help-block{
+        display: inline;
+        font-size: 0.8em;
+        margin-left: 15px;
+      }
+  </style>
 <% end %>
-
 <% content_for :javascripts do %>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
-$('#appraisal_message_content').keypress(function(e){
-    if(e.shiftKey && e.keyCode == 13){
-    } else if (e.keyCode == 13) {
-     $(this).closest('form').submit();
-   }
-});
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    $('#appraisal_message_content').keypress(function(e){
+        if(e.shiftKey && e.keyCode == 13){
+        } else if (e.keyCode == 13) {
+         $(this).closest('form').submit();
+       }
+    });
 
-var prices = [];
-<% if @appraisal_prices.presence %>
-prices = <%= @appraisal_prices.order("price DESC").pluck(:price) %>;
-<% end %>
-function getTrimDigit(number){
-  var digit = number.toString().length;
-  return (digit > 4)? (digit - 2) : (digit - 1);
-}
-if(prices.length > 1){
-  var max = prices[0],
-      min = prices[prices.length-1],
-      diff = Math.floor((max - min) / 5),
-      diffTrimDigit = getTrimDigit(diff),
-      minTrimDigit = getTrimDigit(min),
-      step = Math.floor(diff / Math.pow(10, diffTrimDigit)) * Math.pow(10, diffTrimDigit),
-      current = Math.floor(min / Math.pow(10, minTrimDigit)) * Math.pow(10, minTrimDigit),
-      ranges = [],
-      priceCache = prices.slice(0),
-      collection = [];
-  while(current + step < max) ranges.push(current += step);
-  ranges.reverse();
-  ranges.forEach(function(item, idx){
-    var collect = [];
-    if(idx == 0) collect.push(item + "以上");
-    else if(idx == ranges.length - 1) collect.push(item + "以下");
-    else collect.push(ranges[idx-1] + "~" + item);
-    var count = 0;
-    for(var pidx = 0; pidx < priceCache.length; pidx++){
-      var p = priceCache[pidx];
-      if( (idx == 0 && p > item) ||
-        (idx == ranges.length - 1 && p < item) ||
-        (p > ranges[idx-1] && p < item) ){
-        priceCache.splice(pidx, 1);
-        pidx--;
-        count++;
+    var prices = [];
+    <% if @appraisal_prices.size > 1 %>
+    prices = <%= @appraisal_prices.order("price DESC").pluck(:price) %>;
+    <% end %>
+    function getTrimDigit(number){
+      var digit = number.toString().length;
+      return (digit > 4)? (digit - 2) : (digit - 1);
+    }
+    if(prices.length > 1){
+      var max = prices[0],
+          min = prices[prices.length-1],
+          diff = Math.floor((max - min) / 5),
+          diffTrimDigit = getTrimDigit(diff),
+          minTrimDigit = getTrimDigit(min),
+          step = Math.floor(diff / Math.pow(10, diffTrimDigit)) * Math.pow(10, diffTrimDigit),
+          current = Math.floor(min / Math.pow(10, minTrimDigit)) * Math.pow(10, minTrimDigit),
+          ranges = [],
+          priceCache = prices.slice(0),
+          collection = [];
+      while(current + step < max) ranges.push(current += step);
+      ranges.reverse();
+      ranges.forEach(function(item, idx){
+        var collect = [];
+        if(idx == 0) collect.push(item + "以上");
+        else if(idx == ranges.length - 1) collect.push(item + "以下");
+        else collect.push(ranges[idx-1] + "~" + item);
+        var count = 0;
+        for(var pidx = 0; pidx < priceCache.length; pidx++){
+          var p = priceCache[pidx];
+          if( (idx == 0 && p > item) ||
+            (idx == ranges.length - 1 && p < item) ||
+            (p > ranges[idx-1] && p < item) ){
+            priceCache.splice(pidx, 1);
+            pidx--;
+            count++;
+          }
+        }
+        collect.push(count);
+        collection.push(collect);
+      });
+
+      google.charts.load('current', {'packages':['corechart']});
+      $('#myModal').on('shown.bs.modal', function () {
+        google.charts.setOnLoadCallback(drawChart);
+      })
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([['Task', 'Hours per Day']].concat(collection));
+        var options = {
+          backgroundColor: 'transparent'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
       }
     }
-    collect.push(count);
-    collection.push(collect);
-  });
-
-  google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
-
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([['Task', 'Hours per Day']].concat(collection));
-    var options = {
-      backgroundColor: 'transparent'
-    };
-    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-    chart.draw(data, options);
-  }
-}
-</script>
+  </script>
 <% end %>

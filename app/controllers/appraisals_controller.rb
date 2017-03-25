@@ -14,9 +14,8 @@ class AppraisalsController < ApplicationController
     @appraisal_message = AppraisalMessage.new
 
     @appraisal_prices = @appraisal.appraisal_prices.all
-    price = @appraisal.appraisal_prices.find_by(user: current_user)
+    @appraisal_price = @appraisal.appraisal_prices.find_or_initialize_by(user: current_user)
 
-    @appraisal_price = price.present? ? price : AppraisalPrice.new
   end
 
   def new

@@ -1,17 +1,24 @@
 class AppraisalPricesController < ApplicationController
   before_action :login_required
-  before_action :price_owner, only: [:update]
+  before_action :price_owner, only: [:destroy]
 
   def create
     @appraisal_price = current_user.appraisal_prices.build(allowed_params)
 
-    @appraisal_price.save
+    if @appraisal_price.save
+      flash[:notice] = '您輸入的金額是：' + @appraisal_price.price.to_s
+    else
+      flash[:notice] = '輸入錯誤囉'
+    end
+
     redirect_to @appraisal_price.appraisal
+
   end
 
-  def update
+  def destroy
 
-    @appraisal_price.update(allowed_params)
+    @appraisal_price = AppraisalPrice.find(params[:id])
+    @appraisal_price.destroy
     redirect_to @appraisal_price.appraisal
   end
 
