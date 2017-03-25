@@ -3,11 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  acts_as_paranoid
 
-  has_many :appraisals
-  has_many :appraisal_messages
-  has_many :appraisal_prices
-  has_many :cares
+  has_many :appraisals, dependent: :destroy
+  has_many :appraisal_messages, dependent: :destroy
+  has_many :appraisal_prices, dependent: :destroy
+  has_many :cares, dependent: :destroy
 
   has_one :user_info
 

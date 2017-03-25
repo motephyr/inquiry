@@ -6,8 +6,8 @@ class Appraisal < ApplicationRecord
   include Careable
 
   belongs_to :user
-  has_many :appraisal_messages
-  has_many :appraisal_prices
+  has_many :appraisal_messages, :dependent => :destroy
+  has_many :appraisal_prices, :dependent => :destroy
   belongs_to :category
 
   scope :recent, -> { order("id DESC")}
