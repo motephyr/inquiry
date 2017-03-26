@@ -144,21 +144,27 @@
           step = Math.floor(diff / Math.pow(10, diffTrimDigit)) * Math.pow(10, diffTrimDigit),
           current = Math.floor(min / Math.pow(10, minTrimDigit)) * Math.pow(10, minTrimDigit),
           ranges = [],
+          bounds = [],
           priceCache = prices.slice(0),
           collection = [];
       while(current + step < max) ranges.push(current += step);
       ranges.reverse();
+      // from max range to min range
       ranges.forEach(function(item, idx){
+        if(idx > 0) bounds.push( {upBound: ranges[idx - 1], downBound: item} );
+        if(idx == 0) bounds.push( {upBound: max + 1, downBound: item} );
+        if(idx == ranges.length - 1) bounds.push( {upBound: item, downBound: min - 1} );
+      });
+
+      bounds.forEach(function(item, idx){
         var collect = [];
-        if(idx == 0) collect.push(item + "以上");
-        else if(idx == ranges.length - 1) collect.push(item + "以下");
-        else collect.push(ranges[idx-1] + "~" + item);
+        if(idx == 0) collect.push(item.downBound + " 以上");
+        else if(idx == bounds.length - 1) collect.push(item.upBound + " 以下");
+        else collect.push(item.downBound + " ~ " + item.upBound);
         var count = 0;
         for(var pidx = 0; pidx < priceCache.length; pidx++){
           var p = priceCache[pidx];
-          if( (idx == 0 && p > item) ||
-            (idx == ranges.length - 1 && p < item) ||
-            (p > ranges[idx-1] && p < item) ){
+          if(p >= item.downBound && p < item.upBound){
             priceCache.splice(pidx, 1);
             pidx--;
             count++;
