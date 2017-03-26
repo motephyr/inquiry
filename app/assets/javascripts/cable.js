@@ -3,7 +3,8 @@
 //
 //= require action_cable
 //= require_self
-//= require_tree ./channels
+//= require ./channels/activity
+//= require ./channels/appearance
 
 (function() {
   this.App || (this.App = {});

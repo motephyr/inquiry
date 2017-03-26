@@ -116,6 +116,8 @@
   </style>
 <% end %>
 <% content_for :javascripts do %>
+  <%= javascript_include_tag "channels/appraisal_message" %>
+
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script>
     $('#appraisal_message_content').keypress(function(e){

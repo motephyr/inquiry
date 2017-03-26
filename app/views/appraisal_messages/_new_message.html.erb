@@ -1,0 +1,7 @@
+<p>
+  <% if appraisal_message.user == appraisal_message.appraisal.user %>
+    [發文者]: <%= appraisal_message.content %>
+  <% else %>
+    <%= link_to online_status(appraisal_message.user),account_user_info_path(appraisal_message.user)  %>: <%= appraisal_message.content %>
+  <% end %>
+</p>

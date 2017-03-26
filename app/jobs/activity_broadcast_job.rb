@@ -2,6 +2,10 @@ class ActivityBroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(activity)
+    if activity.key == 'appraisal_message.create'
+      ActionCable.server.broadcast "appraisal_message_/appraisals/#{activity.task_id}_channel",
+        message: render_new_message(activity.trackable)
+    end
     if activity.key == 'appraisal_message.create' || activity.key == 'appraisal.update'
       users = Appraisal.includes(cares: :user).find(activity.task_id).cares.map {|x| x.user}.uniq.select{|x| x.id != activity.owner_id}
       users.each do |user|
@@ -24,6 +28,10 @@ class ActivityBroadcastJob < ApplicationJob
   end
 
   private
+
+  def render_new_message(appraisal_message)
+    ApplicationController.renderer.render(partial: 'appraisal_messages/new_message', locals: {appraisal_message: appraisal_message})
+  end
 
   def render_activity(activity)
     ApplicationController.renderer.render(partial: 'public_activity/activities/activity', locals: { activity: activity })
