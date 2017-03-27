@@ -1,112 +1,107 @@
-<h1>估價功能</h1>
-<p>
-  Conkwe希望就各個行業的接案部分可以有某種機制可以出現一個數字給業主或是接案者做為參考，所以我們開發了這個小工具，希望大家可以試用看看。
-</p>
-<h2>目前設定條件</h2>
-<ul>
-  <li>1. 所有估價者提供email供認證</li>
-  <li>2. 發文者隱藏帳號</li>
-  <li>3. 可留言要求發文者提供更詳細的條件，留言者不隱藏帳號</li>
-  <li>4. 所有估價者隱藏帳號</li>
-  <li>5. 超過5個人估價，之後的人才可觀看結果</li>
-</ul>
-
-<% if current_user %>
-  <%= link_to '新增估價', new_appraisal_path, class: 'btn btn-default' %>
-<% end %>
-<br/>
-<br/>
-<% if @appraisals.present? %>
 <div class="row">
-  <% @appraisals.each do |a| %>
-  
-  <!-- link_to appraisal_path(a) -->
-  <!-- link_to edit_appraisal_path(a) -->
-
-  <div class="col-sm-6">
-    <div onclick="location.href='<%= appraisal_path(a) %>'" class="appraisal-item">
-      <h4> <%= a.title %> </h4>
-      <p class="description"><%= a.description %></p>
-      <p class="category">
-        <% if a.category.parent_category.present? %>
-        <%= a.category.parent_category.try(:title) %> - 
-        <% end %>
-        <%= a.category.title %>
-      </p>
-      <p class="info">
-        <span class="info-number"><%= a.appraisal_messages.size %></span>
-        <span> 留言</span>
-        <span class="info-number"><%= a.appraisal_prices.size %></span>
-        <span> 估價</span>
-      </p>
+  <div class="col-sm-offset-2 col-ms-8">
+    <div class="container">
+      <h1>估價功能</h1>
+      <p>
+        Conkwe希望就各個行業的接案部分可以有某種機制可以出現一個數字給業主或是接案者做為參考，所以我們開發了這個小工具。
+    </p>
+      <h2>目前設定條件</h2>
+      <ul>
+        <li>1. 所有估價者提供email供認證</li>
+        <li>2. 發文者隱藏帳號</li>
+        <li>3. 可留言要求發文者提供更詳細的條件，留言者不隱藏帳號</li>
+        <li>4. 所有估價者隱藏帳號</li>
+        <li>5. 超過5個人估價，之後的人才可觀看結果</li>
+      </ul>
+      <% if current_user %>
+        <p>
+          <%= link_to '新增估價', new_appraisal_path, class: 'btn btn-default' %>
+        </p>
+      <% end %>
     </div>
   </div>
+  <% if @appraisals.present? %>
+    <% @appraisals.each do |a| %>
+      <!-- link_to appraisal_path(a) -->
+      <!-- link_to edit_appraisal_path(a) -->
+      <div class="col-sm-offset-2 col-sm-8">
+        <div onclick="location.href='<%= appraisal_path(a) %>'" class="appraisal-item">
+          <h4> <%= a.title %> </h4>
+          <p class="description"><%= a.description %></p>
+          <p class="category">
+            <% if a.category.parent_category.present? %>
+              <%= a.category.parent_category.try(:title) %> -
+        <% end %>
+            <%= a.category.title %>
+          </p>
+          <p class="info">
+            <span class="info-number"><%= a.appraisal_messages.size %></span>
+            <span> 留言</span>
+            <span class="info-number"><%= a.appraisal_prices.size %></span>
+            <span> 估價</span>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="jumbotron">
+      <p>目前沒東西哦</p>
+    </div>
   <% end %>
 </div>
-
-<% else %>
-<div class="jumbotron">
-  <p>目前沒東西哦</p>
-</div>
-<% end %>
-
 <% content_for :stylesheets do %>
-<style>
-/*asdfasdf*/
+  <style>
+    .appraisal-item{
+      cursor: pointer;
+      /*border: 1px solid rgb(88,81,52);*/
+      border-radius: 10px;
+      box-shadow: -2px 2px 10px 2px rgba(169,172,158,0.7);
+      padding: 0.5em 1.3em;
+      display: block;
+    }
 
-.appraisal-item{
-  cursor: pointer;
-  /*border: 1px solid rgb(88,81,52);*/
-  border-radius: 10px;
-  box-shadow: -2px 2px 10px 2px rgba(169,172,158,0.7);
-  padding: 0.5em 1.3em;
-  display: block;
-}
+    .appraisal-item h4{
+      font: 400 1.5em Roboto,Arial,Helvetica;
+      margin-bottom: 1em;
+    }
 
-.appraisal-item h4{
-  font: 400 1.5em Roboto,Arial,Helvetica;
-  margin-bottom: 1em;
-}
+    .appraisal-item p{
+      font-size: 1em;
+      line-height: 1.7em;
+      margin-bottom: 1.7em;
+    }
 
-.appraisal-item p{
-  font-size: 1em;
-  line-height: 1.7em;
-  margin-bottom: 1.7em;
-}
+    .appraisal-item:hover{
+      background-color: rgba(0, 0, 0, 0.075);
+    }
 
-.appraisal-item:hover{
-  background-color: rgba(0, 0, 0, 0.075);
-}
+    .appraisal-item .description{
+      display: block; /* Fallback for non-webkit */
+      display: -webkit-box;
+      height: 5.1em; /* Fallback for non-webkit */
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-.appraisal-item .description{
-  display: block; /* Fallback for non-webkit */
-  display: -webkit-box;
-  height: 5.1em; /* Fallback for non-webkit */
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+    .appraisal-item .category, .appraisal-item .info{
+      text-align: right;
+    }
 
-.appraisal-item .category, .appraisal-item .info{
-  text-align: right;
-}
+    .appraisal-item .category{
+      font-weight: 400;
+      color: #b8860b;
+    }
 
-.appraisal-item .category{
-  font-weight: 400;
-  color: #b8860b;
-}
+    .appraisal-item .info{
+      margin-bottom: 1em;
+    }
 
-.appraisal-item .info{
-  margin-bottom: 1em;
-}
-
-.appraisal-item .info .info-number{
-  font-weight: 400;
-  font-size:  1.2em;
-  color: #5f9ea0;
-}
-
-
-</style>
+    .appraisal-item .info .info-number{
+      font-weight: 400;
+      font-size:  1.2em;
+      color: #5f9ea0;
+    }
+  </style>
 <% end -%>
