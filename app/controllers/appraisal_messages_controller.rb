@@ -7,7 +7,7 @@ class AppraisalMessagesController < ApplicationController
     @appraisal_message = current_user.appraisal_messages.build(allowed_params)
     @appraisal_message.save
     respond_to do |f|
-      f.js
+      f.json { render :json => ""}
     end
   end
 
