@@ -1,4 +1,4 @@
-
+<% if current_user %>
   <li class="dropdown" id='notify'>
     <%= link_to "#" , :class => "dropdown-toggle", :data => { :toggle => "dropdown" } do %>
     <span class="glyphicon glyphicon-bell"></span>
@@ -6,6 +6,7 @@
     <div class="list-group dropdown-menu" id='notify_result' style="width:400px">
     </div>
   </li>
+<% end -%>
   <li class="dropdown">
     <% if current_user %>
     <%= link_to "#" , :class => "dropdown-toggle", :data => { :toggle => "dropdown" } do %>
