@@ -39,8 +39,6 @@ body {
 }
 
 /*===================共用=================*/
-h1, h2, h3, h4, h5, h6, p { color:#231815; letter-spacing:1px; font-family:"nimbus-sans","xingothic-tc-w4","微軟正黑體","Microsoft JhengHei",sans-serif;}
-p{ font-size:15px; _font-size:14px; line-height:24px;}
 
 .online_status {
   color: red;
@@ -48,8 +46,4 @@ p{ font-size:15px; _font-size:14px; line-height:24px;}
   &.online {
     color: green;
   }
-}
-
-.center {
-  text-align: center;
 }
