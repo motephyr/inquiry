@@ -1,5 +1,5 @@
 <% if current_user == @appraisal.user %>
-  <%= link_to 'Edit', edit_appraisal_path(@appraisal), :class => 'btn btn-success' %>
+  <%= link_to '修改內容', edit_appraisal_path(@appraisal), :class => 'btn btn-success' %>
   <br/>
 <% end %>
 <%
@@ -39,8 +39,7 @@
   </div>
 <% end %>
 <br/>
-<h4>值多少</h4>
-<h5>我的估價</h5>
+<h4>值多少？ 我的估價是</h4>
 <%= form_for @appraisal_price do |f| %>
   <%= f.hidden_field :appraisal_id, {value: @appraisal.id} %>
   <div class="row">
@@ -64,7 +63,7 @@
 <br/>
 <% if @appraisal_prices.size > 1 %>
   <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    估價統計
+    看統計結果
   </button>
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -86,7 +85,7 @@
 <% end %>
 <br/>
 <br/>
-<p class="cancel"><%= link_to "回上頁", appraisals_path, class: 'btn btn-info' %></p>
+<p class="cancel"><%= link_to "回列表頁", appraisals_path, class: 'btn btn-info' %></p>
 <% content_for :stylesheets do %>
   <style type="text/css">
     .well p{

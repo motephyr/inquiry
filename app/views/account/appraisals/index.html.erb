@@ -1,39 +1,34 @@
-<table class='table table-bordered'>
-  <% @appraisals.each do |a| %>
-  <tr>
-    <td>
-      <%= link_to '取消關注', update_care_account_appraisal_path(a), method: :post %>
-    </td>
-    <td>
-      <h4><%= a.category.title %>
-      <% if a.category.parent_category.present? %>
-      >
-      <%= a.category.parent_category.try(:title) %>
-      <% end %>
-      <h4>
-    </td>
-    <td>
-      標題：
-      <%= a.title %>
-    </td>
-    <td>
-      描述：
-      <%= a.description %>
-    </td>
-    <td>
-      留言數：
-      <%= a.appraisal_messages.size %>
-    </td>
-    <td>
-      估價數：
-      <%= a.appraisal_prices.size  %>
-    </td>
-    <td>
-      <%= link_to 'show', appraisal_path(a), class: 'btn btn-default'  %>
-      <% if current_user == a.user %>
-        <%= link_to 'edit', edit_appraisal_path(a), class: 'btn btn-default'  %>
-      <% end %>
-    </td>
-  </tr>
+<div class="row">
+  <% if @appraisals.present? %>
+    <% @appraisals.each do |a| %>
+      <!-- link_to appraisal_path(a) -->
+      <!-- link_to edit_appraisal_path(a) -->
+      <div class="col-sm-offset-2 col-sm-8">
+        <div onclick="location.href='<%= appraisal_path(a) %>'" class="appraisal-item">
+          <%= link_to '取消關注', update_care_account_appraisal_path(a), method: :post,class: 'btn btn-danger pull-right' %>
+          <h4> <%= a.title %> </h4>
+          <p class="description"><%= a.description %></p>
+          <p class="category">
+            <% if a.category.parent_category.present? %>
+              <%= a.category.parent_category.try(:title) %> -
+            <% end %>
+            <%= a.category.title %>
+          </p>
+          <p class="info">
+            <span class="info-number"><%= a.appraisal_messages.size %></span>
+            <span> 留言</span>
+            <span class="info-number"><%= a.appraisal_prices.size %></span>
+            <span> 估價</span>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="jumbotron">
+      <p>目前沒東西哦</p>
+    </div>
   <% end %>
-</table>
+</div>
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "appraisals" %>
+<% end -%>
