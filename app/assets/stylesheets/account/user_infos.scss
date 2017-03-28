@@ -1,3 +1,12 @@
+.heading-line {
+  height: 3px;
+  width: 100px;
+  background: #333;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  position: relative;
+}
 .about-me .my-pic, .about-me .introduction {
  margin-bottom: 20px;
 }
@@ -17,7 +26,7 @@
   font-weight: 300;
   margin: 0 auto;
 }
-.about-me .introduction p.introduce {text-transform: uppercase;}
+.about-me .introduction p.introduce {font-weight: bolder;text-transform: uppercase;}
 .about-me .introduction p.intro {margin-top: 20px;}
 .about-me .personal-wrapper {
   display: flex;
