@@ -75,7 +75,7 @@
           <h4 class="modal-title" id="myModalLabel">估價統計</h4>
         </div>
         <div class="modal-body">
-          <div id="piechart" style="height: 250px;"></div>
+          <div id="barChart" style="height: 250px;"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -146,6 +146,8 @@
           ranges = [],
           bounds = [],
           priceCache = prices.slice(0),
+          priceLen = prices.length,
+          maxCount = 0,
           collection = [];
       while(current + step < max) ranges.push(current += step);
       ranges.reverse();
@@ -171,7 +173,9 @@
           }
         }
         collect.push(count);
+        collect.push( parseFloat( (count / priceLen * 100).toFixed(1) ) + "%" );
         collection.push(collect);
+        maxCount = Math.max(maxCount, count);
       });
 
       google.charts.load('current', {'packages':['corechart']});
@@ -180,11 +184,14 @@
       })
 
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([['Task', 'Hours per Day']].concat(collection));
+        var data = google.visualization.arrayToDataTable(
+          [['Price Ranges', '估價數', { role: 'annotation' }]].concat(collection)
+        );
         var options = {
-          backgroundColor: 'transparent', sliceVisibilityThreshold: 0, pieHole: 0.3
+          backgroundColor: 'transparent', sliceVisibilityThreshold: 0, bar: {groupWidth: "95%"},
+          legend: { position: "none" }, hAxis: { minValue: 0, maxValue: maxCount + 1, gridlines: { count: maxCount + 2 } }
         };
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        var chart = new google.visualization.BarChart(document.getElementById('barChart'));
 
         chart.draw(data, options);
       }
