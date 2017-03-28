@@ -5,3 +5,9 @@ $('#notify_result').html('<%= j render(@activities) %>')
 <% else %>
 $('#notify_result').html('<p class="list-group-item">無資料</p>')
 <% end %>
+
+$('.distanceInWordsToNow').each(function(){
+  var a = $(this).text()
+  $(this).text(dateFns.distanceInWordsToNow(a))
+  $(this).show()
+})

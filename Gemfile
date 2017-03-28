@@ -88,7 +88,6 @@ group :development do
   gem "capistrano-rvm"
   gem 'capistrano3-puma'
   gem 'capistrano3-nginx'
-  gem 'capistrano-bower'
 
   gem 'awesome_print'
 
