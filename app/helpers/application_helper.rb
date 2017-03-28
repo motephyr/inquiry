@@ -35,7 +35,7 @@ module ApplicationHelper
 		if user.online?
 	  	content_tag :span, '上線中'
 	  else
-	  	content_tag :span, '(email or 電話)'
+	  	content_tag :span, '離線'
 	  end
 
 	end
