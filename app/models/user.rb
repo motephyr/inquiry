@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :cares, dependent: :destroy
 
   has_one :user_info
+  scope :has_user_info, ->{ joins(:user_info).where('user_infos.id is NOT NULL') }
 
   def self.from_omniauth(auth)
     data = auth.info
@@ -40,11 +41,11 @@ class User < ApplicationRecord
   end
 
   def next
-    User.where("id > ?", self.id).first || User.first
+    User.has_user_info.where("users.id > ?", self.id).first || User.has_user_info.first
   end
 
   def prev
-    User.where("id < ?", self.id).last || User.last
+    User.has_user_info.where("users.id < ?", self.id).last || User.has_user_info.last
   end
 
   def avatar_link
