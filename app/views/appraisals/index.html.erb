@@ -1,21 +1,27 @@
 <div class="row">
   <div class="col-sm-offset-2 col-ms-8">
     <div class="container">
-      <h1>估價功能</h1>
+      <!-- <h1>估價功能</h1> -->
+      <h4>幫助剛入行工作者或外行的業主們  獲得可參考的價格</h4>
+      <br/>
       <p>
-        Conkwe希望就各個行業的接案部分可以有某種機制可以出現一個數字給業主或是接案者做為參考，所以我們開發了這個小工具。
-    </p>
-      <h2>目前設定條件</h2>
+        無論你是工作者或是業主，都可以在這裡問問看你曾經接觸過的專案，大概值多少；讓大家幫你看看。
+      </p>
+      <p>
+        放心！Conkwe保證，不會有人知道發問的人是誰、也不會有人知道估價的人是誰。
+      </p>
+      <br/>
+      <!-- <h2>目前設定條件</h2>
       <ul>
         <li>1. 所有估價者提供email供認證</li>
         <li>2. 發文者隱藏帳號</li>
         <li>3. 可留言要求發文者提供更詳細的條件，留言者不隱藏帳號</li>
         <li>4. 所有估價者隱藏帳號</li>
         <li>5. 超過5個人估價，之後的人才可觀看結果</li>
-      </ul>
+      </ul> -->
       <% if current_user %>
         <p>
-          <%= link_to '新增估價', new_appraisal_path, class: 'btn btn-default' %>
+          <%= link_to '我想問問行情', new_appraisal_path, class: 'btn btn-default' %>
         </p>
       <% end %>
     </div>
