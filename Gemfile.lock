@@ -96,6 +96,12 @@ GEM
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
     chronic (0.10.2)
+    ckeditor (4.2.2)
+      cocaine
+      orm_adapter (~> 0.5.0)
+    climate_control (0.1.0)
+    cocaine (0.5.8)
+      climate_control (>= 0.0.3, < 1.0)
     code_analyzer (0.4.7)
       sexp_processor
     coderay (1.1.1)
@@ -496,6 +502,7 @@ DEPENDENCIES
   capistrano3-nginx
   capistrano3-puma
   carrierwave
+  ckeditor
   coffee-rails (~> 4.2)
   devise
   devise-i18n
