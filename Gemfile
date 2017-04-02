@@ -42,6 +42,7 @@ gem 'ckeditor'
 
 # 不用id做網址
 gem 'friendly_id'
+gem 'babosa'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

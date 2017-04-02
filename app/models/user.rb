@@ -5,8 +5,8 @@ class User < ApplicationRecord
   friendly_id :name, use: :slugged
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook]
+    :recoverable, :rememberable, :trackable, :validatable,
+    :omniauthable, :omniauth_providers => [:facebook]
   acts_as_paranoid
 
   has_many :appraisals, dependent: :destroy
@@ -16,11 +16,16 @@ class User < ApplicationRecord
 
   has_one :user_info
   scope :has_user_info, ->{ joins(:user_info).where('user_infos.id is NOT NULL') }
-
+  has_many :works, dependent: :destroy
 
   def should_generate_new_friendly_id?
-    new_record?
+    slug.blank? || name_changed? # slug 為 nil 或 name column 變更時更新
   end
+
+  def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize.to_s
+  end
+
 
   def self.from_omniauth(auth)
     data = auth.info
@@ -31,10 +36,10 @@ class User < ApplicationRecord
       user.save!
     else
       user = User.create(name: data["name"],
-         email: data["email"],
-         password: Devise.friendly_token[0,20],
-         remote_avatar_url: data['image']
-      )
+                         email: data["email"],
+                         password: Devise.friendly_token[0,20],
+                         remote_avatar_url: data['image']
+                         )
       user.set_user_provider_id auth
     end
     user

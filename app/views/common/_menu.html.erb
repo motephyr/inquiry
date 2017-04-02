@@ -11,8 +11,7 @@
     </div>
     <div class="navbar-collapse collapse">
       <%= render_list :class => "nav navbar-nav" do |li|
-        #li << link_to("首頁","/")
-        #li << link_to("二手嬰兒用品交流團","/homes/index_products")
+        li << link_to("作品",works_path)
         li << link_to("值多少", appraisals_path)
         end %>
 

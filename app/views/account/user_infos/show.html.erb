@@ -25,6 +25,9 @@
       <div class='col-sm-8 col-xs-12'>
         <div class="row">
           <div class="introduction wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
+            <% if current_user == @user_info.user %>
+              <%= link_to '新增作品', new_work_path %>
+            <% end -%>
             <h2 class="h2"><%= @user_info.nickname %></h2>
             <div class="heading-line"></div>
             <p class="introduce">工作內容</p>
@@ -33,11 +36,14 @@
           <div class="why-me wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
             <!-- Start Accordion -->
             <div class="accordion">
-              <!--               <div class="acc-item">
+              <div class="acc-item">
                 <div class="acc-title"><i class="ion-android-navigate"></i>作品</div>
-                <div class="acc-content">(待補)<img height="100" src="https://www.shareicon.net/data/128x128/2015/09/02/94531_logo_512x512.png"><img height="100" src="https://d13yacurqjgara.cloudfront.net/assets/dribbble-logo-graph-dnld-a5f51e6e8f6c6bd334b1dc962110bdbf8d19c56d81b767e144e7de7b15689618.png">
-                      <img height="100" src="http://www.iconsdb.com/icons/preview/black/youtube-4-xxl.png"></div>
-                    </div> -->
+                <div class="acc-content-show">
+                  <% @user_info.user.works.each do |w| %>
+                    <%= link_to w.subject, user_info_work_path(@user_info.user, w)  %>
+                  <% end -%>
+                </div>
+              </div>
               <div class="acc-item">
                 <div class="acc-title"><i class="ion-android-navigate"></i>相關經歷與作品連結</div>
                 <div class="acc-content-show"><%= rasf @user_info.typical_work %></div>
@@ -59,9 +65,9 @@
 <% end -%>
 <% content_for :javascripts do -%>
   <script>
-  $('#chat').click(function(){
-  	Gossim.popup('<%= @user_info.user.id %>', '<%= @user_info.nickname %>')
-  })
+    $('#chat').click(function(){
+              Gossim.popup('<%= @user_info.user.id %>', '<%= @user_info.nickname %>')
+            })
   </script>
   <%= javascript_include_tag "account/user_infos" -%>
 <% end -%>

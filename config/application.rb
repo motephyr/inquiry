@@ -12,7 +12,7 @@ module Inquiry
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    config.action_view.sanitized_allowed_tags = %w[table tr td]
+    config.action_view.sanitized_allowed_tags = %w[(h1 h2 h3 h4 b i p u a pre div span br ul ol li em strong strike img]
     config.autoload_paths += Dir[File.join(Rails.root, "lib", "core_ext", "*.rb")].each {|l| require l }
   end
 end

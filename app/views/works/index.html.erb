@@ -1,0 +1,4 @@
+<% @works.each do |w| %>
+<%= w.slug %>
+<p><%= link_to w.subject, user_info_work_path(w.user, w)  %></p>
+<% end -%>
