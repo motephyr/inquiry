@@ -3,7 +3,7 @@ class Account::UserInfosController < ApplicationController
   before_action :login_required, except: [:show]
 
   def show
-    if current_user == User.find(params[:id])
+    if current_user == User.friendly.find_by_slug!(params[:id])
       never_edit_my_info
     else
       never_edit_user_info
@@ -42,7 +42,7 @@ class Account::UserInfosController < ApplicationController
   end
 
   def never_edit_user_info
-    @user_info = User.find(params[:id]).user_info
+    @user_info = User.friendly.find_by_slug!(params[:id]).user_info
     unless @user_info
       flash[:notice] = '此使用者尚未編輯個人資料'
       redirect_back(fallback_location: root_path)

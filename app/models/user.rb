@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
@@ -13,6 +16,11 @@ class User < ApplicationRecord
 
   has_one :user_info
   scope :has_user_info, ->{ joins(:user_info).where('user_infos.id is NOT NULL') }
+
+
+  def should_generate_new_friendly_id?
+    new_record?
+  end
 
   def self.from_omniauth(auth)
     data = auth.info

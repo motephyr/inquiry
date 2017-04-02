@@ -40,6 +40,9 @@ gem 'roadie-rails'
 # ckeditor
 gem 'ckeditor'
 
+# 不用id做網址
+gem 'friendly_id'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
