@@ -17,8 +17,12 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/user_infos/:id', to: 'account/user_infos#show',as: 'user_info'
+  get '/user_infos/:id/works', to: 'account/works#index',as: 'work'
+
   namespace :account do
     resources :user_infos do
+      resources :works
       collection do
         get 'edit_status'
         get 'edit_info'
