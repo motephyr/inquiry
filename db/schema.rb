@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406054839) do
+ActiveRecord::Schema.define(version: 20170406092936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,19 +96,29 @@ ActiveRecord::Schema.define(version: 20170406054839) do
     t.index ["type"], name: "index_ckeditor_assets_on_type", using: :btree
   end
 
+  create_table "donate_infos", force: :cascade do |t|
+    t.integer  "donate_id"
+    t.string   "name"
+    t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "donates", force: :cascade do |t|
     t.integer  "work_id"
     t.decimal  "price"
     t.integer  "donor_id"
     t.integer  "bedonor_id"
     t.string   "aasm_state"
-    t.string   "name"
-    t.string   "address"
+    t.string   "token"
+    t.integer  "kind"
+    t.boolean  "has_info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["aasm_state"], name: "index_donates_on_aasm_state", using: :btree
     t.index ["bedonor_id"], name: "index_donates_on_bedonor_id", using: :btree
     t.index ["donor_id"], name: "index_donates_on_donor_id", using: :btree
+    t.index ["token"], name: "index_donates_on_token", using: :btree
     t.index ["work_id"], name: "index_donates_on_work_id", using: :btree
   end
 

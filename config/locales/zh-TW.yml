@@ -1,4 +1,8 @@
 zh-TW:
+  donate:
+    coffee: 咖啡一杯 (新台幣50元)
+    mcdonald: 麥當勞套餐一份 (新台幣100元)
+    steak: 高級牛排一客 (新台幣1000元)
   date:
     abbr_day_names:
     - 日

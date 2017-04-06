@@ -6,8 +6,9 @@ class CreateDonates < ActiveRecord::Migration[5.0]
       t.integer :donor_id
       t.integer :bedonor_id
       t.string :aasm_state
-      t.string :name
-      t.string :address
+      t.string :token
+      t.integer :kind
+      t.boolean :has_info
 
       t.timestamps
     end
@@ -15,5 +16,6 @@ class CreateDonates < ActiveRecord::Migration[5.0]
     add_index :donates, :donor_id
     add_index :donates, :bedonor_id
     add_index :donates, :aasm_state
+    add_index :donates, :token
   end
 end

@@ -17,7 +17,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :works
+  resources :works do
+    resources :donates
+  end
+
   get '/user_infos/:id', to: 'account/user_infos#show', as: :user_info
   get '/user_infos/:user_info_id/works/:id', to: 'account/works#show', as: :user_info_work
 

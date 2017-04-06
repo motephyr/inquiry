@@ -5,7 +5,8 @@ FactoryGirl.define do
     donor_id 1
     bedonor_id 1
     aasm_state "MyString"
-    name "MyString"
-    address "MyString"
+    token "MyString"
+    kind 1
+    has_info false
   end
 end
