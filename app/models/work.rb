@@ -1,5 +1,6 @@
 class Work < ApplicationRecord
   belongs_to :user
+  has_many :donates
   validates :subject, presence: true
   validates :content, presence: true
   validates :user_id, presence: true

@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :appraisal_messages, dependent: :destroy
   has_many :appraisal_prices, dependent: :destroy
   has_many :cares, dependent: :destroy
+  has_many :donor_donates, foreign_key: :donor_id, :class_name => "Donate"
+  has_many :bedonor_donates, foreign_key: :bedonor_id, :class_name => "Donate"
 
   has_one :user_info
   scope :has_user_info, ->{ joins(:user_info).where('user_infos.id is NOT NULL') }
@@ -61,13 +63,17 @@ class User < ApplicationRecord
     User.has_user_info.where("users.id < ?", self.id).last || User.has_user_info.last
   end
 
+  def default_avatar_link
+    'user-default-image.png'
+  end
+
   def avatar_link
     if self.image.present?
       self.image
     elsif self.remote_avatar_url.present?
       self.remote_avatar_url
     else
-      'user-default-image.png'
+      self.default_avatar_link
     end
   end
 

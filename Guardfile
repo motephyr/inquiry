@@ -69,7 +69,7 @@
 #   end
 # end
 
-guard 'rspec', cmd: '--drb --format Fuubar --color' do
+guard 'rspec', cmd: "bundle exec rspec"  do
   # 執行所有被修改的 spec
   watch(%r{^spec/.+_spec\.rb$})
   # 執行 lib 裡被修改的 file 對應的 lib spec
