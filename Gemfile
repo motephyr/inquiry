@@ -81,6 +81,7 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -105,11 +106,11 @@ group :development do
   gem 'sqlite3'
   gem "bullet"
   gem "lol_dba"
+  gem 'guard-rspec', require: false
+
 end
 
 group :test do
-  gem 'guard-rspec', require: false
-  gem 'rspec-rails'
   gem 'rails_best_practices'
 end
 
