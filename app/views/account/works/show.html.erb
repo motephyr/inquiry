@@ -18,6 +18,7 @@
   </div>
 </div>
 <div class='col-sm-3 col-xs-12'>
+  <% if false %>
   <div class="text-center">
     <%= link_to '贊助', new_work_donate_path(@work), class: 'btn btn-danger' if current_user != @work.user %>
     <% if @work.donates.present? %>
@@ -29,4 +30,5 @@
       </ul>
     <% end -%>
   </div>
+  <% end %>
 </div>
