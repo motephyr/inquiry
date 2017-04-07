@@ -28,8 +28,26 @@
 }
 
 .work-item .overview{
-  height: 11.1em; 
-  margin-bottom:0.5em;
+	height: 445px; 
+	margin-bottom:0.7em;
+}
+
+@media (min-width: 768px) {
+	.work-item .overview{
+	  height: 222px; 
+	}	
+}
+
+@media (min-width: 992px) {
+	.work-item .overview{
+	  height: 185px; 
+	}	
+}
+
+@media (min-width: 1200px){
+	.work-item .overview{
+	  height: 163px; 
+	}	
 }
 
 .work-item .overview img{
