@@ -1,7 +1,7 @@
 <div class='col-sm-9 col-xs-12'>
   <div class="introduction wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
     <% if current_user == @user_info.user %>
-      <%= link_to '新增作品', new_work_path %>
+      <%= link_to '新增作品', new_account_user_info_work_path(current_user) %>
     <% end -%>
     <h2 class="h2"><%= @user_info.nickname %></h2>
     <div class="heading-line"></div>
@@ -14,9 +14,7 @@
       <div class="acc-item">
         <div class="acc-title"><i class="ion-android-navigate"></i>作品</div>
         <div class="acc-content-show">
-          <% @user_info.user.works.each do |w| %>
-            <%= link_to w.subject, user_info_work_path(@user_info.user, w)  %>
-          <% end -%>
+          <%= render 'account/works/works', works: @user_info.user.works %>
         </div>
       </div>
       <div class="acc-item">

@@ -1,6 +1,8 @@
 <div class='col-sm-6 col-xs-12'>
   <div class="ckeditor">
     <h1><%= @work.subject %></h1>
+    <%= link_to '編輯', edit_account_user_info_work_path(@work.user, @work), class: 'btn btn-primary pull-right' if current_user == @work.user %>
+
     <% if @work.attach_avatars.present? %>
       <div class="row">
         <% @work.attach_avatars.each do |file| %>
