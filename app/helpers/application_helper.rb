@@ -33,11 +33,33 @@ module ApplicationHelper
 
 	def user_status(user)
 		if user.online?
-	  	content_tag :span, '上線中'
-	  else
-	  	content_tag :span, '離線'
-	  end
+			content_tag :span, '上線中'
+		else
+			content_tag :span, '離線'
+		end
 
+	end
+
+	def render_resolve_url(url)
+		youtube_match = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(\S*)?$/.match(url)
+		image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/.match(url)
+		if youtube_match.present?
+			content_tag :iframe, '', src: "https://www.youtube.com/embed/#{youtube_match[1]}?rel=0", width: '100%', height: '100%', frameborder: '0'
+		elsif image_match.present?
+			content_tag :img, '', src: "#{url}"
+		else
+			content_tag :img, '', src: "/images/noimage.jpg"
+		end
+	end
+
+	def render_avatar_file(file)
+		image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/.match(file)
+		audio_match = /\.(wav|mp3|wma|ogg|midi|aif|aifc|aiff|au|ea)$/.match(file)
+		if image_match.present?
+			content_tag :img, '', src: "#{file}"
+		elsif audio_match.present?
+			content_tag :audio, '', controls: "controls", src: "#{file}"
+		end
 	end
 
   def rasf(text)
