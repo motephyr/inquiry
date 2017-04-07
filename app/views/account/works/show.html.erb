@@ -1,18 +1,30 @@
-<%= link_to '贊助', new_work_donate_path(@work)  %>
-
-<h3><%= @work.subject %></h3>
-<% if @work.attach_avatars.present? %>
-	<div class="row">
-	<% @work.attach_avatars.each do |file| %>
-		<div class="col-md-4">
-			<%= image_tag file.url, style: "width: 100%;" %>
-		</div>
-	<% end %>
-	</div>
-<% end %>
-<br/>
-<br/>
-<div class="container">
-	<%= sanitize @work.content %>
+<div class='col-sm-6 col-xs-12'>
+  <div class="row ckeditor">
+    <h1><%= @work.subject %></h1>
+    <% if @work.attach_avatars.present? %>
+      <div class="row">
+        <% @work.attach_avatars.each do |file| %>
+          <div class="col-md-4">
+            <%= image_tag file.url, style: "width: 100%;" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <br/>
+    <br/>
+    <%= sanitize @work.content %>
+  </div>
 </div>
-<%= link_to '回上頁', :back  %>
+<div class='col-sm-3 col-xs-12'>
+  <div class="row text-center">
+    <%= link_to '贊助', new_work_donate_path(@work), class: 'btn btn-danger' if current_user != @work.user %>
+    <% if @work.donates.present? %>
+    <h2>贊助列表</h2>
+    <ul>
+      <% @work.donates.each do |x| %>
+        <li><%= t("donate.#{x.kind}") %></li>
+      <% end -%>
+    </ul>
+    <% end -%>
+  </div>
+</div>

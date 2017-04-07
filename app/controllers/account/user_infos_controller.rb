@@ -1,6 +1,7 @@
 class Account::UserInfosController < ApplicationController
 
   before_action :login_required, except: [:show]
+  layout "user_info", only: [:show]
 
   def show
     if current_user == User.friendly.find_by_slug!(params[:id])

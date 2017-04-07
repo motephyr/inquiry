@@ -25,7 +25,7 @@
 <div class="container">
   <%= notice_message %>
 
-  <%= yield %>
+  <%= content_for?(:content) ? yield(:content) : yield %>
   <%= render :partial => "common/footer" %>
 </div>
 
