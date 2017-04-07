@@ -198,9 +198,12 @@ ActiveRecord::Schema.define(version: 20170406092936) do
     t.string   "subject"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "slug"
+    t.json     "attach_avatars"
+    t.string   "attach_url"
+    t.text     "attach_content"
     t.index ["slug"], name: "index_works_on_slug", unique: true, using: :btree
   end
 

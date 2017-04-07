@@ -2,14 +2,47 @@
     <%= simple_form_for @work do |f| -%>
 
     <%= f.error_notification class: 'alert alert-danger' %>
-
     <div class="form-inputs">
+      <div class="form-group">
+        <h4><span>作品相關檔案</span></h4>
+        <!-- Nav tabs -->
+        <ul id="typeSelection" class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#upload" aria-controls="upload" role="tab" data-toggle="tab">上傳聲音或圖片</a>
+          </li>
+          <li role="presentation">
+            <a href="#external" aria-controls="external" role="tab" data-toggle="tab">外部連結</a>
+          </li>
+          <li role="presentation">
+            <a href="#textcontent" aria-controls="textcontent" role="tab" data-toggle="tab">文字類作品</a>
+          </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content" style="padding:0.4em;">
+          <div role="tabpanel" class="tab-pane fade in active" id="upload">
+            <%= f.file_field :attach_avatars, multiple: true %>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="external">
+            <%= f.input_field :attach_url, class: 'form-control string optional' %>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="textcontent">
+            <%= f.input_field :attach_content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }%>
+          </div>
+        </div>
+        <script type="text/javascript">
+          $("#typeSelection a").click(function(e){
+            e.preventDefault();
+            $(this).tab('show');
+          });
+        </script>
+      </div>
+      <br/>
       <div class="form-group">
         <h4><span>標題</span><span class="help-block">例如：PHP後台系統設計、商品攝影+修圖、女性服飾網拍修圖</span></h4>
         <%= f.input_field :subject, class: 'form-control string optional', placeholder: '標題' %>
       </div>
       <div class="form-group">
-        <h4><span>內容</span><span class="help-block">描述案子的作業時程，限制條件等</span></h4>
+        <h4><span>作品描述</span><span class="help-block">描述製作時間、幾個人做、怎麼從概念到成品等等</span></h4>
         <%= f.input_field :content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }%>
       </div>
     </div>

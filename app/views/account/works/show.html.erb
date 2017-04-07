@@ -1,6 +1,18 @@
 <%= link_to '贊助', new_work_donate_path(@work)  %>
-<h1>標題</h1>
-<%= @work.subject %>
-<h2>內容</h2>
-<%= sanitize @work.content %>
+
+<h3><%= @work.subject %></h3>
+<% if @work.attach_avatars.present? %>
+	<div class="row">
+	<% @work.attach_avatars.each do |file| %>
+		<div class="col-md-4">
+			<%= image_tag file.url, style: "width: 100%;" %>
+		</div>
+	<% end %>
+	</div>
+<% end %>
+<br/>
+<br/>
+<div class="container">
+	<%= sanitize @work.content %>
+</div>
 <%= link_to '回上頁', :back  %>
