@@ -1,0 +1,18 @@
+<h2>個人支出</h2>
+
+<table style="width:100%">
+  <tr>
+    <th>作品名稱</th>
+    <th>金額</th>
+    <th>捐款日期</th>
+
+  </tr>
+  <% @donor_donates.each do |x| %>
+    <tr>
+      <td><%= x.work.subject %></td>
+      <td><%= x.price %></td>
+      <td><%= x.created_at %></td>
+
+    </tr>
+  <% end -%>
+</table>

@@ -50,3 +50,4 @@ config/config.yml
 db/seeds.rb
 nginx.conf.*
 *.csv
+dump.rdb

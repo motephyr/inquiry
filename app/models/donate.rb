@@ -1,6 +1,7 @@
 class Donate < ApplicationRecord
   enum kind: [:coffee, :mcdonald, :steak]
 
+  belongs_to :work
   has_one :info, :class_name => "DonateInfo", :dependent => :destroy
   accepts_nested_attributes_for :info
   validates :price, presence: { message: '請選擇金額'}

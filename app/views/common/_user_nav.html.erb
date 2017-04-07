@@ -19,6 +19,10 @@
       <li class="divider"></li>
       <li><%= link_to("修改個人狀態", edit_status_account_user_infos_path) %> </li>
       <li><%= link_to("修改個人頁", edit_info_account_user_infos_path) %> </li>
+      <li class="divider"></li>
+      <li><%= link_to("個人收入", account_donates_bedonor_path) %> </li>
+      <li><%= link_to("個人支出", account_donates_donor_path) %> </li>
+      <li class="divider"></li>
       <li><%= link_to("設定顯示名稱","/users/edit" ) %></li>
       <li><%= link_to("修改密碼","/users/edit_password" ) %></li>
       <li><%= link_to("登出",destroy_user_session_path, :method => :delete ) %></li>

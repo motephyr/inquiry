@@ -1,0 +1,23 @@
+<h2>個人收入</h2>
+<table style="width:100%">
+  <tr>
+    <th>捐款人暱稱</th>
+    <th>作品名稱</th>
+    <th>金額</th>
+    <th>捐款人姓名</th>
+    <th>捐款人地址</th>
+    <th>捐款日期</th>
+
+  </tr>
+  <% @bedonor_donates.each do |x| %>
+    <tr>
+      <td><%= x.work.user.nickname %></td>
+      <td><%= x.work.subject %></td>
+      <td><%= x.price %></td>
+      <td><%= x.info.name if x.has_info %></td>
+      <td><%= x.info.address if x.has_info %></td>
+      <td><%= x.created_at %></td>
+
+    </tr>
+  <% end -%>
+</table>

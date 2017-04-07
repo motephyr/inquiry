@@ -1,6 +1,7 @@
 class DonatesController < ApplicationController
 
   before_action :login_required
+  before_action :check_not_my_work, only: :create
 
 
   def new
@@ -11,7 +12,7 @@ class DonatesController < ApplicationController
 
 
   def create
-    @work = Work.friendly.find_by_slug!(params[:work_id])
+
     @donate = current_user.donor_donates.build(donate_params)
     @donate.work_id = @work.id
     @donate.bedonor_id = @work.user_id
@@ -35,5 +36,15 @@ class DonatesController < ApplicationController
 
   def info_params
     params.require(:donate).permit(info_attributes: [:name, :address])
+  end
+
+  private
+  def check_not_my_work
+    @work = Work.friendly.find_by_slug!(params[:work_id])
+
+    if @work.user == current_user
+      flash[:error] = "不能對自已的作品捐款哦！"
+      redirect_back(fallback_location: root_path)
+    end
   end
 end
