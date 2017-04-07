@@ -1,7 +1,6 @@
 class Account::UserInfosController < ApplicationController
 
   before_action :login_required, except: [:show]
-  layout "user_info", only: [:show]
 
   def show
     if current_user == User.friendly.find_by_slug!(params[:id])
@@ -9,10 +8,12 @@ class Account::UserInfosController < ApplicationController
     else
       never_edit_user_info
     end
+    render layout: "user_info"
   end
 
   def edit_status
     never_edit_my_info
+    render layout: "account"
   end
 
   def edit_info
@@ -24,6 +25,7 @@ class Account::UserInfosController < ApplicationController
         @user_info = find_user_survey
       end
     end
+    render layout: "account"
   end
 
   def update_info

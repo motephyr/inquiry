@@ -1,5 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
+  layout "account", only: [:edit]
+
+
   protected
 
   def update_resource(resource, params)

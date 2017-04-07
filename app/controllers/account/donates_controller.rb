@@ -1,4 +1,6 @@
 class Account::DonatesController < ApplicationController
+  layout "account", only: [:donor, :bedonor]
+
   def donor
     @donor_donates = current_user.donor_donates
   end
