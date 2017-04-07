@@ -7,7 +7,7 @@
           <p class="subject"> <%= w.subject %> </p>
           <div class="overview">
             <% if w.attach_avatars.present? %>
-              <%= image_tag w.attach_avatars[0].url %>
+              <%= render_avatar_file(w.attach_avatars[0].url) %>
             <% elsif w.attach_url.present? %>
               <!-- handle and parse url -->
               <%= render_resolve_url(w.attach_url) %>

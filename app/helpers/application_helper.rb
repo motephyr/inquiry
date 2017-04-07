@@ -52,6 +52,16 @@ module ApplicationHelper
 		end
 	end
 
+	def render_avatar_file(file)
+		image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/.match(file)
+		audio_match = /\.(wav|mp3|wma|ogg|midi|aif|aifc|aiff|au|ea)$/.match(file)
+		if image_match.present?
+			content_tag :img, '', src: "#{file}"
+		elsif audio_match.present?
+			content_tag :audio, '', controls: "controls", src: "#{file}"
+		end
+	end
+
   def rasf(text)
     Rinku.auto_link(simple_format(text), :all, 'target="_blank"').html_safe
   end

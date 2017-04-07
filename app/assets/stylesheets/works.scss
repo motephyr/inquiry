@@ -30,6 +30,7 @@
 .work-item .overview{
 	height: 445px; 
 	margin-bottom:0.7em;
+	position: relative;
 }
 
 @media (min-width: 768px) {
@@ -54,6 +55,16 @@
 	width:100%; 
   margin:auto;
   display:block;
+}
+
+.work-item .overview audio{
+	width: 100%;
+	position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
 }
 
 .work-item .subject{
