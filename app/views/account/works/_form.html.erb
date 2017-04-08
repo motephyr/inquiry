@@ -43,7 +43,7 @@
       </div>
       <div class="form-group">
         <h4><span>作品描述</span><span class="help-block">描述製作時間、幾個人做、怎麼從概念到成品等等</span></h4>
-        <%= f.input_field :content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }%>
+        <%= f.input_field :content, as: :text, class: 'form-control', rows: '10', placeholder: '請輸入內容' %>
       </div>
     </div>
     <div class="form-actions">
