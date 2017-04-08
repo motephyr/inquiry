@@ -14,7 +14,9 @@
       <div class="acc-item">
         <div class="acc-title"><i class="ion-android-navigate"></i>作品</div>
         <div class="acc-content-show">
-          <%= render 'account/works/works', works: @user_info.user.works %>
+          <div class="row">
+          <%= render partial: 'account/works/works', collection: @user_info.user.works, as: :w || '沒有資料哦！'  %>
+        </div>
         </div>
       </div>
       <div class="acc-item">
@@ -29,3 +31,7 @@
     <!-- End Accordion -->
   </div>
 </div>
+
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "works" %>
+<% end -%>

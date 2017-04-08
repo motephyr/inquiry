@@ -1,33 +1,22 @@
-
-<% if works.present? %>
-  <div class="row">
-    <% works.each do |w| %>
-      <div class="col-lg-4 col-md-4 col-sm-6">
-        <div onclick="location.href='<%= user_info_work_path(w.user, w) %>'" class="work-item">
-          <p class="subject"> <%= w.subject %> </p>
-          <div class="overview">
-            <% if w.attach_avatars.present? %>
-              <%= render_avatar_file(w.attach_avatars[0].url) %>
-            <% elsif w.attach_url.present? %>
-              <!-- handle and parse url -->
-              <%= render_resolve_url(w.attach_url) %>
-            <% elsif w.attach_content.present? %>
-              <%= w.attach_content %>
-            <% else %>
-              <!-- handle empty -->
-            <% end %>
-          </div>
-          <p class="info">
-            <i class="glyphicon glyphicon-eye-open"></i><span>???</span>
-            <i class="glyphicon glyphicon-comment"></i><span>??</span>
-            <i class="glyphicon glyphicon-heart"></i><span>???</span>
-          </p>
-        </div>
-      </div>
-    <% end %>
+<div class="col-lg-4 col-md-4 col-sm-6">
+  <div onclick="location.href='<%= user_info_work_path(w.user, w) %>'" class="work-item">
+    <p class="subject"> <%= w.subject %> </p>
+    <div class="overview">
+      <% if w.attach_avatars.present? %>
+        <%= render_avatar_file(w.attach_avatars[0].url) %>
+      <% elsif w.attach_url.present? %>
+        <!-- handle and parse url -->
+        <%= render_resolve_url(w.attach_url) %>
+      <% elsif w.attach_content.present? %>
+        <%= w.attach_content %>
+      <% else %>
+        <!-- handle empty -->
+      <% end %>
+    </div>
+    <p class="info">
+      <i class="glyphicon glyphicon-eye-open"></i><span>???</span>
+      <i class="glyphicon glyphicon-comment"></i><span>??</span>
+      <i class="glyphicon glyphicon-heart"></i><span>???</span>
+    </p>
   </div>
-<% end -%>
-
-<% content_for :stylesheets do %>
-  <%= stylesheet_link_tag "works" %>
-<% end -%>
+</div>

@@ -1,1 +1,7 @@
-<%= render 'account/works/works', works: @works %>
+<div class="row">
+<%= render partial: 'account/works/works', collection: @works, as: :w || '沒有資料哦！' %>
+</div>
+
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "works" %>
+<% end -%>
