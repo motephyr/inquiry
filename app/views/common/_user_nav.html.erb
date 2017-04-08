@@ -1,4 +1,6 @@
 <% if current_user %>
+      <li><%= link_to(current_user.name, account_user_info_path(current_user)) %></li>
+
   <li class="dropdown" id='notify'>
     <%= link_to "#" , :class => "dropdown-toggle", :data => { :toggle => "dropdown" } do %>
     <span class="glyphicon glyphicon-bell"></span>
@@ -10,11 +12,10 @@
   <li class="dropdown">
     <% if current_user %>
     <%= link_to "#" , :class => "dropdown-toggle", :data => { :toggle => "dropdown" } do %>
-    <%= current_user.name %>
+    <span class="glyphicon glyphicon-cog"></span>
     <% end %>
 
     <ul class="dropdown-menu">
-      <li><%= link_to("個人頁", account_user_info_path(current_user)) %></li>
       <li><%= link_to("正在關注的估價單", account_appraisals_path) %></li>
       <li class="divider"></li>
       <li><%= link_to("修改個人設定", edit_status_account_user_infos_path) %> </li>

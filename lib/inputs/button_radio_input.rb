@@ -1,5 +1,5 @@
 class ButtonRadioInput < SimpleForm::Inputs::CollectionRadioButtonsInput
-  def input
+  def input(wrapper_options)
     out = '<div class="btn-group" data-toggle="buttons">'
     label_method, value_method = detect_collection_methods
     object_value = object.send(attribute_name)
