@@ -7,7 +7,7 @@
             <div class="panel-heading">
               <h3 class="panel-title">個人設定</h3>
             </div>
-            <%= render_list :class => "nav panel-body" do |div|
+            <%= render_list :class => "nav nav-pills nav-stacked panel-body" do |div|
               div << link_to("修改個人狀態", edit_status_account_user_infos_path)
               div << link_to("修改個人頁", edit_info_account_user_infos_path)
               div << link_to("設定顯示名稱","/users/edit" )
@@ -20,7 +20,7 @@
             <div class="panel-heading">
               <h3 class="panel-title">個人資訊</h3>
             </div>
-            <%= render_list :class => "nav panel-body" do |div|
+            <%= render_list :class => "nav nav-pills nav-stacked panel-body" do |div|
               div << link_to("個人收入", account_donates_bedonor_path)
               div << link_to("個人支出", account_donates_donor_path)
             end %>

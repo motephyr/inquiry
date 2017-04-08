@@ -7,10 +7,16 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/128px-Creative-Tail-People-police-man.svg.png" alt="my profile">
           </div>
           <div class="profile wow fadeInUp text-center" data-wow-duration="0.5s" data-wow-offset="200">
-            <div class="heading-line"></div>
             <div class="personal-wrapper">
-              <span><strong><%= @user_info.speak == 1 ? "諮詢" : "" %> <%= @user_info.contract == 1 ? "接案" : "" %> <%= @user_info.teach == 1 ? "教學" : "" %>  <%= @user_info.labor == 1 ? "勞力" : "" %></strong></span>
               <span><strong><%= @user_info.nickname %></strong></span>
+              <span>
+                <div class="btn-group" data-toggle="buttons">
+                  <%= @user_info.speak == 1 ? '<label class="btn btn-default">諮詢</label>'.html_safe : "" %>
+                  <%= @user_info.contract == 1 ? '<label class="btn btn-default">接案</label>'.html_safe : "" %>
+                  <%= @user_info.teach == 1 ? '<label class="btn btn-default">教學</label>'.html_safe : "" %>
+                  <%= @user_info.labor == 1 ? '<label class="btn btn-default">勞力</label>'.html_safe : "" %>
+                </div>
+              </span>
               <span><strong>狀態: </strong><%= user_status(@user_info.user)  %></span>
               <span><%= link_to '私訊給他', '#', class: 'btn btn-success', id: 'chat'  %></span>
               <span><strong>工作領域: </strong><%= @user_info.category.try(:title) %></span>
@@ -31,8 +37,8 @@
 <% content_for :javascripts do -%>
   <script>
     $('#chat').click(function(){
-          Gossim.popup('<%= @user_info.user.id %>', '<%= @user_info.nickname %>')
-        })
+              Gossim.popup('<%= @user_info.user.id %>', '<%= @user_info.nickname %>')
+            })
   </script>
   <%= javascript_include_tag "account/user_infos" -%>
 <% end -%>
