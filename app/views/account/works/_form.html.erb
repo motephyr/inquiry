@@ -1,5 +1,5 @@
     <%= javascript_include_tag 'ckeditor/init' %>
-    <%= simple_form_for @work do |f| -%>
+    <%= simple_form_for [:account, @work.user.user_info, @work] do |f| -%>
 
     <%= f.error_notification class: 'alert alert-danger' %>
     <div class="form-inputs">
