@@ -34,6 +34,12 @@ class Account::WorksController < ApplicationController
     end
   end
 
+  def destroy
+    @work = current_user.works.friendly.find_by_slug!(params[:id])
+    @work.destroy
+    redirect_to account_user_info_path(current_user)
+  end
+
   private
   def work_params
     params.require(:work).permit(:subject, :content, {attach_avatars: []}, :attach_content, :attach_url)

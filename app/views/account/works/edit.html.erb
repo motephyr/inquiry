@@ -1,1 +1,2 @@
+<%= link_to '刪除', account_user_info_work_path(@work.user.user_info, @work), method: :delete, data: { confirm: '確定要刪除嗎？' }, :class => 'btn btn-danger pull-right' %>
 <%= render 'form' %>

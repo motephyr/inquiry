@@ -8,7 +8,7 @@
         <!-- handle and parse url -->
         <%= render_resolve_url(w.attach_url) %>
       <% elsif w.attach_content.present? %>
-        <%= w.attach_content %>
+        <%= sanitize w.attach_content %>
       <% else %>
         <!-- handle empty -->
       <% end %>

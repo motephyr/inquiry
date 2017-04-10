@@ -2,8 +2,6 @@ class Work < ApplicationRecord
   belongs_to :user
   has_many :donates
 
-  validates :subject, presence: true
-  validates :content, presence: true
   validates :user_id, presence: true
 
   mount_uploaders :attach_avatars, AvatarUploader
@@ -17,5 +15,9 @@ class Work < ApplicationRecord
 
   def normalize_friendly_id(input)
     input.to_s.to_slug.normalize.to_s
+  end
+
+  def subject
+    read_attribute(:subject).presence || "無題"
   end
 end

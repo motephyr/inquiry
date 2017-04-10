@@ -1,6 +1,6 @@
     <%= simple_form_for @user_info, :url => { :action => "update_info" }, :method => :patch  do |f| -%>
 
-  <%= render '/common/error_messages', object: @user_info %>
+  <%= render '/common/error_messages', object: f.object %>
 
     <div class="form-inputs">
       <%=  f.hidden_field :name %>

@@ -1,7 +1,7 @@
     <%= javascript_include_tag Ckeditor.cdn_url %>
     <%= simple_form_for [:account, @work.user.user_info, @work] do |f| -%>
 
-    <%= f.error_notification class: 'alert alert-danger' %>
+  <%= render '/common/error_messages', object: f.object %>
     <div class="form-inputs">
       <div class="form-group">
         <h4><span>作品相關檔案</span></h4>

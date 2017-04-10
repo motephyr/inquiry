@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="order-form">
       <%= simple_form_for [@work, @donate] do |f| %>
-        <%= render '/common/error_messages', object: @donate %>
+  <%= render '/common/error_messages', object: f.object %>
         <p>您將對 <%= @work.user.nickname %> 的工作成果 <%= @work.subject %> 給予實質的鼓勵！您打算贈予他</p>
         <%= f.collection_radio_buttons :kind, Hash[Donate.kinds.map{|x| [x[0],t("donate.#{x[0]}")] }] , :first, :last %>
         <p>等值的金額，而Conkwe會處理其中帳務的作業，並將金額匯入他的銀戶內，我們收取15%做為作業費用。</p>

@@ -1,5 +1,5 @@
 <%= simple_form_for @user_info, :url => { :action => "update_info" }, :method => :patch  do |f| -%>
-  <%= render '/common/error_messages', object: @user_info %>
+  <%= render '/common/error_messages', object: f.object %>
   <h4>個人狀態設定</h4>
   <p>設定表達您的意願，我們會列在搜尋結果。
     但希望您也同時具有該項狀態的能力("可以上台簡報" 和"教授一項技能要做的事情"是不同的。)</p>
