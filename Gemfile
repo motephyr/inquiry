@@ -47,6 +47,11 @@ gem 'babosa'
 # state_machine
 gem 'aasm'
 
+gem "link_thumbnailer"
+gem 'vuejs-rails'
+
+
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'

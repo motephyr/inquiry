@@ -20,6 +20,9 @@ Rails.application.routes.draw do
 
   resources :works do
     resources :donates
+    collection do
+      post 'getUrl'
+    end
   end
 
   get '/user_infos/:id', to: 'account/user_infos#show', as: :user_info

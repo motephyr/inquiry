@@ -42,6 +42,6 @@ class Account::WorksController < ApplicationController
 
   private
   def work_params
-    params.require(:work).permit(:subject, :content, {attach_avatars: []}, :attach_content, :attach_url)
+    params.require(:work).permit(:subject, :content, :attach_avatar, :attach_content, :attach_url, :remote_attach_avatar_url)
   end
 end

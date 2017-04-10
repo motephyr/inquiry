@@ -1,17 +1,17 @@
 <div class='col-sm-6 col-xs-12'>
   <div class="ckeditor">
-    <h1><%= @work.subject %></h1>
-    <%= link_to '編輯', edit_account_user_info_work_path(@work.user, @work), class: 'btn btn-primary pull-right' if current_user == @work.user %>
+    <h1><%= @work.subject %><%= link_to '編輯', edit_account_user_info_work_path(@work.user, @work), class: 'btn btn-primary pull-right' if current_user == @work.user %></h1>
 
-    <% if @work.attach_avatars.present? %>
-      <div class="row">
-        <% @work.attach_avatars.each do |file| %>
-          <div class="col-md-4">
-            <%= image_tag file.url, style: "width: 100%;" %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+      <% if @work.attach_avatar.present? %>
+        <%= render_avatar_file(@work.attach_avatar.url) %>
+      <% elsif @work.attach_url.present? %>
+        <!-- handle and parse url -->
+        <%= render_resolve_url(@work.attach_url) %>
+      <% elsif @work.attach_content.present? %>
+        <%= sanitize @work.attach_content %>
+      <% else %>
+        <!-- handle empty -->
+      <% end %>
     <br/>
     <br/>
     <%= sanitize @work.content %>
