@@ -10,7 +10,7 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile << Proc.new do |path|
-  if path =~ /\.(css|js)\z/ && !path.include?('bootstrap')
+  if path =~ /\.(css|js)\z/ && !path.include?('bootstrap') && !path.include?('ckeditor')
     @assets ||= Rails.application.assets || Sprockets::Railtie.build_environment(Rails.application)
     full_path = @assets.resolve(path)
     count = Rails.application.config.assets.paths.select {|app_assets_path|  full_path.starts_with? app_assets_path.to_s }.length
@@ -25,3 +25,4 @@ Rails.application.config.assets.precompile << Proc.new do |path|
     false
   end
 end
+Rails.application.config.assets.precompile += %w(ckeditor/config.js)
