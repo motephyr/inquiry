@@ -2,6 +2,7 @@ class Work < ApplicationRecord
   belongs_to :user
   has_many :donates
 
+  validates :subject, presence: true
   validates :user_id, presence: true
   attr_accessor :remote_attach_avatar_url
 
@@ -18,7 +19,4 @@ class Work < ApplicationRecord
     input.to_s.to_slug.normalize.to_s
   end
 
-  def subject
-    read_attribute(:subject).presence || "無題"
-  end
 end

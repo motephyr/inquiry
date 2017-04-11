@@ -6,7 +6,7 @@ class WorksController < ApplicationController
 
   def getUrl
     begin
-      object = LinkThumbnailer.generate(params[:attach_url])
+      object = LinkThumbnailer.generate(params[:attach_url].strip)
       message = 'ok'
     rescue LinkThumbnailer::Exceptions => e
       message = '找不到資料哦'

@@ -11,7 +11,7 @@ class UserInfo < ApplicationRecord
   end
 
   def typical_work
-    read_attribute(:typical_work).presence || "(待補)"
+    read_attribute(:typical_work).presence || "相關經歷:(待補) \n作品集連結:(待補)"
   end
 
   def skill_and_tool

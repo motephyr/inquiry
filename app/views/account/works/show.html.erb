@@ -1,17 +1,20 @@
 <div class='col-sm-6 col-xs-12'>
   <div class="ckeditor">
-    <h1><%= @work.subject %><%= link_to '編輯', edit_account_user_info_work_path(@work.user, @work), class: 'btn btn-primary pull-right' if current_user == @work.user %></h1>
-
-      <% if @work.attach_avatar.present? %>
-        <%= render_avatar_file(@work.attach_avatar.url) %>
-      <% elsif @work.attach_url.present? %>
-        <!-- handle and parse url -->
-        <%= render_resolve_url(@work.attach_url) %>
-      <% elsif @work.attach_content.present? %>
-        <%= sanitize @work.attach_content %>
-      <% else %>
-        <!-- handle empty -->
-      <% end %>
+    <% if current_user == @work.user %>
+      <%= link_to '編輯', edit_account_user_info_work_path(@work.user, @work), class: 'btn btn-primary' %>
+      <%= link_to '刪除', account_user_info_work_path(@work.user, @work), method: :delete, data: { confirm: '確定要刪除嗎？' }, :class => 'btn btn-danger pull-right' %>
+    <% end -%>
+    <h1><%= @work.subject %></h1>
+    <% if @work.attach_avatar.present? %>
+      <%= render_avatar_file(@work.attach_avatar.url) %>
+    <% elsif @work.attach_url.present? %>
+      <!-- handle and parse url -->
+      <%= render_resolve_url(@work.attach_url) %>
+    <% elsif @work.attach_content.present? %>
+      <%= sanitize @work.attach_content %>
+    <% else %>
+      <!-- handle empty -->
+    <% end %>
     <br/>
     <br/>
     <%= sanitize @work.content %>
@@ -19,16 +22,16 @@
 </div>
 <div class='col-sm-3 col-xs-12'>
   <% if false %>
-  <div class="text-center">
-    <%= link_to '贊助', new_work_donate_path(@work), class: 'btn btn-danger' if current_user != @work.user %>
-    <% if @work.donates.present? %>
-      <h2>贊助列表</h2>
-      <ul>
-        <% @work.donates.each do |x| %>
-          <li><%= t("donate.#{x.kind}") %></li>
-        <% end -%>
-      </ul>
-    <% end -%>
-  </div>
+    <div class="text-center">
+      <%= link_to '贊助', new_work_donate_path(@work), class: 'btn btn-danger' if current_user != @work.user %>
+      <% if @work.donates.present? %>
+        <h2>贊助列表</h2>
+        <ul>
+          <% @work.donates.each do |x| %>
+            <li><%= t("donate.#{x.kind}") %></li>
+          <% end -%>
+        </ul>
+      <% end -%>
+    </div>
   <% end %>
 </div>

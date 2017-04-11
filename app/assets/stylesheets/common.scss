@@ -57,3 +57,19 @@ span.help-block{
 .ckeditor img {
   width: 100%;
 }
+
+.block_image {
+  background-color : #EEE;
+
+  height : 140px;
+  width : 140px;
+
+  text-align : center;
+
+  /* Firefox, Chrome */
+  line-height : 140px;
+
+  /* IE */
+  *font-size : 126px;  /* 200px * 0.9 = 180px */
+  *font-family : Arial;
+}
