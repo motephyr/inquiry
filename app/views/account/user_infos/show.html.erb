@@ -9,9 +9,9 @@
       <div class="acc-item">
         <div class="acc-title"><i class="ion-android-navigate"></i>作品</div>
         <div class="acc-content-show">
-          <div class="row">
+          <div class="row user-info-work">
             <% if current_user == @user_info.user %>
-              <div class="col-lg-4 col-md-4 col-sm-6">
+              <div class="col-md-4 col-sm-6 work-responsive">
                 <div onclick="location.href='<%= new_account_user_info_work_path(current_user) %>'" class="work-item">
                   <p class="subject">發佈作品...</p>
                   <div class="overview">
