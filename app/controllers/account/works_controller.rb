@@ -6,6 +6,11 @@ class Account::WorksController < ApplicationController
     @user = User.friendly.find_by_slug!(params[:user_info_id])
     @user_info = @user.user_info
     @work = @user.works.friendly.find_by_slug!(params[:id])
+
+    respond_to do |f|
+      f.html
+      f.js
+    end
   end
 
   def new

@@ -1,6 +1,7 @@
 <h3 class="text-center">最新作品</h3>
 <div class="row">
   <%= render partial: 'account/works/work_index', collection: @works, as: :w || '沒有資料哦！' %>
+  <%= render 'common/modal'  %>
 </div>
 <% content_for :stylesheets do %>
   <%= stylesheet_link_tag "works" %>

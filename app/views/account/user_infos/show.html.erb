@@ -26,6 +26,8 @@
               </div>
             <% end -%>
             <%= render partial: 'account/works/work', collection: @user_info.user.works, as: :w || '沒有資料哦！'  %>
+            <%= render 'common/modal'  %>
+
           </div>
         </div>
       </div>

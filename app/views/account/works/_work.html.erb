@@ -1,5 +1,6 @@
 <div class="col-md-4 col-sm-6 work-responsive">
-  <div onclick="location.href='<%= user_info_work_path(w.user, w) %>'" class="work-item">
+  <%= link_to user_info_work_path(w.user, w), class: 'work-item', remote: true do %>
+
     <p class="subject"> <%= w.subject %> </p>
     <div class="overview">
       <% if w.attach_avatar.present? %>
@@ -18,5 +19,5 @@
       <i class="glyphicon glyphicon-comment"></i><span>??</span>
       <i class="glyphicon glyphicon-heart"></i><span>???</span>
     </p>
-  </div>
+  <% end -%>
 </div>
