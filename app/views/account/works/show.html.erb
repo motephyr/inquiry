@@ -17,7 +17,7 @@
     <% end %>
     <br/>
     <br/>
-    <%= sanitize @work.content %>
+    <%= render_with_p_tags(@work.content) %>
   </div>
 </div>
 <div class='col-sm-3 col-xs-12'>

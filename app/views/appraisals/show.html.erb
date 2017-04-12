@@ -2,15 +2,9 @@
   <%= link_to '修改內容', edit_appraisal_path(@appraisal), :class => 'btn btn-success' %>
   <br/>
 <% end %>
-<%
-  content = @appraisal.description
-  content.gsub!(/\r\n?/, "\n")
-%>
 <h3><%= @appraisal.title %></h3>
 <div class="well">
-  <% content.split("\n").each do |t| %>
-    <p><%= t.presence || "&nbsp;".html_safe %></p>
-  <% end %>
+  <%= render_with_p_tags(@appraisal.description) %>
 </div>
 <p class="category">
   <% if @appraisal.category.parent_category.present? %>
