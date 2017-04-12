@@ -20,6 +20,7 @@ gem "omniauth-facebook"
 
 gem 'carrierwave'
 gem "mini_magick"
+gem 'magick-metadata'
 
 # soft delete
 gem "paranoia", "~> 2.0"
@@ -84,7 +85,7 @@ gem 'redis', '~> 3.0'
 # gem 'capistrano-rails', group: :development
 group :production do
   gem "pg"
-  gem "fog"
+  gem "fog-aws"
 end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
