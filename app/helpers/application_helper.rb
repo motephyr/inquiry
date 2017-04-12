@@ -62,6 +62,13 @@ module ApplicationHelper
     end
   end
 
+  def render_with_p_tags(str)
+  	str.gsub!(/\r\n?/, "\n")
+  	lines = str.split("\n")
+  	lines.collect {|line| concat(content_tag(:p, line.presence || "&nbsp;".html_safe))}
+  	""
+  end
+
   def rasf(text)
     Rinku.auto_link(simple_format(text), :all, 'target="_blank"').html_safe
   end
