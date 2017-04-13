@@ -29,4 +29,8 @@ class WorksController < ApplicationController
     end
   end
 
+  def carers
+    @work = Work.includes(:user, :cares).friendly.find_by_slug!(params[:id])
+  end
+
 end

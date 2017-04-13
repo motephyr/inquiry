@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     end
     member do
       post 'update_care'
+      get 'carers'
     end
   end
 

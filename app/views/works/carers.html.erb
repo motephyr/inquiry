@@ -1,0 +1,11 @@
+<div class="row">
+<%= render 'account/works/work', w: @work   %>
+</div>
+<p>Like這個作品的人</p>
+<% @work.cares.each do |c| %>
+  <%= link_to c.user.nickname, user_info_path(c.user) %>
+<% end -%>
+
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "works" %>
+<% end -%>

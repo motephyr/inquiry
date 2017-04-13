@@ -27,7 +27,9 @@
             <%= link_to update_care_work_path(w), method: :post, remote: true, class: 'heart' do %>
               <i class="glyphicon glyphicon-heart <%= 'text-danger' if w.is_care_by? (current_user) %>"></i>
             <% end -%>
-            <span class="heart_count"><%= w.cares_count %></span>
+            <%= link_to carers_work_path(w) do %>
+              <span class="heart_count"><%= w.cares_count %></span>
+            <% end -%>
           </p>
         </div>
       </div>
