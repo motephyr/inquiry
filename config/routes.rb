@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     collection do
       post 'getUrl'
     end
+    member do
+      post 'update_care'
+    end
   end
 
   get '/user_infos/:id', to: 'account/user_infos#show', as: :user_info

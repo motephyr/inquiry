@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413043539) do
+ActiveRecord::Schema.define(version: 20170413060105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -205,6 +205,7 @@ ActiveRecord::Schema.define(version: 20170413043539) do
     t.text     "attach_content"
     t.string   "attach_avatar"
     t.integer  "hits",           default: 0
+    t.integer  "cares_count",    default: 0
     t.index ["slug"], name: "index_works_on_slug", unique: true, using: :btree
   end
 
