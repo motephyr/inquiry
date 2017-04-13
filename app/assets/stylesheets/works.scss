@@ -9,6 +9,7 @@
   box-shadow: -2px 2px 10px 2px rgba(169,172,158,0.7);
   padding: 0.5em 1.3em;
   display: block;
+  color: #333333;
 }
 
 .work-item h4{
@@ -18,6 +19,7 @@
 
 .work-item:hover{
   background-color: rgba(0, 0, 0, 0.075);
+  text-decoration: none;
 }
 
 .work-item .overview, .work-item .subject{
@@ -111,4 +113,37 @@
 	.user-info-work .work-responsive{
 		width:33% !important;
 	}
+}
+
+.overview .remote-preview{
+	height: 100%;
+}
+
+.ckeditor .remote-preview{
+	height: 280px;
+}
+
+.remote-preview .preview-image{
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: 50% 50%;
+	height: 70%;
+}
+
+p.preview-description, p.preview-title{
+	display: block;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.remote-preview p.preview-description{
+	font-size: 0.8em;
+	-webkit-line-clamp: 3;
+}
+
+.remote-preview p.preview-title{
+	font-size: 1.2em;
+	-webkit-line-clamp: 1;
 }

@@ -1,12 +1,4 @@
-function iframeResizingTune(){
-	this.style.height = this.scrollWidth * 0.7 + "px";	
-}
-var iframesInContent = document.querySelectorAll(".ckeditor iframe");
-jQuery(iframesInContent).load(iframeResizingTune);
-jQuery(window).resize(function(){
-	iframesInContent.forEach(function(o){ iframeResizingTune.call(o) });
-});
-(function(o){
+document.querySelectorAll("div[data-remote-url]").forEach(function(o){
 	var url = o.getAttribute("data-remote-url");
 	$.ajax({
 		url: "/works/getUrl",
@@ -33,4 +25,4 @@ jQuery(window).resize(function(){
 		}
 		o.innerHTML = html || message;
 	});
-})(document.querySelector(".ckeditor div[data-remote-url]"));
+});

@@ -55,7 +55,7 @@ module ApplicationHelper
     	content_tag :iframe, '', src: "https://www.youtube.com/embed/#{youtube_match[1]}?rel=0", width: '100%', height:'100%', frameborder: '0'
     else
     	# others
-    	content_tag :img, '', src: "/images/noimage.jpg"
+    	content_tag :div, '', :data => { :remote_url => url }, class: "remote-preview"
     end
   end
 
