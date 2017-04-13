@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :work_messages
   resources :works do
     resources :donates
     collection do

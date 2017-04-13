@@ -1,40 +1,7 @@
 <h3 class="text-center">最新作品</h3>
 <div class="row">
-  <% if @works.blank? %>
-    沒有資料哦！
-  <% else %>
-    <% @works.each do |w| %>
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="work-item">
-          <%= link_to user_info_work_path(w.user, w), remote: true do %>
-            <p class="subject"> <%= w.subject %> </p>
-            <div class="overview">
-              <% if w.attach_avatar.present? %>
-                <%= render_avatar_file(w.attach_avatar.url) %>
-              <% elsif w.attach_url.present? %>
-                <!-- handle and parse url -->
-                <%= render_resolve_url(w.attach_url) %>
-              <% elsif w.attach_content.present? %>
-                <%= sanitize w.attach_content %>
-              <% else %>
-                <!-- handle empty -->
-              <% end %>
-            </div>
-          <% end -%>
-          <p class="info">
-            <a><i class="glyphicon glyphicon-eye-open"></i><span><%= w.hits %></span></a>
-            <a><i class="glyphicon glyphicon-comment"></i><span>??</span></a>
-            <%= link_to update_care_work_path(w), method: :post, remote: true, class: 'heart' do %>
-              <i class="glyphicon glyphicon-heart <%= 'text-danger' if w.is_care_by? (current_user) %>"></i>
-            <% end -%>
-            <%= link_to carers_work_path(w) do %>
-              <span class="heart_count"><%= w.cares_count %></span>
-            <% end -%>
-          </p>
-        </div>
-      </div>
-    <% end -%>
-  <% end -%>
+  <%= render partial: 'account/works/work_index', collection: @works, as: :w || '沒有資料哦！' %>
+
   <%= render 'common/modal'  %>
 </div>
 <% content_for :stylesheets do %>
@@ -46,7 +13,7 @@ $('.heart').click(function(){
     // $(this).find('i').toggleClass('glyphicon glyphicon-heart').toggleClass('glyphicon glyphicon-heart text-danger');
     // if $(this).find('i').class()
     var el = $(this).find('i');
-    var next_count = $(this).next(".heart_count");
+    var next_count = $(this).next(".heart_count_link").find('.heart_count');
     if (el.attr('class') === 'glyphicon glyphicon-heart') {
       next_count.text(parseInt(next_count.text()) + 1);
     } else {

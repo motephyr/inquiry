@@ -3,6 +3,7 @@ class Work < ApplicationRecord
 
   belongs_to :user
   has_many :donates
+  has_many :work_messages, :dependent => :destroy
 
   validates :subject, presence: true
   validates :user_id, presence: true

@@ -4,7 +4,7 @@
 <% end %>
 <h3><%= @appraisal.title %></h3>
 <div class="well">
-  <%= rasf @appraisal.description  %>
+  <%= rasf @appraisal.description %>
 </div>
 <p class="category">
   <% if @appraisal.category.parent_category.present? %>
@@ -20,7 +20,7 @@
 </p>
 <h4>留言</h4>
 <div class="tasks" id="incomplete_tasks">
-  <%= render @appraisal_messages %>
+  <%= render @appraisal.appraisal_messages %>
 </div>
 <br/>
 <%= form_for @appraisal_message, remote: true do |f| %>
