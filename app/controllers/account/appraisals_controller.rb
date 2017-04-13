@@ -1,7 +1,7 @@
 class Account::AppraisalsController < ApplicationController
   before_action :login_required
   def index
-    @appraisals = current_user.cares.includes(careable: [:user,category: :parent_category]).recent.map{|x| x.careable}
+    @appraisals = current_user.cares.where(careable_type: 'Appraisal').includes(careable: [:user,category: :parent_category]).recent.map{|x| x.careable}
   end
 
   def update_care

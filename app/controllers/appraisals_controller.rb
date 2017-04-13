@@ -8,9 +8,8 @@ class AppraisalsController < ApplicationController
   end
 
   def show
-    @appraisal = Appraisal.find(params[:id])
+    @appraisal = Appraisal.includes(appraisal_messages: :user).find(params[:id])
 
-    @appraisal_messages = @appraisal.appraisal_messages.includes(:user).all
     @appraisal_message = AppraisalMessage.new
 
     @appraisal_prices = @appraisal.appraisal_prices.all

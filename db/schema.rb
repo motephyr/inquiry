@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410213341) do
+ActiveRecord::Schema.define(version: 20170413092129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -194,16 +194,29 @@ ActiveRecord::Schema.define(version: 20170410213341) do
     t.index ["slug"], name: "index_users_on_slug", unique: true, using: :btree
   end
 
+  create_table "work_messages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "work_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_work_messages_on_user_id", using: :btree
+    t.index ["work_id"], name: "index_work_messages_on_work_id", using: :btree
+  end
+
   create_table "works", force: :cascade do |t|
     t.string   "subject"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "slug"
     t.string   "attach_url"
     t.text     "attach_content"
     t.string   "attach_avatar"
+    t.integer  "hits",                default: 0
+    t.integer  "cares_count",         default: 0
+    t.integer  "work_messages_count", default: 0
     t.index ["slug"], name: "index_works_on_slug", unique: true, using: :btree
   end
 

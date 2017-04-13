@@ -2,10 +2,13 @@ module Careable
   def self.included(base)
     base.class_eval do
       has_many :cares, as: :careable, :dependent => :destroy
+
       after_create :add_care
       after_destroy :delete_care
     end
   end
+
+
 
   def add_care
     obj = self
@@ -30,11 +33,13 @@ module Careable
   end
 
   def care_by(user)
+    increment_counter
     obj = self
     obj.cares.find_or_create_by(careable_type: obj.class.to_s, careable_id: obj.id,  user: user)
   end
 
   def uncare_by(user)
+    decrement_counter
     obj = self
     obj.cares.find_by(careable_type: obj.class.to_s, careable_id: obj.id,  user: user).destroy
   end
@@ -42,5 +47,17 @@ module Careable
 
   def is_care_by?(user)
     self.cares.any? {|h| h.user_id == user.id}
+  end
+
+  private
+
+  # increments the right classifiable counter for the right taxonomy
+  def increment_counter
+    self.class.increment_counter("cares_count", self.id)
+  end
+
+  # decrements the right classifiable counter for the right taxonomy
+  def decrement_counter
+    self.class.decrement_counter("cares_count", self.id)
   end
 end

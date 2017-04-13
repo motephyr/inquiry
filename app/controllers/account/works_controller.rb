@@ -3,9 +3,13 @@ class Account::WorksController < ApplicationController
 
 
   def show
+
     @user = User.friendly.find_by_slug!(params[:user_info_id])
     @user_info = @user.user_info
-    @work = @user.works.friendly.find_by_slug!(params[:id])
+    @work = @user.works.includes(work_messages: :user).friendly.find_by_slug!(params[:id])
+
+    @work_message = WorkMessage.new
+    Work.increment_counter(:hits, @work.id)
 
     respond_to do |f|
       f.html

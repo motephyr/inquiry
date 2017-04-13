@@ -1,6 +1,9 @@
 class Work < ApplicationRecord
+  include Careable
+
   belongs_to :user
   has_many :donates
+  has_many :work_messages, :dependent => :destroy
 
   validates :subject, presence: true
   validates :user_id, presence: true
@@ -10,6 +13,9 @@ class Work < ApplicationRecord
 
   extend FriendlyId
   friendly_id :subject, use: :slugged
+
+  scope :order_by_new, -> { order('created_at desc') }
+
 
   def should_generate_new_friendly_id?
     slug.blank? || subject_changed?

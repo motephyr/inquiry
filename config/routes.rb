@@ -18,10 +18,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :work_messages
   resources :works do
     resources :donates
     collection do
       post 'getUrl'
+    end
+    member do
+      post 'update_care'
+      get 'carers'
     end
   end
 

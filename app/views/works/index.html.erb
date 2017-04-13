@@ -1,9 +1,26 @@
 <h3 class="text-center">最新作品</h3>
 <div class="row">
   <%= render partial: 'account/works/work_index', collection: @works, as: :w || '沒有資料哦！' %>
+
   <%= render 'common/modal'  %>
 </div>
 <%= javascript_include_tag "works_parse_remote" %>
 <% content_for :stylesheets do %>
   <%= stylesheet_link_tag "works" %>
+<% end -%>
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+$('.heart').click(function(){
+    // $(this).find('i').toggleClass('glyphicon glyphicon-heart').toggleClass('glyphicon glyphicon-heart text-danger');
+    // if $(this).find('i').class()
+    var el = $(this).find('i');
+    var next_count = $(this).next(".heart_count_link").find('.heart_count');
+    if (el.attr('class') === 'glyphicon glyphicon-heart') {
+      next_count.text(parseInt(next_count.text()) + 1);
+    } else {
+      next_count.text(parseInt(next_count.text()) - 1);
+    }
+    el.toggleClass('glyphicon glyphicon-heart').toggleClass('glyphicon glyphicon-heart text-danger');
+});
+  </script>
 <% end -%>
