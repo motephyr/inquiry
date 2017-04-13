@@ -41,14 +41,21 @@ module ApplicationHelper
   end
 
   def render_resolve_url(url)
-    youtube_match = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(\S*)?$/.match(url)
-    image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/.match(url)
-    if youtube_match.present?
-      content_tag :iframe, '', src: "https://www.youtube.com/embed/#{youtube_match[1]}?rel=0", width: '100%', height: '100%', frameborder: '0'
-    elsif image_match.present?
-      content_tag :img, '', src: "#{url}"
+    if (image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/.match(url)) and image_match.present?
+    	# image matches
+    	content_tag :img, '', src: "#{url}"
+    elsif (audio_match = /\.(wav|mp3|wma|midi|aif|aifc|aiff|au|ea)$/.match(url)) and audio_match.present?
+    	# audio matches
+    	content_tag :audio, '', controls: "controls", src: "#{url}", style: "width:100%;"
+    elsif (video_match = /\.(mp4|webm|ogg)$/.match(url)) and video_match.present?
+    	# video matches
+    	content_tag :video, '', controls: "controls", src: "#{url}", width: "100%", height: "100%"
+    elsif (youtube_match = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(\S*)?$/.match(url)) and youtube_match.present?
+    	# youtube matches
+    	content_tag :iframe, '', src: "https://www.youtube.com/embed/#{youtube_match[1]}?rel=0", width: '100%', height:'100%', frameborder: '0'
     else
-      content_tag :img, '', src: "/images/noimage.jpg"
+    	# others
+    	content_tag :img, '', src: "/images/noimage.jpg"
     end
   end
 

@@ -5,9 +5,8 @@
       <%= link_to '刪除', account_user_info_work_path(@work.user, @work), method: :delete, data: { confirm: '確定要刪除嗎？' }, :class => 'btn btn-danger pull-right' %>
     <% end -%>
     <h1><%= @work.subject %></h1>
-    <% if @work.attach_avatar.present? %>
-      <%= render_avatar_file(@work.attach_avatar.url) %>
-    <% elsif @work.attach_url.present? %>
+    <% # if @work.attach_avatar.present? render_avatar_file(@work.attach_avatar.url) %>
+    <% if @work.attach_url.present? %>
       <!-- handle and parse url -->
       <%= render_resolve_url(@work.attach_url) %>
     <% elsif @work.attach_content.present? %>
@@ -19,6 +18,7 @@
     <br/>
     <%= rasf @work.content %>
   </div>
+  <%= javascript_include_tag "works" %>
 </div>
 <div class='col-sm-3 col-xs-12'>
   <% if false %>
