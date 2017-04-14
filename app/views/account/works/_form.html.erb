@@ -1,16 +1,37 @@
 <%= javascript_include_tag Ckeditor.cdn_url %>
 <%= javascript_include_tag 'vue' %>
+<div class="stepwizard">
+  <div class="stepwizard-row">
+    <div class="stepwizard-step">
+      <button type="button" value="1" onclick="onStepClick(this)" class="btn btn-primary btn-circle">1</button>
+      <p>輸入標題</p>
+    </div>
+    <div class="stepwizard-step">
+      <button type="button" value="2" onclick="onStepClick(this)" class="btn btn-default btn-circle">2</button>
+      <p>作品連結或內容</p>
+    </div>
+    <div class="stepwizard-step">
+      <button type="button" value="3" onclick="onStepClick(this)" class="btn btn-default btn-circle">3</button>
+      <p>詳細描述</p>
+    </div> 
+  </div>
+</div>
 <%= simple_form_for [:account, @work.user.user_info, @work], :html => {:multipart => true} do |f| -%>
   <%= render '/common/error_messages', object: f.object %>
-  <div class="form-inputs">
+  <div class="form-inputs stepwizard-target-1">
     <div class="form-group">
-      <h4><span>作品相關檔案</span></h4>
+      <%= f.input_field :subject, class: 'form-control string optional', placeholder: '例如：PHP後台系統設計、商品攝影+修圖、女性服飾網拍修圖' %>
+    </div>
+    <p><%= link_to "下一步", '#2', class: 'btn btn-success' %></p>
+  </div>
+  <div class="form-inputs stepwizard-target-2"  style="display:none">
+    <div class="form-group">
       <!-- Nav tabs -->
       <ul id="typeSelection" class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active">
+        <!-- <li role="presentation" class="active">
           <a href="#upload" aria-controls="upload" role="tab" data-toggle="tab">上傳聲音或圖片</a>
-        </li>
-        <li role="presentation">
+        </li> -->
+        <li role="presentation" class="active">
           <a href="#external" aria-controls="external" role="tab" data-toggle="tab">外部連結</a>
         </li>
         <li role="presentation">
@@ -19,116 +40,175 @@
       </ul>
       <!-- Tab panes -->
       <div class="tab-content" style="padding:0.4em;">
-        <div role="tabpanel" class="tab-pane fade in active" id="upload">
-          <%= f.file_field :attach_avatar %>
-          <h4>或檔案連結</h4>
-          <%= f.text_field :remote_attach_avatar_url, class: 'form-control' %>
-        </div>
-        <div role="tabpanel" class="tab-pane fade" id="external">
-          <div class="input-group">
-            <%= f.input_field :attach_url, class: 'form-control string optional' %>
-            <span class="input-group-btn">
-              <%= link_to '選擇代表圖片', '#', id: 'preview', class: 'btn btn-danger pull-right'  %>
-            </span>
-          </div>
-          <div class="row" id="url">
+        <!-- <div role="tabpanel" class="tab-pane fade in active" id="upload"> -->
+          <% # f.file_field :attach_avatar %>
+          <!-- <h4>或檔案連結</h4> -->
+          <% # f.text_field :remote_attach_avatar_url, class: 'form-control' %>
+        <!-- </div> -->
+        <div role="tabpanel" class="tab-pane fade in active" id="external">
+          <%= f.input_field :attach_url, class: 'form-control string optional', placeholder: "請貼上連結" %>
+          <p class="loading-info" style="display: none;">正在讀取中...</p>
+          <div class="row" id="previewVue">
             <h4>{{tellmessage}}</h4>
-
-            <div :class="['col-md-2', 'col-sm-4', 'work-responsive' ]" v-if="favicon != ''">
-              <a href="#" @click="test(favicon, 0)">
-              <div :class="['text-center', 'block_image', {'panel panel-default': image_bolder[0]}]">
-                <img :src="favicon" style="margin:auto;" class="img-thumbnail" />
-              </div>
-              </a>
-            </div>
             <div :class="['col-md-2', 'col-sm-4', 'work-responsive' ]" v-for="(image, index) in images" :key="image.src">
-              <a href="#" @click="test(image.src, index+1)">
-              <div :class="['text-center', 'block_image', {'panel panel-default': image_bolder[index+1]}]">
-                <img :src="image.src" style="margin:auto;" class="img-thumbnail" />
-            </div>
+              <a href="#" @click="test(image.src, index)">
+                <div :class="['text-center', 'block_image', {'panel panel-default': image_bolder[index+1]}]">
+                  <img :src="image.src" style="margin:auto;" class="img-thumbnail" />
+                </div>
               </a>
             </div>
           </div>
         </div>
         <div role="tabpanel" class="tab-pane fade" id="textcontent">
-          <h4>輸入內容</h4>
           <%= f.input_field :attach_content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }%>
         </div>
       </div>
     </div>
-    <p><%= link_to "下一步", '#', class: 'btn btn-success switch' %></p>
+    <p>
+      <%= link_to "上一步", '#1', class: 'btn btn-info' %>
+      <%= link_to "下一步", '#3', class: 'btn btn-success' %>
+    </p>
   </div>
-  <div class="form-actions" style="display:none">
+  <div class="form-actions stepwizard-target-3" style="display:none">
     <div class="form-group">
-      <h4><span>標題</span><span class="help-block">例如：PHP後台系統設計、商品攝影+修圖、女性服飾網拍修圖</span></h4>
-      <%= f.input_field :subject, class: 'form-control string optional', placeholder: '標題' %>
-    </div>
-    <div class="form-group">
-      <h4><span>作品描述</span><span class="help-block">描述製作時間、幾個人做、怎麼從概念到成品等等</span></h4>
-      <%= f.input_field :content, as: :text, class: 'form-control', rows: '10', placeholder: '請輸入內容' %>
+      <%= f.input_field :content, as: :text, class: 'form-control', rows: '10', placeholder: '描述製作時間、幾個人做、怎麼從概念到成品等等' %>
     </div>
     <p><%= f.button :submit, '送出', class: 'btm_c_org width50' %>
-      <%= link_to "上一步", '#', class: 'btn btn-info switch' %>
+      <%= link_to "上一步", '#2', class: 'btn btn-info switch' %>
       <%= link_to "回列表頁", appraisals_path, class: 'btn btn-link' %></p>
   </div>
 <% end %>
+<% content_for :stylesheets do %>
+  <style type="text/css">
+    .stepwizard-step p {
+      margin-top: 10px;  
+      font-size: 1.2em;  
+    }
+
+    .stepwizard-row {
+      display: table-row;
+    }
+
+    .stepwizard {
+      margin-top: 20px;
+      display: table;     
+      width: 100%;
+      position: relative;
+    }
+    
+    .stepwizard-step button{
+      outline: none !important;
+    }
+    
+    .stepwizard-step button[disabled] {
+      opacity: 1 !important;
+      filter: alpha(opacity=100) !important;
+    }
+
+    .stepwizard-row:before {
+      top: 14px;
+      bottom: 0;
+      position: absolute;
+      content: " ";
+      width: 100%;
+      height: 1px;
+      background-color: #ccc;
+      z-order: 0;
+    }
+
+    .stepwizard-step {    
+      display: table-cell;
+      text-align: center;
+      position: relative;
+    }
+
+    .btn-circle {
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      padding: 6px 0;
+      font-size: 12px;
+      line-height: 1.428571429;
+      border-radius: 15px;
+    }
+    form{
+      margin-top: 20px;
+    }
+  </style>
+<% end -%>
 <% content_for :javascripts do %>
   <script type="text/javascript">
-    $("#typeSelection a").click(function(e){
-          e.preventDefault();
-          $(this).tab('show');
-        });
-        $('.switch').click(function(e){
-          $('.form-inputs').toggle();
-          $('.form-actions').toggle();
-        })
-        $('#preview').click(function(e){
-          e.preventDefault();
-          $.ajax({
-            url: "/works/getUrl",
-            method: 'post',
-            data: {attach_url: $('#work_attach_url').val()},
-            dataType: 'json'
-          }).done(function(json) {
-            var message = json.message
-            if (message == 'ok') {
-              if (json.object.favicon){
-                self.url.images = json.object.images
-                self.url.favicon = json.object.favicon
-                self.url.tellmessage = '選擇一個關於這個連結的代表圖片吧！';
-              } else {
-                self.url.tellmessage = '找不到代表圖片，將用預設圖片代替。';
 
-              }
-            }else {
-              self.url.tellmessage = message;
-            }
-          });
-        })
+  function onStepClick(o){
+    $(o).parents(".stepwizard").find("button.btn-primary").removeClass("btn-primary").addClass("btn-default");
+    $(o).removeClass("btn-default").addClass("btn-primary");
+    $("*[class*='stepwizard-target-']").hide();
+    $(".stepwizard-target-" + o.value).show();
+  }
 
+  $(window).on('hashchange',function(){ 
+    var strHash = location.hash.slice(1);
+    if(strHash) $(".stepwizard button[value=" + strHash + "]").trigger('click');
+  });
 
-        var self = this;
+  $('form').submit(function () {
+    if ($(document.activeElement).attr('type') == 'submit') return true;
+    else return false;
+  });
 
-        var url = new Vue({
-          el: "#url",
-          data: {
-            images: [],
-            favicon: '',
-            image_bolder: [],
-            tellmessage: ''
-          },
-          methods: {
-            display_caption: function(image) {
-              return image.type && image.size.length === 2;
-            },
-            test: function(url, index) {
-              $('#work_remote_attach_avatar_url').val(url);
-              var a = [];
-              a[index] = 'true';
-              this.image_bolder = a;
-            }
-          }
+  $('#work_attach_url').bind('paste', function(e){
+    // can not use this.value to get the pasted text
+    var clipboardData = e.clipboardData || e.originalEvent.clipboardData || window.clipboardData;
+    var pastedData = clipboardData.getData('text');
+    getInfoImages(pastedData);
+  });
 
-        });
+  function getInfoImages(url){
+    self = window;
+    $(".loading-info").toggle();
+    $.ajax({
+      url: "/works/getUrl",
+      method: 'post',
+      data: {attach_url: url},
+      dataType: 'json'
+    }).done(function(json) {
+      var message = json.message
+      if (message == 'ok') {
+        if (json.object.favicon){
+          self.previewVue.images = json.object.images
+          self.previewVue.favicon = json.object.favicon
+          self.previewVue.tellmessage = '選擇一個關於這個連結的代表圖片吧！';
+        } else {
+          self.previewVue.tellmessage = '找不到代表圖片，將用預設圖片代替。';
+        }
+      }else {
+        self.previewVue.tellmessage = message;
+      }
+      $(".loading-info").toggle();
+    });
+  }
+
+  var previewVue = new Vue({
+    el: "#previewVue",
+    data: {
+      images: [],
+      favicon: '',
+      image_bolder: [],
+      tellmessage: ''
+    },
+    methods: {
+      display_caption: function(image) {
+        return image.type && image.size.length === 2;
+      },
+      test: function(url, index) {
+        $('#work_remote_attach_avatar_url').val(url);
+        var a = [];
+        a[index] = 'true';
+        this.image_bolder = a;
+      }
+    }
+
+  });
+    
   </script>
 <% end -%>
