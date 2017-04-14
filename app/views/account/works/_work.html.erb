@@ -7,6 +7,7 @@
       </div>
     <% end -%>
     <p class="info">
+      <%= content_tag :i, '',class: 'glyphicon glyphicon-link' if w.attach_url.present? %>
       <i class="glyphicon glyphicon-eye-open"></i><span><%= w.hits %></span>
       <i class="glyphicon glyphicon-comment"></i><span><%= w.work_messages_count %></span>
       <%= link_to update_care_work_path(w), method: :post, remote: true, class: 'heart' do %>

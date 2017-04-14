@@ -3,12 +3,13 @@
     <%= link_to user_info_work_path(w.user, w), class: "item-wrap", remote: true do %>
       <p class="subject"> <%= w.subject %> </p>
       <div class="overview">
-      <%= work_square(w) %>
+        <%= work_square(w) %>
       </div>
     <% end -%>
     <p class="info">
-      <a><i class="glyphicon glyphicon-eye-open"></i><span><%= w.hits %></span></a>
-      <a><i class="glyphicon glyphicon-comment"></i><span><%= w.work_messages_count %></span></a>
+      <%= content_tag :i, '',class: 'glyphicon glyphicon-link' if w.attach_url.present? %>
+      <i class="glyphicon glyphicon-eye-open"></i><span><%= w.hits %></span>
+      <i class="glyphicon glyphicon-comment"></i><span><%= w.work_messages_count %></span>
       <%= link_to update_care_work_path(w), method: :post, remote: true, class: 'heart' do %>
         <i class="glyphicon glyphicon-heart <%= 'text-danger' if w.is_care_by? (current_user) %>"></i>
       <% end -%>

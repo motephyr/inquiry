@@ -5,9 +5,9 @@
   <% end -%>
   <h1><%= @work.subject %></h1>
   <%= work_square(@work) %>
-  <% if @work.attach_url.present? %>
-    <%= link_to "連結至網頁(#{@work.attach_url})", @work.attach_url, class: 'btn btn-success',target: '_blank' %>
-  <% end -%>
+
+  <%= link_to "連結至網頁(#{@work.attach_url})", @work.attach_url, class: 'btn btn-success',target: '_blank' if @work.attach_url.present? %>
+
   <hr/>
   <% if @work.content.present? %>
     <%= rasf @work.content %>
