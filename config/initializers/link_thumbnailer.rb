@@ -80,4 +80,5 @@ LinkThumbnailer.configure do |config|
   # Defines the strategies to use to scrap the website. See the [Open Graph Protocol](http://ogp.me/) for more information.
   #
   # config.scrapers = [:opengraph, :default]
+  config.http_override_headers =  { 'Content-Encoding' => 'gzip' }
 end
