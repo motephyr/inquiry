@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
 
   before_action :login_required
-  layout "account", only: [:edit_password]
 
 
   def edit_password
     @user = User.find(current_user.id)
+    render layout: "account"
   end
 
   def update_password

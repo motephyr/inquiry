@@ -1,5 +1,3 @@
-<div class="row">
-  <div class='col-sm-12 col-xs-12'>
     <div class="ckeditor">
       <% if current_user == @work.user %>
         <%= link_to '編輯', edit_account_user_info_work_path(@work.user, @work), class: 'btn btn-primary' %>
@@ -18,46 +16,31 @@
       <br/>
       <br/>
       <%= rasf @work.content %>
-    </div>
-    <h4>留言</h4>
-    <div class="tasks" id="incomplete_tasks">
-      <%= render partial: 'work_messages/work_message', collection: @work.work_messages %>
-    </div>
-    <br/>
-    <%= form_for @work_message, remote: true do |f| %>
-      <div class="form-inputs">
-        <div class="form-group">
-          <h4><span>新增留言</span><span class="help-block">Shift+Enter鍵換行</span></h4>
-          <%= f.hidden_field :work_id, {value: @work.id} %>
-          <%= f.text_area :content, class: 'form-control', rows: '2', placeholder: '請輸入內容' %>
-        </div>
-        <div class="form-actions">
-          <p><%= f.submit '送出', class: 'btn btn-primary' %></p>
-        </div>
+      <h4>留言</h4>
+      <div class="tasks" id="incomplete_tasks">
+        <%= render partial: 'work_messages/work_message', collection: @work.work_messages %>
       </div>
-    <% end %>
-    <script>
-      $('#work_message_content').keypress(function(e){
-        if(e.shiftKey && e.keyCode == 13){
-          } else if (e.keyCode == 13) {
-           $(this).closest('form').submit();
-         }
-      });
-    </script>
-  </div>
-  <div class='col-sm-12 col-xs-12'>
-    <% if false %>
-      <div class="text-center">
-        <%= link_to '贊助', new_work_donate_path(@work), class: 'btn btn-danger' if current_user != @work.user %>
-        <% if @work.donates.present? %>
-          <h2>贊助列表</h2>
-          <ul>
-            <% @work.donates.each do |x| %>
-              <li><%= t("donate.#{x.kind}") %></li>
-            <% end -%>
-          </ul>
-        <% end -%>
-      </div>
-    <% end %>
-  </div>
-</div>
+      <br/>
+      <%= form_for @work_message, remote: true do |f| %>
+        <div class="form-inputs">
+          <div class="form-group">
+            <h4><span>新增留言</span><span class="help-block">Shift+Enter鍵換行</span></h4>
+            <%= f.hidden_field :work_id, {value: @work.id} %>
+            <%= f.text_area :content, class: 'form-control', rows: '2', placeholder: '請輸入內容' %>
+          </div>
+          <div class="form-actions">
+            <p><%= f.submit '送出', class: 'btn btn-primary' %></p>
+          </div>
+        </div>
+      <% end %>
+      <script>
+        $('#work_message_content').keypress(function(e){
+                if(e.shiftKey && e.keyCode == 13){
+                  } else if (e.keyCode == 13) {
+                   $(this).closest('form').submit();
+                 }
+              });
+      </script>
+    </div>
+    <%= javascript_include_tag "works_show" %>
+    <%= stylesheet_link_tag "works" %>

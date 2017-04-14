@@ -1,7 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
-  layout "account", only: [:edit]
-
+  def edit
+    render layout: "account"
+  end
 
   protected
 

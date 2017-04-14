@@ -1,5 +1,4 @@
 class Account::WorksController < ApplicationController
-  layout "user_info", only: [:show]
 
 
   def show
@@ -15,6 +14,7 @@ class Account::WorksController < ApplicationController
       f.html
       f.js
     end
+    render layout: "user_info"
   end
 
   def new

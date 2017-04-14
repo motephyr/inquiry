@@ -27,7 +27,7 @@
             <% end -%>
             <%= render partial: 'account/works/work', collection: @user_info.user.works, as: :w || '沒有資料哦！'  %>
             <%= render 'common/modal'  %>
-            <%= javascript_include_tag "works_parse_remote" %>
+            <%= javascript_include_tag "works_list" %>
           </div>
         </div>
       </div>

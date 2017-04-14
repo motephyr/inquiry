@@ -1,5 +1,5 @@
 function iframeResizingTune(){
-	this.style.height = this.scrollWidth * 0.7 + "px";	
+	this.style.height = this.scrollWidth * 0.7 + "px";
 }
 var iframesInContent = document.querySelectorAll(".ckeditor iframe");
 jQuery(iframesInContent).load(iframeResizingTune);

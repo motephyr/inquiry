@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
-  layout "landing_page", only: [:index]
 
   def index
+    render layout: "landing_page"
   end
 
 end
