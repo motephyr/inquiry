@@ -13,7 +13,7 @@
     <div class="stepwizard-step">
       <button type="button" value="3" onclick="onStepClick(this)" class="btn btn-default btn-circle" disabled="disabled">3</button>
       <p>簡單描述一下</p>
-    </div> 
+    </div>
   </div>
 </div>
 <%= simple_form_for [:account, @work.user.user_info, @work], :html => {:multipart => true} do |f| -%>
@@ -47,12 +47,15 @@
         </div>
         <div role="tabpanel" class="tab-pane fade" id="external">
           <%= f.input_field :attach_url, class: 'form-control string optional', placeholder: "請貼上連結" %>
+          <%= f.hidden_field :remote_image_url %>
+          <%= f.hidden_field :remote_description %>
+
           <p class="loading-info" style="display: none;">正在讀取中...</p>
           <div class="row" id="previewVue">
             <h4>{{tellmessage}}</h4>
             <div :class="['col-md-2', 'col-sm-4', 'work-responsive' ]" v-for="(image, index) in images" :key="image.src">
               <a href="#" @click="test(image.src, index)">
-                <div :class="['text-center', 'block_image', {'panel panel-default': image_bolder[index+1]}]">
+                <div :class="['text-center', 'block_image', {'panel panel-default': image_bolder[index]}]">
                   <img :src="image.src" style="margin:auto;" class="img-thumbnail" />
                 </div>
               </a>
@@ -191,10 +194,12 @@
     }).done(function(json) {
       var message = json.message
       if (message == 'ok') {
-        if (json.object.favicon){
+        if (json.object.images){
           self.previewVue.images = json.object.images
           self.previewVue.favicon = json.object.favicon
           self.previewVue.tellmessage = '選擇一個關於這個連結的代表圖片吧！';
+           $('#work_remote_description').val(json.object.description || json.object.title);
+
         } else {
           self.previewVue.tellmessage = '找不到代表圖片，將用預設圖片代替。';
         }
@@ -218,7 +223,9 @@
         return image.type && image.size.length === 2;
       },
       test: function(url, index) {
-        $('#work_remote_attach_avatar_url').val(url);
+        // $('#work_remote_attach_avatar_url').val(url);
+        $('#work_remote_image_url').val(url);
+
         var a = [];
         a[index] = 'true';
         this.image_bolder = a;

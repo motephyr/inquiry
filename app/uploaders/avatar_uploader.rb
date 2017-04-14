@@ -2,7 +2,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
@@ -22,17 +22,30 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Process files as they are uploaded:
-  # process scale: [200, 300]
-  #
-  # def scale(width, height)
-  #   # do something
-  # end
+  def store_metadata (version_name = "original")
+    if @file
+      metadata = ::MagickMetadata.new(@file.path)
+      model.image_meta[version_name+'_content_type']        = metadata.image_file_format
+      model.image_meta[version_name+'_file_size']           = metadata.file_size
+      model.image_meta[version_name+'_width']               = metadata.width
+      model.image_meta[version_name+'_height']              = metadata.height
+      model.image_meta[version_name+'_filename_suffix']     = metadata.filename_suffix
+      model.image_meta[version_name+'_is_transparency']     = metadata.has_transparency?
+      model.image_meta[version_name+'_resolution']          = metadata.resolution
+      model.image_meta[version_name+'_compression_percent'] = metadata.image_compression_quality
+      model.image_meta[version_name+'_file_name']           = metadata.filename_with_suffix
+      model.image_meta[version_name+'_unique_color_count']  = metadata.calculated_number_of_unique_colors
+      model.image_meta[version_name+'_file_format']
+    end
+  end
 
-  # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process resize_to_fit: [50, 50]
-  # end
+  # store original file metadata
+  process :store_metadata
+
+  version :square_large do
+    process :resize_to_fill => [200, 200]
+    process :store_metadata => "square_large"
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

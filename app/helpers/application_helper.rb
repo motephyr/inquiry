@@ -40,7 +40,8 @@ module ApplicationHelper
 
   end
 
-  def render_resolve_url(url)
+  def render_resolve_url(work)
+    url = work.attach_url
     if (image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/.match(url)) and image_match.present?
     	# image matches
     	content_tag :img, '', src: "#{url}"
@@ -55,7 +56,10 @@ module ApplicationHelper
     	content_tag :iframe, '', src: "https://www.youtube.com/embed/#{youtube_match[1]}?rel=0", width: '100%', height:'100%', frameborder: '0'
     else
     	# others
-    	content_tag :div, '', :data => { :remote_url => url }, class: "remote-preview"
+    	content_tag :div, :data => { :remote_url => url }, class: "remote-preview" do
+        content_tag(:div,'', style: 'background-image:url(' + work.remote_image_url + ')', class: 'preview-image')  +
+        content_tag(:p, work.remote_description,  class: 'preview-description')
+      end
     end
   end
 

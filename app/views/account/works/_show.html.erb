@@ -8,7 +8,7 @@
       <%= render_avatar_file(@work.attach_avatar.url) %>
       <% elsif @work.attach_url.present? %>
         <!-- handle and parse url -->
-        <%= render_resolve_url(@work.attach_url) %>
+        <%= render_resolve_url(@work) %>
       <% elsif @work.attach_content.present? %>
         <%= sanitize @work.attach_content %>
       <% else %>
