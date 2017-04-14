@@ -12,8 +12,8 @@
     </div>
     <div class="stepwizard-step">
       <button type="button" value="3" onclick="onStepClick(this)" class="btn btn-default btn-circle">3</button>
-      <p>詳細描述</p>
-    </div> 
+      <p>簡單描述一下</p>
+    </div>
   </div>
 </div>
 <%= simple_form_for [:account, @work.user.user_info, @work], :html => {:multipart => true} do |f| -%>
@@ -28,10 +28,10 @@
     <div class="form-group">
       <!-- Nav tabs -->
       <ul id="typeSelection" class="nav nav-tabs" role="tablist">
-        <!-- <li role="presentation" class="active">
-          <a href="#upload" aria-controls="upload" role="tab" data-toggle="tab">上傳聲音或圖片</a>
-        </li> -->
         <li role="presentation" class="active">
+          <a href="#upload" aria-controls="upload" role="tab" data-toggle="tab">上傳圖片</a>
+        </li>
+        <li role="presentation">
           <a href="#external" aria-controls="external" role="tab" data-toggle="tab">外部連結</a>
         </li>
         <li role="presentation">
@@ -40,12 +40,12 @@
       </ul>
       <!-- Tab panes -->
       <div class="tab-content" style="padding:0.4em;">
-        <!-- <div role="tabpanel" class="tab-pane fade in active" id="upload"> -->
-          <% # f.file_field :attach_avatar %>
-          <!-- <h4>或檔案連結</h4> -->
-          <% # f.text_field :remote_attach_avatar_url, class: 'form-control' %>
-        <!-- </div> -->
-        <div role="tabpanel" class="tab-pane fade in active" id="external">
+        <div role="tabpanel" class="tab-pane fade in active" id="upload">
+          <%= f.file_field :attach_avatar %>
+          <h4>或檔案連結</h4>
+          <%= f.text_field :remote_attach_avatar_url, class: 'form-control' %>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="external">
           <%= f.input_field :attach_url, class: 'form-control string optional', placeholder: "請貼上連結" %>
           <p class="loading-info" style="display: none;">正在讀取中...</p>
           <div class="row" id="previewVue">
@@ -60,8 +60,9 @@
           </div>
         </div>
         <div role="tabpanel" class="tab-pane fade" id="textcontent">
-          <%= f.input_field :attach_content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }%>
-        </div>
+          <%= f.cktext_area :attach_content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }%>
+<!--           value: '製作​​​​​​​時間： <br /><br />準備素材： <br /><br />所需工具： <br /><br />參考文件或連結：<br /><br />'
+ -->        </div>
       </div>
     </div>
     <p>
@@ -81,8 +82,8 @@
 <% content_for :stylesheets do %>
   <style type="text/css">
     .stepwizard-step p {
-      margin-top: 10px;  
-      font-size: 1.2em;  
+      margin-top: 10px;
+      font-size: 1.2em;
     }
 
     .stepwizard-row {
@@ -91,15 +92,15 @@
 
     .stepwizard {
       margin-top: 20px;
-      display: table;     
+      display: table;
       width: 100%;
       position: relative;
     }
-    
+
     .stepwizard-step button{
       outline: none !important;
     }
-    
+
     .stepwizard-step button[disabled] {
       opacity: 1 !important;
       filter: alpha(opacity=100) !important;
@@ -116,7 +117,7 @@
       z-order: 0;
     }
 
-    .stepwizard-step {    
+    .stepwizard-step {
       display: table-cell;
       text-align: center;
       position: relative;
@@ -146,7 +147,7 @@
     $(".stepwizard-target-" + o.value).show();
   }
 
-  $(window).on('hashchange',function(){ 
+  $(window).on('hashchange',function(){
     var strHash = location.hash.slice(1);
     if(strHash) $(".stepwizard button[value=" + strHash + "]").trigger('click');
   });
@@ -209,6 +210,6 @@
     }
 
   });
-    
+
   </script>
 <% end -%>
