@@ -8,6 +8,7 @@ class Account::UserInfosController < ApplicationController
     else
       never_edit_user_info
     end
+    @works = @user.works.includes(:cares).order_by_new
     render layout: "user_info"
   end
 
@@ -45,7 +46,8 @@ class Account::UserInfosController < ApplicationController
   end
 
   def never_edit_user_info
-    @user_info = User.includes(works: :cares).friendly.find_by_slug!(params[:id]).user_info
+    @user = User.friendly.find_by_slug!(params[:id])
+    @user_info = @user.user_info
     unless @user_info
       flash[:notice] = '此使用者尚未編輯個人資料'
       redirect_back(fallback_location: root_path)
@@ -53,8 +55,9 @@ class Account::UserInfosController < ApplicationController
   end
 
   def never_edit_my_info
-    @user_info = User.includes(works: :cares).find(current_user.id).user_info
-    if @user_info.nil?
+    @user = User.find(current_user.id)
+    @user_info = @user.user_info
+    unless @user_info
       flash[:notice] = '您尚未編輯個人資料'
       redirect_to edit_info_account_user_infos_path
     end

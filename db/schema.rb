@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170414104513) do
+ActiveRecord::Schema.define(version: 20170414181421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -219,6 +219,7 @@ ActiveRecord::Schema.define(version: 20170414104513) do
     t.integer  "work_messages_count", default: 0
     t.string   "remote_image_url",    default: ""
     t.string   "remote_description",  default: ""
+    t.jsonb    "image_meta",          default: {}, null: false
     t.index ["slug"], name: "index_works_on_slug", unique: true, using: :btree
   end
 
