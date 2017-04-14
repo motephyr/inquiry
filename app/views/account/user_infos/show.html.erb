@@ -25,7 +25,7 @@
                 </div>
               </div>
             <% end -%>
-            <%= render partial: 'account/works/work', collection: @user_info.user.works, as: :w || '沒有資料哦！'  %>
+            <%= render partial: 'account/works/work', collection: @user_info.user.works.order_by_new, as: :w || '沒有資料哦！'  %>
             <%= render 'common/modal'  %>
             <%= javascript_include_tag "works_list" %>
           </div>

@@ -55,7 +55,7 @@
             <h4>{{tellmessage}}</h4>
             <div :class="['col-md-2', 'col-sm-4', 'work-responsive' ]" v-for="(image, index) in images" :key="image.src">
               <a href="#" @click="test(image.src, index)">
-                <div :class="['text-center', 'block_image', {'panel panel-default': image_bolder[index]}]">
+                <div :class="['text-center', 'block_image', {'panel panel-default': index == choose}]">
                   <img :src="image.src" style="margin:auto;" class="img-thumbnail" />
                 </div>
               </a>
@@ -69,8 +69,8 @@
       </div>
     </div>
     <p>
-      <%= link_to "上一步", '#1', class: 'btn btn-info' %>
       <%= link_to "下一步", '#3', class: 'btn btn-success' %>
+      <%= link_to "回上一步", '#1', class: 'btn btn-link' %>
     </p>
   </div>
   <div class="form-actions stepwizard-target-3" style="display:none">
@@ -78,7 +78,7 @@
       <%= f.input_field :content, as: :text, class: 'form-control', rows: '10', placeholder: '可以描述製作時間、使用的工具、所參考的文件或連結、製作方法等等，可供觀看的人更了解您的作品 ^_^' %>
     </div>
     <p><%= f.button :submit, '送出', class: 'btm_c_org width50' %>
-      <%= link_to "上一步", '#2', class: 'btn btn-info switch' %>
+      <%= link_to "回上一步", '#2', class: 'btn btn-link' %>
       <%= link_to "回列表頁", appraisals_path, class: 'btn btn-link' %></p>
   </div>
 <% end %>
@@ -197,8 +197,11 @@
         if (json.object.images){
           self.previewVue.images = json.object.images
           self.previewVue.favicon = json.object.favicon
-          self.previewVue.tellmessage = '選擇一個關於這個連結的代表圖片吧！';
-           $('#work_remote_description').val(json.object.description || json.object.title);
+          self.previewVue.tellmessage = '選擇一個關於這個連結的代表圖片吧！(預設為第一張圖哦)';
+          self.previewVue.description = json.object.title
+
+          $('#work_remote_description').val(json.object.title);
+          $('#work_remote_image_url').val(json.object.images[0].src);
 
         } else {
           self.previewVue.tellmessage = '找不到代表圖片，將用預設圖片代替。';
@@ -216,7 +219,8 @@
       images: [],
       favicon: '',
       image_bolder: [],
-      tellmessage: ''
+      tellmessage: '',
+      choose : 0
     },
     methods: {
       display_caption: function(image) {
@@ -225,10 +229,7 @@
       test: function(url, index) {
         // $('#work_remote_attach_avatar_url').val(url);
         $('#work_remote_image_url').val(url);
-
-        var a = [];
-        a[index] = 'true';
-        this.image_bolder = a;
+        this.choose = index;
       }
     }
 

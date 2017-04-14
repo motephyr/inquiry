@@ -84,4 +84,15 @@ module ApplicationHelper
     Rinku.auto_link(simple_format(text), :all, 'target="_blank"').html_safe
   end
 
+  def work_square(w)
+    if w.attach_avatar.present?
+      render_avatar_file(w.attach_avatar.url)
+    elsif w.attach_url.present?
+      render_resolve_url(w)
+    elsif w.attach_content.present?
+      sanitize w.attach_content
+    else
+    end
+  end
+
 end

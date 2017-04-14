@@ -3,16 +3,7 @@
     <%= link_to user_info_work_path(w.user, w), class: "item-wrap", remote: true do %>
       <p class="subject"> <%= w.subject %> </p>
       <div class="overview">
-      <% if w.attach_avatar.present? %>
-      <%= render_avatar_file(w.attach_avatar.url) %>
-        <% elsif w.attach_url.present? %>
-          <!-- handle and parse url -->
-          <%= render_resolve_url(w) %>
-        <% elsif w.attach_content.present? %>
-          <%= sanitize w.attach_content %>
-        <% else %>
-          <!-- handle empty -->
-        <% end %>
+      <%= work_square(w) %>
       </div>
     <% end -%>
     <p class="info">
