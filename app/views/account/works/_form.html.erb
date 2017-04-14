@@ -7,13 +7,13 @@
       <p>輸入標題</p>
     </div>
     <div class="stepwizard-step">
-      <button type="button" value="2" onclick="onStepClick(this)" class="btn btn-default btn-circle">2</button>
+      <button type="button" value="2" onclick="onStepClick(this)" class="btn btn-default btn-circle" disabled="disabled">2</button>
       <p>作品連結或內容</p>
     </div>
     <div class="stepwizard-step">
-      <button type="button" value="3" onclick="onStepClick(this)" class="btn btn-default btn-circle">3</button>
+      <button type="button" value="3" onclick="onStepClick(this)" class="btn btn-default btn-circle" disabled="disabled">3</button>
       <p>簡單描述一下</p>
-    </div>
+    </div> 
   </div>
 </div>
 <%= simple_form_for [:account, @work.user.user_info, @work], :html => {:multipart => true} do |f| -%>
@@ -22,7 +22,7 @@
     <div class="form-group">
       <%= f.input_field :subject, class: 'form-control string optional', placeholder: '例如：PHP後台系統設計、商品攝影+修圖、女性服飾網拍修圖' %>
     </div>
-    <p><%= link_to "下一步", '#2', class: 'btn btn-success' %></p>
+    <p><%= link_to "下一步", '#2', id: "anchorToStep2", class: 'btn btn-success disabled' %></p>
   </div>
   <div class="form-inputs stepwizard-target-2"  style="display:none">
     <div class="form-group">
@@ -145,11 +145,27 @@
     $(o).removeClass("btn-default").addClass("btn-primary");
     $("*[class*='stepwizard-target-']").hide();
     $(".stepwizard-target-" + o.value).show();
+    location.hash = "";
   }
 
   $(window).on('hashchange',function(){
     var strHash = location.hash.slice(1);
     if(strHash) $(".stepwizard button[value=" + strHash + "]").trigger('click');
+  });
+
+  function displayToggle(){
+    if(this.value){
+      $("#anchorToStep2").removeClass("disabled");
+      $(".stepwizard button[value=2], .stepwizard button[value=3]").prop("disabled", false);
+    }else{
+      $("#anchorToStep2").addClass("disabled");
+      $(".stepwizard button[value=2], .stepwizard button[value=3]").prop("disabled", true);
+    }
+  }
+
+  $(window).load(function(){
+    $("#work_subject").on('input', displayToggle);
+    displayToggle.call(document.getElementById('work_subject'));
   });
 
   $('form').submit(function () {

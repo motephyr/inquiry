@@ -25,7 +25,7 @@ class Work < ApplicationRecord
   end
 
   def subject
-    read_attribute(:subject).presence || "(無題)"
+    read_attribute(:subject).presence
   end
 
 end
