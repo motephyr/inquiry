@@ -154,3 +154,13 @@ p.preview-description, p.preview-title{
 .text-danger {
   color: #a94442 !important;
 }
+
+.ckeditor .remote-preview{
+	padding: 12px;
+	cursor: pointer;
+	box-shadow: 0 0 0 1.5px rgba(0, 0, 0, .1) inset, 0 1px 1px rgba(0, 0, 0, .05);
+}
+.ckeditor .remote-preview:hover{
+	background-color: rgba(0,0,0,0.05);
+	box-shadow: 0 0 5px 1.5px rgba(0, 0, 0, .1);
+}
