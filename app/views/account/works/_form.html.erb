@@ -22,30 +22,41 @@
     <div class="form-group">
       <%= f.input_field :subject, class: 'form-control string optional', placeholder: '例如：PHP後台系統設計、商品攝影+修圖、女性服飾網拍修圖' %>
     </div>
-    <p><%= link_to "下一步", '#2', id: "anchorToStep2", class: 'btn btn-success disabled' %></p>
+    <p><%= link_to "下一步", '#2', id: "anchorToStep2", class: 'btn btn-success disabled' %><%= link_to "回上頁", :back, class: 'btn btn-link' %></p>
+</p>
   </div>
   <div class="form-inputs stepwizard-target-2"  style="display:none">
     <div class="form-group">
       <!-- Nav tabs -->
       <ul id="typeSelection" class="nav nav-tabs" role="tablist">
+      <% if @work.attach_url.blank? && @work.attach_content.blank? %>
         <li role="presentation" class="active">
           <a href="#upload" aria-controls="upload" role="tab" data-toggle="tab">上傳圖片</a>
         </li>
+      <% end %>
+      <% if @work.attach_avatar.blank? && @work.attach_content.blank? %>
+
         <li role="presentation">
           <a href="#external" aria-controls="external" role="tab" data-toggle="tab">外部連結</a>
         </li>
+      <% end -%>
+      <% if @work.attach_url.blank? && @work.attach_avatar.blank? %>
+
         <li role="presentation">
           <a href="#textcontent" aria-controls="textcontent" role="tab" data-toggle="tab">發表文章</a>
         </li>
+      <% end -%>
       </ul>
       <!-- Tab panes -->
       <div class="tab-content" style="padding:0.4em;">
-        <div role="tabpanel" class="tab-pane fade in active" id="upload">
+        <div role="tabpanel" class="tab-pane fade <%= 'in active' if @work.attach_url.blank? && @work.attach_content.blank? %>" id="upload">
+          <p>上傳圖片</p>
           <%= f.file_field :attach_avatar %>
           <h4>或檔案連結</h4>
           <%= f.text_field :remote_attach_avatar_url, class: 'form-control' %>
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="external">
+        <div role="tabpanel" class="tab-pane fade <%= 'in active' if @work.attach_url.present? %>" id="external">
+          <p>外部連結</p>
           <%= f.input_field :attach_url, class: 'form-control string optional', placeholder: "請貼上連結" %>
           <%= f.hidden_field :remote_image_url %>
           <%= f.hidden_field :remote_description %>
@@ -62,7 +73,8 @@
             </div>
           </div>
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="textcontent">
+        <div role="tabpanel" class="tab-pane fade <%= 'in active' if @work.attach_content.present? %>" id="textcontent">
+          <p>發表文章</p>
           <%= f.cktext_area :attach_content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }%>
 <!--           value: '製作​​​​​​​時間： <br /><br />準備素材： <br /><br />所需工具： <br /><br />參考文件或連結：<br /><br />'
  -->        </div>
@@ -79,7 +91,6 @@
     </div>
     <p><%= f.button :submit, '送出', class: 'btm_c_org width50' %>
       <%= link_to "回上一步", '#2', class: 'btn btn-link' %>
-      <%= link_to "回列表頁", appraisals_path, class: 'btn btn-link' %></p>
   </div>
 <% end %>
 <% content_for :stylesheets do %>
