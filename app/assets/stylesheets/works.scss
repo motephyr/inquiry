@@ -79,6 +79,7 @@
 .work-item .info{
   text-align: right;
   margin-bottom: 0.4em;
+  position: relative;
 }
 
 .work-item .info i{
@@ -91,6 +92,11 @@
   font-weight: 400;
   font-size:  1.1em;
   color: #5f9ea0;
+}
+
+.work-item .info .info-type{
+	position: absolute;
+	left: 0px;
 }
 
 .user-info-work .work-responsive{
