@@ -1,5 +1,8 @@
 class WorksController < ApplicationController
 
+  before_action :login_required, only: [:getUrl, :update_care ]
+
+
   def index
     @works = Work.includes(:user, :cares).order_by_new
   end

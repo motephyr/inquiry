@@ -103,7 +103,7 @@ module ApplicationHelper
     elsif user.user_info.category.title == '文字編輯'
       "製作​​​​​​​時間： \n\n概念發想： \n\n                        \n\n參考文件或連結：\n\n"
     elsif user.user_info.category.title == '程式開發'
-      "製作​​​​​​​時間： \n\n功能簡介： \n\n使用的language和library： \n\n參考文件或連結：\n\n"
+      "製作​​​​​​​時間： \n\n功能簡介： \n\n使用的language或library： \n\n參考文件或連結：\n\n"
     elsif user.user_info.category.title == '行銷企畫'
       "製作​​​​​​​時間： \n\n概念發想： \n\n                        \n\n參考文件或連結：\n\n"
     elsif user.user_info.category.title == '音樂人'
