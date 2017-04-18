@@ -14,6 +14,9 @@ class Work < ApplicationRecord
   friendly_id :subject, use: :slugged
 
   scope :order_by_new, -> { order('created_at desc') }
+  scope :order_by_favorite, -> { order('cares_count desc') }
+  scope :is_published, -> { where(is_published: true)}
+  scope :is_featured, -> { where(is_featured: true)}
 
 
   def should_generate_new_friendly_id?

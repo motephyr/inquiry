@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170414181421) do
+ActiveRecord::Schema.define(version: 20170418073652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -208,8 +208,8 @@ ActiveRecord::Schema.define(version: 20170414181421) do
     t.string   "subject"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "slug"
     t.string   "attach_url"
     t.text     "attach_content"
@@ -219,7 +219,11 @@ ActiveRecord::Schema.define(version: 20170414181421) do
     t.integer  "work_messages_count", default: 0
     t.string   "remote_image_url",    default: ""
     t.string   "remote_description",  default: ""
-    t.jsonb    "image_meta",          default: {}, null: false
+    t.jsonb    "image_meta",          default: {},    null: false
+    t.boolean  "is_featured",         default: false
+    t.boolean  "is_published",        default: true
+    t.index ["is_featured"], name: "index_works_on_is_featured", using: :btree
+    t.index ["is_published"], name: "index_works_on_is_published", using: :btree
     t.index ["slug"], name: "index_works_on_slug", unique: true, using: :btree
   end
 

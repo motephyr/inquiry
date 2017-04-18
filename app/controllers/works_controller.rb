@@ -4,17 +4,17 @@ class WorksController < ApplicationController
 
   def index
     #編輯選擇
-    @works = Work.includes(:user, :cares).order_by_new
+    @works = Work.includes(:user, :cares).is_published.is_featured.order_by_new
   end
 
   def newest
     #全部最新
-    @works = Work.includes(:user, :cares).order_by_new
+    @works = Work.includes(:user, :cares).is_published.order_by_new
   end
 
   def favorite
-    #對這個人只要有一個最愛就會選出所有最愛
-    @works = current_user.cares.where(careable_type: 'Work').includes(careable:[:user]).recent.map{|x| x.careable}
+    #照like數排序
+    @works = Work.includes(:user, :cares).is_published.order_by_favorite
   end
 
 
@@ -41,6 +41,19 @@ class WorksController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def update_featured
+    if current_user == User.find_by_email('motephyr@gmail.com')
+      @work = Work.friendly.find_by_slug!(params[:id])
+      if @work.is_featured?
+        @work.update_attributes!(is_featured: false)
+      else
+        @work.update_attributes!(is_featured: true)
+      end
+    end
+
+    redirect_to works_path
   end
 
   def carers
