@@ -1,7 +1,7 @@
 class Account::UserInfosController < ApplicationController
 
   before_action :login_required, except: [:show]
-
+  layout "user_info", only: [:show]
   def show
     if current_user == User.friendly.find_by_slug!(params[:id])
       never_edit_my_info
@@ -9,7 +9,6 @@ class Account::UserInfosController < ApplicationController
       never_edit_user_info
     end
     @works = (@user == current_user) ? @user.works.includes(:cares).order_by_new : @user.works.includes(:cares).is_published.order_by_new
-    render layout: "user_info"
   end
 
   def edit_status
