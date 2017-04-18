@@ -1,7 +1,9 @@
 class Account::UserInfosController < ApplicationController
 
   before_action :login_required, except: [:show]
-  layout "user_info", only: [:show]
+  layout :determine_layout
+
+
   def show
     if current_user == User.friendly.find_by_slug!(params[:id])
       never_edit_my_info
@@ -13,7 +15,6 @@ class Account::UserInfosController < ApplicationController
 
   def edit_status
     never_edit_my_info
-    render layout: "account"
   end
 
   def edit_info
@@ -25,7 +26,6 @@ class Account::UserInfosController < ApplicationController
         @user_info = find_user_survey
       end
     end
-    render layout: "account"
   end
 
   def update_info
@@ -62,7 +62,16 @@ class Account::UserInfosController < ApplicationController
     end
   end
 
+  private
   def user_info_params
     params.require(:user_info).permit(:user_id,:name, :work_content, :work_area, :typical_work, :teach, :speak, :labor, :contract, :category_id, :skill_and_tool)
+  end
+
+  def determine_layout
+    if action_name == 'show'
+      "user_info"
+    elsif action_name == 'edit_status' || action_name == 'edit_info'
+      'account'
+    end
   end
 end
