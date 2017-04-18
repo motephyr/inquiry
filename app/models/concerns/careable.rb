@@ -14,6 +14,8 @@ module Careable
     obj = self
     if self.class.to_s == 'AppraisalMessage'
       obj = self.appraisal
+    elsif self.class.to_s == 'Work'
+      obj = self.user
     end
 
     obj.cares.find_or_create_by(careable_type: obj.class.to_s, careable_id: obj.id,  user: self.user)

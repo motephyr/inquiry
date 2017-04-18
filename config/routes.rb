@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   resources :works do
     resources :donates
     collection do
+      get 'newest'
+      get 'favorite'
+
       post 'getUrl'
     end
     member do

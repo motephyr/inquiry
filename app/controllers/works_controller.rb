@@ -2,10 +2,21 @@ class WorksController < ApplicationController
 
   before_action :login_required, only: [:getUrl, :update_care ]
 
-
   def index
+    #編輯選擇
     @works = Work.includes(:user, :cares).order_by_new
   end
+
+  def newest
+    #全部最新
+    @works = Work.includes(:user, :cares).order_by_new
+  end
+
+  def favorite
+    #對這個人只要有一個最愛就會選出所有最愛
+    @works = current_user.cares.where(careable_type: 'Work').includes(careable:[:user]).recent.map{|x| x.careable}
+  end
+
 
   def getUrl
     begin
