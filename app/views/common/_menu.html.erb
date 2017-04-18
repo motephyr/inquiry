@@ -11,8 +11,8 @@
     </div>
     <div class="navbar-collapse collapse">
       <%= render_list :class => "nav navbar-nav" do |li|
-        li << link_to("作品",works_path)
-        li << link_to("值多少", appraisals_path)
+        li << link_to("詢價", appraisals_path)
+        li << link_to("關於",welcome_index_path)
         end %>
 
         <%#= render :partial => "common/search_form" %>

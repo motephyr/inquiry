@@ -11,6 +11,11 @@ module ApplicationHelper
     flash_messages.join("\n").html_safe
   end
 
+  def welcome_message(message)
+    text = content_tag(:div, link_to("x", "#", :class => "close", "data-dismiss" => "alert", :onclick => "document.getElementById('close').style.display='none'; document.cookie='new_viewer= false';") + message, :id => "close", :class => "alert fade in alert-success")
+    text.html_safe if message
+  end
+
   def category_cloud
     @categories = Category.includes(:subcategories).where("id < ?", 100)
 

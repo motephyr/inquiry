@@ -24,10 +24,11 @@
 <%= render :partial => "common/menu" %>
 <div class="container">
   <%= notice_message %>
+  <%= welcome_message(link_to '第一次來到這裡嗎？如果你不知道Conkwe在做什麼，先看看"關於Conkwe"吧！', welcome_index_path) if cookies['new_viewer'] != 'false' %>
 
   <%= content_for?(:content) ? yield(:content) : yield %>
-  <%= render :partial => "common/footer" %>
 </div>
+<%= render :partial => "common/footer" %>
 
 <%= render :partial => "common/gossim" %>
 <%= render :partial => "common/facebook_js" %>
