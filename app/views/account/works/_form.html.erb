@@ -75,7 +75,7 @@
         </div>
         <div role="tabpanel" class="tab-pane fade <%= 'in active' if @work.attach_content.present? %>" id="textcontent">
           <p>發表文章</p>
-          <%= f.cktext_area :attach_content,value: f.object.attach_content || simple_format(ckeditor_content(current_user)) , as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }%>
+          <%= f.cktext_area :attach_content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }%>
         </div>
       </div>
     </div>
