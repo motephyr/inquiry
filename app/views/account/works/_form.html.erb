@@ -75,7 +75,7 @@
         </div>
         <div role="tabpanel" class="tab-pane fade <%= 'in active' if @work.attach_content.present? %>" id="textcontent">
           <p>發表文章</p>
-          <%= f.cktext_area :attach_content,value: simple_format(ckeditor_content(current_user)) , as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }%>
+          <%= f.cktext_area :attach_content,value: f.object.attach_content || simple_format(ckeditor_content(current_user)) , as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }%>
         </div>
       </div>
     </div>
@@ -86,7 +86,7 @@
   </div>
   <div class="form-actions stepwizard-target-3" style="display:none">
     <div class="form-group">
-      <%= f.input_field :content,value: ckeditor_content(current_user) , as: :text, class: 'form-control', rows: '10', placeholder: '可以描述製作時間、使用的工具、所參考的文件或連結、製作方法等等，可供觀看的人更了解您的作品 ^_^' %>
+      <%= f.input_field :content,value: f.object.content || ckeditor_content(current_user) , as: :text, class: 'form-control', rows: '10', placeholder: '可以描述製作時間、使用的工具、所參考的文件或連結、製作方法等等，可供觀看的人更了解您的作品 ^_^' %>
     </div>
     <p><%= f.button :submit, '送出', class: 'btm_c_org width50' %>
       <%= link_to "回上一步", '#2', class: 'btn btn-link' %>
