@@ -169,3 +169,51 @@ p.preview-description, p.preview-title{
 	background-color: rgba(0,0,0,0.05);
 	box-shadow: 0 0 5px 1.5px rgba(0, 0, 0, .1);
 }
+
+div.modal .work-inner-subject{
+	display:none;
+}
+
+.work-owner{
+	display: -webkit-flex;
+	display: flex;
+	margin-bottom: 15px;
+	height: 70px;
+}
+
+.about-me .work-owner{
+	display:none !important;
+}
+
+.work-owner-name{
+	font-size: 19px;
+	margin-top: 5px;
+}
+
+.work-owner-date, .work-inner-date{
+    font-size: 14px;
+    color: rgba(128,128,128,.7);
+}
+
+.work-inner-date{
+	display: none;
+}
+
+.about-me .work-inner-date{
+	display: block;
+}
+
+.work-owner img{
+	border-radius: 50%;
+	border: 1px solid #dedede;
+	background: #fff;
+	padding: 3px;
+	box-shadow: 0 3px 4px #999;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-o-transition: 0.3s;
+	transition: 0.3s;
+	height: 100%;
+	width: auto;
+	float:right;
+}

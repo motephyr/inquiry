@@ -5,7 +5,18 @@
 
     <%= link_to '刪除', account_user_info_work_path(@work.user, @work), method: :delete, data: { confirm: '確定要刪除嗎？' }, :class => 'btn btn-danger pull-right' %>
   <% end -%>
-  <h1><%= @work.subject %></h1>
+  <h2 class="work-inner-subject"><%= @work.subject %></h2>
+  <%= content_tag :p, "建立於 " + date_description(@work.created_at), class: "work-inner-date text-right" %>
+
+  <div class="work-owner">
+    <div class="col-md-3 col-sm-3 col-xs-4">
+      <%= content_tag :img, '', src: @work.user.default_avatar_link, width: "100%" %>
+    </div>
+    <div class="col-md-9 col-sm-9 col-xs-8">
+      <%= content_tag :p, @work.user.nickname, class: "work-owner-name" %>
+      <%= content_tag :p, "建立於 " + date_description(@work.created_at), class: "work-owner-date" %>
+    </div>
+  </div>
   <%= work_square(@work) %>
 
   <%= link_to "", @work.attach_url, id: "anchorExternalLink", target: '_blank' if @work.attach_url.present? %>
