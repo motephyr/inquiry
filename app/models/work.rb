@@ -14,7 +14,7 @@ class Work < ApplicationRecord
   friendly_id :subject, use: :slugged
 
   scope :order_by_new, -> { order('created_at desc') }
-  scope :order_by_favorite, -> { order('cares_count,hits desc') }
+  scope :order_by_favorite, -> { order('cares_count desc,hits desc') }
   scope :is_published, -> { where(is_published: true)}
   scope :is_featured, -> { where(is_featured: true)}
 

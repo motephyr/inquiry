@@ -1,6 +1,7 @@
 class WorksController < ApplicationController
 
   before_action :login_required, only: [:getUrl, :update_care ]
+  before_action :work_owner, only: [:update_published]
 
   def index
     #編輯選擇
@@ -56,8 +57,29 @@ class WorksController < ApplicationController
     redirect_to works_path
   end
 
+  def update_published
+    if @work.is_published?
+      @work.update_attributes!(is_published: false)
+    else
+      @work.update_attributes!(is_published: true)
+    end
+
+    respond_to do |format|
+      format.js
+      format.html {redirect_to account_user_info_work_path(@work.user, @work)}
+    end
+  end
+
   def carers
     @work = Work.includes(:user, :cares).friendly.find_by_slug!(params[:id])
+  end
+
+  def work_owner
+    @work = Work.friendly.find_by_slug!(params[:id])
+    unless @work.user_id == current_user.id
+      flash[:notice] = '你不是這個資料的使用者'
+      redirect_to works_path
+    end
   end
 
 end

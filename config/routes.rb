@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     member do
       post 'update_care'
       get 'update_featured'
+      post 'update_published'
       get 'carers'
     end
   end

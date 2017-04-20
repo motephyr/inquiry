@@ -75,6 +75,16 @@
   font-size: 1.1em;
 }
 
+.work-item .subject i{
+  line-height: 25px;
+}
+
+.work-item .cog{
+  position:absolute;
+  top:8px;
+  right:36px
+}
+
 .work-item .info{
   text-align: right;
   margin-bottom: 0.4em;
