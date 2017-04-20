@@ -2,7 +2,7 @@ module Careable
   def self.included(base)
     base.class_eval do
       has_many :cares, as: :careable, :dependent => :destroy
-
+      attr_readonly :cares_count
       after_create :add_care
       after_destroy :delete_care
     end
