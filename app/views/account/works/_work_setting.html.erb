@@ -9,4 +9,4 @@
   <br>
   <br>
 <% end %>
-<%= link_to (w.is_featured?) ? 'unfeature it' : 'feature it', update_featured_work_path(@work), class: 'btn btn-primary' if current_user == User.find_by_email('motephyr@gmail.com') %>
+<%= link_to (w.is_featured?) ? 'unfeature it' : 'feature it', update_featured_work_path(@work), class: 'btn btn-primary' if current_user.try(:is_admin?) %>

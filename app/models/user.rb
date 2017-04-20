@@ -85,4 +85,12 @@ class User < ApplicationRecord
     end
   end
 
+  def is_admin?
+    if (self.email == 'motephyr@gmail.com' || self.email == 'miecowbai@gmail.com')
+      true
+    else
+      false
+    end
+  end
+
 end
