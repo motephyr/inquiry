@@ -48,7 +48,9 @@ module Careable
 
 
   def is_care_by?(user)
-    self.cares.any? {|h| h.user_id == user.id}
+    if user.present?
+      self.cares.any? {|h| h.user_id == user.id}
+    end
   end
 
   private
