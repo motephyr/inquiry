@@ -189,7 +189,11 @@ div.modal .work-inner-subject{
 	display: flex;
 	margin-bottom: 15px;
 	height: 70px;
+	text-decoration: none;
+	color: inherit;
 }
+
+.work-owner:hover{ text-decoration: none; }
 
 .about-me .work-owner{
 	display:none !important;
