@@ -1,2 +1,3 @@
 $("#myModal").modal()
+$("#myModalLabel").text("<%= @work.subject %>");
 $('.modal-body').html("<%= j(render :partial => 'show') %>")

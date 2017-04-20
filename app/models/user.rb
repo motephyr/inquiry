@@ -65,7 +65,8 @@ class User < ApplicationRecord
   end
 
   def default_avatar_link
-    'user-default-image.png'
+    # 'user-default-image.png'
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/128px-Creative-Tail-People-police-man.svg.png'
   end
 
   def avatar_link

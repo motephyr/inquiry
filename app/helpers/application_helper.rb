@@ -85,6 +85,14 @@ module ApplicationHelper
     ""
   end
 
+  def date_description(d)
+    if d.year == Time.current.year
+      d.strftime('%m-%d')
+    else
+      d.strftime('%Y-%m-%d')
+    end
+  end
+
   def rasf(text)
     Rinku.auto_link(simple_format(text), :all, 'target="_blank"').html_safe
   end
