@@ -16,7 +16,7 @@
     </div>
   </div>
 </div>
-<%= simple_form_for [:account, @work.user.user_info, @work], :html => {:multipart => true} do |f| -%>
+<%= simple_form_for [:account, @user_info, @work], :html => {:multipart => true} do |f| -%>
   <%= render '/common/error_messages', object: f.object %>
   <div class="form-inputs stepwizard-target-1">
     <div class="form-group">

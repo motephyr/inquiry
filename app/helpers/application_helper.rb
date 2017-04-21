@@ -109,24 +109,28 @@ module ApplicationHelper
   end
 
   def ckeditor_content(user)
-    if user.user_info.category.title == '工業設計'
-      "製作​​​​​​​時間： \n\n準備素材： \n\n使用工具：                \n\n參考文件或連結：\n\n"
-    elsif user.user_info.category.title == '美術設計'
-      "製作​​​​​​​時間： \n\n內容簡介： \n\n                        \n\n參考文件或連結：\n\n"
-    elsif user.user_info.category.title == '文字編輯'
-      "製作​​​​​​​時間： \n\n概念發想： \n\n                        \n\n參考文件或連結：\n\n"
-    elsif user.user_info.category.title == '程式開發'
-      "製作​​​​​​​時間： \n\n功能簡介： \n\n使用的language或library： \n\n參考文件或連結：\n\n"
-    elsif user.user_info.category.title == '行銷企畫'
-      "製作​​​​​​​時間： \n\n概念發想： \n\n                        \n\n參考文件或連結：\n\n"
-    elsif user.user_info.category.title == '音樂人'
-      "製作​​​​​​​時間： \n\n準備素材： \n\n使用工具：                \n\n參考文件或連結：\n\n"
-    elsif user.user_info.category.title == '影像製作'
-      "製作​​​​​​​時間： \n\n準備素材： \n\n使用工具：                \n\n參考文件或連結：\n\n"
-    elsif user.user_info.category.title == '財務會計'
-      "描述你的工作成果..."
-    elsif user.user_info.category.title == '其他'
-      "描述你的工作成果..."
+    if user.user_info.category
+      if user.user_info.category.title == '工業設計'
+        "製作​​​​​​​時間： \n\n準備素材： \n\n使用工具：                \n\n參考文件或連結：\n\n"
+      elsif user.user_info.category.title == '美術設計'
+        "製作​​​​​​​時間： \n\n內容簡介： \n\n                        \n\n參考文件或連結：\n\n"
+      elsif user.user_info.category.title == '文字編輯'
+        "製作​​​​​​​時間： \n\n概念發想： \n\n                        \n\n參考文件或連結：\n\n"
+      elsif user.user_info.category.title == '程式開發'
+        "製作​​​​​​​時間： \n\n功能簡介： \n\n使用的language或library： \n\n參考文件或連結：\n\n"
+      elsif user.user_info.category.title == '行銷企畫'
+        "製作​​​​​​​時間： \n\n概念發想： \n\n                        \n\n參考文件或連結：\n\n"
+      elsif user.user_info.category.title == '音樂人'
+        "製作​​​​​​​時間： \n\n準備素材： \n\n使用工具：                \n\n參考文件或連結：\n\n"
+      elsif user.user_info.category.title == '影像製作'
+        "製作​​​​​​​時間： \n\n準備素材： \n\n使用工具：                \n\n參考文件或連結：\n\n"
+      elsif user.user_info.category.title == '財務會計'
+        "描述你的工作成果..."
+      elsif user.user_info.category.title == '其他'
+        "描述你的工作成果..."
+      end
+    else
+      '(您尚未選擇您的工作領域哦)'
     end
 
   end

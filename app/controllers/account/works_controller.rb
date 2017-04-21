@@ -19,6 +19,7 @@ class Account::WorksController < ApplicationController
 
   def new
     @work = current_user.works.build
+    never_edit_info
   end
 
   def create
@@ -33,6 +34,8 @@ class Account::WorksController < ApplicationController
 
   def edit
     @work = current_user.works.friendly.find_by_slug!(params[:id])
+    never_edit_info
+
   end
 
   def update
@@ -54,5 +57,14 @@ class Account::WorksController < ApplicationController
   private
   def work_params
     params.require(:work).permit(:subject, :content, :attach_avatar, :attach_content, :attach_url, :remote_attach_avatar_url, :remote_image_url, :remote_description)
+  end
+
+  def never_edit_info
+    @user_info = @work.user.user_info
+
+    unless @user_info
+      flash[:notice] = '您尚未編輯個人資料'
+      redirect_to edit_info_account_user_infos_path
+    end
   end
 end
