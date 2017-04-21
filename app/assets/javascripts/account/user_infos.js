@@ -10,7 +10,7 @@ $(".acc-title").click(function() {
         return m ? m[0] : null;
       }
       function imgError(image){
-        image.src = 'http://conkwe.com/favicon.ico';
+        image.src = '/favicon.ico';
         // image.style.display = 'none';
 
       }
