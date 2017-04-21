@@ -29,7 +29,7 @@
     <div class="form-group">
       <!-- Nav tabs -->
       <ul id="typeSelection" class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="<%= 'active' if @work.attach_avatar.present? %>">
+        <li role="presentation" class="<%= 'active' if @work.attach_avatar.present? || (@work.attach_url.blank? &&  @work.attach_content.blank?) %>">
           <a href="#upload" aria-controls="upload" role="tab" data-toggle="tab">上傳圖片</a>
         </li>
 
@@ -43,7 +43,7 @@
       </ul>
       <!-- Tab panes -->
       <div class="tab-content" style="padding:0.4em;">
-        <div role="tabpanel" class="tab-pane fade <%= 'in active' if @work.attach_avatar.present? %>" id="upload">
+        <div role="tabpanel" class="tab-pane fade <%= 'in active' if @work.attach_avatar.present? || (@work.attach_url.blank? &&  @work.attach_content.blank?) %>" id="upload">
           <p>上傳代表圖片</p>
           <%= f.file_field :attach_avatar %>
         </div>
