@@ -29,27 +29,21 @@
     <div class="form-group">
       <!-- Nav tabs -->
       <ul id="typeSelection" class="nav nav-tabs" role="tablist">
-      <% if @work.attach_url.blank? && @work.attach_content.blank? %>
-        <li role="presentation" class="active">
+        <li role="presentation" class="<%= 'active' if @work.attach_avatar.present? %>">
           <a href="#upload" aria-controls="upload" role="tab" data-toggle="tab">上傳圖片</a>
         </li>
-      <% end %>
-      <% if @work.attach_avatar.blank? && @work.attach_content.blank? %>
 
-        <li role="presentation">
+        <li role="presentation" class="<%= 'active' if @work.attach_url.present? %>">
           <a href="#external" aria-controls="external" role="tab" data-toggle="tab">外部連結</a>
         </li>
-      <% end -%>
-      <% if @work.attach_url.blank? && @work.attach_avatar.blank? %>
 
-        <li role="presentation">
+        <li role="presentation" class="<%= 'active' if @work.attach_content.present? %>">
           <a href="#textcontent" aria-controls="textcontent" role="tab" data-toggle="tab">發表文章</a>
         </li>
-      <% end -%>
       </ul>
       <!-- Tab panes -->
       <div class="tab-content" style="padding:0.4em;">
-        <div role="tabpanel" class="tab-pane fade <%= 'in active' if @work.attach_url.blank? && @work.attach_content.blank? %>" id="upload">
+        <div role="tabpanel" class="tab-pane fade <%= 'in active' if @work.attach_avatar.present? %>" id="upload">
           <p>上傳代表圖片</p>
           <%= f.file_field :attach_avatar %>
         </div>

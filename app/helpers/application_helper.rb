@@ -108,6 +108,22 @@ module ApplicationHelper
     end
   end
 
+  def work_square_all(w)
+    subject = ''
+
+    if w.attach_avatar.present?
+      subject += render_avatar_file(w.attach_avatar.url)
+    end
+    if w.attach_url.present?
+      subject += render_resolve_url(w)
+    end
+    if w.attach_content.present?
+      subject += w.attach_content
+    end
+
+    sanitize subject
+  end
+
   def ckeditor_content(user)
     if user.user_info.category
       if user.user_info.category.title == '工業設計'
