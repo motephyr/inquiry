@@ -12,7 +12,7 @@
       <%= content_tag :p, "建立於 " + date_description(@work.created_at), class: "work-owner-date" %>
     </div>
   <% end -%>
-  <%= work_square(@work) %>
+  <%= work_square_all(@work) %>
 
   <%= link_to "", @work.attach_url, id: "anchorExternalLink", target: '_blank' if @work.attach_url.present? %>
 

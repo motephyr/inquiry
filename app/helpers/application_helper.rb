@@ -102,9 +102,9 @@ module ApplicationHelper
 
   def date_description(d)
     if d.year == Time.current.year
-      d.strftime('%m-%d')
+      d.strftime('%_m/%d')
     else
-      d.strftime('%Y-%m-%d')
+      d.strftime('%Y/%_m/%d')
     end
   end
 
@@ -121,6 +121,25 @@ module ApplicationHelper
       sanitize w.attach_content
     else
     end
+  end
+
+  def work_square_all(w)
+    subject = ''
+	if w.attach_avatar.present? && w.attach_url.present?
+	  w.remote_image_url = w.attach_avatar.url
+	  subject += render_resolve_url(w)
+    else
+	  if w.attach_avatar.present?
+	    subject += render_avatar_file(w.attach_avatar.url)
+	  elsif w.attach_url.present?
+	    subject += render_resolve_url(w)
+	  end
+	end
+    if w.attach_content.present?
+      subject += sanitize w.attach_content
+    end
+
+    subject.html_safe
   end
 
   def ckeditor_content(user)

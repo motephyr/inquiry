@@ -4,7 +4,7 @@ class AppraisalsController < ApplicationController
   before_action :appraisal_owner, only: [:edit, :update, :destroy]
 
   def index
-    @appraisals = Appraisal.includes(category: :parent_category).all
+    @appraisals = Appraisal.includes(category: :parent_category).order('created_at desc')
   end
 
   def show
