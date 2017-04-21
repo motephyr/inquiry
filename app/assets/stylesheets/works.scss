@@ -85,18 +85,18 @@
   right:36px
 }
 
-.work-item .info{
+.work-item .info, .ckeditor .info{
   text-align: right;
   margin-bottom: 0.4em;
   position: relative;
 }
 
-.work-item .info i{
+.work-item .info i, .ckeditor .info i{
 	font-size:  0.8em;
 	color: #a9a9a9;
 }
 
-.work-item .info span{
+.work-item .info span, .ckeditor .info span{
   margin:0 5px;
   font-weight: 400;
   font-size:  1.1em;
@@ -231,3 +231,8 @@ div.modal .work-inner-subject{
 	width: auto;
 	float:right;
 }
+
+.ckeditor .info .info-type{ display: none; }
+.ckeditor .info{ margin-top: 0.4em; }
+.ckeditor .info i{ font-size: 1.1em; }
+.ckeditor .info span{ font-size: 1.3em; }

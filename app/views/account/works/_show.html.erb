@@ -16,6 +16,7 @@
 
   <%= link_to "", @work.attach_url, id: "anchorExternalLink", target: '_blank' if @work.attach_url.present? %>
 
+  <%= render 'account/works/work_info', w: @work %>
   <hr/>
   <% if @work.content.present? %>
     <%= rasf @work.content %>
@@ -50,5 +51,6 @@
     });
   </script>
 </div>
+<%= javascript_include_tag "works_list" %>
 <%= javascript_include_tag "works_show" %>
 <%= stylesheet_link_tag "works" %>
