@@ -118,10 +118,10 @@ module ApplicationHelper
       subject += render_resolve_url(w)
     end
     if w.attach_content.present?
-      subject += w.attach_content
+      subject += sanitize w.attach_content
     end
 
-    sanitize subject
+    subject.html_safe
   end
 
   def ckeditor_content(user)
