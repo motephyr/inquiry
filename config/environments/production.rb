@@ -74,9 +74,9 @@ Rails.application.configure do
     :user_name => Setting.mailgun_user_name,
     :password => Setting.mailgun_password
   }
-  config.action_mailer.default = {
-    charset: "uft-8"
-  }
+  # config.action_mailer.default = {
+  #   charset: "uft-8"
+  # }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
