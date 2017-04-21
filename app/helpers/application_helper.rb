@@ -87,9 +87,9 @@ module ApplicationHelper
 
   def date_description(d)
     if d.year == Time.current.year
-      d.strftime('%m-%d')
+      d.strftime('%_m/%d')
     else
-      d.strftime('%Y-%m-%d')
+      d.strftime('%Y/%_m/%d')
     end
   end
 

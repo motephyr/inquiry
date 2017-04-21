@@ -17,6 +17,8 @@
   <span> 留言</span>
   <span class="info-number"><%= (@appraisal_price.new_record?) ? @appraisal.appraisal_prices.size - 1 : @appraisal.appraisal_prices.size %></span>
   <span> 估價</span>
+  <span> 建立於</span>
+  <span class="info-number"><%= date_description(@appraisal.created_at) %></span>
 </p>
 <h4>留言</h4>
 <div class="tasks" id="incomplete_tasks">
