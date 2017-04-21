@@ -49,7 +49,7 @@ module ApplicationHelper
     url = work.attach_url
     if (image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/.match(url)) and image_match.present?
       # image matches
-      content_tag :img, '', src: "#{url}"
+      tag :img, src: "#{url}"
     elsif (audio_match = /\.(wav|mp3|wma|midi|aif|aifc|aiff|au|ea)$/.match(url)) and audio_match.present?
       # audio matches
       content_tag :audio, '', controls: "controls", src: "#{url}", style: "width:100%;"
@@ -72,7 +72,7 @@ module ApplicationHelper
     image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/.match(file)
     audio_match = /\.(wav|mp3|wma|ogg|midi|aif|aifc|aiff|au|ea)$/.match(file)
     if image_match.present?
-      content_tag :img, '', src: "#{file}"
+      tag :img, src: "#{file}"
     elsif audio_match.present?
       content_tag :audio, '', controls: "controls", src: "#{file}"
     end
