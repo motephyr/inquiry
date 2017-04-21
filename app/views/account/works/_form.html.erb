@@ -56,13 +56,28 @@
           <p class="loading-info" style="display: none;">正在讀取中...</p>
           <div class="row" id="previewVue">
             <h4>{{tellmessage}}</h4>
-            <div :class="['col-md-2', 'col-sm-4', 'work-responsive' ]" v-for="(image, index) in images" :key="image.src">
+            <template v-if="type === 'image'">
+              <div :class="['col-md-2', 'col-sm-4', 'work-responsive' ]" v-for="(image, index) in images" :key="image.src">
               <a href="#" @click="test(image.src, index)">
                 <div :class="['text-center', 'block_image', {'panel panel-default': index == choose}]">
                   <img :src="image.src" style="margin:auto;" class="img-thumbnail" />
                 </div>
               </a>
             </div>
+            </template>
+            <template v-else-if="type === 'audio'">
+              <audio controls="controls" :src="media_url"></audio>
+            </template>
+            <template v-else-if="type === 'video'">
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="height: 250px;">
+                <video controls="controls" :src="media_url" width="100%" height="100%"></video>
+              </div>
+            </template>
+            <template v-else-if="type === 'youtube'">
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="height: 250px;">
+                <iframe :src="media_url" width="100%" height="100%" frameborder="0"></iframe>
+              </div>
+            </template>
           </div>
         </div>
         <div role="tabpanel" class="tab-pane fade <%= 'in active' if @work.attach_content.present? %>" id="textcontent">
@@ -196,21 +211,29 @@
     }).done(function(json) {
       var message = json.message
       if (message == 'ok') {
-        if (json.object.images){
-          self.previewVue.images = json.object.images
-          self.previewVue.favicon = json.object.favicon
-          self.previewVue.tellmessage = '選擇一個關於這個連結的代表圖片吧！(預設為第一張圖哦)';
-          self.previewVue.description = json.object.title
+        self.previewVue.type = json.type;
+        if (json.type == 'image'){
+          var image_count = json.object.images.length;
+          if (image_count){
+            self.previewVue.images = json.object.images
+            self.previewVue.favicon = json.object.favicon
+            self.previewVue.tellmessage = image_count > 1 ? '選擇一個關於這個連結的代表圖片吧！(預設為第一張圖哦)' : '';
+            self.previewVue.description = json.object.title
 
-          $('#work_remote_description').val(json.object.title);
-          $('#work_remote_image_url').val(json.object.images[0].src);
-
-        } else {
-          self.previewVue.tellmessage = '找不到代表圖片，將用預設圖片代替。';
+            $('#work_remote_description').val(json.object.title);
+            $('#work_remote_image_url').val(json.object.images[0].src);
+          }else{
+            self.previewVue.tellmessage = '找不到代表圖片，將用預設圖片代替。';
+          }
+        }else if(json.object.media_url){
+          self.previewVue.media_url = json.object.media_url;
+        }else{
+          self.previewVue.tellmessage = "不好意思！我們不知道這個連結是什麼"
         }
       }else {
         self.previewVue.tellmessage = message;
       }
+      self.previewVue.$forceUpdate();
       $(".loading-info").toggle();
     });
   }
@@ -222,7 +245,9 @@
       favicon: '',
       image_bolder: [],
       tellmessage: '',
-      choose : 0
+      choose : 0,
+      type: '',
+      media_url: ''
     },
     methods: {
       display_caption: function(image) {

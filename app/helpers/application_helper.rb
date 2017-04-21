@@ -45,22 +45,37 @@ module ApplicationHelper
 
   end
 
-  def render_resolve_url(work)
-    url = work.attach_url
+  def get_resolved_url_obj(url)
     if (image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/.match(url)) and image_match.present?
       # image matches
-      tag :img, src: "#{url}"
+      { type: "image", match_object: image_match }
     elsif (audio_match = /\.(wav|mp3|wma|midi|aif|aifc|aiff|au|ea)$/.match(url)) and audio_match.present?
       # audio matches
-      content_tag :audio, '', controls: "controls", src: "#{url}", style: "width:100%;"
+      { type: "audio", match_object: audio_match }
     elsif (video_match = /\.(mp4|webm|ogg)$/.match(url)) and video_match.present?
       # video matches
-      content_tag :video, '', controls: "controls", src: "#{url}", width: "100%", height: "100%"
+      { type: "video", match_object: video_match }
     elsif (youtube_match = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(\S*)?$/.match(url)) and youtube_match.present?
       # youtube matches
-      content_tag :iframe, '', src: "https://www.youtube.com/embed/#{youtube_match[1]}?rel=0", width: '100%', height:'100%', frameborder: '0'
+      { type: "youtube", match_object: youtube_match }
     else
-      # others
+      { type: "others" }
+    end
+  end
+
+  def render_resolve_url(work)
+    url = work.attach_url
+    obj = get_resolved_url_obj(url)
+    case obj[:type]
+    when "image"
+      tag :img, src: "#{url}"
+    when "audio"    #compare to 2
+      content_tag :audio, '', controls: "controls", src: "#{url}", style: "width:100%;"
+    when "video"
+      content_tag :video, '', controls: "controls", src: "#{url}", width: "100%", height: "100%"
+    when "youtube"
+      content_tag :iframe, '', src: "https://www.youtube.com/embed/#{obj[:match_object][1]}?rel=0", width: '100%', height:'100%', frameborder: '0'
+    else
       content_tag :div, :data => { :remote_url => url }, class: "remote-preview" do
         content_tag(:div,'', style: 'background-image:url(' + work.remote_image_url + ')', class: 'preview-image')  +
           content_tag(:p, work.remote_description,  class: 'preview-description')
