@@ -3,12 +3,17 @@
     <div class="container">
       <div class="row">
         <div class='col-sm-3 col-xs-12'>
+          <%= link_to user_info_path(@user_info.user), class: "about-me-link" do %>
           <div class="my-pic text-center wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
             <%= tag :img, src: @user_info.user.avatar_link(:circle_128), alt: 'my profile' %>
+            <br/>
+            <br/>
+            <p><strong><%= @user_info.nickname %></strong></p>
           </div>
+          <% end -%>
+
           <div class="profile wow fadeInUp text-center" data-wow-duration="0.5s" data-wow-offset="200">
             <div class="personal-wrapper">
-              <span><strong><%= @user_info.nickname %></strong></span>
               <span>
                 <div class="btn-group" data-toggle="buttons">
                   <%= @user_info.speak == 1 ? '<label class="btn btn-default">諮詢</label>'.html_safe : "" %>
