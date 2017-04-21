@@ -1,3 +1,5 @@
+require 'carrierwave'
+
 class UserImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
