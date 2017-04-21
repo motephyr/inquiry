@@ -20,6 +20,8 @@ class User < ApplicationRecord
   scope :has_user_info, ->{ joins(:user_info).where('user_infos.id is NOT NULL') }
   has_many :works, dependent: :destroy
   has_many :work_messages, dependent: :destroy
+  mount_uploader :image, UserImageUploader
+
 
   def should_generate_new_friendly_id?
     slug.blank? || name_changed? # slug 為 nil 或 name column 變更時更新
