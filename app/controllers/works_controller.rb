@@ -20,14 +20,29 @@ class WorksController < ApplicationController
 
 
   def getUrl
-    begin
-      object = LinkThumbnailer.generate(params[:attach_url].strip)
-      message = 'ok'
-    rescue LinkThumbnailer::Exceptions => e
-      message = '找不到資料哦'
+    url = params[:attach_url].strip
+    obj = helpers.get_resolved_url_obj(url)
+    message = 'ok'
+    type = nil
+    if obj[:type] == "others"
+      begin
+        object = LinkThumbnailer.generate(url)
+        type = "image"
+      rescue LinkThumbnailer::Exceptions => e
+        message = '找不到資料哦'
+      end
+    elsif obj[:type] == "image"
+      object = { type: obj[:type], images: [ { src: "#{url}" } ] }
+    elsif obj[:type] == "youtube"
+      object = { type: obj[:type], media_url: "https://www.youtube.com/embed/#{obj[:match_object][1]}?rel=0" }
+    else
+      object = { type: obj[:type], media_url: url }
+    end
+    if type.nil?
+      type = obj[:type]
     end
     respond_to do |format|
-      format.json { render :status => 200, :json => { :message => message, object: object } }
+      format.json { render :status => 200, :json => { :message => message, object: object, type: type } }
     end
   end
 
