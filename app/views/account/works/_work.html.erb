@@ -33,18 +33,6 @@
         <% end -%>
       </div>
     <% end %>
-    <p class="info">
-      <span class="info-type">
-        <%= content_tag :i, '',class: 'glyphicon glyphicon-link' if w.attach_url.present? %>
-      </span>
-      <i class="glyphicon glyphicon-eye-open"></i><span><%= w.hits %></span>
-      <i class="glyphicon glyphicon-comment"></i><span><%= w.work_messages_count %></span>
-      <%= link_to update_care_work_path(w), method: :post, remote: true, class: 'heart' do %>
-        <i class="glyphicon glyphicon-heart <%= 'text-danger' if w.is_care_by? (current_user) %>"></i>
-      <% end -%>
-      <%= link_to carers_work_path(w), class: 'heart_count_link' do %>
-        <span class="heart_count"><%= w.cares_count %></span>
-      <% end -%>
-    </p>
+    <%= render 'account/works/work_info', w: w %>
   </div>
 </div>
