@@ -5,8 +5,8 @@
     ce('setUserInfo',{
       id: '<%= current_user.id %>',
       name: '<%= current_user.name %>',
-      image: '',
-      email: ''
+      image: '<%= current_user.avatar_link.try(:circle_64) %>',
+      email: '<%= (action_name == "edit_info") ? current_user.email : "" %>'
     });
   <% end %>
 </script>

@@ -45,7 +45,7 @@ class WorksController < ApplicationController
   end
 
   def update_featured
-    if current_user == User.find_by_email('motephyr@gmail.com')
+    if current_user.try(:is_admin?)
       @work = Work.friendly.find_by_slug!(params[:id])
       if @work.is_featured?
         @work.update_attributes!(is_featured: false)

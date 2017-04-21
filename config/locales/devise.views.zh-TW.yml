@@ -60,11 +60,13 @@ zh-TW:
         we_need_your_current_password_to_confirm_your_changes: '我們需要您的目前的密碼以確認您的更改'
         update: '更新'
         name: '顯示名稱'
+        image: '個人圖片'
       new:
         sign_up: '註冊'
         password: '密碼'
         password_confirmation: '確認密碼'
         name: '顯示名稱'
+        image: '個人圖片'
     sessions:
       user:
         signed_in: '登入成功'

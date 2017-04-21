@@ -1,4 +1,4 @@
-class AvatarUploader < CarrierWave::Uploader::Base
+class UserImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -42,9 +42,14 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # store original file metadata
   process :store_metadata
 
-  version :square_large do
-    process :resize_to_fill => [200, 200]
-    process :store_metadata => "square_large"
+  version :circle_128 do
+    process :resize_to_fill => [128, 128]
+    process :store_metadata => "circle_128"
+  end
+
+  version :circle_64 do
+    process :resize_to_fill => [64, 64]
+    process :store_metadata => "circle_64"
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -60,7 +65,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     ivar = "@#{mounted_as}_secure_token"
     token = model.instance_variable_get(ivar)
     token ||= model.instance_variable_set(ivar, random_token)
-    "#{token}.#{model.attach_avatar.file.extension}" if original_filename
+    "#{token}.#{model.image.file.extension}" if original_filename
   end
 
 end
