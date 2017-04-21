@@ -71,9 +71,9 @@ class User < ApplicationRecord
     'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/128px-Creative-Tail-People-police-man.svg.png'
   end
 
-  def avatar_link
+  def avatar_link(method)
     if self.image.present?
-      self.image
+      self.image.send(method)
     elsif self.remote_avatar_url.present?
       self.remote_avatar_url
     else
