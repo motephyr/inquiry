@@ -10,12 +10,12 @@
       <%= link_to(Setting.app_name, "/" , :class => "navbar-brand" )%>
     </div>
     <div class="navbar-collapse collapse">
+        <%= render :partial => "common/search_form" %>
       <%= render_list :class => "nav navbar-nav" do |li|
         li << link_to("詢價", appraisals_path)
         li << link_to("關於",welcome_index_path)
         end %>
 
-        <%#= render :partial => "common/search_form" %>
 
       <ul class="nav navbar-nav navbar-right">
         <%= render :partial => "common/user_nav" %>

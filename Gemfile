@@ -50,6 +50,7 @@ gem 'aasm'
 
 gem "link_thumbnailer"
 gem 'vuejs-rails'
+gem 'ransack'
 
 
 

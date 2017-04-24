@@ -1,0 +1,21 @@
+  <div class="about-me clearfix" id="about-me">
+    <div class="container">
+      <div class="row">
+<% @user_infos.each do |user_info| %>
+        <div class='col-sm-3 col-xs-12'>
+          <%= link_to user_info_path(user_info.user), class: "about-me-link" do %>
+          <div class="my-pic text-center wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
+            <%= tag :img, src: user_info.user.avatar_link(:circle_128), alt: 'my profile' %>
+            <br/>
+            <br/>
+            <p><strong><%= user_info.nickname %></strong></p>
+          </div>
+          <% end -%>
+        </div>
+<% end -%>
+      </div>
+    </div>
+  </div>
+<% content_for :stylesheets do -%>
+  <%= stylesheet_link_tag 'account/user_infos' -%>
+<% end -%>

@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       collection do
         get 'edit_status'
         get 'edit_info'
+        get 'search'
         patch 'update_info'
       end
     end

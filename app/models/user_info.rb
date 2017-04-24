@@ -14,9 +14,13 @@ class UserInfo < ApplicationRecord
     read_attribute(:typical_work).presence || "相關經歷:(待補) \n作品集連結:(待補)"
   end
 
-  def skill_and_tool
-    read_attribute(:skill_and_tool).presence || "(待補)"
+  def skill_tool
+    read_attribute(:skill_tool).presence || "(待補)"
   end
 
+
+  def self.ransackable_attributes(auth_object = nil)
+    super & %w(work_content work_area skill_tool)
+  end
 
 end
