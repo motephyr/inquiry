@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,190 +8,183 @@
     <meta name="author" content="">
     <meta name="google-site-verification" content="jaEu2PXUrUgIw02HE1jNQyfrzjM6DEFHBYBjbXWi6Rw" />
     <title>Conkwe - 自由工作者 工作，接案，人脈媒合平台</title>
-  <%= csrf_meta_tags %>
-  <%= action_cable_meta_tag %>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= javascript_include_tag "application" %>
-
     <!-- Theme CSS -->
     <%= stylesheet_link_tag "new-age" %>
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  <%= yield :stylesheets %>
-
-</head>
-
-<body>
-<%= render :partial => "common/menu" %>
-
-
+    <%= yield :stylesheets %>
+  </head>
+  <body>
+    <%= render :partial => "common/menu" %>
     <header id="page-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-7">
-                    <div class="header-content">
-                        <div class="header-content-inner">
-                            <h1>我們聚集那些願意透過工作得到自由的人們。</h1>
-                            <a href="#overview" class="btn btn-outline btn-xl page-scroll">了解更多</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-5">
-                    <div class="device-container">
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-7">
+            <div class="header-content">
+              <div class="header-content-inner">
+                <h1>我們聚集那些願意透過工作得到自由的人們。</h1>
+                <a href="#overview" class="btn btn-outline btn-xl page-scroll">了解更多</a>
+              </div>
             </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="device-container">
+            </div>
+          </div>
         </div>
+      </div>
     </header>
-
     <section id="cta_2" class="cta" style="background-image: url('assets/landing_page/thumbs.jpg')">
-        <div class="cta-content">
-            <div class="container">
-               <div style="float:left">
-                        <h2>展出你的工作成果</h2>
-                        <p class="text-muted">
-                          Conkwe提供三個方式以呈現你的工作成果。
-                        </p>
-                        <p class="text-muted">
-                          1. 上傳圖片或照片，加入簡單的描述，讓訪客認識你。
-                        </p>
-                        <p class="text-muted">
-                          2. 如果你在其他網站有展示自已的作品，Conkwe可以帶領訪客去參觀你的作品，增加你的人氣。
-                        </p>
-                        <p class="text-muted">
-                          3. 透過Conkwe簡單扼要的編輯功能，您可以處理網路文章的"連結，貼圖，分段標題"三個重要元素。
-                        </p>
-                    <a href="#overview" class="btn btn-outline btn-xl page-scroll">Next</a>
-                </div>
-                <div style="float:right">
-
-                </div>
-            </div>
-        </div>
-        <div class="overlay"></div>
-    </section>
-
-    <section id="overview" class="overview">
+      <div class="cta-content">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="overview-item">
-                        <i class="icon-lock text-primary"></i>
-                        <h3>展現你的工作成果。</h3>
-                        <h4>不是因為你是誰，而是你做了什麼。</h4>
-                        <p class="text-muted">
-                          每個人在工作上都有自已專精的領域，將你近期的作品展現給大家看，讓別人知道你擅長和拿手的是什麼，說不定他正需要你！
+          <div style="float:left">
+            <h2>展出你的工作成果</h2>
+            <p class="text-muted">
+              Conkwe提供三個方式以呈現你的工作成果。
                         </p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="overview-item">
-                        <i class="icon-lock text-primary"></i>
-                        <h3>你的案子值多少？</h3>
-                        <h4>一個公開，但是保有匿名性質的討論。</h4>
-                        <p class="text-muted">
-                          這個案子我們應該要花多少錢？不論你是業主，或是你是自由工作者都想知道的事。不要在意你的案子的內容多簡單，也不用在意你估的價錢過低或過高，我們來討論看看。
+            <p class="text-muted">
+              1. 上傳圖片或照片，加入簡單的描述，讓訪客認識你。
                         </p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="overview-item">
-                        <i class="icon-lock text-primary"></i>
-                        <h3>私訊溝通</h3>
-                        <h4>兼顧安全和即時性</h4>
-                        <p class="text-muted">
-<!--                             某個人對你提供的服務有興趣，希望私下和你談談合作的事宜，
+            <p class="text-muted">
+              2. 如果你在其他網站有展示自已的作品，Conkwe可以帶領訪客去參觀你的作品，增加你的人氣。
+                        </p>
+            <p class="text-muted">
+              3. 透過Conkwe簡單扼要的編輯功能，您可以處理網路文章的"連結，貼圖，分段標題"三個重要元素。
+                        </p>
+            <a href="#overview" class="btn btn-outline btn-xl page-scroll">Next</a>
+          </div>
+          <div style="float:right">
+          </div>
+        </div>
+      </div>
+      <div class="overlay"></div>
+    </section>
+    <div class="container">
+      <h1>Good Job!</h1>
+      <div class="row">
+        <%= render partial: 'account/works/work_index', collection: @works, as: :w || '沒有資料哦！' %>
+        <%= render 'common/modal'  %>
+      </div>
+      <%= javascript_include_tag "works_list" %>
+      <%= stylesheet_link_tag "works" %>
+    </div>
+    <section id="overview" class="overview">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="overview-item">
+              <i class="icon-lock text-primary"></i>
+              <h3>展現你的工作成果。</h3>
+              <h4>不是因為你是誰，而是你做了什麼。</h4>
+              <p class="text-muted">
+                每個人在工作上都有自已專精的領域，將你近期的作品展現給大家看，讓別人知道你擅長和拿手的是什麼，說不定他正需要你！
+                        </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="overview-item">
+              <i class="icon-lock text-primary"></i>
+              <h3>你的案子值多少？</h3>
+              <h4>一個公開，但是保有匿名性質的討論。</h4>
+              <p class="text-muted">
+                這個案子我們應該要花多少錢？不論你是業主，或是你是自由工作者都想知道的事。不要在意你的案子的內容多簡單，也不用在意你估的價錢過低或過高，我們來討論看看。
+                        </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="overview-item">
+              <i class="icon-lock text-primary"></i>
+              <h3>私訊溝通</h3>
+              <h4>兼顧安全和即時性</h4>
+              <p class="text-muted">
+                <!--                             某個人對你提供的服務有興趣，希望私下和你談談合作的事宜，
  -->                            透過我們開發的Gossim.io專業的溝通管道，如果你就在站上，你可以有免費，即時，雙向的無障礙溝通品質。
                         </p>
-<!--                         <p class="text-muted">
+              <!--                         <p class="text-muted">
                         即使您不在線上，我們也會透過Email或簡訊通知您，不錯過任何的合作可能。
                         </p> -->
-                    </div>
-                </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <a href="/appraisals" class="btn btn-next btn-xl">試用 你的案子值多少？</a>
-                </div>
-            </div>
-
+          </div>
         </div>
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <a href="/appraisals" class="btn btn-next btn-xl">試用 你的案子值多少？</a>
+          </div>
+        </div>
+      </div>
     </section>
-
     <section id="cta_3" class="cta">
-        <div class="cta-content">
-            <div class="container">
-                <div style="float:left">
-                    <p>關於你的問與答 與 分潤機制 <small style="color:red">(開發中)</small></p>
-                    <p>加入Conkwe的粉絲團，給Conkwe開發團隊你的意見，讓Conkwe成為你心目中想像的自由工作者平台！</p>
-                 </div>
-                <div style="float:right">
-                    <div class="fb-page" data-href="https://www.facebook.com/ConKweMatch/" data-tabs="timeline" data-width="370" data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/ConKweMatch/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/ConKweMatch/">Conkwe 匿名媒合平台</a></blockquote></div>
-                </div>
+      <div class="cta-content">
+        <div class="container">
+          <div style="float:left">
+            <p>關於你的問與答 與 分潤機制 <small style="color:red">(開發中)</small></p>
+            <p>加入Conkwe的粉絲團，給Conkwe開發團隊你的意見，讓Conkwe成為你心目中想像的自由工作者平台！</p>
+          </div>
+          <div style="float:right">
+            <div class="fb-page" data-href="https://www.facebook.com/ConKweMatch/" data-tabs="timeline" data-width="370" data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="true">
+              <blockquote cite="https://www.facebook.com/ConKweMatch/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/ConKweMatch/">Conkwe 匿名媒合平台</a></blockquote>
             </div>
+          </div>
         </div>
-        <div class="overlay"></div>
+      </div>
+      <div class="overlay"></div>
     </section>
-
-
     <section id="overview">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <%= link_to( "登入並編輯自已的資料，加入自由工作者行列", new_user_session_path, class: 'btn btn-next btn-xl' ) %>
-                </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <%= link_to( "登入並編輯自已的資料，加入自由工作者行列", new_user_session_path, class: 'btn btn-next btn-xl' ) %>
+          </div>
         </div>
+      </div>
     </section>
-
     <footer>
-        <div class="container">
-            <p>&copy; 2016-2017 Gossim. All Rights Reserved.</p>
-            <ul class="list-inline">
-                <li>
-                    <a href="#">Privacy Policy</a>
-                </li>
-                <li>
-                    <a href="#">Terms</a>
-                </li>
-            </ul>
-        </div>
+      <div class="container">
+        <p>&copy; 2016-2017 Gossim. All Rights Reserved.</p>
+        <ul class="list-inline">
+          <li>
+            <a href="#">Privacy Policy</a>
+          </li>
+          <li>
+            <a href="#">Terms</a>
+          </li>
+        </ul>
+      </div>
     </footer>
-
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-  <%= javascript_include_tag "new-age" %>
-<%= render :partial => "common/facebook_js" %>
-<!-- Start of MsgUs (www.msgus.io) code -->
-<script type="text/javascript">
-    var proto = document.location.protocol;
-    var host = "whatshelp.io";
-    var url = proto+"//"+host;
-    document.write(unescape("%3Cscript src='" + url + "/widget/widget.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-    InitMsgUsWidget({
-        host: host,
-        proto: proto,
-        page: "1850275241916012",
-        logoUrl: "https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/16832179_1851253815151488_6547146396451212866_n.jpg?oh=cfe229b82223087be14598536b6364ab&oe=5932168B",
-        text: "在這個平台完成之前，希望加入您的意見。我們會在發佈時列出意見參與者的名稱以誌謝意。",
-        color: "white"
-    });
-</script>
-<%= yield :javascripts %>
-
-<!-- End of MsgUs code -->
-</body>
-
+    <%= javascript_include_tag "new-age" %>
+    <%= render :partial => "common/facebook_js" %>
+    <!-- Start of MsgUs (www.msgus.io) code -->
+    <script type="text/javascript">
+      var proto = document.location.protocol;
+          var host = "whatshelp.io";
+          var url = proto+"//"+host;
+          document.write(unescape("%3Cscript src='" + url + "/widget/widget.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      InitMsgUsWidget({
+              host: host,
+              proto: proto,
+              page: "1850275241916012",
+              logoUrl: "https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/16832179_1851253815151488_6547146396451212866_n.jpg?oh=cfe229b82223087be14598536b6364ab&oe=5932168B",
+              text: "在這個平台完成之前，希望加入您的意見。我們會在發佈時列出意見參與者的名稱以誌謝意。",
+              color: "white"
+          });
+    </script>
+    <%= yield :javascripts %>
+    <!-- End of MsgUs code -->
+  </body>
 </html>
