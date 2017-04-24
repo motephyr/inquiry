@@ -43,7 +43,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   process :store_metadata
 
   version :square_large do
-    process :resize_to_fill => [200, 200]
+    process :resize_to_fill => [480, 480]
     process :store_metadata => "square_large"
   end
 

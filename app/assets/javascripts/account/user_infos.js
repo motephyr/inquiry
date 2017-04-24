@@ -20,7 +20,7 @@ $(".acc-title").click(function() {
           var href = $(this).attr("href");
           var host = get_hostname(href);
           if (host !== 'null'){
-            $(this).before("<a href="+href+" target='_blank'><img width='32px' height='32px' src='" + host + "/favicon.ico' onerror='imgError(this);' /></a>");
+            $(this).before("<a href="+href+" target='_blank'><img width='16px' height='16px' src='" + host + "/favicon.ico' onerror='imgError(this);' /></a>");
           }
         }
       });

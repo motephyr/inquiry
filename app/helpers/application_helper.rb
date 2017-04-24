@@ -114,7 +114,7 @@ module ApplicationHelper
 
   def work_square(w)
     if w.attach_avatar.present?
-      render_avatar_file(w.attach_avatar.url)
+      render_avatar_file(w.attach_avatar.square_large.url)
     elsif w.attach_url.present?
       render_resolve_url(w)
     elsif w.attach_content.present?
@@ -126,11 +126,11 @@ module ApplicationHelper
   def work_square_all(w)
     subject = ''
 	if w.attach_avatar.present? && w.attach_url.present?
-	  w.remote_image_url = w.attach_avatar.url
+	  w.remote_image_url = w.attach_avatar.square_large
 	  subject += render_resolve_url(w)
     else
 	  if w.attach_avatar.present?
-	    subject += render_avatar_file(w.attach_avatar.url)
+	    subject += render_avatar_file(w.attach_avatar.square_large.url)
 	  elsif w.attach_url.present?
 	    subject += render_resolve_url(w)
 	  end
@@ -169,3 +169,4 @@ module ApplicationHelper
 
   end
 end
+
