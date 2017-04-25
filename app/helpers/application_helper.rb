@@ -46,16 +46,16 @@ module ApplicationHelper
   end
 
   def get_resolved_url_obj(url)
-    if (image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/.match(url)) and image_match.present?
+    if (image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/i.match(url)) and image_match.present?
       # image matches
       { type: "image", match_object: image_match }
-    elsif (audio_match = /\.(wav|mp3|wma|midi|aif|aifc|aiff|au|ea)$/.match(url)) and audio_match.present?
+    elsif (audio_match = /\.(wav|mp3|wma|midi|aif|aifc|aiff|au|ea)$/i.match(url)) and audio_match.present?
       # audio matches
       { type: "audio", match_object: audio_match }
-    elsif (video_match = /\.(mp4|webm|ogg)$/.match(url)) and video_match.present?
+    elsif (video_match = /\.(mp4|webm|ogg)$/i.match(url)) and video_match.present?
       # video matches
       { type: "video", match_object: video_match }
-    elsif (youtube_match = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(\S*)?$/.match(url)) and youtube_match.present?
+    elsif (youtube_match = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(\S*)?$/i.match(url)) and youtube_match.present?
       # youtube matches
       { type: "youtube", match_object: youtube_match }
     else
@@ -84,8 +84,8 @@ module ApplicationHelper
   end
 
   def render_avatar_file(file)
-    image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/.match(file)
-    audio_match = /\.(wav|mp3|wma|ogg|midi|aif|aifc|aiff|au|ea)$/.match(file)
+    image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/i.match(file)
+    audio_match = /\.(wav|mp3|wma|ogg|midi|aif|aifc|aiff|au|ea)$/i.match(file)
     if image_match.present?
       tag :img, src: "#{file}"
     elsif audio_match.present?
