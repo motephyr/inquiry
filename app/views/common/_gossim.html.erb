@@ -5,7 +5,7 @@
     ce('setUserInfo',{
       id: '<%= current_user.id %>',
       name: '<%= current_user.name %>',
-      image: '<%= current_user.avatar_link(:circle_64) %>',
+      image: '<%= current_user.avatar_link(size: 64) %>',
       email: '<%= (action_name == "edit_info") ? current_user.email : "" %>'
     });
   <% end %>

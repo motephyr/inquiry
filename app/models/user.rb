@@ -71,11 +71,11 @@ class User < ApplicationRecord
     'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/128px-Creative-Tail-People-police-man.svg.png'
   end
 
-  def avatar_link(method)
+  def avatar_link(options = { size: 64})
     if self.image.present?
-      self.image.send(method)
+      self.image.send("circle_#{options[:size]}")
     elsif self.remote_avatar_url.present?
-      self.remote_avatar_url
+      self.remote_avatar_url + "?height=#{options[:size]}&width=#{options[:size]}"
     else
       self.default_avatar_link
     end

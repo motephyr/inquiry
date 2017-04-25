@@ -4,7 +4,7 @@
   <%= f.error_notification class: 'alert alert-danger' %>
   <div class="form-inputs">
     <div class="my-pic">
-    <%= tag :img, src: current_user.avatar_link(:circle_128) %>
+    <%= tag :img, src: current_user.avatar_link(size: 128) %>
     </div>
     <%= f.input :image, label: t('.image')  %>
     <%= f.hidden_field :image_cache %>

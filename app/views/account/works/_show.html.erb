@@ -5,7 +5,7 @@
 
   <%= link_to user_info_path(@work.user), class: "work-owner" do %>
     <div class="col-md-3 col-sm-3 col-xs-4">
-      <%= tag :img, src: @work.user.avatar_link(:circle_64), width: "100%" %>
+      <%= tag :img, src: @work.user.avatar_link(size: 64), width: "100%" %>
     </div>
     <div class="col-md-9 col-sm-9 col-xs-8">
       <%= content_tag :p, @work.user.nickname, class: "work-owner-name" %>
