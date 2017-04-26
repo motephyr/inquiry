@@ -16,3 +16,7 @@
 //= require cable
 //= require bootstrap-notify
 //= require lib/date-fns
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  });

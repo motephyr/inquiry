@@ -8,7 +8,8 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :trackable, :validatable,
     :omniauthable, :omniauth_providers => [:facebook]
   acts_as_paranoid
-
+  acts_as_votable
+  acts_as_voter
   has_many :appraisals, dependent: :destroy
   has_many :appraisal_messages, dependent: :destroy
   has_many :appraisal_prices, dependent: :destroy

@@ -5,17 +5,21 @@ class WorksController < ApplicationController
 
   def index
     #編輯選擇
-    @works = Work.includes(:user, :cares).is_published.is_featured.order_by_new
+    @unlike = current_user.votes.down.by_type('User').map{|x| x.votable}
+    @works = Work.includes(:user, :cares).where.not(user: @unlike).is_published.is_featured.order_by_new
   end
 
   def newest
     #全部最新
-    @works = Work.includes(:user, :cares).is_published.order_by_new
+    @unlike = current_user.votes.down.by_type('User').map{|x| x.votable}
+    @works = Work.includes(:user, :cares).where.not(user: @unlike).is_published.order_by_new
+    # Work.includes(:user, :cares).from('users AS u').joins('INNER JOIN works AS w ON u.id = w.user_id').order('w.id DESC').select('w.*')
   end
 
   def favorite
     #照like數排序
-    @works = Work.includes(:user, :cares).is_published.order_by_favorite
+    @unlike = current_user.votes.down.by_type('User').map{|x| x.votable}
+    @works = Work.includes(:user, :cares).where.not(user: @unlike).is_published.order_by_favorite
   end
 
 
@@ -83,6 +87,16 @@ class WorksController < ApplicationController
       format.js
       format.html {redirect_to account_user_info_work_path(@work.user, @work)}
     end
+  end
+
+  def report
+    @user = Work.friendly.find_by_slug!(params[:id]).user
+    if current_user.disliked? @user
+      @user.undisliked_by current_user
+    else
+      @user.disliked_by current_user
+    end
+    redirect_back(fallback_location: root_path)
   end
 
   def carers

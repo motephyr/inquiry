@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       post 'update_care'
       get 'update_featured'
       post 'update_published'
+      post 'report'
       get 'carers'
     end
   end
