@@ -8,7 +8,7 @@
         end %>
     </div>
     <div class="col-md-2 col-sm-2 col-xs-3">
-      <%= link_to '新增', new_account_user_info_work_path(current_user), class: 'btn btn-info pull-right' if current_user %>
+      <%= link_to '新增作品..', new_account_user_info_work_path(current_user), class: 'btn btn-info pull-right' if current_user %>
     </div>
   </div>
 </div>
@@ -21,3 +21,4 @@
 <% content_for :stylesheets do %>
   <%= stylesheet_link_tag "works" %>
 <% end -%>
+
