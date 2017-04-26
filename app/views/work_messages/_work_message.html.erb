@@ -1,6 +1,6 @@
 <%= form_for work_message, remote: true do |f| %>
   <p>
-    <% if current_user == work_message.user %>
+    <% if current_user == work_message.user || current_user == work_message.work.user  %>
       <%= link_to "", work_message, method: :delete, class: 'glyphicon glyphicon-remove-circle', data: {confirm: "確定要刪除嗎？"}, remote: true %>
     <% end %>
       <%= link_to online_status(work_message.user),account_user_info_path(work_message.user)  %>: <%= work_message.content %>

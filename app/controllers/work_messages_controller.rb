@@ -33,7 +33,7 @@ class WorkMessagesController < ApplicationController
 
   def message_owner
     @work_message = WorkMessage.find(params[:id])
-    unless @work_message.user_id == current_user.id
+    unless @work_message.user_id == current_user.id || @work_message.work.user_id == current_user.id
       flash[:notice] = '你不是這個留言的使用者'
       redirect_to work_path(@work_message.work)
     end
