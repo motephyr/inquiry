@@ -9,5 +9,9 @@ function onHeartClick(o){
     } else {
       next_count.text(parseInt(next_count.text()) + 1);
     }
-    el.toggleClass('glyphicon glyphicon-heart').toggleClass('glyphicon glyphicon-heart text-danger'); 
+    el.toggleClass('glyphicon glyphicon-heart').toggleClass('glyphicon glyphicon-heart text-danger');
 }
+
+  $(document).on('click', 'a.item-wrap[data-remote=true]', function(e) {
+    history.pushState({}, '', $(this).attr('href'));
+  });
