@@ -52,6 +52,7 @@ gem "link_thumbnailer"
 gem 'vuejs-rails'
 gem 'ransack'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'acts-as-taggable-on', '~> 4.0'
 
 
 

@@ -33,8 +33,12 @@ Rails.application.routes.draw do
       post 'update_published'
       post 'report'
       get 'carers'
+      get 'tags'
     end
   end
+
+  get 'tags/:tag', to: 'account/user_infos#tag', as: :tag
+
 
   get '/user_infos/:id', to: 'account/user_infos#show', as: :user_info
   get '/user_infos/:user_info_id/works/:id', to: 'account/works#show', as: :user_info_work

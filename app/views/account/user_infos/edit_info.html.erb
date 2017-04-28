@@ -3,9 +3,14 @@
   <div class="form-inputs">
     <%=  f.hidden_field :name %>
     <div class="form-group">
-      <%= f.label '工作類別' %>
+      <%= f.label '作品類別' %>
       <%= f.input :category_id,label: false, as: :button_radio, collection: Category.where("id in (?)", [1,2,3,7,8,9,10,11,12]).map { |r| [r.title, r.id] },input_html: {value: @user_info.category_id} %>
-      <p class="help-block">您所主要提供的服務類別</p>
+      <p class="help-block">您所主要提供的作品類別，Conkwe會依照您所填的類別，在您新增作品的時候給予提示</p>
+    </div>
+    <div class="form-group">
+      <%= f.label '工作項目 (以逗號","分隔)' %><br />
+      <%= f.input :tag_list,label: false %>
+      <p class="help-block">工作項目會顯示在您的個人頁面供業主參考，如不填則預設為您選擇的作品類別。</p>
     </div>
     <div class="form-group">
       <%= f.label '所在地區' %>

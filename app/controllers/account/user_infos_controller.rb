@@ -44,6 +44,19 @@ class Account::UserInfosController < ApplicationController
     @user_infos = @q.result(distinct: true).limit(10).map{|x| x if x.user.present? }.compact
   end
 
+  def tag
+    if params[:tag]
+      @user_infos = UserInfo.tagged_with(params[:tag])
+      if @user_infos.blank?
+        flash[:notice] = '尚無人新增此項目哦'
+        redirect_back(fallback_location: root_path)
+      end
+    else
+      flash[:notice] = '尚無人新增此項目哦'
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
   private
   def find_user_survey
     user_survey = UserSurvey.find_by(email: current_user.email)
@@ -70,7 +83,7 @@ class Account::UserInfosController < ApplicationController
 
   private
   def user_info_params
-    params.require(:user_info).permit(:user_id,:name, :work_content, :work_area, :typical_work, :teach, :speak, :labor, :contract, :category_id, :skill_tool)
+    params.require(:user_info).permit(:user_id,:name, :work_content, :work_area, :typical_work, :teach, :speak, :labor, :contract, :category_id, :skill_tool, :tag_list)
   end
 
   def determine_layout
