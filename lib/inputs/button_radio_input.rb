@@ -1,26 +1,42 @@
 class ButtonRadioInput < SimpleForm::Inputs::CollectionRadioButtonsInput
   def input(wrapper_options)
-    out = '<div class="btn-group" data-toggle="buttons">'
+    out = <<-HTML
+
+<div class="btn-group" data-toggle="buttons-radio">
+HTML
+    input_field = @builder.hidden_field(attribute_name, input_html_options)
+    input_id = input_field[/ id="(\w*)/, 1]
     label_method, value_method = detect_collection_methods
-    object_value = object.send(attribute_name)
-    collection.each do |item|
+    collection.each {|item|
       value = item.send(value_method)
       label = item.send(label_method)
+      on_click = "document.getElementById('#{input_id}').value='#{value}';return false;"
       active = ''
       active = ' active' unless
           out =~ / active/ ||
-          value != object_value &&
-          (item != collection.last || object_value != nil)
-      value = object_value unless active.empty?
+          input_html_options[:value] != value &&
+          item != collection.last
+      input_html_options[:value] = value unless active.empty?
       btn = 'btn btn-default'
       btn = "btn btn-#{item.third}" unless item.third.nil?
       out << <<-HTML
-        <label class="#{btn} #{active}">
-          <input type="radio" value="#{value}" name="#{object_name}[#{attribute_name}]">#{label}</input>
-        </label>
+  <button onclick="javascript:#{on_click}" type="button" class="#{btn} #{active}">#{label}</button>
 HTML
-    end
-    out << "</div>"
+    }
+    value = <<-VAL
+value="#{input_html_options[:value]}"
+VAL
+    input_field[/value="[^"]*"/] = value.chomp if input_field =~ /value/
+    input_field[/input/] = "input #{value.chomp}" unless input_field =~ /value/
+    out << <<-HTML
+  #{input_field}
+  <script>
+  $(".btn-group > .btn").click(function(){
+    $(this).addClass("active").siblings().removeClass("active");
+  });
+  </script>
+</div>
+HTML
     out.html_safe
   end
 end

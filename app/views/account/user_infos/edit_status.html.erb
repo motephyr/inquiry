@@ -7,22 +7,22 @@
     <div class="form-group">
       <%= f.label '咨詢' %>
       <p class="help-block">表示您是該工作內容的專家，有空為對方解答相關工作的疑問(但不一定願意接受對方的委託)</p>
-      <%= f.input :speak,label: false, as: :button_radio, collection: [['Yes',1] ,['No',0]] %>
+      <%= f.input :speak,label: false, as: :button_radio, collection: [['Yes',1] ,['No',0]],input_html: {value: @user_info.speak} %>
     </div>
     <div class="form-group">
       <%= f.label '接案' %>
       <p class="help-block">表示您可以且有意願獨立或合作完成您提供的相關工作內容</p>
-      <%= f.input :contract,label: false, as: :button_radio, collection: [['Yes',1] ,['No',0]] %>
+      <%= f.input :contract,label: false, as: :button_radio, collection: [['Yes',1] ,['No',0]],input_html: {value: @user_info.contract}  %>
     </div>
     <div class="form-group">
       <%= f.label '教學' %>
       <p class="help-block">表示您提供的性質為教學，家教等服務。建議提供您教學的主要目標、教學內容以及希望學生學會的知識內容，教師應透過教學活動的設計達成預期的目標。</p>
-      <%= f.input :teach,label: false, as: :button_radio, collection: [['Yes',1] ,['No',0]] %>
+      <%= f.input :teach,label: false, as: :button_radio, collection: [['Yes',1] ,['No',0]],input_html: {value: @user_info.teach} %>
     </div>
     <div class="form-group">
       <%= f.label '勞力' %>
       <p class="help-block">表示您有空接受任何需要人力或時間的委託，我們希望業主和作業者雙方都了解：困難的事情需要更多的時間做好，麻煩的事情需要更多的人手做好。</p>
-      <%= f.input :labor,label: false, as: :button_radio, collection: [['Yes',1] ,['No',0]] %>
+      <%= f.input :labor,label: false, as: :button_radio, collection: [['Yes',1] ,['No',0]],input_html: {value: @user_info.labor} %>
     </div>
       <%=  f.hidden_field :name %>
       <%=  f.hidden_field :category_id %>
