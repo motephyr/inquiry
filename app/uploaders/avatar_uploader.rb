@@ -47,9 +47,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
     process :store_metadata => "square_large"
   end
 
-  version :square_fit do
-    process :resize_to_fit => [480, 480]
-    process :store_metadata => "square_fit"
+  version :square_limit do
+    process :resize_to_limit => [480, 480]
+    process :store_metadata => "square_limit"
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

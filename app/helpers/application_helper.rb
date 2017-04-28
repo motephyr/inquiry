@@ -126,11 +126,11 @@ module ApplicationHelper
   def work_square_all(w)
     subject = ''
 	if w.attach_avatar.present? && w.attach_url.present?
-	  w.remote_image_url = w.attach_avatar.square_fit
+	  w.remote_image_url = w.attach_avatar.square_limit
 	  subject += render_resolve_url(w)
     else
 	  if w.attach_avatar.present?
-	    subject += render_avatar_file(w.attach_avatar.square_fit.url)
+	    subject += render_avatar_file(w.attach_avatar.square_limit.url)
 	  elsif w.attach_url.present?
 	    subject += render_resolve_url(w)
 	  end
