@@ -1,6 +1,6 @@
-<% if request.original_fullpath[0..27] == "/account/user_infos/search" %>
+<%# if request.original_fullpath[0..27] == "/account/user_infos/search" %>
   <% @q = UserInfo.ransack(params[:q]) %>
   <%= search_form_for @q,url: search_account_user_infos_path, :class => "navbar-form navbar-left", :method => :get do |f| %>
     <%= f.search_field :work_content_or_work_area_or_skill_tool_cont, class: "form-control", placeholder: '搜尋工作者' %>
   <% end %>
-<% end -%>
+<%# end -%>

@@ -3,7 +3,7 @@
   <div class="form-inputs">
     <%=  f.hidden_field :name %>
     <div class="form-group">
-      <%= f.label '工作領域' %>
+      <%= f.label '工作類別' %>
       <%= f.input :category_id,label: false, as: :button_radio, collection: Category.where("id in (?)", [1,2,3,7,8,9,10,11,12]).map { |r| [r.title, r.id] } %>
       <p class="help-block">您所主要提供的服務類別</p>
     </div>

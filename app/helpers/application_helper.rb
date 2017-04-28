@@ -164,7 +164,7 @@ module ApplicationHelper
         "描述你的工作成果..."
       end
     else
-      '(您尚未選擇您的工作領域哦)'
+      '(您尚未選擇您的工作類別哦)'
     end
 
   end
