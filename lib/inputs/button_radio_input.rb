@@ -2,7 +2,7 @@ class ButtonRadioInput < SimpleForm::Inputs::CollectionRadioButtonsInput
   def input(wrapper_options)
     out = <<-HTML
 
-<div class="btn-group" data-toggle="buttons-radio">
+<div class="btn-group">
 HTML
     input_field = @builder.hidden_field(attribute_name, input_html_options)
     input_id = input_field[/ id="(\w*)/, 1]
