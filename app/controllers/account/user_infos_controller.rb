@@ -41,7 +41,7 @@ class Account::UserInfosController < ApplicationController
 
   def search
     @q = UserInfo.ransack(params[:q])
-    @user_infos = @q.result(distinct: true).limit(10)
+    @user_infos = @q.result(distinct: true).limit(10).map{|x| x if x.user.present? }.compact
   end
 
   private
