@@ -23,7 +23,8 @@ class Account::UserInfosController < ApplicationController
     if @user_info.nil?
       @user_info = current_user.build_user_info
       if find_user_survey.present?
-        @user_info = find_user_survey
+        flash[:notice] = '您的個人資料已經自動帶入囉！'
+        @user_info.update(find_user_survey.attributes.except('id','user_id','created_at','updated_at').symbolize_keys)
       end
     end
   end
