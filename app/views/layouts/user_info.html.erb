@@ -24,7 +24,7 @@
               </span>
               <span><strong>狀態: </strong><%= user_status(@user_info.user)  %></span>
               <span><%= link_to '私訊給他', '#', class: 'btn btn-success', id: 'chat'  %></span>
-              <span><strong>工作項目: </strong><%= @user_info.skill_list.present? ? @user_info.skill_list.map { |t| tag_link_button(t,t,'<br>')  }.join('').html_safe : tag_link_button(@user_info.category.try(:title),@user_info.category.try(:title))  %>
+              <span><strong>工作項目: </strong><%= @user_info.skill_list.present? ? @user_info.skill_list.map { |t| tag_link_button(t,t)  }.join('').html_safe : tag_link_button(@user_info.category.try(:title),@user_info.category.try(:title))  %>
               </span>
               <span><strong>所在地區: </strong><%= simple_format @user_info.work_area %></span>
               <%= link_to '上一位', user_info_path(@user_info.user.prev) %>
