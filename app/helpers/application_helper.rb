@@ -168,5 +168,10 @@ module ApplicationHelper
     end
 
   end
+
+  def tag_link_button(tag_show, tag_name, content = '')
+    link_to(sanitize("<label class='btn btn-default'>#{tag_show}</label>#{content}"), tag_path(tag_name))
+  end
+
 end
 

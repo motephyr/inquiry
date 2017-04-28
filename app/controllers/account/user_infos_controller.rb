@@ -33,6 +33,7 @@ class Account::UserInfosController < ApplicationController
     @user_info = current_user.user_info.present? ? current_user.user_info : current_user.build_user_info
 
     if @user_info.update(user_info_params)
+
       redirect_to account_user_info_path(current_user)
     else
       render :edit
@@ -83,7 +84,16 @@ class Account::UserInfosController < ApplicationController
 
   private
   def user_info_params
-    params.require(:user_info).permit(:user_id,:name, :work_content, :work_area, :typical_work, :teach, :speak, :labor, :contract, :category_id, :skill_tool, :tag_list)
+
+    sum = params.require(:user_info).map do |x, y|
+      if (y == "1" && (x == "teach" ||  x == "speak" ||  x == "labor" ||  x == "contract"))
+        x
+      elsif x == "category_id"
+        Category.find(y.to_i).title
+      end
+    end.compact.join(',')
+
+    params.require(:user_info).permit(:user_id,:name, :work_content, :work_area, :typical_work, :teach, :speak, :labor, :contract, :category_id, :skill_tool, :skill_list).merge(state_list: sum)
   end
 
   def determine_layout

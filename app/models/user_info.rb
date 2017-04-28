@@ -2,7 +2,7 @@ class UserInfo < ApplicationRecord
   belongs_to :category
   belongs_to :user
   acts_as_taggable
-  acts_as_taggable_on :skills
+  acts_as_taggable_on :skills, :states
 
   def nickname
     self.user.name || self.name
