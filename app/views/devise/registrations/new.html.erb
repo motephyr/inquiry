@@ -4,9 +4,9 @@
   <%= f.error_notification class: 'alert alert-danger' %>
 
   <div class="form-inputs">
-    <%= f.input :email, autofocus: true, autocomplete: 'off', required: true %>
-    <%= f.input :name, :required => true, autofocus: true, label: t('.name')  %>
-    <%= f.input :password, autocomplete: 'off', required: true, label: t('.password') %>
+    <%= f.input :email, autofocus: @user.email.blank?, autocomplete: 'off', required: true %>
+    <%= f.input :name, :required => true, autofocus: @user.name.blank?, label: t('.name')  %>
+    <%= f.input :password, autocomplete: 'off', required: true, autofocus:true, label: t('.password') %>
     <%= f.input :password_confirmation, autocomplete: 'off', label: "* #{t('.password_confirmation')}" %>
   </div>
 
