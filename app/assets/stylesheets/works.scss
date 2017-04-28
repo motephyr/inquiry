@@ -105,6 +105,10 @@
   right:36px
 }
 
+.work-item .cog i.glyphicon-remove{
+  color:#bababa;
+}
+
 .work-item .info, .ckeditor .info{
   text-align: right;
   margin-bottom: 0.4em;
@@ -114,6 +118,10 @@
 .work-item .info i, .ckeditor .info i{
 	font-size:  0.8em;
 	color: #a9a9a9;
+}
+
+.work-item .info i.glyphicon-heart:hover{
+	color: #d42319;
 }
 
 .work-item .info span, .ckeditor .info span{
