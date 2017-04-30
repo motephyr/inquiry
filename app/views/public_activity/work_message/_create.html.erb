@@ -1,0 +1,9 @@
+<% if activity.trackable %>
+  <%= link_to user_info_work_path(activity.trackable.work.user, activity.trackable.work), class: "list-group-item" do %>
+    <%= "#{activity.owner.nickname} 在作品「#{activity.trackable.work.subject}」 留言 '#{activity.trackable.content}'" %>
+    <small><span class='distanceInWordsToNow' style="display:none"><%= activity.created_at %></small>
+  <% end -%>
+<% else %>
+  <%= activity.owner.nickname %>
+  新增了一個留言 已被刪除
+<% end %>

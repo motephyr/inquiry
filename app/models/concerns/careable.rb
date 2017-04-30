@@ -3,22 +3,21 @@ module Careable
     base.class_eval do
       has_many :cares, as: :careable, :dependent => :destroy
       attr_readonly :cares_count
-      after_create :add_care
-      after_destroy :delete_care
+      after_create :add_care      #dependent觸發
+      after_destroy :delete_care  #dependent觸發
     end
   end
 
 
 
-  def add_care
-    obj = self
+  def add_care  #你留言表示你care appraisal
     if self.class.to_s == 'AppraisalMessage'
       obj = self.appraisal
-    elsif self.class.to_s == 'Work'
-      obj = self.user
+
+      obj.cares.find_or_create_by(careable_type: obj.class.to_s, careable_id: obj.id,  user: self.user)
     end
 
-    obj.cares.find_or_create_by(careable_type: obj.class.to_s, careable_id: obj.id,  user: self.user)
+
   end
 
   def delete_care

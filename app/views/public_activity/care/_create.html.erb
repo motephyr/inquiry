@@ -1,0 +1,6 @@
+<% if activity.trackable %>
+  <%= link_to user_info_work_path(activity.trackable.careable.user, activity.trackable.careable), class: "list-group-item" do %>
+  <%= "#{activity.owner.nickname} 喜歡你的作品 #{activity.trackable.careable.subject}" %>
+  <small><span class='distanceInWordsToNow' style="display:none"><%= activity.created_at %></small>
+  <% end -%>
+<% end %>
