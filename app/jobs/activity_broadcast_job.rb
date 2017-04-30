@@ -18,7 +18,9 @@ class ActivityBroadcastJob < ApplicationJob
         care = Care.find_by_id(activity.task_id)
         if care.present? && care.careable_type == 'Work'
           user = Work.includes(:user).find(care.careable_id).user
-          send_online_user_message_and_set_recipient(activity, [user])
+          if user.id != care.user_id
+            send_online_user_message_and_set_recipient(activity, [user])
+          end
         end
       end
     end
