@@ -1,7 +1,7 @@
 <% if activity.trackable %>
   <%= link_to activity.trackable.appraisal, class: "list-group-item" do %>
     <%= "#{(activity.owner_id != activity.trackable.appraisal.user_id) ? activity.owner.nickname : '[發文者]'} 在估價「#{activity.trackable.appraisal.title}」 留言 '#{activity.trackable.content}'" %>
-    <small><span class='distanceInWordsToNow' style="display:none"><%= activity.created_at %></small>
+    <small><span class='distanceInWordsToNow' style="display:none"><%= activity.created_at + 8.hours %></small>
   <% end -%>
 <% else %>
   <%= activity.owner.nickname %>
