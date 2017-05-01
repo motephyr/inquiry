@@ -32,7 +32,7 @@
       <div class="form-group">
         <h4><span>新增留言</span><span class="help-block">Shift+Enter鍵換行</span></h4>
         <%= f.hidden_field :work_id, {value: @work.id} %>
-        <%= f.text_area :content, class: 'form-control', rows: '2', placeholder: '請輸入內容' %>
+        <%= f.text_area :content, class: 'form-control', rows: '2', placeholder: '請輸入內容', required: true %>
       </div>
       <div class="form-actions">
         <p><%= f.submit '送出', class: 'btn btn-primary' %></p>
@@ -45,7 +45,7 @@
     });
     $('#work_message_content').keypress(function(e){
       if(e.shiftKey && e.keyCode == 13){
-        } else if (e.keyCode == 13) {
+        } else if (e.keyCode == 13 && $(this).val().trim() !== '') {
          $(this).closest('form').submit();
        }
     });
