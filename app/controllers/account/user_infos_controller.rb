@@ -43,6 +43,11 @@ class Account::UserInfosController < ApplicationController
   def search
     @q = UserInfo.ransack(params[:q])
     @user_infos = @q.result(distinct: true).limit(10).map{|x| x if x.user.present? }.compact
+    if @user_infos.length == 0
+      flash[:notice] = '您搜尋的內容找不到對應的工作者哦'
+    else
+      flash[:notice] = nil
+    end
   end
 
   def tag
