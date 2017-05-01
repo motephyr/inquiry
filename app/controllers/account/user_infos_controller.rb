@@ -1,6 +1,6 @@
 class Account::UserInfosController < ApplicationController
 
-  before_action :login_required, except: [:show]
+  before_action :login_required, except: [:show, :search, :tag]
   layout :determine_layout
 
 
