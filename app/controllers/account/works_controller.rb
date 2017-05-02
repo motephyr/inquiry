@@ -11,10 +11,11 @@ class Account::WorksController < ApplicationController
     Work.increment_counter(:hits, @work.id)
 
     respond_to do |f|
-      f.html
+      f.html { set_page_info({title: @work.subject, description: @work.content,image: @work.attach_avatar.try(:url)}) }
       f.js
     end
     render layout: "user_info"
+
   end
 
   def new

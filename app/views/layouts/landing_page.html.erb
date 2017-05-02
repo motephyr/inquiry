@@ -4,12 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
     <meta name="author" content="">
     <meta name="google-site-verification" content="jaEu2PXUrUgIw02HE1jNQyfrzjM6DEFHBYBjbXWi6Rw" />
-    <title>Conkwe - 自由工作者 工作，接案，人脈媒合平台</title>
+    <%= render_page_title_tag %>
+    <%= render_page_description_meta_tag %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
+    <% if @og.present? %>
+      <%= render "common/og_tag" %>
+    <% end %>
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">

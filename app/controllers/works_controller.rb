@@ -2,7 +2,9 @@ class WorksController < ApplicationController
 
   before_action :login_required, only: [:getUrl, :update_care ]
   before_action :work_owner, only: [:update_published]
-
+  before_action only: [:index, :newest, :favorite] do
+    set_page_info({title: "工作成果與作品列表", description: "每個人在工作上都有自已專精的領域，將你近期的工作成果展現給大家看，讓別人知道你擅長和拿手的是什麼，說不定他正需要你！"})
+  end
   def index
     #編輯選擇
     @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable} : nil
@@ -110,5 +112,6 @@ class WorksController < ApplicationController
       redirect_to works_path
     end
   end
+
 
 end

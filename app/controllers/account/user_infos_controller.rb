@@ -11,6 +11,7 @@ class Account::UserInfosController < ApplicationController
       never_edit_user_info
     end
     @works = (@user == current_user) ? @user.works.includes(:cares).order_by_new : @user.works.includes(:cares).is_published.order_by_new
+    set_page_info({title: @user_info.nickname, description: "#{@user_info.work_area} #{@user_info.skill_list} #{@user_info.work_content}", image: @user.avatar_link})
   end
 
   def edit_status
