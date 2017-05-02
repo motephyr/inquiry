@@ -42,6 +42,11 @@ class UserImageUploader < CarrierWave::Uploader::Base
   # store original file metadata
   process :store_metadata
 
+  version :circle_400 do
+    process :resize_to_fill => [400, 400]
+    process :store_metadata => "circle_400"
+  end
+
   version :circle_128 do
     process :resize_to_fill => [128, 128]
     process :store_metadata => "circle_128"
