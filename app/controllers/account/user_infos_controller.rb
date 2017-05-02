@@ -90,7 +90,7 @@ class Account::UserInfosController < ApplicationController
   private
   def user_info_params
 
-    sum = params.require(:user_info).map do |x, y|
+    state_list = params.require(:user_info).map do |x, y|
       if (y == "1" && (x == "teach" ||  x == "speak" ||  x == "labor" ||  x == "contract"))
         x
       elsif x == "category_id"
@@ -98,7 +98,10 @@ class Account::UserInfosController < ApplicationController
       end
     end.compact.join(',')
 
-    params.require(:user_info).permit(:user_id,:name, :work_content, :work_area, :typical_work, :teach, :speak, :labor, :contract, :category_id, :skill_tool, :skill_list).merge(state_list: sum)
+    skill_list = params.require(:user_info)[:skill_list].split(' ').compact.join(',')
+
+
+    params.require(:user_info).permit(:user_id,:name, :work_content, :work_area, :typical_work, :teach, :speak, :labor, :contract, :category_id, :skill_tool).merge(skill_list: skill_list, state_list: state_list)
   end
 
   def determine_layout

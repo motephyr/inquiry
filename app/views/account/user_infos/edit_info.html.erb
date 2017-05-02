@@ -7,8 +7,8 @@
       <p class="help-block">您所主要提供的作品類別，Conkwe會依照您所填的類別，在您新增作品的時候給予提示</p>
     </div>
     <div class="form-group">
-      <%= f.label '工作項目 (以逗號","分隔)' %><br />
-      <%= f.input :skill_list,label: false, :input_html => {value: f.object.skill_list.split(' ').join(',') || ''} %>
+      <%= f.label '工作項目 (如有多項可空白分隔)' %><br />
+      <%= f.input :skill_list,label: false, :input_html => {value: f.object.skill_list || ''} %>
       <p class="help-block">工作項目會顯示在您的個人頁面供業主參考，如不填則預設為您選擇的作品類別。</p>
     </div>
     <div class="form-group">
