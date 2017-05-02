@@ -8,20 +8,20 @@ class WorksController < ApplicationController
   def index
     #編輯選擇
     @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable} : nil
-    @works = Work.includes(:user, :cares).where.not(user: @unlike).is_published.is_featured.order_by_new
+    @works = Work.includes(:user, :cares).where.not(user: @unlike).is_published.is_featured.order_by_new.page(params[:page])
   end
 
   def newest
     #全部最新
     @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable} : nil
-    @works = Work.includes(:user, :cares).where.not(user: @unlike).is_published.order_by_new
+    @works = Work.includes(:user, :cares).where.not(user: @unlike).is_published.order_by_new.page(params[:page])
     # Work.includes(:user, :cares).from('users AS u').joins('INNER JOIN works AS w ON u.id = w.user_id').order('w.id DESC').select('w.*')
   end
 
   def favorite
     #照like數排序
     @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable} : nil
-    @works = Work.includes(:user, :cares).where.not(user: @unlike).is_published.order_by_favorite
+    @works = Work.includes(:user, :cares).where.not(user: @unlike).is_published.order_by_favorite.page(params[:page])
   end
 
 

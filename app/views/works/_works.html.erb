@@ -15,7 +15,11 @@
 
 <div class="row">
   <%= render partial: 'account/works/work_index', collection: @works, as: :w || '沒有資料哦！' %>
+
   <%= render 'common/modal'  %>
+</div>
+<div class="row">
+  <%= paginate @works %>
 </div>
 <%= javascript_include_tag "works_list" %>
 <% content_for :stylesheets do %>

@@ -43,7 +43,7 @@ class Account::UserInfosController < ApplicationController
 
   def search
     @q = UserInfo.ransack(params[:q])
-    @user_infos = @q.result(distinct: true).limit(10).map{|x| x if x.user.present? }.compact
+    @user_infos = @q.result(distinct: true).page(params[:page])
     if @user_infos.length == 0
       flash[:notice] = '您搜尋的內容找不到對應的工作者哦'
     else
@@ -53,7 +53,7 @@ class Account::UserInfosController < ApplicationController
 
   def tag
     if params[:tag]
-      @user_infos = UserInfo.tagged_with(params[:tag])
+      @user_infos = UserInfo.tagged_with(params[:tag]).page(params[:page])
       if @user_infos.blank?
         flash[:notice] = '尚無人新增此項目哦'
         redirect_back(fallback_location: root_path)

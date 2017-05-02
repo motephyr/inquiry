@@ -23,6 +23,9 @@
         <div class="clearfix"></div>
       <% end -%>
     </div>
+    <div class="row">
+      <%= paginate @user_infos %>
+    </div>
   </div>
 </div>
 <% content_for :stylesheets do -%>
