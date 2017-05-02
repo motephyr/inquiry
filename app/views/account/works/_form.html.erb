@@ -83,8 +83,9 @@
           </div>
         </div>
         <div role="tabpanel" class="tab-pane fade <%= 'in active' if @work.attach_content.present? %>" id="textcontent">
-          <p>發表文章</p>
+          <p>發表文章<%= link_to '預覽內容', '#', id: "previewCkeditor",class: 'btn btn-link' %></p>
           <%= f.cktext_area :attach_content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }%>
+          <%= render 'common/modal'  %>
         </div>
       </div>
     </div>
@@ -159,9 +160,16 @@
       margin-top: 20px;
     }
   </style>
+  <%= stylesheet_link_tag "works" %>
 <% end -%>
 <% content_for :javascripts do %>
   <script type="text/javascript">
+
+  $('#previewCkeditor').click(function(){
+    $("#myModal").modal()
+    $("#myModalLabel").text($('#work_subject').val());
+    $('.modal-body').html('<div class="ckeditor"><p class="text-right">建立於  ?/??</p>' + CKEDITOR.instances['work_attach_content'].getData() + '<p class="info"><span class="info-type"></span><i class="glyphicon glyphicon-eye-open"></i><span>??</span> <i class="glyphicon glyphicon-comment"></i><span>??</span> <a data-remote="true" rel="nofollow" data-method="post" href="#"><i class="glyphicon glyphicon-heart "></i></a> <a class="heart_count_link" href="#"><span class="heart_count">??</span></a></p><hr></div>')
+  });
 
   function onStepClick(o){
     $(o).parents(".stepwizard").find("button.btn-primary").removeClass("btn-primary").addClass("btn-default");
