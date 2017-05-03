@@ -1,12 +1,12 @@
 <% if current_user == w.user %>
-  <%= link_to (!w.is_published?) ? "設為公開發佈" : "設為草稿", update_published_work_path(w),class: 'btn btn-info', method: :post %>
-  <br>
-  <br>
+              <%= link_to update_published_work_path(w), method: :post,class: 'btn btn-info' do %>
+                <% if !w.is_published? %>
+                  <i class="glyphicon glyphicon-globe"></i>設為公開發佈
+                <% else %>
+                  <i class="glyphicon glyphicon-inbox"></i>設為草稿
+                <% end -%>
+              <% end -%>
   <%= link_to '編輯', edit_account_user_info_work_path(w.user, w),class: 'btn btn-success' %>
-  <br>
-  <br>
-  <%= link_to '刪除', account_user_info_work_path(w.user, w),class: 'btn btn-danger', method: :delete, data: { confirm: '確定要刪除嗎？' } %>
-  <br>
-  <br>
+  <%= link_to '刪除', account_user_info_work_path(w.user, w),class: 'btn btn-danger pull-right', method: :delete, data: { confirm: '確定要刪除嗎？' } %>
 <% end %>
-<%= link_to (w.is_featured?) ? 'unfeature it' : 'feature it', update_featured_work_path(@work), class: 'btn btn-primary' if current_user.try(:is_admin?) %>
+<%= link_to (w.is_featured?) ? 'unfeature it' : 'feature it', update_featured_work_path(@work), class: 'btn btn-primary pull-right' if current_user.try(:is_admin?) %>

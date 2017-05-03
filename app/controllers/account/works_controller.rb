@@ -27,7 +27,7 @@ class Account::WorksController < ApplicationController
     @work = current_user.works.build(work_params)
     never_edit_info
     if @work.save
-      flash[:notice] = '如要公開作品，請記得在右邊功能列設為公開發佈哦！'
+      flash[:error] = '如要公開作品，請記得設為公開發佈哦！'
       redirect_to account_user_info_work_path(@work.user, @work)
     else
       render :new
@@ -44,7 +44,7 @@ class Account::WorksController < ApplicationController
     @work = current_user.works.friendly.find_by_slug!(params[:id])
     never_edit_info
     if @work.update(work_params)
-      flash[:notice] = '如要公開作品，請記得在右邊功能列設為公開發佈哦！'
+      flash[:error] = '如要公開作品，請記得設為公開發佈哦！'
       redirect_to account_user_info_work_path(@work.user, @work)
     else
       render :edit

@@ -46,8 +46,9 @@
       <!-- Tab panes -->
       <div class="tab-content" style="padding:0.4em;">
         <div role="tabpanel" class="tab-pane fade <%= 'in active' if @work.attach_avatar.present? || (@work.attach_url.blank? &&  @work.attach_content.blank?) %>" id="upload">
-          <p>上傳代表圖片</p>
+          <p>上傳代表圖片<span class="help-block">(解析度建議480x480px以上)</span></p>
           <%= f.file_field :attach_avatar %>
+          <hr>
         </div>
         <div role="tabpanel" class="tab-pane fade <%= 'in active' if @work.attach_url.present? %>" id="external">
           <p>外部連結</p>
@@ -81,11 +82,13 @@
               </div>
             </template>
           </div>
+          <hr>
         </div>
         <div role="tabpanel" class="tab-pane fade <%= 'in active' if @work.attach_content.present? %>" id="textcontent">
           <p>發表文章<%= link_to '預覽內容', '#', id: "previewCkeditor",class: 'btn btn-link' %></p>
           <%= f.cktext_area :attach_content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }%>
           <%= render 'common/modal'  %>
+          <hr>
         </div>
       </div>
     </div>
