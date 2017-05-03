@@ -24,10 +24,10 @@ CKEDITOR.editorConfig = function( config )
   config.filebrowserFlashUploadUrl = "/ckeditor/attachment_files";
 
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed in the Link tab of Image dialog.
-  config.filebrowserImageBrowseLinkUrl = "/ckeditor/pictures";
+  config.filebrowserImageBrowseLinkUrl = "";
 
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed in the Image dialog.
-  config.filebrowserImageBrowseUrl = "/ckeditor/pictures";
+  config.filebrowserImageBrowseUrl = "";
 
   // The location of a script that handles file uploads in the Image dialog.
   config.filebrowserImageUploadUrl = "/ckeditor/pictures";
