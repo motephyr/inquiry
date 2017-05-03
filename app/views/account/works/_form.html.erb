@@ -203,9 +203,12 @@
   });
 
 $("form").on("keypress", function (e) {
-    if (e.keyCode == 13) {
-        return false;
+  if(e.target.tagName != 'TEXTAREA') {
+    if(e.keyCode == 13) {
+      e.preventDefault();
+      return false;
     }
+  }
 });
 
   $('#work_attach_url').bind('paste', function(e){
