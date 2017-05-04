@@ -11,7 +11,6 @@ class Account::UserInfosController < ApplicationController
       never_edit_user_info
     end
     @works = (@user == current_user) ? @user.works.includes(:cares).order_by_new : @user.works.includes(:cares).is_published.order_by_new
-    set_page_info({title: @user_info.nickname, description: "#{@user_info.work_area} #{@user_info.skill_list} #{@user_info.work_content}", image: @user.avatar_link(size: 400)})
   end
 
   def edit_status
@@ -73,7 +72,9 @@ class Account::UserInfosController < ApplicationController
   def never_edit_user_info
     @user = User.friendly.find_by_slug!(params[:id])
     @user_info = @user.user_info
-    unless @user_info
+    if @user_info.present?
+      set_page_info({title: @user_info.nickname, description: "#{@user_info.work_area} #{@user_info.skill_list} #{@user_info.work_content}", image: @user.avatar_link(size: 400)})
+    else
       flash[:notice] = '此使用者尚未編輯個人資料'
       redirect_back(fallback_location: root_path)
     end
@@ -82,7 +83,9 @@ class Account::UserInfosController < ApplicationController
   def never_edit_my_info
     @user = User.find(current_user.id)
     @user_info = @user.user_info
-    unless @user_info
+    if @user_info.present?
+      set_page_info({title: @user_info.nickname, description: "#{@user_info.work_area} #{@user_info.skill_list} #{@user_info.work_content}", image: @user.avatar_link(size: 400)})
+    else
       flash[:notice] = '您尚未編輯個人資料'
       redirect_to edit_info_account_user_infos_path
     end
