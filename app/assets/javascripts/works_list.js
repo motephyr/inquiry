@@ -15,7 +15,3 @@ function onHeartClick(o){
   $(document).on('click', 'a.item-wrap[data-remote=true]', function(e) {
     history.pushState({}, '', $(this).attr('href')+ '.html');
   });
-
-  $(window).on('popstate', function () {
-    location.reload();
-  });
