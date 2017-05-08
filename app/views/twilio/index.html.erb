@@ -1,0 +1,42 @@
+<form id="contactform" role="form" action="#" method="POST">
+  <div class="form-group">
+    <h3>Call Sales</h3>
+    <p class="help-block">
+      Are you interested in impressing your friends and confounding your enemies? Enter your phone number below, and our team will contact you right away.
+    </p>
+  </div>
+  <label>Sales team number</label>
+  <div class="form-group">
+    <input class="form-control" type="text" name="salesPhone" id="salesPhone"
+                        placeholder="886911745552">
+  </div>
+  <button type="submit" class="btn btn-default">Contact Sales</button>
+</form>
+<% content_for :javascripts %>
+<script>
+$(function() {
+    var $form = $('#contactform'),
+        $submit = $('#contactform input[type=submit]');
+
+    // Intercept form submission
+    $form.on('submit', function(e) {
+        // Prevent form submission and repeat clicks
+        e.preventDefault();
+        $submit.attr('disabled', 'disabled');
+
+        // Submit the form via ajax
+        $.ajax({
+            url:'/twilio/call',
+            method:'POST',
+            data: $form.serialize()
+        }).done(function(data) {
+            alert(data.message);
+        }).fail(function() {
+            alert('There was a problem calling you - please try again later.');
+        }).always(function() {
+            $submit.removeAttr('disabled');
+        });
+
+    });
+});
+</script>

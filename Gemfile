@@ -54,6 +54,7 @@ gem 'ransack'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'kaminari'
+gem 'twilio-ruby'
 
 
 
