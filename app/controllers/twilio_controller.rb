@@ -32,7 +32,7 @@ class TwilioController < ApplicationController
       @call = @client.calls.create(
         :from => @@twilio_number,
         :to => params[:salesPhone],
-        :url => "#{@@api_host}/connect/#{params[:salesPhone]}" # Fetch instructions from this URL when the call connects
+        :url => "#{@@api_host}/twilio/connect/#{params[:salesPhone]}" # Fetch instructions from this URL when the call connects
       )
 
       # Let's respond to the ajax call with some positive reinforcement
@@ -54,7 +54,6 @@ class TwilioController < ApplicationController
     # Our response to this request will be an XML document in the "TwiML"
     # format. Our Ruby library provides a helper for generating one
     # of these documents
-    p "AAA"
     response = Twilio::TwiML::Response.new do |r|
       r.Say 'Thanks for contacting our sales department. Our ' +
         'next available representative will take your call.', :voice => 'alice'

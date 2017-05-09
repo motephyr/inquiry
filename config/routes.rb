@@ -71,6 +71,6 @@ Rails.application.routes.draw do
 
   get 'twilio', to: 'twilio#index'
   post 'twilio/call', to: 'twilio#call'
-
+  post 'twilio/connect', to: 'twilio#connect'
 
 end
