@@ -6,6 +6,7 @@ class TwilioController < ApplicationController
   before_action :authenticate_twilio_request, :only => [
     :connect
   ]
+  skip_before_action :verify_authenticity_token, :only => [ :voice ]
 
   # Define our Twilio credentials as instance variables for later use
   @@twilio_sid = Setting.TWILIO_ACCOUNT_SID
@@ -60,6 +61,40 @@ class TwilioController < ApplicationController
       r.Dial params[:id]
     end
     render text: response.text
+  end
+
+  def token
+    # Create a random username for the client
+    identity = current_user.id.to_s
+
+    capability = Twilio::Util::Capability.new @@twilio_sid, @@twilio_token
+    # Create an application sid at 
+    # twilio.com/console/phone-numbers/dev-tools/twiml-apps and use it here
+    capability.allow_client_outgoing Setting.TWILIO_TWIML_APP_SID
+    capability.allow_client_incoming identity
+    token = capability.generate
+    
+    # Generate the token and send to client
+    render json: { :identity => identity, :token => token}
+  end
+
+  def voice
+    twiml = Twilio::TwiML::Response.new do |r|
+      if params['To'] and params['To'] != ''
+        r.Dial callerId: @@twilio_number do |d|
+          # wrap the phone number or client name in the appropriate TwiML verb
+          # by checking if the number given has only digits and format symbols
+          if params['To'] =~ /^[\d\+\-\(\) ]+$/
+            d.Number params['To']
+          else
+            d.Client params['To']
+          end
+        end
+      else
+        r.Say "Thanks for calling!"
+      end
+    end
+    render xml: twiml.text
   end
 
 

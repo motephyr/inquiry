@@ -70,7 +70,7 @@ Rails.application.routes.draw do
   end
 
   get 'twilio', to: 'twilio#index'
-  post 'twilio/call', to: 'twilio#call'
-  post 'twilio/connect', to: 'twilio#connect'
+  get 'twilio/token', to: 'twilio#token'
+  post 'twilio/voice', to: 'twilio#voice'
 
 end
