@@ -78,7 +78,7 @@ module ApplicationHelper
     when "video"
       content_tag :video, '', controls: "controls", src: "#{url}", width: "100%", height: "100%"
     when "youtube"
-      content_tag :iframe, '', src: "https://www.youtube.com/embed/#{obj[:match_object][1]}?rel=0", width: '100%', height:'100%', frameborder: '0'
+      content_tag :iframe, '', src: "https://www.youtube.com/embed/#{obj[:match_object][1]}?rel=0&enablejsapi=1", width: '100%', height:'100%', frameborder: '0'
     else
       content_tag :div, :data => { :remote_url => url }, class: "remote-preview" do
         content_tag(:div,'', style: 'background-image:url(' + work.remote_image_url + ')', class: 'preview-image')  +
