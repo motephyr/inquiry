@@ -19,6 +19,14 @@ class TwilioController < ApplicationController
     render 'index'
   end
 
+  def sip
+    render 'sip'
+  end
+
+  def sipr
+    render 'sipr'
+  end
+
   # Handle a POST from our web form and connect a call via REST API
   def call
     # contact = Contact.new
