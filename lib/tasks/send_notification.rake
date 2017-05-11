@@ -8,7 +8,7 @@ namespace :send_notification do
       activities = PublicActivity::Activity.includes(:owner, :trackable).where(recipient_type: "User", recipient_id: user.id).where("created_at >= ?", 3.days.ago).order("created_at desc").limit(10)
       if activities.present?
         content = ApplicationController.renderer.render(activities)
-        AcitvityMailer.unlogin_notification(user, content)
+        AcitvityMailer.unlogin_notification(user, content).deliver_later!
       end
     end
   end
