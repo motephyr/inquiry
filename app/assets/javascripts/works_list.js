@@ -55,7 +55,7 @@ window.addEventListener('hashchange',function(){
 
 window.addEventListener('load', function(){
   var hash = window.location.hash.substr(1);
-  if(hash){
+  if(hash && hashReg.test(hash)){
     var target = document.querySelector('a.item-wrap[href="' + hash + '"]');
     if(target) $(target).trigger('click');
     $("#myModal").modal();
