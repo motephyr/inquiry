@@ -1,3 +1,4 @@
+$('#notice_size').html('');
 <% if @activities.present? %>
 <% cache [@activities] do %>
 $('#notify_result').html('<%= j render(@activities) %>')

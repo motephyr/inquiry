@@ -9,11 +9,14 @@ class ActivityBroadcastJob < ApplicationJob
       end
 
       if activity.key == 'appraisal_message.create' || activity.key == 'appraisal.update'
-        users = Appraisal.includes(cares: :user).find(activity.task_id).cares.map {|x| x.user}.uniq.select{|x| x.id != activity.owner_id}
+        appraisal = Appraisal.includes(cares: :user).find(activity.task_id)
+        users = appraisal.cares.map {|x| x.user}.push(appraisal.user).uniq.select{|x| x.id != activity.owner_id}
         send_online_user_message_and_set_recipient(activity, users)
       elsif activity.key == 'work_message.create'
-        users = Work.includes(work_messages: :user).find(activity.task_id).work_messages.map {|x| x.user}.uniq.select{|x| x.id != activity.owner_id}
+        work = Work.includes(work_messages: :user).find(activity.task_id)
+        users = work.work_messages.map {|x| x.user}.push(work.user).uniq.select{|x| x.id != activity.owner_id}
         send_online_user_message_and_set_recipient(activity, users)
+        
       elsif activity.key == 'care.create'
         care = Care.find_by_id(activity.task_id)
         if care.present? && care.careable_type == 'Work'

@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 #
-every 3.day do
+every 1.day do
   rake "send_notification:task"
 end
