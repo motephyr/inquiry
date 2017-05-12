@@ -1,13 +1,3 @@
-$("#myModal").modal()
+// $("#myModal").modal()
 $("#myModalLabel").text("<%= @work.subject %>");
 $('.modal-body').html("<%= j(render :partial => 'show') %>")
-
-$("#myModal").on( 'hidden.bs.modal', function(){
-	var ck = this.querySelector('.ckeditor');
-	var frame = ck.querySelector('iframe'),
-		video = ck.querySelector('video'),
-		audio = ck.querySelector('audio');
-	if(frame) frame.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
-	if(video) video.pause();
-	if(audio) audio.pause();
-});
