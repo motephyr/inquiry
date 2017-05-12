@@ -1,39 +1,3 @@
-<div id="content-video-audio">
-  <h2>In-browser Video Chat is Now a Breeze</h2>
-  <h4 class="intro">Here's a demo. Start a video chat between Alice and Bob.</h4>
-  <div class="two-column-boxes">
-    <div class="column-box">
-      <div class="demo-window">
-        <div class="demo-view">
-          <video id="video-of-bob" muted="muted"></video>
-        </div>
-        <div class="left">
-          <h4>Alice's View</h4>
-          <h5>Demo user one</h5>
-        </div>
-        <button id="alice-video-button" class="right" type="button">video</button>
-        <div class="clearfix"></div>
-      </div>
-    </div>
-    <div class="column-box">
-      <div class="demo-window">
-        <div class="demo-view">
-          <video id="video-of-alice" muted="muted"></video>
-        </div>
-        <div class="left">
-          <h4>Bob's View</h4>
-          <h5>Demo user two</h5>
-        </div>
-        <button id="bob-video-button" class="right" type="button">video</button>
-        <div class="clearfix"></div>
-      </div>
-    </div>
-    <div class="clearfix"></div>
-  </div>
-</div>
-<% content_for :javascripts do %>
-  <%= javascript_include_tag "sip-0.7.7.min" %>
-  <script>
     var URL = window.URL || window.webkitURL;
     
     function getCookie(key) {
@@ -67,12 +31,7 @@
         document.cookie = ('onsipToken=' + token + ';'
                            + 'expires=' + d.toUTCString() + ';');
     }
-    var domain = 'gossimio.onsip.com';
-    var aliceURI      = 'alice.' + window.token + '@' + domain;
-    var aliceName     = 'Alice';
-    
-    var bobURI        = 'bob.XyVY9Gqhk9ejtezb2vI0HAfDPke53pLO@' + domain;
-    var bobName       = 'Bob';
+
     
     // Function: mediaOptions
     //   A shortcut function to construct the media options for an SIP session.
@@ -246,28 +205,3 @@
         }
     }
     })();
-
-  </script>
-<% end %>
-<% content_for :stylesheets do %>
-  <style>
-    .file-chooser-hack {
-        position: relative;
-        display: inline-block;
-        height: auto;
-        width: auto;
-    }
-    .file-chooser-hack > input.file-choose-button {
-        position: absolute;
-        left: 0;
-        top: 0;
-        opacity: 0;
-    }
-    .file-chooser-hack:hover > button.file-choose-button.dark-gray-bg {
-        background-color: rgb(85,91,93);
-    }
-    .file-chooser-hack:hover > button.file-choose-button.dark-gray-bg {
-        background-color: rgb(85,91,93);
-    }
-  </style>
-<% end %>

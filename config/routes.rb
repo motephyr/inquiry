@@ -49,6 +49,9 @@ Rails.application.routes.draw do
         get 'search'
         patch 'update_info'
       end
+      member do
+        get 'sip'
+      end
     end
     resources :user_surveys
     resources :appraisals do
@@ -72,6 +75,4 @@ Rails.application.routes.draw do
   get 'twilio', to: 'twilio#index'
   get 'twilio/token', to: 'twilio#token'
   post 'twilio/voice', to: 'twilio#voice'
-  get 'twilio/sip', to: 'twilio#sip'
-  get 'twilio/sipr', to: 'twilio#sipr'
 end

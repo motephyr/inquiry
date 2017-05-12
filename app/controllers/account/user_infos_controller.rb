@@ -3,6 +3,9 @@ class Account::UserInfosController < ApplicationController
   before_action :login_required, except: [:show, :search, :tag]
   layout :determine_layout
 
+  def sip
+    @user = User.friendly.find_by_slug!(params[:id])
+  end
 
   def show
     if current_user == User.friendly.find_by_slug!(params[:id])
