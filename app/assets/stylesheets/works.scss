@@ -26,10 +26,18 @@
 }
 
 .work-item .overview, .work-item .subject{
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis;	
+}
+
+.work-item .subject{
+  -webkit-line-clamp: 1;
+  white-space: nowrap;
+}
+
+.work-item .overview{
+  -webkit-line-clamp: 3;
 }
 
 .work-item .overview{

@@ -1,7 +1,7 @@
 <div class="col-lg-3 col-md-4 col-sm-6">
   <div class="work-item">
     <%= link_to user_info_work_path(w.user, w), class: "item-wrap", remote: true do %>
-      <p class="subject"> <%= truncate(w.subject,length: 13) %> </p>
+      <p class="subject"> <%= w.subject %> </p>
       <div class="overview">
         <%= work_square(w) %>
       </div>
