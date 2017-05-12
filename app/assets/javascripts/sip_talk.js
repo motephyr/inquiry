@@ -116,7 +116,7 @@
         userAgent.on('invite', function (incomingSession) {
             onCall = true;
             session = incomingSession;
-            var options = mediaOptions(false, true, remoteRender, null);
+            var options = mediaOptions(true, true, remoteRender, null);
             button.firstChild.nodeValue = 'hang up';
             remoteRender.style.visibility = 'visible';
             session.accept(options);
@@ -144,7 +144,7 @@
                 button.firstChild.nodeValue = 'hang up';
                 remoteRender.style.visibility = 'visible';
                 session = makeCall(userAgent, target,
-                                   false, true,
+                                   true, true,
                                    remoteRender, null);
                 session.on('bye', function () {
                     onCall = false;
