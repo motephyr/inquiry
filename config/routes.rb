@@ -5,12 +5,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'works#index'
 
-  resources :welcome do
-    collection do
-      get 'demo'
-    end
-  end
-
   resources :users, only: [] do
     collection do
       get 'edit_password'
@@ -55,6 +49,9 @@ Rails.application.routes.draw do
         get 'search'
         patch 'update_info'
       end
+      member do
+        get 'sip'
+      end
     end
     resources :user_surveys
     resources :appraisals do
@@ -69,4 +66,13 @@ Rails.application.routes.draw do
   resources :appraisal_messages
   resources :appraisal_prices
 
+  resources :welcome do
+    collection do
+      get 'demo'
+    end
+  end
+
+  # get 'twilio', to: 'twilio#index'
+  # get 'twilio/token', to: 'twilio#token'
+  # post 'twilio/voice', to: 'twilio#voice'
 end

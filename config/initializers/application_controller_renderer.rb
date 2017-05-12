@@ -2,5 +2,5 @@
 
 ApplicationController.renderer.defaults.merge!(
   http_host: Setting.domain_name,
-  https: false
+  https: true
 )

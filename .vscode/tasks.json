@@ -1,0 +1,18 @@
+{
+    "version": "0.1.0",
+    "command": "sh",
+    "args": ["-c"],
+    "isShellCommand": false,    
+    "showOutput": "never",
+    "suppressTaskName": true,
+    "tasks": [        
+        {
+            "taskName": "ruby",
+            "args": ["rbeautify ${file}"]
+        },
+        {
+            "taskName": "erb",
+            "args": ["htmlbeautifier ${file}"]
+        }
+    ]   
+}
