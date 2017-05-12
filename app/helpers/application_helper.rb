@@ -179,5 +179,12 @@ module ApplicationHelper
     end
   end
 
+  def notice_size
+     size = PublicActivity::Activity.where(recipient_type: "User", recipient_id: current_user.id).where("created_at > ?", current_user.noticed_at).size 
+     if size > 0
+      "<span class='badge'>#{(size > 10) ? 10 : size}</span>".html_safe
+     end
+  end
+
 end
 
