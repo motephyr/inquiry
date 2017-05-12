@@ -4,6 +4,6 @@ class AcitvityMailer < ApplicationMailer
   def unlogin_notification(user,content)
     @user = user
     @content  = content
-    roadie_mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+    roadie_mail(to: @user.email, subject: 'Conkwe 動態')
   end
 end

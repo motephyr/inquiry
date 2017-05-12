@@ -31,7 +31,6 @@
             <% end -%>
             <%= render partial: 'account/works/work', collection: @works, as: :w || '沒有資料哦！'  %>
             <%= render 'common/modal'  %>
-            <%= javascript_include_tag "works_list" %>
           </div>
         </div>
       </div>
@@ -49,7 +48,13 @@
 </div>
 <% content_for :stylesheets do %>
   <%= stylesheet_link_tag "works" %>
+  <% if current_user == @user_info.user %>
+  <style type="text/css">
+    .work-item .subject{ width: 90% !important; }
+  </style>
+  <% end -%>
 <% end -%>
 <% content_for :javascripts do %>
+  <%= javascript_include_tag "works_list" %>
   <%= javascript_include_tag "account/user_infos" -%>
 <% end -%>
