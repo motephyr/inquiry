@@ -56,11 +56,15 @@ module Careable
 
   # increments the right classifiable counter for the right taxonomy
   def increment_counter
-    self.class.increment_counter("cares_count", self.id)
+    if self.class.column_names.include? ("cares_count")
+      self.class.increment_counter("cares_count", self.id)
+    end
   end
 
   # decrements the right classifiable counter for the right taxonomy
   def decrement_counter
-    self.class.decrement_counter("cares_count", self.id)
+    if self.class.column_names.include? ("cares_count")
+      self.class.decrement_counter("cares_count", self.id)
+    end
   end
 end
