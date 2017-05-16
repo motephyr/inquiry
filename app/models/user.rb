@@ -5,7 +5,7 @@ class User < ApplicationRecord
   friendly_id :name, use: :slugged
 
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable,
+    :recoverable, :rememberable, :trackable, :validatable, :confirmable,
     :omniauthable, :omniauth_providers => [:facebook]
   acts_as_paranoid
   acts_as_votable
