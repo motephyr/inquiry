@@ -18,3 +18,9 @@
       </div>
     <% end %>
   </div>
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "works_list" %>
+<% end -%>
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "works" %>
+<% end -%>

@@ -30,7 +30,7 @@
     <% @appraisals.each do |a| %>
       <!-- link_to appraisal_path(a) -->
       <!-- link_to edit_appraisal_path(a) -->
-      <div class="col-sm-offset-2 col-sm-8">
+      <div class="col-sm-4">
         <div onclick="location.href='<%= appraisal_path(a) %>'" class="appraisal-item">
           <h4> <%= a.title %> </h4>
           <p class="description"><%= a.description %></p>
