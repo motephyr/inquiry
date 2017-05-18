@@ -59,7 +59,7 @@ module ApplicationHelper
     elsif (video_match = /\.(mp4|webm|ogg)$/i.match(url)) and video_match.present?
       # video matches
       { type: "video", match_object: video_match }
-    elsif (youtube_match = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(\S*)?$/i.match(url)) and youtube_match.present?
+    elsif (youtube_match = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?(.+)&v=))((\w|-){11})(\S*)?$/i.match(url)) and youtube_match.present?
       # youtube matches
       { type: "youtube", match_object: youtube_match }
     else
@@ -78,7 +78,16 @@ module ApplicationHelper
     when "video"
       content_tag :video, '', controls: "controls", src: "#{url}", width: "100%", height: "100%"
     when "youtube"
-      content_tag :iframe, '', src: "https://www.youtube.com/embed/#{obj[:match_object][1]}?rel=0&enablejsapi=1", width: '100%', height:'100%', frameborder: '0'
+      matches = obj[:match_object]
+      queryobj = {}
+      queryobj["rel"] = 0
+      if matches[1] != nil
+        overrides = Rack::Utils.parse_query(matches[1])
+        queryobj = queryobj.merge(overrides)
+      end
+      queryobj["enablejsapi"] = 1;
+      querystr = Rack::Utils.build_query(queryobj)
+      content_tag :iframe, '', src: "https://www.youtube.com/embed/#{matches[2]}?#{querystr}#{matches[4]}", width: '100%', height:'100%', frameborder: '0'
     else
       content_tag :div, :data => { :remote_url => url }, class: "remote-preview" do
         content_tag(:div,'', style: 'background-image:url(' + work.remote_image_url + ')', class: 'preview-image')  +
