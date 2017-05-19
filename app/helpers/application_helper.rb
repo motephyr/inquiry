@@ -92,6 +92,11 @@ module ApplicationHelper
         end
       end
       queryobj["enablejsapi"] = 1;
+      if queryobj["t"].present? 
+        timeRe = /((?<min>\d+)[m])?((?<sec>\d+)[s])?/
+        time = queryobj["t"].scan(timeRe)[0]
+        queryobj["start"] = (time[0] ? time[0].to_i : 0) * 60 + (time[1] ? time[1].to_i : 0) 
+      end
       querystr = Rack::Utils.build_query(queryobj)
       content_tag :iframe, '', src: "https://www.youtube.com/embed/#{matches[2]}?#{querystr}#{hashes}", width: '100%', height:'100%', frameborder: '0'
     else
