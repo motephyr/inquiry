@@ -2,8 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.well p, .well h4{
+.well h4{
 	margin-bottom: 0px;
+}
+.well p{
+	margin-bottom: 10px;
 }
 .well ol,.well ul{
 	padding-left: 30px;
@@ -17,7 +20,13 @@
 .well ul{
 	list-style: lower-alpha outside;
 }
+.well ul > li{
+	margin-bottom: 10px;
+}
+.well ul ol{
+	list-style: upper-roman outside;
+}
 p.highlight{
-	font-size: 1.2em;
+	font-size: 1.1em;
 	font-weight: bold;
 }
