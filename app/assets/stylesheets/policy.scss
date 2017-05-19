@@ -1,0 +1,23 @@
+// Place all the styles related to the works controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.well p, .well h4{
+	margin-bottom: 0px;
+}
+.well ol,.well ul{
+	padding-left: 30px;
+}
+.well ol{
+	list-style: decimal outside;
+}
+.well ol > li{
+	margin-bottom: 10px;
+}
+.well ul{
+	list-style: lower-alpha outside;
+}
+p.highlight{
+	font-size: 1.2em;
+	font-weight: bold;
+}

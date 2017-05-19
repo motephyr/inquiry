@@ -1,24 +1,6 @@
-<style type="text/css">
-  .well p, .well h4{
-    margin-bottom: 0px;
-  }
-  .well ol,.well ul{
-  	padding-left: 30px;
-  }
-  .well ol{
-  	list-style: decimal outside;
-  }
-  .well ol > li{
-  	margin-bottom: 10px;
-  }
-  .well ul{
-  	list-style: lower-alpha outside;
-  }
-</style>
-
 <h3>隱私權政策</h3>
 <div class="well">
-<p style="font-size: 1.1em;"><strong>本隱私權與個人資料保護政策僅適用於台灣地區。</strong></p><br/>
+<p class="highlight">本隱私權與個人資料保護政策僅適用於台灣地區。</p><br/>
 <p>嘎幸艾歐有限公司（ Conkwe 自由工作者平台 服務提供者，以下稱「本平台」）非常重視會員的個人隱私，且遵循保護隱私權及個人資料之相關法令規定。以下是本平台的隱私權與個人資料保護政策（以下稱「本政策」），將說明本平台會收集哪些個人資料與如何使用這些資料，並說明其他與您的隱私相關的重要事項。</p><br/>
 <h4>一、個人資料的取得</h4><br/>
 <ol>
@@ -73,3 +55,6 @@
 	<li><p>如果您對本平台的隱私權或個人資料保護政策有任何問題，請聯絡 <a href="mailto:service@support.conkwe.com">service@support.conkwe.com</a>。</p></li>
 </ol>
 </div>
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "policy" %>
+<% end -%>
