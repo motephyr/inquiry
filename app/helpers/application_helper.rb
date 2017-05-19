@@ -82,21 +82,15 @@ module ApplicationHelper
       queryobj = {}
       queryobj["rel"] = 0
       hashes = ""
-      if matches[1] != nil
-        overrides = Rack::Utils.parse_query(matches[1])
-        queryobj = queryobj.merge(overrides)
-      end
+      overrides = Rack::Utils.parse_query(URI.parse(matches[0]).query)
+      overrides.delete("v")
+      queryobj = queryobj.merge(overrides)
       if matches[4] != nil
         splits = matches[4].split('#')
-        if splits.length > 0
-          overrides = Rack::Utils.parse_query(splits[0])
-          queryobj = queryobj.merge(overrides)
-        end
         if splits.length > 1
           hashes += "#" + splits[1]
         end
       end
-
       queryobj["enablejsapi"] = 1;
       querystr = Rack::Utils.build_query(queryobj)
       content_tag :iframe, '', src: "https://www.youtube.com/embed/#{matches[2]}?#{querystr}#{hashes}", width: '100%', height:'100%', frameborder: '0'
