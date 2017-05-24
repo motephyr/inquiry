@@ -30,25 +30,27 @@
     <% @appraisals.each do |a| %>
       <!-- link_to appraisal_path(a) -->
       <!-- link_to edit_appraisal_path(a) -->
-      <div class="col-sm-4">
+      <div class="col-sm-offset-2 col-sm-8">
         <div onclick="location.href='<%= appraisal_path(a) %>'" class="appraisal-item">
           <h4> <%= a.title %> </h4>
           <p class="description"><%= a.description %></p>
-          <p class="category">
-            <% if a.category.parent_category.present? %>
-              <%= a.category.parent_category.try(:title) %> -
-        <% end %>
-            <%= a.category.title %>
-          </p>
-          <p class="info">
-            <span class="info-number"><%= a.appraisal_messages.size %></span>
-            <span> 留言</span>
-            <span class="info-number"><%= a.appraisal_prices.size %></span>
-            <span> 估價</span>
-            <span> 建立於</span>
-            <span class="info-number"><%= date_description(a.created_at) %></span>
-
-          </p>
+          <div>
+            <p class="category" style="display:inline">
+              <% if a.category.parent_category.present? %>
+                <%= a.category.parent_category.try(:title) %> -
+              <% end %>
+              <%= a.category.title %>
+            </p>
+            <p class="info" style="display:inline;padding-left:10px;">
+              <span class="info-number"><%= a.appraisal_messages.size %></span>
+              <span> 留言</span>
+              <span class="info-number"><%= a.appraisal_prices.size %></span>
+              <span> 估價</span>
+              <span> 建立於</span>
+              <span class="info-number"><%= date_description(a.created_at) %></span>
+            </p>
+          </div>
+          <br>
         </div>
       </div>
     <% end %>
