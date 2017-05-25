@@ -44,7 +44,9 @@ class ApplicationController < ActionController::Base
 
   def store_location
     # store last url as long as it isn't a /users path
-    session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
+    if request.fullpath != '/'
+      session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
+    end
   end
 
   def set_page_info(object = nil)
