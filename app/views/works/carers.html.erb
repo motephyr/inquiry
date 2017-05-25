@@ -1,5 +1,5 @@
 <div class="row">
-<%= render 'account/works/work', w: @work   %>
+  <%= render 'account/works/work', w: @work   %>
 </div>
 <h2>Who like this?</h2>
 <hr>
@@ -7,25 +7,29 @@
   <div class="container">
     <div class="row">
       <% @work.cares.each do |c| %>
-      <% user_info = c.user.user_info  %>
-        <div class='col-sm-3 col-md-3'>
-          <%= link_to user_info_path(user_info.user), class: "about-me-link" do %>
-            <div class="my-pic text-center wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
-              <%= tag :img, src: user_info.user.avatar_link(size: 128), alt: 'my profile' %>
-              <br/>
-              <br/>
-              <p><strong><%= user_info.nickname %></strong></p>
-            </div>
-          <% end -%>
-        </div>
-        <div class='col-sm-9 col-md-9'>
-          <hr>
-          <div class="introduction wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
-            <p class="introduce">工作內容</p>
-            <p class="intro"><%= simple_format user_info.work_content %></p>
+        <% if c.user.user_info.present? %>
+          <% user_info = c.user.user_info  %>
+        <% else %>
+          <% user_info = c %>
+        <% end %>
+          <div class='col-sm-3 col-md-3'>
+            <%= link_to user_info_path(user_info.user), class: "about-me-link" do %>
+              <div class="my-pic text-center wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
+                <%= tag :img, src: user_info.user.avatar_link(size: 128), alt: 'my profile' %>
+                <br/>
+                <br/>
+                <p><strong><%= user_info.try(:nickname) || user_info.user.nickname %></strong></p>
+              </div>
+            <% end -%>
           </div>
-          <hr>
-        </div>
+          <div class='col-sm-9 col-md-9'>
+            <hr>
+            <div class="introduction wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
+              <p class="introduce">工作內容</p>
+              <p class="intro"><%= simple_format user_info.try(:work_content) || "(尚未填寫個人資料)" %></p>
+            </div>
+            <hr>
+          </div>
         <div class="clearfix"></div>
       <% end -%>
     </div>
