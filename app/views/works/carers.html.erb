@@ -29,8 +29,14 @@
         <div class="clearfix"></div>
       <% end -%>
     </div>
+    <div class="row">
+      <%= render 'common/modal'  %>
+    </div>
   </div>
 </div>
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "works_list" %>
+<% end -%>
 <% content_for :stylesheets do -%>
   <%= stylesheet_link_tag "works" %>
   <%= stylesheet_link_tag 'account/user_infos' -%>
