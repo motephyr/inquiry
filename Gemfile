@@ -48,6 +48,9 @@ gem 'babosa'
 # state_machine
 gem 'aasm'
 
+# sitemap_generator
+gem 'sitemap_generator'
+
 gem "link_thumbnailer"
 gem 'vuejs-rails'
 gem 'ransack'
