@@ -44,9 +44,11 @@ Rails.application.routes.draw do
     resources :user_infos do
       resources :works
       collection do
+        get 'edit_communication'
         get 'edit_status'
         get 'edit_info'
         get 'search'
+        patch 'update_communication'
         patch 'update_info'
       end
       member do

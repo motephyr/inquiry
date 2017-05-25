@@ -8,6 +8,7 @@
               <h3 class="panel-title">個人設定</h3>
             </div>
             <%= render_list :class => "nav nav-pills nav-stacked panel-body" do |div|
+              div << link_to("通訊方式", edit_communication_account_user_infos_path)
               div << link_to("修改個人狀態", edit_status_account_user_infos_path)
               div << link_to("修改個人頁", edit_info_account_user_infos_path)
               div << link_to("設定個人圖片與名稱","/users/edit" )
