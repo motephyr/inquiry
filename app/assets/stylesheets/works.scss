@@ -6,12 +6,11 @@
   /*border: 1px solid rgb(88,81,52);*/
   border-radius: 10px;
   box-shadow: -2px 2px 10px 2px rgba(169,172,158,0.7);
-  padding: 0.5em 1.3em;
+  padding: 0.5em 0;
 }
 
-.work-item h4{
+.work-item h2{
   font: 400 1.5em Roboto,Arial,Helvetica;
-  margin-bottom: 1em;
 }
 
 .work-item a.item-wrap{
@@ -34,13 +33,14 @@
 .work-item .subject{
   -webkit-line-clamp: 1;
   white-space: nowrap;
+	padding: 0 1.3em 0.3em 1.3em;
+	margin: 0;
+	display:block;
+	line-height:1.5 ;
 }
 
 .work-item .overview{
   -webkit-line-clamp: 3;
-}
-
-.work-item .overview{
 	height: 248px;
 	margin-bottom:0.7em;
 	position: relative;
@@ -65,9 +65,16 @@
 	top:-50%;
 }
 
+.ckeditor .remote-preview{
+	height: 280px;
+}
+
 @media (min-width: 768px) {
 	.work-item .overview{
 	  height: 222px;
+	}
+	.ckeditor .remote-preview{
+		height: 480px;
 	}
 }
 
@@ -117,9 +124,10 @@
   color:#bababa;
 }
 
-.work-item .info, .ckeditor .info{
+.work-item .info, .ckeditor .info, .work-item .overview .attach_content{
   text-align: right;
   margin-bottom: 0.4em;
+	padding: 0 1.3em;
   position: relative;
 }
 
@@ -141,7 +149,7 @@
 
 .work-item .info .info-type{
 	position: absolute;
-	left: 0px;
+	left: 1em;
 }
 
 .user-info-work .work-responsive{
@@ -173,10 +181,6 @@
 	height: 100%;
 }
 
-.ckeditor .remote-preview{
-	height: 280px;
-}
-
 .remote-preview .preview-image{
 	background-repeat: no-repeat;
 	background-size: 100%;
@@ -195,6 +199,7 @@ p.preview-description, p.preview-title{
 .remote-preview p.preview-description{
 	font-size: 0.8em;
 	-webkit-line-clamp: 3;
+	padding: 0 1.8em;
 }
 
 .remote-preview p.preview-title{
@@ -263,7 +268,7 @@ div.modal .work-inner-subject{
 	-moz-transition: 0.3s;
 	-o-transition: 0.3s;
 	transition: 0.3s;
-	height: 100%;
+	height: auto;
 	width: auto;
 	float:right;
 }

@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
 
   def set_page_info(object = nil)
     title = object.try(:[], :title)
-    description = object.try(:[], :description) || "作品 展示 人脈 媒合 咨詢 接案 教學，我們聚集那些願意透過工作得到自由的人們。促進討論，連結新的人脈。讓需要解決問題的人，找到能解決問題的人。讓有時間可以處理事情的人，幫忙沒時間處理事情的人。"
+    description = object.try(:[], :description) || "freelancer 作品 展示 人脈 媒合 咨詢 接案 教學，我們聚集那些願意透過工作得到自由的人們。促進討論，連結新的人脈。讓需要解決問題的人，找到能解決問題的人。讓有時間可以處理事情的人，幫忙沒時間處理事情的人。"
     image = object.try(:[], :image) || "#{Setting.domain}/ms-icon-310x310.png"
 
     set_page_title       title || '關於'

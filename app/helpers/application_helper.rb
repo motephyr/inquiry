@@ -142,7 +142,9 @@ module ApplicationHelper
     elsif w.attach_url.present?
       render_resolve_url(w)
     elsif w.attach_content.present?
-      sanitize w.attach_content
+      content_tag(:div,'', style: 'background-color:black;width:100%;height:100%;display: table;')  do
+        content_tag(:p, w.subject, style:'vertical-align: middle;display: table-cell;text-align:center;color:#dcdcdc;font-size:22px')
+      end
     else
     end
   end
