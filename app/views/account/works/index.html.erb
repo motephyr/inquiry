@@ -1,0 +1,17 @@
+  <div class="row">
+    <div class="col-md-offset-5 col-md-5 col-sm-offset-5 col-sm-5 col-xs-9 work-responsive">
+    <h4>喜愛的作品</h4>
+    </div>
+  </div>
+
+<div class="row">
+  <%= render partial: 'work_index', collection: @works, as: :w || '沒有資料哦！' %>
+
+  <%= render 'common/modal'  %>
+</div>
+
+<%= javascript_include_tag "works_list" %>
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "works" %>
+<% end -%>
+

@@ -54,6 +54,8 @@ Rails.application.routes.draw do
       end
     end
     resources :user_surveys
+
+    get 'works', to: 'works#index'
     resources :appraisals do
       member do
         post 'update_care'

@@ -1,5 +1,8 @@
 class Account::WorksController < ApplicationController
 
+  def index
+    @works = current_user.cares.where(careable_type: 'Work').includes(careable: [:user, :cares]).recent.map{|x| x.careable}
+  end
 
   def show
 
