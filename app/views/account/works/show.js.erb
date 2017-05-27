@@ -1,3 +1,14 @@
 // $("#myModal").modal()
 $("#myModalLabel").text("<%= @work.subject %>");
-$('.modal-body').html("<%= j(render :partial => 'show') %>")
+$('.modal-body').html("<%= j(render :partial => 'show') %>");
+<% if !@work.is_care_by?(current_user) %>
+    $('.modal-footer').html(' \
+    <%= link_to update_care_work_path(@work), method: :post, remote: true, onclick: "onHeartClick('work_info_#{@work.id}')", data: {dismiss: "modal" }, class: "btn btn-default" do %> \
+    Good Job! <i class="glyphicon glyphicon-heart text-danger"></i>\
+    <% end -%> \
+    <button type="button" class="btn btn-default" data-dismiss="modal">Feel Soso</button>');
+<% else %>
+$('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');
+<% end %>
+
+

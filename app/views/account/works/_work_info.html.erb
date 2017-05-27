@@ -1,10 +1,10 @@
-<p class="info">
+<p class="info" id="work_info_<%= w.id %>">
   <span class="info-type">
   <%= content_tag :i, '',class: 'glyphicon glyphicon-link' if w.attach_url.present? %>
   </span>
   <i class="glyphicon glyphicon-eye-open"></i><span><%= w.hits %></span>
   <i class="glyphicon glyphicon-comment"></i><span><%= w.work_messages_count %></span>
-  <%= link_to update_care_work_path(w), method: :post, remote: true, onclick: "onHeartClick(this)" do %>
+  <%= link_to update_care_work_path(w), method: :post, remote: true, onclick: "onHeartClick('work_info_#{w.id}')" do %>
     <i class="glyphicon glyphicon-heart <%= 'text-danger' if w.is_care_by?(current_user) %>"></i>
   <% end -%>
   <%= link_to carers_work_path(w), class: 'heart_count_link' do %>
