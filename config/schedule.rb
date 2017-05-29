@@ -19,6 +19,10 @@
 
 # Learn more: http://github.com/javan/whenever
 #
-every 1.day do
-  rake "send_notification:task"
+set :output, 'log/cron.log'
+
+if @environment == "production"
+  every 3.hours, :roles => [:app] do
+    rake "send_notification:unlogin"
+  end
 end

@@ -7,8 +7,9 @@ namespace :send_notification do
     users.each do |user|
       activities = PublicActivity::Activity.includes(:owner, :trackable).where(recipient_type: "User", recipient_id: user.id).where("created_at > ?", user.noticed_at).order("created_at desc")
       if activities.present?
+        puts "send_unlogin_notification: " + user.email
         content = ApplicationController.renderer.new.render(activities)
-        AcitvityMailer.unlogin_notification(user, content).deliver_later!
+        AcitvityMailer.unlogin_notification(user, content).deliver_now!
         user.touch(:noticed_at)
       end
     end
