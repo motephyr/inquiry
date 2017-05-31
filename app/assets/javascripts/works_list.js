@@ -12,16 +12,26 @@ function onHeartClick(ostr){
     el.toggleClass('glyphicon glyphicon-heart').toggleClass('glyphicon glyphicon-heart text-danger');
 }
 
+window.pathReg = new RegExp("/user_infos/[^/]+/works/.*");
+window.fromDismissEvent = false;
+window.fromStateChangeEvent = false;
+window.fromModalEmptyEvent = false;
+
 $('a.item-wrap[data-remote=true]').on('click', function(e){
-  // history.pushState({}, '', $(this).attr('href')+ '.html');
   var url = $(this).attr('href');
+  
   $("#myModal").prop('url', url);
-  location.hash = url;
+  
+  if(!fromModalEmptyEvent){
+    history.forward();
+    if(!history.state || !history.state.url){
+      history.pushState({url: url}, "", url);
+      $("#myModal").modal();
+    }
+  }
+  fromModalEmptyEvent = false;
 });
 
-window.hashReg = new RegExp("/user_infos/[^/]+/works/.*");
-window.fromDismissEvent = false;
-window.fromHashChangeEvent = false;
 $("#myModal").on( 'hide.bs.modal', function(){
   var ck = this.querySelector('.ckeditor');
   if(ck){
@@ -31,34 +41,32 @@ $("#myModal").on( 'hide.bs.modal', function(){
     if(frame) frame.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
     if(video) video.pause();
     if(audio) audio.pause();
-    if(!fromHashChangeEvent){
+    if(!fromStateChangeEvent){
       fromDismissEvent = true;
       history.back(); // to trigger hashchange
     }
   }
 });
 
-window.addEventListener('hashchange',function(){
-  var hash = window.location.hash.substr(1);
-  if(hash && hashReg.test(hash)){
-    // means not yet load
-    if($("#myModal").prop('url') != hash) $('a.item-wrap[href="' + hash + '"]').trigger('click'); 
+window.addEventListener('popstate', function(e){
+  var state = e.state;
+  var fromModalUrl = $("#myModal").prop('url');
+  if(state){
+    if(fromModalUrl && pathReg.test(fromModalUrl) && state.url != fromModalUrl){
+      history.replaceState({url: fromModalUrl}, "", fromModalUrl);
+    }else if(!fromModalUrl){
+      fromModalEmptyEvent = true;
+      $('a.item-wrap[href="' + state.url + '"]').trigger('click'); 
+    }
     $("#myModal").modal();
   }else{
+    // means to dismiss
     if(!fromDismissEvent){
-      fromHashChangeEvent = true;
+      fromStateChangeEvent = true;
       if($('#myModal').is(':visible')) $("#myModal").modal('hide');
     }
-    fromDismissEvent = fromHashChangeEvent = false;
+    fromDismissEvent = fromStateChangeEvent = false;
   }
+  console.log(history.state);
+  if(history.state) console.log(history.state.url);
 });
-
-window.addEventListener('load', function(){
-  var hash = window.location.hash.substr(1);
-  if(hash && hashReg.test(hash)){
-    var target = document.querySelector('a.item-wrap[href="' + hash + '"]');
-    if(target) $(target).trigger('click');
-    $("#myModal").modal();
-  }
-});
-
