@@ -22,7 +22,7 @@ class UserInfo < ApplicationRecord
 
 
   def self.ransackable_attributes(auth_object = nil)
-    super & %w(work_content work_area skill_tool)
+    super & %w(user_name name work_content work_area skill_tool)
   end
 
 end
