@@ -8,12 +8,13 @@
             <%= tag :img, src: @user_info.user.avatar_link(size: 128), alt: 'my profile' %>
             <br/>
             <br/>
-            <p><strong><%= @user_info.nickname %></strong></p>
+            <p><strong><%= @user_info.nickname %></strong> <%= user_status(@user_info.user)  %></p>
           </div>
           <% end -%>
 
           <div class="profile wow fadeInUp text-center" data-wow-duration="0.5s" data-wow-offset="200">
             <div class="personal-wrapper">
+              <span><%= link_to '私訊', '#', class: 'btn btn-success', id: 'chat'  %></span>
               <span>
                 <div class="btn-group">
                   <%= @user_info.speak == 1 ? tag_link_button('諮詢','speak') : "" %>
@@ -22,13 +23,9 @@
                   <%= @user_info.labor == 1 ? tag_link_button('勞力','labor') : "" %>
                 </div>
               </span>
-              <span><strong>狀態: </strong><%= user_status(@user_info.user)  %></span>
-              <span><%= link_to '私訊給他', '#', class: 'btn btn-success', id: 'chat'  %></span>
               <span><strong>工作項目: </strong><%= @user_info.skill_list.present? ? @user_info.skill_list.map { |t| tag_link_button(t,t, 'btn-link')  }.join('').html_safe : tag_link_button(@user_info.category.try(:title),@user_info.category.try(:title), 'btn-link')  %>
               </span>
               <span><strong>所在地區: </strong><%= simple_format @user_info.work_area %></span>
-              <%= link_to '上一位', user_info_path(@user_info.user.prev) %>
-              <%= link_to '下一位', user_info_path(@user_info.user.next) %>
             </div>
           </div>
         </div>
@@ -36,6 +33,7 @@
       </div>
     </div>
   </div>
+        
 <% end -%>
 <% content_for :stylesheets do -%>
   <%= stylesheet_link_tag 'account/user_infos' -%>

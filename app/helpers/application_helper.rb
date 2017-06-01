@@ -36,15 +36,14 @@ module ApplicationHelper
   end
 
   def online_status(user)
-    content_tag :span, user.nickname,
-      class: "user-#{user.id} online_status #{'online' if user.online?}"
-      end
+    content_tag :span, user.nickname, class: "user-#{user.id} online_status #{'online' if user.online?}"
+  end
 
   def user_status(user)
     if user.online?
-      content_tag :span, '上線中'
+      content_tag :span, '(上線中)', class: "user-#{user.id} online_status online"
     else
-      content_tag :span, '離線'
+      content_tag :span, '(離線)', class: "user-#{user.id} online_status"
     end
 
   end

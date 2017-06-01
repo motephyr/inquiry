@@ -1,13 +1,8 @@
 <div class='col-sm-9 col-xs-12'>
-  <div class="introduction wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
-    <p class="introduce">工作內容</p>
-    <p class="intro"><%= simple_format @user_info.work_content %></p>
-  </div>
   <div class="why-me wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
     <!-- Start Accordion -->
     <div class="accordion">
       <div class="acc-item">
-        <div class="acc-title"><i class="ion-android-navigate"></i>作品</div>
         <div class="acc-content-show">
           <div class="row user-info-work">
             <% if current_user == @user_info.user %>
@@ -35,6 +30,10 @@
         </div>
       </div>
       <div class="acc-item">
+        <div class="acc-title"><i class="ion-android-navigate"></i>工作內容</div>
+        <div class="acc-content-show"><%= simple_format @user_info.work_content %></div>
+      </div>
+      <div class="acc-item">
         <div class="acc-title"><i class="ion-android-navigate"></i>相關經歷與作品集連結</div>
         <div class="acc-content-show"><%= rasf @user_info.typical_work %></div>
       </div>
@@ -42,6 +41,16 @@
         <div class="acc-title"><i class="ion-android-navigate"></i>擅長技能或使用工具</div>
         <div class="acc-content-show"><%= simple_format @user_info.skill_tool %></div>
       </div>
+      <div class="page_arr_s page_arr-l">
+    <p>
+              <%= link_to '上一位', user_info_path(@user_info.user.prev)%>
+    </p>
+  </div>
+  <div class="page_arr_s page_arr-r pull-right">
+    <p>
+              <%= link_to '下一位', user_info_path(@user_info.user.next) %>
+    </p>
+  </div>
     </div>
     <!-- End Accordion -->
   </div>
