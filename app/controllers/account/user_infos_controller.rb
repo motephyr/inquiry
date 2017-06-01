@@ -13,7 +13,7 @@ class Account::UserInfosController < ApplicationController
     else
       never_edit_user_info
     end
-    @works = (@user == current_user) ? @user.works.includes(:cares).order_by_new : @user.works.includes(:cares).is_published.order_by_new
+    @works = (@user == current_user) ? @user.works.includes(:cares).order("is_published desc").order_by_new : @user.works.includes(:cares).is_published.order_by_new
   end
 
   def edit_status
