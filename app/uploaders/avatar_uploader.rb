@@ -48,7 +48,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   version :square_limit do
-    process :resize_to_limit => [555, 986]
+    process :resize_to_limit => [730, 986]
     process :store_metadata => "square_limit"
   end
 
