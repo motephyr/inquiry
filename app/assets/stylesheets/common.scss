@@ -78,21 +78,3 @@ span.help-block{
   text-align: center
 }
 
-/*上一篇/下一篇*/
-
-.page_arr_s{display:none; top:38%;  width: 90px; z-index:99;}
-.page_arr_s p{ text-align:center; color:#515050; font-size:14px;}
-.page_arr_s a{ width:100%; color:#515050; display:block; padding-top:90px; opacity:.6; -moz-opacity:.6; filter:alpha(opacity=60); -webkit-transition:all .5s ease-in-out; -moz-transition:all .5s ease-in-out; -o-transition:all .5s ease-in-out; -ms-transition:all .5s ease-in-out;}
-.page_arr_s a:hover{ text-decoration:none;opacity:1; -moz-opacity:1; filter:alpha(opacity=100); -webkit-transition:all .5s ease-in-out; -moz-transition:all .5s ease-in-out; -o-transition:all .5s ease-in-out; -ms-transition:all .5s ease-in-out;}
-
-.page_arr{ display:inline-block;top:38%;  width: 90px; z-index:99;}
-.page_arr p{ text-align:center; color:#515050; font-size:14px;}
-.page_arr a{ width:100%; color:#515050; display:block; padding-top:90px; opacity:.6; -moz-opacity:.6; filter:alpha(opacity=60); -webkit-transition:all .5s ease-in-out; -moz-transition:all .5s ease-in-out; -o-transition:all .5s ease-in-out; -ms-transition:all .5s ease-in-out;}
-.page_arr a:hover{ text-decoration:none;opacity:1; -moz-opacity:1; filter:alpha(opacity=100); -webkit-transition:all .5s ease-in-out; -moz-transition:all .5s ease-in-out; -o-transition:all .5s ease-in-out; -ms-transition:all .5s ease-in-out;}
-
-.page_arr-l{ left:5%;}
-.page_arr-l a{ background:url(../images/page_arrow_L.png) 0 0 no-repeat; background-size:200%;}
-.page_arr-r{ right:5%;}
-.page_arr-r a{ background:url(../images/page_arrow_L.png) top right no-repeat; background-size:200%;}
-
-@media (max-width: 1024px){.page_arr_s{ display:inline-block;}.page_arr{ display: none; }}

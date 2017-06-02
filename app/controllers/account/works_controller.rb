@@ -17,7 +17,7 @@ class Account::WorksController < ApplicationController
       f.html { set_page_info({title: @work.subject, description: @work.content,image: @work.attach_avatar.try(:url)}) }
       f.js
     end
-    render layout: "user_info"
+    # render layout: "user_info"
 
   end
 
