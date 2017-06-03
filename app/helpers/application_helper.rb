@@ -41,9 +41,9 @@ module ApplicationHelper
 
   def user_status(user)
     if user.online?
-      content_tag :span, '(上線中)', class: "user-#{user.id} online_status online"
+      content_tag :span, '上線中', class: "user-#{user.id} online_status online"
     else
-      content_tag :span, '(離線)', class: "user-#{user.id} online_status"
+      content_tag :span, '離線', class: "user-#{user.id} online_status"
     end
 
   end
@@ -110,7 +110,7 @@ module ApplicationHelper
     image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/i.match(file)
     audio_match = /\.(wav|mp3|wma|ogg|midi|aif|aifc|aiff|au|ea)$/i.match(file)
     if image_match.present?
-      tag :img, src: "#{file}", style:'margin: 0 auto;display:block;'
+      tag :img, src: "#{file}", style:'margin: 0 auto;display:block;', width: '99.8%'
     elsif audio_match.present?
       content_tag :audio, '', controls: "controls", src: "#{file}"
     end
@@ -147,6 +147,21 @@ module ApplicationHelper
     else
     end
   end
+
+
+  def work_square_personal(w)
+    if w.attach_avatar.present?
+      render_avatar_file(w.attach_avatar.square_large.url)
+    elsif w.attach_url.present?
+      render_resolve_url(w)
+    elsif w.attach_content.present?
+
+        raw('<p class="onThePhoto" style="color: #fff">' + w.subject + '</p>')
+
+    else
+    end
+  end
+
 
   def work_square_all(w)
     subject = ''
@@ -192,6 +207,14 @@ module ApplicationHelper
       '(您尚未選擇您的作品類別哦)'
     end
 
+  end
+
+  def li_link_button(tag_show, tag_name, class_name = 'btn-default')
+    if tag_show.present? && tag_name.present?
+      raw("<li><p>" +
+      link_to(sanitize(tag_show), tag_path(tag_name)) +
+      "</p></li>")
+    end
   end
 
   def tag_link_button(tag_show, tag_name, class_name = 'btn-default')
