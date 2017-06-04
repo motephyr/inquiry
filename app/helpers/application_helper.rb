@@ -198,8 +198,6 @@ module ApplicationHelper
         "製作​​​​​​​時間： \n\n準備素材： \n\n使用工具：                \n\n參考文件或連結：\n\n"
       elsif user.user_info.category.title == '影像製作'
         "製作​​​​​​​時間： \n\n準備素材： \n\n使用工具：                \n\n參考文件或連結：\n\n"
-      elsif user.user_info.category.title == '財務會計'
-        "描述你的工作成果..."
       elsif user.user_info.category.title == '其他'
         "描述你的工作成果..."
       end

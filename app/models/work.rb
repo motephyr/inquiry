@@ -2,6 +2,8 @@ class Work < ApplicationRecord
   include Careable
 
   belongs_to :user
+  belongs_to :category
+
   has_many :donates
   has_many :work_messages, :dependent => :destroy
 
