@@ -28,7 +28,6 @@ class Account::WorksController < ApplicationController
 
   def create
     @work = current_user.works.build(work_params)
-    @work.category = current_user.user_info.category
     never_edit_info
     if @work.save
       flash[:error] = '如要公開作品，請記得設為公開發佈哦！'
@@ -63,7 +62,7 @@ class Account::WorksController < ApplicationController
 
   private
   def work_params
-    params.require(:work).permit(:subject, :content, :attach_avatar, :attach_content, :attach_url, :remote_attach_avatar_url, :remote_image_url, :remote_description)
+    params.require(:work).permit(:subject,:category_id, :content, :attach_avatar, :attach_content, :attach_url, :remote_attach_avatar_url, :remote_image_url, :remote_description)
   end
 
   def never_edit_info

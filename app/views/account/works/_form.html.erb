@@ -4,7 +4,7 @@
   <div class="stepwizard-row">
     <div class="stepwizard-step">
       <button type="button" value="1" onclick="onStepClick(this)" class="btn btn-primary btn-circle">1</button>
-      <p>輸入標題</p>
+      <p>輸入標題和類別</p>
     </div>
     <div class="stepwizard-step">
       <button type="button" value="2" onclick="onStepClick(this)" class="btn btn-default btn-circle" disabled="disabled">2</button>
@@ -21,6 +21,9 @@
   <div class="form-inputs stepwizard-target-1">
     <div class="form-group">
       <%= f.input_field :subject, class: 'form-control string optional', placeholder: '例如：PHP後台系統設計、商品攝影+修圖、女性服飾網拍修圖' %>
+      <hr>
+      <%= f.input :category_id,label: false, as: :button_radio, collection: Category.where("id in (?)", [1,2,3,7,8,9,10,12]).map { |r| [r.title, r.id] },input_html: {value: @user_info.category_id} %>
+      <p class="help-block">請選擇正確的作品類別 :)</p>
     </div>
     <p>
       <%= link_to "下一步", '#2', id: "anchorToStep2", class: 'btn btn-success disabled' %>
