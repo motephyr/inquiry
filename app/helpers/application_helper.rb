@@ -184,10 +184,10 @@ module ApplicationHelper
 
   def ckeditor_content(user)
     if user.user_info.category
-      if user.user_info.category.title == '工業設計'
-        "製作​​​​​​​時間： \n\n準備素材： \n\n使用工具：                \n\n參考文件或連結：\n\n"
-      elsif user.user_info.category.title == '美術設計'
+      if user.user_info.category.title == '美術設計'
         "製作​​​​​​​時間： \n\n內容簡介： \n\n                        \n\n參考文件或連結：\n\n"
+      elsif user.user_info.category.title == '工業設計'
+        "製作​​​​​​​時間： \n\n準備素材： \n\n使用工具：                \n\n參考文件或連結：\n\n"
       elsif user.user_info.category.title == '文字編輯'
         "製作​​​​​​​時間： \n\n概念發想： \n\n                        \n\n參考文件或連結：\n\n"
       elsif user.user_info.category.title == '程式開發'
