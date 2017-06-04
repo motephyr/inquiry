@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516084701) do
+ActiveRecord::Schema.define(version: 20170604090751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,6 +170,15 @@ ActiveRecord::Schema.define(version: 20170516084701) do
     t.index ["user_id"], name: "index_user_infos_on_user_id", using: :btree
   end
 
+  create_table "user_phones", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "phone_number"
+    t.decimal  "minute_rate"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["user_id"], name: "index_user_phones_on_user_id", using: :btree
+  end
+
   create_table "user_surveys", force: :cascade do |t|
     t.text     "work_content"
     t.text     "work_area"
@@ -262,6 +271,8 @@ ActiveRecord::Schema.define(version: 20170516084701) do
     t.jsonb    "image_meta",          default: {},    null: false
     t.boolean  "is_featured",         default: false
     t.boolean  "is_published",        default: false
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_works_on_category_id", using: :btree
     t.index ["is_featured"], name: "index_works_on_is_featured", using: :btree
     t.index ["is_published"], name: "index_works_on_is_published", using: :btree
     t.index ["slug"], name: "index_works_on_slug", unique: true, using: :btree

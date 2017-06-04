@@ -1,25 +1,36 @@
   
 <div class="row">
   <div class="col-md-3">
-            <%= render_list :class => "nav" do |div|
-              div << link_to("工業設計", request.url + "?category_id=1")
-              div << link_to("美術設計", request.url + "?category_id=2")
-              div << link_to("文字編輯", request.url + "?category_id=3")
-              div << link_to("程式開發", request.url + "?category_id=7")
-              div << link_to("行銷企畫", request.url + "?category_id=8")
-              div << link_to("音樂人",  request.url + "?category_id=9")
-              div << link_to("影像製作", request.url + "?category_id=10")
-              div << link_to("其他", request.url + "?category_id=12")
+            <%= render_list :class => "nav nav-tabs" do |div|
+              div << link_to("工業設計", request.path_info + "?category_id=1")
+              div << link_to("美術設計", request.path_info + "?category_id=2")
+              div << link_to("文字編輯", request.path_info + "?category_id=3")
+              div << link_to("程式開發", request.path_info + "?category_id=7")
+              div << link_to("行銷企畫", request.path_info + "?category_id=8")
+              div << link_to("音樂人",  request.path_info + "?category_id=9")
+              div << link_to("影像製作", request.path_info + "?category_id=10")
+              div << link_to("其他", request.path_info + "?category_id=12")
             end %>
   </div>
   <div class="col-md-9">
     <div class="row">
       <div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4 col-xs-9 work-responsive">
+        
+          
+        
         <%= render_list :class => "nav nav-tabs" do |li|
+          if params[:category_id].present?
+            li << link_to('Good Job！', works_path(category_id: params[:category_id])   )      
+            li << link_to("最新",newest_works_path(category_id: params[:category_id])   )
+            li << link_to("關注", favorite_works_path(category_id: params[:category_id]) )
+          else 
           li << link_to('Good Job！', works_path)
           li << link_to("最新",newest_works_path)
           li << link_to("關注", favorite_works_path)
+          end 
         end %>
+        
+        
       </div>
       <div class="col-md-2 col-sm-2 col-xs-3">
         <%= link_to '新增作品..', new_account_user_info_work_path(current_user), class: 'btn btn-info pull-right' if current_user %>

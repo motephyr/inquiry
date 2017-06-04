@@ -3,25 +3,30 @@ class WorksController < ApplicationController
   before_action :login_required, only: [:getUrl, :update_care ]
   before_action :work_owner, only: [:update_published]
   before_action only: [:index, :newest, :favorite] do
+    if params[:category_id].blank? && current_user && (current_user.try(:user_info).try(:category_id) != 12)
+      redirect_to request.path_info + "?category_id=" + current_user.user_info.category_id.to_s
+    end
     set_page_info({title: "工作成果與作品列表", description: "每個人在工作上都有自已專精的領域，將你近期的工作成果展現給大家看，讓別人知道你擅長和拿手的是什麼，說不定他正需要你！"})
   end
   def index
     #編輯選擇
     @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable} : nil
-    @works = Work.includes(:user, :cares).where.not(user: @unlike).is_published.is_featured.order_by_new.page(params[:page])
+    @works = works(params).where.not(user: @unlike).is_published.is_featured.order_by_new.page(params[:page])
   end
 
   def newest
     #全部最新
     @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable} : nil
-    @works = Work.includes(:user, :cares).where.not(user: @unlike).is_published.order_by_new.page(params[:page])
+
+    @works = works(params).where.not(user: @unlike).is_published.order_by_new.page(params[:page])
     # Work.includes(:user, :cares).from('users AS u').joins('INNER JOIN works AS w ON u.id = w.user_id').order('w.id DESC').select('w.*')
   end
 
   def favorite
     #照like數排序
     @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable} : nil
-    @works = Work.includes(:user, :cares).where.not(user: @unlike).is_published.order_by_favorite.page(params[:page])
+    
+    @works = works(params).where.not(user: @unlike).is_published.order_by_favorite.page(params[:page])
   end
 
 
@@ -110,6 +115,14 @@ class WorksController < ApplicationController
     unless @work.user_id == current_user.id
       flash[:notice] = '你不是這個資料的使用者'
       redirect_to works_path
+    end
+  end
+
+  def works(params)
+    if params[:category_id]
+      works = Work.includes(:user, :cares).where(category_id: params[:category_id])
+    else
+      works = Work.includes(:user, :cares)
     end
   end
 
