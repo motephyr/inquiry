@@ -3,7 +3,7 @@ class WorksController < ApplicationController
   before_action :login_required, only: [:getUrl, :update_care ]
   before_action :work_owner, only: [:update_published]
   before_action only: [:index, :newest, :favorite] do
-    if params[:category_id].blank? && current_user && (current_user.try(:user_info).try(:category_id) != 12)
+    if params[:category_id].blank? && current_user && current_user.try(:user_info).try(:category_id) && (current_user.try(:user_info).try(:category_id) != 12)
       redirect_to request.path_info + "?category_id=" + current_user.user_info.category_id.to_s
     end
     set_page_info({title: "工作成果與作品列表", description: "每個人在工作上都有自已專精的領域，將你近期的工作成果展現給大家看，讓別人知道你擅長和拿手的是什麼，說不定他正需要你！"})
