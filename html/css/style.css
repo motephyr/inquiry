@@ -84,13 +84,13 @@ transition:all 1s;
 
 /*--go--*/
 
-@media (max-width:1300px){}
-
 .UserDataBox{ width: 100%; background-color: #fafafa;}
-.UserDataBox .ContentsBox{ max-width: 1170px; margin: 0 auto; padding: 70px 0 60px 0;}
+.UserDataBox .ContentsBox{ width: 95%; max-width: 1170px; margin: 0 auto; padding: 70px 0 60px 0;}
+
+/*leftBox*/
 .UserDataBox .leftBox{ float: left; width: 100%; max-width: 230px; }
 .UserDataBox .leftBox .fixBox{ /*position: fixed;*/ max-width: 230px; z-index: 10; top: 40px;}
-.UserDataBox .leftBox .userBox { /*background-color: #fff; box-shadow: 0px 0px 10px rgba(155,155,155,.3) ;*/width:calc(100% - 40px); padding: 20px 20px 20px 20px; border-radius: 6px;position: relative;}
+.UserDataBox .leftBox .userBox { /*background-color: #fff; box-shadow: 0px 0px 10px rgba(155,155,155,.3) ;*/ width:-moz-calc(100% - 40px); width:-webkit-calc(100% - 40px); width: calc(100% - 40px);  padding: 20px 20px 20px 20px; border-radius: 6px;position: relative;}
 .UserDataBox .leftBox .userBox .photo{ width: 140px; height: 140px; display: block; overflow: hidden; background-color: #dfdada; border-radius: 150px; border:5px solid #fff; margin: 0 auto; box-shadow: 0px 0px 10px rgba(155,155,155,.5);}
 .UserDataBox .leftBox .userBox a.contact_me{ cursor: pointer; position: absolute; right: 35px; top: 126px; width: 45px; height: 45px; border-radius: 45px; display: block; background: url(../images/icon_contact.png) center center no-repeat #303030; background-size: contain;}
 .UserDataBox .leftBox .userBox a.contact_me:hover{ background-color: #00a148; }
@@ -117,36 +117,49 @@ transition:all 1s;
 .UserDataBox .leftBox p.user_next a.prev{ background: url(../images/arr_left.png) left center no-repeat; background-size: contain; padding-left: 20px; }
 .UserDataBox .leftBox p.user_next a.next{ background: url(../images/arr_right.png) right center no-repeat; background-size: contain; padding-right: 20px; }
 
-.UserDataBox .rightBox{ float: right; width: 100%; max-width: 880px; /*background-color: #eeeeee;*/ min-height: 800px;}
+/*rightBox*/
+.UserDataBox .rightBox{ float: right; width: 100%; max-width: 880px;}
 .UserDataBox .WorksList{ width: 100%; }
 .UserDataBox .WorksList .abox{ width: 100%; padding-bottom: 20px; }
 .UserDataBox .WorksList .abox .topTitle{ position: relative; min-height: 36px;}
 .UserDataBox .WorksList .abox .topTitle::before{ position: absolute; content: ""; width: 100%; height: 1px; display: block; left: 0; top:50%; background-color: #dbdbdb; }
-.UserDataBox .WorksList .abox .topTitle h3{ /*font-weight: bold;*/ color: #333; position:absolute; left: 0; line-height: 30px; padding: 3px 0; background-color: #fafafa; padding-right: 20px; }
+.UserDataBox .WorksList .abox .topTitle h3{ font-weight: bold; color: #333; position:absolute; left: 0; line-height: 30px; padding: 3px 0; background-color: #fafafa; padding-right: 20px; }
 
-.UserDataBox .WorksList .abox .work_information{ padding: 15px 0;}
-.UserDataBox .WorksList .abox .work_information p.p_info{ font-size: 15px; color: #777; line-height: 28px;}
+.UserDataBox .WorksList .abox .work_information{ padding: 15px 0; min-height: 50px; margin-bottom: 15px;}
+.UserDataBox .WorksList .abox .work_information p.p_info{ font-size: 15px; color: #666; line-height: 28px; text-align: justify;}
 .UserDataBox .WorksList .abox .work_information p.p_info a{ color: #449dd5;}
 .UserDataBox .WorksList .abox .work_information p.p_info a:hover{text-decoration: underline;}
 .UserDataBox .WorksList .abox .work_information p.addWorks{ width:calc(100% - 15px); text-align: right; font-size: 14px; padding-bottom:20px; }
 .UserDataBox .WorksList .abox .work_information p.addWorks a{ cursor: pointer; color: #8e8e8e; }
 .UserDataBox .WorksList .abox .work_information p.addWorks a:hover{text-decoration: underline;}
 
+.UserDataBox .WorksList .abox .show_more{ font-size: 13px; }
+.UserDataBox .WorksList .abox .show_more a{color: #93bad3; text-decoration: underline; }
+.UserDataBox .WorksList .abox .show_more a:hover{ text-decoration: none; }
+.UserDataBox .WorksList .abox .lessBox{ max-height: 95px; display: block; overflow: hidden; }
+.UserDataBox .WorksList .abox .show_moreBox{ max-height: inherit;overflow: inherit; }
+
 .UserDataBox .WorksList ul.designerWorksList{ width: 100%; }
 .UserDataBox .WorksList ul.designerWorksList li{ display: inline-block; float: left; width: 23%; padding:0 1%; padding-bottom: 12px;}
-.UserDataBox .WorksList ul.designerWorksList li .photoBox{ display: block; width: 100%;}
-.UserDataBox .WorksList ul.designerWorksList li .photoBox a{ display: block; width: 100%; height: 100%; font-size: 1.1vw; line-height: 150%; min-height: 202px; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center}
+.UserDataBox .WorksList ul.designerWorksList li .photoBox{ display: block; width: 100%; position: relative;}
+.UserDataBox .WorksList ul.designerWorksList li .photoBox a.photogo{ display: block; width: 100%; height: 100%; font-size: 1.1vw; line-height: 150%; min-height: 202px; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center}
 .UserDataBox .WorksList ul.designerWorksList li .photoBox:hover{opacity: .9;}
 .UserDataBox .WorksList ul.designerWorksList li .photoBox p.onThePhoto{ font-size: inherit; text-align: center; max-width: 90%;}
+.UserDataBox .WorksList ul.designerWorksList li .photoBox a.look_competence{ cursor: pointer; position: absolute; width:1.2vw; height:1.2vw; top: 5px; right: 5px; background-color: #000;  background:url(../images/icon_lock.png); background-size: contain;}
+.UserDataBox .WorksList ul.designerWorksList li .photoBox a.look_open{ background:url(../images/icon_open.png); background-size: contain; }
 
 .UserDataBox .WorksList ul.designerWorksList li .the_tools{ width: 100%; padding: 2px 0;}
-.UserDataBox .WorksList ul.designerWorksList li .the_tools p{ float: right; font-size: 12px;}
-.UserDataBox .WorksList ul.designerWorksList li .the_tools p a{ line-height: 20px; padding:0 0px 0 20px; color: #c2c2c2; margin-left: 10px;}
-.UserDataBox .WorksList ul.designerWorksList li .the_tools p.link{ float: left; }
+.UserDataBox .WorksList ul.designerWorksList li .the_tools p{ float: right; font-size: 12px; line-height: 20px;}
+.UserDataBox .WorksList ul.designerWorksList li .the_tools p a{ line-height: 20px;  padding-left:25px; color: #b2b1b1; display: block; margin-left: 10px;}
+.UserDataBox .WorksList ul.designerWorksList li .the_tools p.link{ float: left; width: 1.2vw; height: 1.2vw; background: url(../images/icon_tools_link.png) left center no-repeat; background-size: contain; }
 .UserDataBox .WorksList ul.designerWorksList li .the_tools p.like a{ cursor: pointer; background: url(../images/icon_tools_like.png) left center no-repeat; background-size: contain; }
 .UserDataBox .WorksList ul.designerWorksList li .the_tools p.dialog a{ cursor: pointer; background: url(../images/icon_tools_dialog.png) left center no-repeat; background-size: contain; }
-.UserDataBox .WorksList ul.designerWorksList li .the_tools p.eyes a{ background: url(../images/icon_tools_eyes.png) left center no-repeat; background-size: contain; }
+.UserDataBox .WorksList ul.designerWorksList li .the_tools p.eyes a{  padding-left:29px; background: url(../images/icon_tools_eyes.png) left center no-repeat; background-size: contain; }
 
 
-
-
+@media (max-width:1180px){.UserDataBox .rightBox{ width: 70% ;width:-moz-calc(100% - 250px); width:-webkit-calc(100% - 250px); width: calc(100% - 250px);}
+@media (max-width:1180px){.UserDataBox .WorksList ul.designerWorksList li{ width: 31.33%;}}
+@media (max-width:900px){.UserDataBox .WorksList ul.designerWorksList li{ width: 48%;}}
+@media (max-width:750px){.UserDataBox .leftBox, .UserDataBox .rightBox{ width: 100%; max-width: 95%; float: none; margin: 0 auto; }
+  .UserDataBox .leftBox .fixBox{ max-width: inherit; }
+  .UserDataBox .leftBox .userBox a.contact_me{ right: 50%; margin-right: -80px; }}
