@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name='description' content=""/>
+<meta name='keywords' content=""/>
+<meta property="og:image" content="images/share_pic.jpg"/>
+<meta property="og:title" content=""/>
+<meta property="og:url" content="#"/>
+<meta property="og:description" content=""/>
+<meta property="og:type" content="website"/>
+
+<!-- Share image -->
+<link rel="image_src" href="images/share_pic.jpg">
+<!--Icon image  -->
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="images/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="167x167" href="images/apple-touch-icon-167x167.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-180x180.png">
+<link rel="icon" sizes="192x192" href="images/icon-hires.png">
+<link rel="icon" sizes="128x128" href="images/icon-normal.png">
+<link rel="icon" type="image/png" href="images/favicon_16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="images/favicon_32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="images/favicon_96x96.png" sizes="96x96">
+
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="css/style.css">
+<!-- <link rel="stylesheet" media="all" href="http://54.199.134.152/assets/application-f4e022f231588a0c3ed752b1382146c217f5b149998f90626eb478a36da33dc8.css">
+ -->
+ <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+
+</head>
+
+<body>
+
+
+<!-- <div id="mainNav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Conkwe 自由工作者</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <form class="navbar-form navbar-left" id="user_info_search" action="/account/user_infos/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+            <input class="form-control" placeholder="搜尋工作者名稱、地區、工作內容、技能.." style="width:320px" type="search" name="q[user_name_or_name_or_work_content_or_work_area_or_skill_tool_cont]" id="q_user_name_or_name_or_work_content_or_work_area_or_skill_tool_cont"></form>
+            <ul class="nav navbar-nav"><li class="first"><a href="/appraisals">詢價</a></li><li class="last"><a href="/welcome">關於</a></li></ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/account/user_infos/eikiy-chang">Eikiy Chang</a></li>
+                <li class="dropdown" id="notify">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-bell"></span><span id="notice_size"></span></a>  
+                    <div class="list-group dropdown-menu" id="notify_result" style="min-width:400px"></div>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-cog"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/account/works">喜愛的作品</a></li>
+                      <li><a href="/account/appraisals">正在關注的估價單</a></li>
+                      <li class="divider"></li>
+                      <li><a href="/account/user_infos/edit_status">修改個人設定</a> </li>
+                      <li><a rel="nofollow" data-method="delete" href="/users/sign_out">登出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div> -->
+<!--/.nav-collapse -->
+
+<!-------- 中間內容從這邊開始 -------->
+<section class="UserDataBox classificationBox">
+    <div class="topBanner br_banner_01">
+        <h2>作品展示</h2>
+    </div>
+    <div class="ContentsBox clearfix">
+            <div class="WorksList">
+                <div class="abox">
+                    <div class="work_information">
+                        <div class="left_worktype">
+                            <div class="choose_type">
+                                <p>成果類別：<span>全部</span></p>
+                                <ul class="worktypeBox clearfix">
+                                    <li><p class="btn_in"><a href="#">全部</a></p></li>
+                                    <li><p><a href="#">美術設計</a></p></li>
+                                    <li><p><a href="#">工業設計</a></p></li>
+                                    <li><p><a href="#">文字編輯</a></p></li>
+                                    <li><p><a href="#">程式開發</a></p></li>
+                                    <li><p><a href="#">行銷企畫</a></p></li>
+                                    <li><p><a href="#">音樂人</a></p></li>
+                                    <li><p><a href="#">影像製作</a></p></li>
+                                    <li><p><a href="#">其他</a></p></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <ul class="works_time">
+                            <li><p><a href="#">Good Job！</a></p></li>
+                            <li><p class="btn_in"><a href="#">最新</a></p></li>
+                            <li><p><a href="#">關注</a></p></li>
+                        </ul>
+
+                        <p class="addWorks"><a href="#">＋ 新增作品或工作成果</a></p><!-- 登入才會顯示 -->
+
+                        <ul class="designerWorksList clearfix">
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#"><img src="images/work_01.jpg" width="100%" alt=""></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="link"></p>
+                                    <p class="like"><a>120</a></p>
+                                    <p class="dialog"><a>38</a></p>
+                                    <p class="eyes"><a>4599</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="http://graph.facebook.com/v2.6/1678478565500768/picture?height=64&amp;width=64" width="100%">
+                                    <p class="name">Eikiy Chang</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#" style="background-color: #6dc6d0;"><p class="onThePhoto" style="color: #fff">大家內心其實都正在尋找方案B的千百種方法</p></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="like"><a>111</a></p>
+                                    <p class="dialog"><a>22</a></p>
+                                    <p class="eyes"><a>323</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/64px-Creative-Tail-People-police-man.svg.png" width="100%">
+                                    <p class="name">Mark</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#" style="background-color: #e4ddd3;"><p class="onThePhoto" style="color: #6b5e5e">HTML / CSS 的解藥</p></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="like"><a>1</a></p>
+                                    <p class="dialog"><a>2</a></p>
+                                    <p class="eyes"><a>3</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/64px-Creative-Tail-People-police-man.svg.png" width="100%">
+                                    <p class="name">Mark</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#"><img src="images/work_02.jpg" width="100%" alt=""></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="like"><a>2000</a></p>
+                                    <p class="dialog"><a>2</a></p>
+                                    <p class="eyes"><a>301</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="http://graph.facebook.com/v2.6/1678478565500768/picture?height=64&amp;width=64" width="100%">
+                                    <p class="name">Eikiy Chang</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#"><img src="images/work_03.jpg" width="100%" alt=""></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="like"><a>120</a></p>
+                                    <p class="dialog"><a>38</a></p>
+                                    <p class="eyes"><a>4599</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="http://graph.facebook.com/v2.6/1678478565500768/picture?height=64&amp;width=64" width="100%">
+                                    <p class="name">Eikiy Chang</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#"><img src="images/work_04.jpg" width="100%" alt=""></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="link"></p>
+                                    <p class="like"><a>111</a></p>
+                                    <p class="dialog"><a>22</a></p>
+                                    <p class="eyes"><a>323</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                   <img src="https://conkwe.s3.amazonaws.com/uploads/user/image/90/circle_64_710d2109be91dbb6bf7464f158b29e.jpg" width="100%">
+                                    <p class="name">Ivan Jiang</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#"><img src="images/work_05.jpg" width="100%" alt=""></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="like"><a>1</a></p>
+                                    <p class="dialog"><a>200</a></p>
+                                    <p class="eyes"><a>32</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                   <img src="https://conkwe.s3.amazonaws.com/uploads/user/image/90/circle_64_710d2109be91dbb6bf7464f158b29e.jpg" width="100%">
+                                    <p class="name">Ivan Jiang</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#" style="background-color: #333;"><p class="onThePhoto" style="color: #fff">PS & AI 是什麼</p></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="link"></p>
+                                    <p class="like"><a>111</a></p>
+                                    <p class="dialog"><a>22</a></p>
+                                    <p class="eyes"><a>323</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/64px-Creative-Tail-People-police-man.svg.png" alt="my profile">
+                                    <p class="name">Kino</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#" style="background-color: #ac83cf;"><p class="onThePhoto" style="color: #fff">Java</p></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="link"></p>
+                                    <p class="like"><a>1101</a></p>
+                                    <p class="dialog"><a>22</a></p>
+                                    <p class="eyes"><a>323</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/64px-Creative-Tail-People-police-man.svg.png" alt="my profile">
+                                    <p class="name">Kino</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#" style="background-color: #4caf50;"><p class="onThePhoto" style="color: #fff">我愛PHP</p></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="link"></p>
+                                    <p class="like"><a>1101</a></p>
+                                    <p class="dialog"><a>22</a></p>
+                                    <p class="eyes"><a>323</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/64px-Creative-Tail-People-police-man.svg.png" alt="my profile">
+                                    <p class="name">Kino</p>
+                                </a>
+                            </li>
+
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#"><img src="images/work_01.jpg" width="100%" alt=""></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="link"></p>
+                                    <p class="like"><a>120</a></p>
+                                    <p class="dialog"><a>38</a></p>
+                                    <p class="eyes"><a>4599</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="http://graph.facebook.com/v2.6/1678478565500768/picture?height=64&amp;width=64" width="100%">
+                                    <p class="name">Eikiy Chang</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#" style="background-color: #6dc6d0;"><p class="onThePhoto" style="color: #fff">大家內心其實都正在尋找方案B的千百種方法</p></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="like"><a>111</a></p>
+                                    <p class="dialog"><a>22</a></p>
+                                    <p class="eyes"><a>323</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/64px-Creative-Tail-People-police-man.svg.png" width="100%">
+                                    <p class="name">Mark</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#" style="background-color: #e4ddd3;"><p class="onThePhoto" style="color: #6b5e5e">HTML / CSS 的解藥</p></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="like"><a>1</a></p>
+                                    <p class="dialog"><a>2</a></p>
+                                    <p class="eyes"><a>3</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/64px-Creative-Tail-People-police-man.svg.png" width="100%">
+                                    <p class="name">Mark</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#"><img src="images/work_02.jpg" width="100%" alt=""></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="like"><a>2000</a></p>
+                                    <p class="dialog"><a>2</a></p>
+                                    <p class="eyes"><a>301</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="http://graph.facebook.com/v2.6/1678478565500768/picture?height=64&amp;width=64" width="100%">
+                                    <p class="name">Eikiy Chang</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#"><img src="images/work_03.jpg" width="100%" alt=""></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="like"><a>120</a></p>
+                                    <p class="dialog"><a>38</a></p>
+                                    <p class="eyes"><a>4599</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="http://graph.facebook.com/v2.6/1678478565500768/picture?height=64&amp;width=64" width="100%">
+                                    <p class="name">Eikiy Chang</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#"><img src="images/work_04.jpg" width="100%" alt=""></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="link"></p>
+                                    <p class="like"><a>111</a></p>
+                                    <p class="dialog"><a>22</a></p>
+                                    <p class="eyes"><a>323</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                   <img src="https://conkwe.s3.amazonaws.com/uploads/user/image/90/circle_64_710d2109be91dbb6bf7464f158b29e.jpg" width="100%">
+                                    <p class="name">Ivan Jiang</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#"><img src="images/work_05.jpg" width="100%" alt=""></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="like"><a>1</a></p>
+                                    <p class="dialog"><a>200</a></p>
+                                    <p class="eyes"><a>32</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                   <img src="https://conkwe.s3.amazonaws.com/uploads/user/image/90/circle_64_710d2109be91dbb6bf7464f158b29e.jpg" width="100%">
+                                    <p class="name">Ivan Jiang</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#" style="background-color: #333;"><p class="onThePhoto" style="color: #fff">PS & AI </p></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="link"></p>
+                                    <p class="like"><a>111</a></p>
+                                    <p class="dialog"><a>22</a></p>
+                                    <p class="eyes"><a>323</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/64px-Creative-Tail-People-police-man.svg.png" alt="my profile">
+                                    <p class="name">Kino</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#"><img src="images/work_07.jpg" width="100%" alt=""></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="link"></p>
+                                    <p class="like"><a>1101</a></p>
+                                    <p class="dialog"><a>22</a></p>
+                                    <p class="eyes"><a>323</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/64px-Creative-Tail-People-police-man.svg.png" alt="my profile">
+                                    <p class="name">安瑟羅</p>
+                                </a>
+                            </li>
+                            <li><div class="photoBox">
+                                <a class="photogo" href="#"><img src="images/work_06.jpg" width="100%" alt=""></a></div>
+                                <div class="the_tools clearfix">
+                                    <p class="link"></p>
+                                    <p class="like"><a>1101</a></p>
+                                    <p class="dialog"><a>22</a></p>
+                                    <p class="eyes"><a>323</a></p>
+                                </div>
+                                <a class="userID clearfix" href="#">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/64px-Creative-Tail-People-police-man.svg.png" alt="my profile">
+                                    <p class="name">Kino</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>
+<!-------- 中間內容從這邊開始 END -------->
+
+
+<!-- <div class="copyright">
+  <div class="container">
+    <div class="col-md-6">
+      <p>© 2017 - Conkwe 自由工作者 All Rights reserves.</p>
+    </div>
+    <div class="col-md-6">
+      <ul class="bottom_ul">
+        <li><a href="/welcome">關於 Conkwe</a></li>
+        <li><a href="/policy/privacy">隱私權政策</a></li>
+        <li><a href="/policy/terms">會員使用條款</a></li>
+        <li><a href="https://www.facebook.com/groups/362408260811200">FB討論區</a></li>
+        <li><a href="https://www.facebook.com/ConKweMatch">支持 Conkwe</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<link rel="stylesheet" media="screen" href="http://54.199.134.152/assets/footer-e87f44762e0c5d9d3fa0ed60ba263d13e4a5c0054cde7851e69eaf6ce34ddd1d.css">
+ -->
+</body>
+</html>
+
+
+
