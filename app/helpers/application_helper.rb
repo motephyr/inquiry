@@ -110,7 +110,7 @@ module ApplicationHelper
     image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/i.match(file)
     audio_match = /\.(wav|mp3|wma|ogg|midi|aif|aifc|aiff|au|ea)$/i.match(file)
     if image_match.present?
-      tag :img, src: "#{file}", onload: "onImageLoad(this)", crossOrigin: "Anonymous"
+      tag :img, src: "#{file}"
     elsif audio_match.present?
       content_tag :audio, '', controls: "controls", src: "#{file}"
     end
