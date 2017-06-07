@@ -19,6 +19,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= yield :stylesheets %>
 
+  <script>
+    // Refers to: https://stackoverflow.com/a/14610265/2238770
+    function resizeCrop( src, width, height ){
+        var crop = width == 0 || height == 0;
+        // not resize
+        if(src.naturalWidth <= width && height == 0) {
+            width  = src.naturalWidth;
+            height = src.naturalHeight;
+        }
+        // resize
+        if( src.naturalWidth > width && height == 0){
+            height = src.naturalHeight * (width / src.naturalWidth);
+        }
+
+        // check scale
+        var xscale = width  / src.naturalWidth;
+        var yscale = height / src.naturalHeight;
+        var scale  = crop ? Math.min(xscale, yscale) : Math.max(xscale, yscale);
+        // create empty canvas
+        var canvas = document.createElement("canvas");                  
+        canvas.width  = width ? width   : Math.round(src.naturalWidth  * scale);
+        canvas.height = height ? height : Math.round(src.naturalHeight * scale);
+        canvas.getContext("2d").scale(scale,scale);
+        // crop it top center
+        canvas.getContext("2d").drawImage(src, ((src.naturalWidth * scale) - canvas.width) * -.5 , ((src.naturalHeight * scale) - canvas.height) * -.5 );
+        return canvas.toDataURL();
+    }
+
+    function onImageLoad(o){
+      // Off the event
+      o.onload = null;
+      if(o.naturalWidth == o.naturalHeight) return;
+      // do resize
+      o.src = resizeCrop(o, 480, 480);
+    }
+  </script>
+
 </head>
 <%= render_body_tag %>
 <%= render :partial => "common/google_analytics" %>

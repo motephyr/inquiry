@@ -147,6 +147,7 @@ transition:all 1s;
 .UserDataBox .WorksList ul.designerWorksList li .photoBox p.onThePhoto{ font-size: inherit; text-align: center; max-width: 90%;}
 .UserDataBox .WorksList ul.designerWorksList li .photoBox a.look_competence{ cursor: pointer; position: absolute; width:1.2vw; height:1.2vw; top: 5px; right: 5px; background-color: #000;  background:url(/images/personal_page/icon_lock.png); background-size: contain;}
 .UserDataBox .WorksList ul.designerWorksList li .photoBox a.look_open{ background:url(/images/personal_page/icon_open.png); background-size: contain; }
+.UserDataBox .WorksList ul.designerWorksList li .photoBox img{ display: block; margin: 0 auto; width: 99.8%; }
 
 .UserDataBox .WorksList ul.designerWorksList li .the_tools{ width: 100%; padding: 2px 0;}
 .UserDataBox .WorksList ul.designerWorksList li .the_tools p{ float: right; font-size: 12px; line-height: 20px;}
