@@ -20,6 +20,16 @@ class WorksController < ApplicationController
 
     @works = works(params).where.not(user: @unlike).is_published.order_by_new.page(params[:page])
     # Work.includes(:user, :cares).from('users AS u').joins('INNER JOIN works AS w ON u.id = w.user_id').order('w.id DESC').select('w.*')
+    #     sql = "select w.*,u.* from works w,
+# (select w.user_id, max(w.created_at) as time from works w left join users u on w.user_id = u.id group by w.user_id) t,
+# users u
+# where w.created_at = t.time and w.user_id = u.id"
+# test = works(params).from('users AS u').joins(', (select w.user_id, max(w.created_at) as time from works w left join users u on w.user_id = u.id group by w.user_id) as t')
+# .joins(', works AS w')
+# .where('w.created_at = t.time and w.user_id = u.id')
+# .select('w.*')
+# @works=  test.where.not("w.user_id in (?)", @unlike).where("w.is_publish = true").order_by_new.page(params[:page])
+
   end
 
   def favorite
