@@ -71,11 +71,11 @@ module ApplicationHelper
     obj = get_resolved_url_obj(url)
     case obj[:type]
     when "image"
-      tag :img, src: "#{url}", onload: "onImageLoad(this)", crossOrigin: "Anonymous"
+      tag :img, src: "#{url}"
     when "audio"    #compare to 2
-      content_tag :audio, '', controls: "controls", src: "#{url}", style: "width:100%;"
+      tag :audio, controls: "controls", src: "#{url}", style: "width:100%;"
     when "video"
-      content_tag :video, '', controls: "controls", src: "#{url}", width: "100%", height: "100%"
+      tag :video, controls: "controls", src: "#{url}", width: "100%", height: "100%"
     when "youtube"
       matches = obj[:match_object]
       queryobj = {}
@@ -116,6 +116,48 @@ module ApplicationHelper
     end
   end
 
+  # for new layout test
+  def render_resolve_url_personal(work)
+    url = work.attach_url
+    obj = get_resolved_url_obj(url)
+    case obj[:type]
+    when "image"
+      tag :img, src: "#{url}", onload: "onImageLoad(this)"
+    when "audio"    #compare to 2
+      tag :audio, controls: "controls", src: "#{url}", style: "width:100%;"
+    when "video"
+      tag :video, controls: "controls", src: "#{url}", width: "100%", height: "100%"
+    when "youtube"
+      matches = obj[:match_object]
+      queryobj = {}
+      queryobj["rel"] = 0
+      hashes = ""
+      overrides = Rack::Utils.parse_query(URI.parse(matches[0]).query)
+      overrides.delete("v")
+      queryobj = queryobj.merge(overrides)
+      if matches[4] != nil
+        splits = matches[4].split('#')
+        if splits.length > 1
+          hashes += "#" + splits[1]
+        end
+      end
+      queryobj["enablejsapi"] = 1;
+      if queryobj["t"].present? 
+        timeRe = /((?<min>\d+)[m])?((?<sec>\d+)[s])?/
+        time = queryobj["t"].scan(timeRe)[0]
+        queryobj["start"] = (time[0] ? time[0].to_i : 0) * 60 + (time[1] ? time[1].to_i : 0) 
+      end
+      querystr = Rack::Utils.build_query(queryobj)
+      content_tag :iframe, '', src: "https://www.youtube.com/embed/#{matches[2]}?#{querystr}#{hashes}", width: '100%', height:'100%', frameborder: '0'
+    else
+      # content_tag :div, :data => { :remote_url => url }, class: "remote-preview" do
+      #   content_tag(:div,'', style: 'background-image:url(' + work.remote_image_url + ')', class: 'preview-image')  +
+      #     content_tag(:p, work.remote_description,  class: 'preview-description')
+      # end
+      tag :img, src: "#{work.remote_image_url}", onload: "onImageLoad(this)"
+    end
+  end
+
   def render_with_p_tags(str)
     str.gsub!(/\r\n?/, "\n")
     lines = str.split("\n")
@@ -153,15 +195,38 @@ module ApplicationHelper
     if w.attach_avatar.present?
       render_avatar_file(w.attach_avatar.square_large.url)
     elsif w.attach_url.present?
-      render_resolve_url(w)
+      # render_resolve_url(w)
+      render_resolve_url_personal(w)
     elsif w.attach_content.present?
 
-        raw('<p class="onThePhoto" style="color: #fff">' + w.subject + '</p>')
+        raw('<p class="onThePhoto" style="color: ' + work_text_color_personal(w) + '">' + w.subject + '</p>')
 
     else
     end
   end
 
+  def work_background_color_personal(w)
+    url = w.attach_url
+    time = w.created_at.to_i
+    obj = get_resolved_url_obj(url)
+    colors = ["#6dc6d0;", "#e4ddd3;", "#333;"]
+    res = ""
+    case obj[:type]
+    when "video", "audio", "youtube"
+      res = '#ececec'
+    when "image", "others"
+      res = colors[time % 3]
+    end
+    res
+  end
+
+  def work_text_color_personal(w)
+    url = w.attach_url
+    time = w.created_at.to_i
+    obj = get_resolved_url_obj(url)
+    colors = ["#fff;", "#6b5e5e;", "#fff;"]
+    colors[time % 3]
+  end
 
   def work_square_all(w)
     subject = ''

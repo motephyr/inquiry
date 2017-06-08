@@ -141,13 +141,26 @@ transition:all 1s;
 
 .UserDataBox .WorksList ul.designerWorksList{ width: 100%; }
 .UserDataBox .WorksList ul.designerWorksList li{ display: inline-block; float: left; width: 25%; padding:0 1%; padding-bottom: 12px;}
-.UserDataBox .WorksList ul.designerWorksList li .photoBox{ display: block; width: 100%; position: relative;}
+.UserDataBox .WorksList ul.designerWorksList li .photoBox{ display: block; width: 100%; position: relative; }
 .UserDataBox .WorksList ul.designerWorksList li .photoBox a.photogo{ display: block; width: 100%; height: 100%; font-size: 1.1vw; line-height: 150%; min-height: 202px; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center}
-.UserDataBox .WorksList ul.designerWorksList li .photoBox:hover{opacity: .9;}
+/*.UserDataBox .WorksList ul.designerWorksList li .photoBox:hover{opacity: .9;}*/
 .UserDataBox .WorksList ul.designerWorksList li .photoBox p.onThePhoto{ font-size: inherit; text-align: center; max-width: 90%;}
 .UserDataBox .WorksList ul.designerWorksList li .photoBox a.look_competence{ cursor: pointer; position: absolute; width:1.2vw; height:1.2vw; top: 5px; right: 5px; background-color: #000;  background:url(/images/personal_page/icon_lock.png); background-size: contain;}
 .UserDataBox .WorksList ul.designerWorksList li .photoBox a.look_open{ background:url(/images/personal_page/icon_open.png); background-size: contain; }
-.UserDataBox .WorksList ul.designerWorksList li .photoBox img{ display: block; margin: 0 auto; width: 99.8%; }
+
+/* add by kino */
+.UserDataBox .WorksList ul.designerWorksList li .photoBox a{   
+  -moz-transition:all .4s; /* Firefox 4 */
+  -ms-transition: all .4s;  
+  -webkit-transition:all .4s; /* Safari and Chrome */
+  -o-transition:all .4s; /* Opera */
+}
+.UserDataBox .WorksList ul.designerWorksList li .photoBox img{ display: block; margin: 0 auto; width: 99.8%; position: absolute; }
+.UserDataBox .WorksList ul.designerWorksList li .photoBox a.photogo{ overflow: hidden; position: relative; z-index: 2; }
+.UserDataBox .WorksList ul.designerWorksList li .photoBox > p{ z-index: 1; position: absolute; top: 8%; left: 10%; }
+.UserDataBox .WorksList ul.designerWorksList li .photoBox:hover a.photogo{opacity: .15;}
+.UserDataBox .WorksList ul.designerWorksList li .photoBox:hover > p{ z-index: 100; }
+
 
 .UserDataBox .WorksList ul.designerWorksList li .the_tools{ width: 100%; padding: 2px 0;}
 .UserDataBox .WorksList ul.designerWorksList li .the_tools p{ float: right; font-size: 12px; line-height: 20px;}

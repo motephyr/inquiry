@@ -50,9 +50,9 @@
     function onImageLoad(o){
       // Off the event
       o.onload = null;
-      if(o.naturalWidth == o.naturalHeight) return;
-      // do resize
-      o.src = resizeCrop(o, 480, 480);
+      if(o.naturalWidth > o.naturalHeight){
+        o.style.cssText += "width: auto; height:100%;";
+      }
     }
   </script>
 
