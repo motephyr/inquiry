@@ -20,6 +20,15 @@
   <%= yield :stylesheets %>
 
   <script type="text/javascript">
+
+  function toFixedSquareSize(){
+    var el = $(".UserDataBox .WorksList ul.designerWorksList li .photoBox a.photogo");
+    el.height(el.width());
+  }
+
+  window.addEventListener('resize', toFixedSquareSize);
+  window.addEventListener('load', toFixedSquareSize);
+
   function detect_is_safari(){
     return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification) || /iPad|iPhone|iPod/.test(navigator.userAgent); 
   }
