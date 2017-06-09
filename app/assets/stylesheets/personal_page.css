@@ -159,7 +159,7 @@ transition:all 1s;
 .UserDataBox .WorksList ul.designerWorksList li .photoBox a.photogo{ overflow: hidden; position: relative; z-index: 2; }
 .UserDataBox .WorksList ul.designerWorksList li .photoBox > p{ z-index: 1; position: absolute; top: 8%; left: 10%; right: 10%;}
 .UserDataBox .WorksList ul.designerWorksList li .photoBox:hover a.photogo{opacity: .15;}
-.UserDataBox .WorksList ul.designerWorksList li .photoBox:hover > p{ z-index: 100; }
+.UserDataBox .WorksList ul.designerWorksList li .photoBox:hover > p{ z-index: 3; }
 
 
 .UserDataBox .WorksList ul.designerWorksList li .the_tools{ width: 100%; padding: 2px 0; min-height: 20px;}

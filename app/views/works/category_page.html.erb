@@ -1,0 +1,77 @@
+<section class="UserDataBox classificationBox">
+  <div class="topBanner br_banner_01">
+    <h2>作品展示</h2>
+  </div>
+  <div class="ContentsBox clearfix">
+    <div class="WorksList">
+      <div class="abox">
+        <div class="work_information">
+          <div class="left_worktype">
+            <div class="choose_type">
+              <p>成果類別：<span>全部</span></p>
+              <%= render_list :class => "worktypeBox clearfix" do |div|
+                                        div << content_tag(:p, link_to("全部", request.path_info ,class: 'btn_in'))
+                                        div << content_tag(:p, link_to("美術設計", request.path_info + "?" + {category_id: 1,page: params[:page]}.to_param))
+                                        div << content_tag(:p, link_to("工業設計", request.path_info + "?" + {category_id: 2,page: params[:page]}.to_param))
+                                        div << content_tag(:p, link_to("文字編輯", request.path_info + "?" + {category_id: 3,page: params[:page]}.to_param))
+                                        div << content_tag(:p, link_to("程式開發", request.path_info + "?" + {category_id: 7,page: params[:page]}.to_param))
+                                        div << content_tag(:p, link_to("行銷企畫", request.path_info + "?" + {category_id: 8,page: params[:page]}.to_param))
+                                        div << content_tag(:p, link_to("音樂人",  request.path_info + "?" + {category_id: 9,page: params[:page]}.to_param))
+                                        div << content_tag(:p, link_to("影像製作", request.path_info + "?" + {category_id: 10,page: params[:page]}.to_param))
+                                        div << content_tag(:p, link_to("其他", request.path_info + "?" + {category_id: 12,page: params[:page]}.to_param))
+                                        end %>
+            </div>
+          </div>
+          <%= render_list :class => "works_time" do |li|
+            li << content_tag(:p, link_to('Good Job！', category_page_works_path(category_id: params[:category_id]), page: "")  )      
+            li << content_tag(:p, link_to("最新",category_page_works_path(category_id: params[:category_id]), page: "newest")    )
+            li << content_tag(:p, link_to("關注", category_page_works_path(category_id: params[:category_id]), page: "favorite") )
+        end %>
+          <% if current_user %>
+            <%= content_tag(:p, link_to('＋ 新增作品或工作成果', new_account_user_info_work_path(current_user)), class: 'addWorks') %>
+          <% end %>
+          <ul class="designerWorksList clearfix">
+            <%  @works.each do |w| %>
+              <li>
+                <div class="photoBox" id="<%= dom_id(w) %>">
+                  <%= link_to user_info_work_path(w.user, w), class: "photogo item-wrap",style: 'background-color: ' + work_background_color_personal(w), remote: true do %>
+                    <%= work_square_personal(w) %>
+                  <% end %>
+                  <p><%= w.subject %></p>
+                </div>
+                <div class="the_tools clearfix" id="work_info_<%= w.id %>">
+                  <%= content_tag :p, '',class: 'link' if w.attach_url.present? %>
+                  <p class="dialog"><a><%= w.work_messages_count %></a></p>
+                  <p class="eyes"><a><%= w.hits %></a></p>
+                </div>
+                <%= link_to user_info_path(w.user), class: 'userID clearfix' do %>
+                  <%= tag :img, src: w.user.avatar_link(size: 64), alt: 'my profile', width:"100%" %>
+                  <p class="name"><%= w.user.nickname %></p>
+                <% end %>
+              </li>
+            <% end %>
+            <%= render 'common/modal'  %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% content_for :javascripts do %>
+  <script>
+    $('#chat').click(function(){
+      Gossim.popup('<%= User.find(1).id %>', '<%= User.find(1).nickname %>')
+    })
+  </script>
+<% end %>
+
+<%= javascript_include_tag "works_list" %>
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "works" %>
+  <style>
+      @media only screen and (max-width:991px) {
+      .well { display: none; }
+    }
+  </style>
+<% end -%>
