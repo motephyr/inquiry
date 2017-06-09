@@ -78,7 +78,7 @@ transition:all 1s;
 -ms-transition: all 1s;  
 -webkit-transition:all 1s; /* Safari and Chrome */
 -o-transition:all 1s; /* Opera */}
-*:link, *:visited, (*:not(.modal)):hover, *:active, *:focus , * {border: none;outline: none; hlbr:expression(this.onFocus=this.blur()); /* for IE */}
+*:link, *:visited, *:not([class*="modal"]):hover, *:active, *:focus , * {border: none;outline: none; hlbr:expression(this.onFocus=this.blur()); /* for IE */}
  
 @media screen and ( max-width:750px) {}
 
