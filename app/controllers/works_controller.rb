@@ -8,36 +8,57 @@ class WorksController < ApplicationController
     end
     set_page_info({title: "工作成果與作品列表", description: "每個人在工作上都有自已專精的領域，將你近期的工作成果展現給大家看，讓別人知道你擅長和拿手的是什麼，說不定他正需要你！"})
   end
-  def index
+  layout :determine_layout
+
+
+  def category_page
     #編輯選擇
-    @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable} : nil
-    @works = works(params).where.not(user: @unlike).is_published.is_featured.order_by_new.page(params[:page])
-  end
-
-  def newest
-    #全部最新
     @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable.id} : nil
+    if params[:page] == "newest"
+      if params[:category_id]
+        @works = works(params).where.not(user: @unlike).is_published.order_by_new.page(params[:page])
 
-    if params[:category_id]
-      @works = works(params).where.not(user: @unlike).is_published.order_by_new.page(params[:page])
-
-    else
-      test = works(params).from('works').joins(', (select w.user_id, max(w.created_at) as time from works w left join users u on w.user_id = u.id group by w.user_id) as t')
-      .joins(', users AS u')
-      .where('works.created_at = t.time and works.user_id = u.id')
-      .select('works.*')
-      if @unlike.present?
-        test =  test.where.not("works.user_id in (?)", @unlike)
+      else
+        #最新一個作者只會出現一個
+        test = works(params).from('works').joins(', (select w.user_id, max(w.created_at) as time from works w left join users u on w.user_id = u.id group by w.user_id) as t')
+        .joins(', users AS u')
+        .where('works.created_at = t.time and works.user_id = u.id')
+        .select('works.*')
+        if @unlike.present?
+          test =  test.where.not("works.user_id in (?)", @unlike)
+        end
+        @works = test.is_published.order_by_new.page(params[:page])
       end
-      @works = test.is_published.order_by_new.page(params[:page])
+    elsif params[:page] == "favorite"
+      @works = works(params).where.not(user: @unlike).is_published.order_by_favorite.page(params[:page])
+    else
+      @works = works(params).where.not(user: @unlike).is_published.is_featured.order_by_new.page(params[:page])
     end
   end
 
-  def favorite
-    #照like數排序
-    @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable} : nil
+  def index
+    #編輯選擇
+    @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable.id} : nil
+    if params[:page] == "newest"
+      if params[:category_id]
+        @works = works(params).where.not(user: @unlike).is_published.order_by_new.page(params[:page])
 
-    @works = works(params).where.not(user: @unlike).is_published.order_by_favorite.page(params[:page])
+      else
+        #最新一個作者只會出現一個
+        test = works(params).from('works').joins(', (select w.user_id, max(w.created_at) as time from works w left join users u on w.user_id = u.id group by w.user_id) as t')
+        .joins(', users AS u')
+        .where('works.created_at = t.time and works.user_id = u.id')
+        .select('works.*')
+        if @unlike.present?
+          test =  test.where.not("works.user_id in (?)", @unlike)
+        end
+        @works = test.is_published.order_by_new.page(params[:page])
+      end
+    elsif params[:page] == "favorite"
+      @works = works(params).where.not(user: @unlike).is_published.order_by_favorite.page(params[:page])
+    else
+      @works = works(params).where.not(user: @unlike).is_published.is_featured.order_by_new.page(params[:page])
+    end
   end
 
 
@@ -137,5 +158,10 @@ class WorksController < ApplicationController
     end
   end
 
+  def determine_layout
+    if action_name == 'category_page'
+      "personal_page"
+    end
+  end
 
 end

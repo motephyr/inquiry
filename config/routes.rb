@@ -16,9 +16,7 @@ Rails.application.routes.draw do
   resources :works do
     resources :donates
     collection do
-      get 'newest'
-      get 'favorite'
-
+      get 'category_page'
       post 'getUrl'
     end
     member do
