@@ -25,11 +25,11 @@ module ApplicationHelper
 
     content = @categories.reduce('') do |all, c|
       all + "<tr><td width='20%'>#{c.title} #{c.id}</td>" +
-        "<td width='80%'>" +
+      "<td width='80%'>" +
       c.subcategories.reduce('') do |sum, sub_category|
         sum + "#{sub_category.title} #{sub_category.id} "
       end +
-        "</td></tr>"
+      "</td></tr>"
     end
 
     "<table class='table table-bordered'>" + content + "</table>"
@@ -91,17 +91,17 @@ module ApplicationHelper
         end
       end
       queryobj["enablejsapi"] = 1;
-      if queryobj["t"].present? 
+      if queryobj["t"].present?
         timeRe = /((?<min>\d+)[m])?((?<sec>\d+)[s])?/
         time = queryobj["t"].scan(timeRe)[0]
-        queryobj["start"] = (time[0] ? time[0].to_i : 0) * 60 + (time[1] ? time[1].to_i : 0) 
+        queryobj["start"] = (time[0] ? time[0].to_i : 0) * 60 + (time[1] ? time[1].to_i : 0)
       end
       querystr = Rack::Utils.build_query(queryobj)
       content_tag :iframe, '', src: "https://www.youtube.com/embed/#{matches[2]}?#{querystr}#{hashes}", width: '100%', height:'100%', frameborder: '0'
     else
       content_tag :div, :data => { :remote_url => url }, class: "remote-preview" do
         content_tag(:div,'', style: 'background-image:url(' + work.remote_image_url + ')', class: 'preview-image')  +
-          content_tag(:p, work.remote_description,  class: 'preview-description')
+        content_tag(:p, work.remote_description,  class: 'preview-description')
       end
     end
   end
@@ -142,10 +142,10 @@ module ApplicationHelper
         end
       end
       queryobj["enablejsapi"] = 1;
-      if queryobj["t"].present? 
+      if queryobj["t"].present?
         timeRe = /((?<min>\d+)[m])?((?<sec>\d+)[s])?/
         time = queryobj["t"].scan(timeRe)[0]
-        queryobj["start"] = (time[0] ? time[0].to_i : 0) * 60 + (time[1] ? time[1].to_i : 0) 
+        queryobj["start"] = (time[0] ? time[0].to_i : 0) * 60 + (time[1] ? time[1].to_i : 0)
       end
       querystr = Rack::Utils.build_query(queryobj)
       content_tag :iframe, '', src: "https://www.youtube.com/embed/#{matches[2]}?#{querystr}#{hashes}", width: '100%', height:'100%', frameborder: '0'
@@ -199,7 +199,7 @@ module ApplicationHelper
       render_resolve_url_personal(w)
     elsif w.attach_content.present?
 
-        raw('<p class="onThePhoto" style="color: ' + work_text_color_personal(w) + '">' + w.subject + '</p>')
+      raw('<p class="onThePhoto" style="color: ' + work_text_color_personal(w) + '">' + w.subject + '</p>')
 
     else
     end
@@ -230,16 +230,16 @@ module ApplicationHelper
 
   def work_square_all(w)
     subject = ''
-	if w.attach_avatar.present? && w.attach_url.present?
-	  w.remote_image_url = w.attach_avatar.square_limit
-	  subject += render_resolve_url(w)
+    if w.attach_avatar.present? && w.attach_url.present?
+      w.remote_image_url = w.attach_avatar.square_limit
+      subject += render_resolve_url(w)
     else
-	  if w.attach_avatar.present?
-	    subject += render_avatar_file(w.attach_avatar.square_limit.url)
-	  elsif w.attach_url.present?
-	    subject += render_resolve_url(w)
-	  end
-	end
+      if w.attach_avatar.present?
+        subject += render_avatar_file(w.attach_avatar.square_limit.url)
+      elsif w.attach_url.present?
+        subject += render_resolve_url(w)
+      end
+    end
     if w.attach_content.present?
       subject += sanitize w.attach_content
     end
@@ -269,7 +269,33 @@ module ApplicationHelper
     else
       '(您尚未選擇您的作品類別哦)'
     end
+  end
 
+  def category_page_name(params)
+    case params[:category_id]
+    when "1"
+      "美術設計"
+    when "2"
+      "工業設計"
+    when "3"
+      "文字編輯"
+    when "7"
+      "程式開發"
+    when "8"
+      "行銷企畫"
+    when "9"
+      "音樂人"
+    when "10"
+      "影像製作"
+    when "12"
+      "其他"
+    else
+      "全部"
+    end
+  end
+
+  def focus_to(name, path)
+    content_tag(:p, link_to(name,path), class: current_page?(path) ? 'btn_in' : '' )
   end
 
   def li_link_button(tag_show, tag_name, class_name = 'btn-default')
@@ -287,10 +313,10 @@ module ApplicationHelper
   end
 
   def notice_size
-     size = PublicActivity::Activity.where(recipient_type: "User", recipient_id: current_user.id).where("created_at > ?", current_user.noticed_at).size 
-     if size > 0
+    size = PublicActivity::Activity.where(recipient_type: "User", recipient_id: current_user.id).where("created_at > ?", current_user.noticed_at).size
+    if size > 0
       "<span class='badge'>#{(size > 10) ? 10 : size}</span>".html_safe
-     end
+    end
   end
 
 end

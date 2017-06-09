@@ -8,24 +8,26 @@
         <div class="work_information">
           <div class="left_worktype">
             <div class="choose_type">
-              <p>成果類別：<span>全部</span></p>
+              <p id="worktypeButton">成果類別：<span><%= category_page_name(params) %></span></p>
+              <div id="worktypeBox" style="display:none">
               <%= render_list :class => "worktypeBox clearfix" do |div|
-                                        div << content_tag(:p, link_to("全部", request.path_info ,class: 'btn_in'))
-                                        div << content_tag(:p, link_to("美術設計", request.path_info + "?" + {category_id: 1,page: params[:page]}.to_param))
-                                        div << content_tag(:p, link_to("工業設計", request.path_info + "?" + {category_id: 2,page: params[:page]}.to_param))
-                                        div << content_tag(:p, link_to("文字編輯", request.path_info + "?" + {category_id: 3,page: params[:page]}.to_param))
-                                        div << content_tag(:p, link_to("程式開發", request.path_info + "?" + {category_id: 7,page: params[:page]}.to_param))
-                                        div << content_tag(:p, link_to("行銷企畫", request.path_info + "?" + {category_id: 8,page: params[:page]}.to_param))
-                                        div << content_tag(:p, link_to("音樂人",  request.path_info + "?" + {category_id: 9,page: params[:page]}.to_param))
-                                        div << content_tag(:p, link_to("影像製作", request.path_info + "?" + {category_id: 10,page: params[:page]}.to_param))
-                                        div << content_tag(:p, link_to("其他", request.path_info + "?" + {category_id: 12,page: params[:page]}.to_param))
+                                        div << focus_to("全部", request.path_info + "?" + {page: params[:page]}.to_param )
+                                        div << focus_to("美術設計", request.path_info + "?" + {category_id: 1,page: params[:page]}.to_param)
+                                        div << focus_to("工業設計", request.path_info + "?" + {category_id: 2,page: params[:page]}.to_param)
+                                        div << focus_to("文字編輯", request.path_info + "?" + {category_id: 3,page: params[:page]}.to_param)
+                                        div << focus_to("程式開發", request.path_info + "?" + {category_id: 7,page: params[:page]}.to_param)
+                                        div << focus_to("行銷企畫", request.path_info + "?" + {category_id: 8,page: params[:page]}.to_param)
+                                        div << focus_to("音樂人",  request.path_info + "?" + {category_id: 9,page: params[:page]}.to_param)
+                                        div << focus_to("影像製作", request.path_info + "?" + {category_id: 10,page: params[:page]}.to_param)
+                                        div << focus_to("其他", request.path_info + "?" + {category_id: 12,page: params[:page]}.to_param)
                                         end %>
+              </div>
             </div>
           </div>
           <%= render_list :class => "works_time" do |li|
-            li << content_tag(:p, link_to('Good Job！', category_page_works_path(category_id: params[:category_id]), page: "")  )      
-            li << content_tag(:p, link_to("最新",category_page_works_path(category_id: params[:category_id]), page: "newest")    )
-            li << content_tag(:p, link_to("關注", category_page_works_path(category_id: params[:category_id]), page: "favorite") )
+            li << focus_to('Good Job！', category_page_works_path(category_id: params[:category_id], page: ""))       
+            li << focus_to("最新",category_page_works_path(category_id: params[:category_id], page: "newest")   ) 
+            li << focus_to("關注", category_page_works_path(category_id: params[:category_id], page: "favorite") )
         end %>
           <% if current_user %>
             <%= content_tag(:p, link_to('＋ 新增作品或工作成果', new_account_user_info_work_path(current_user)), class: 'addWorks') %>
@@ -60,8 +62,8 @@
 
 <% content_for :javascripts do %>
   <script>
-    $('#chat').click(function(){
-      Gossim.popup('<%= User.find(1).id %>', '<%= User.find(1).nickname %>')
+    $('#worktypeButton').click(function(){
+      $('#worktypeBox').toggle();
     })
   </script>
 <% end %>

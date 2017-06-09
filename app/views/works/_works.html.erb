@@ -25,7 +25,7 @@
           
         
         <%= render_list :class => "nav nav-tabs" do |li|
-            li << link_to('Good Job！', works_path(category_id: params[:category_id]), page: ""   )      
+            li << link_to('Good Job！', works_path(category_id: params[:category_id], page: ""   ))      
             li << link_to("最新",works_path(category_id: params[:category_id], page: "newest")   )
             li << link_to("關注", works_path(category_id: params[:category_id], page: "favorite") )
           if current_user
