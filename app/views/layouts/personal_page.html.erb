@@ -20,31 +20,38 @@
   <%= yield :stylesheets %>
 
   <script>
-    // Refers to: https://stackoverflow.com/a/14610265/2238770
-    function resizeCrop( src, width, height ){
-        var crop = width == 0 || height == 0;
-        // not resize
-        if(src.naturalWidth <= width && height == 0) {
-            width  = src.naturalWidth;
-            height = src.naturalHeight;
-        }
-        // resize
-        if( src.naturalWidth > width && height == 0){
-            height = src.naturalHeight * (width / src.naturalWidth);
-        }
+    
+  function isSafari(){
+    return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification); 
+  }
 
-        // check scale
-        var xscale = width  / src.naturalWidth;
-        var yscale = height / src.naturalHeight;
-        var scale  = crop ? Math.min(xscale, yscale) : Math.max(xscale, yscale);
-        // create empty canvas
-        var canvas = document.createElement("canvas");                  
-        canvas.width  = width ? width   : Math.round(src.naturalWidth  * scale);
-        canvas.height = height ? height : Math.round(src.naturalHeight * scale);
-        canvas.getContext("2d").scale(scale,scale);
-        // crop it top center
-        canvas.getContext("2d").drawImage(src, ((src.naturalWidth * scale) - canvas.width) * -.5 , ((src.naturalHeight * scale) - canvas.height) * -.5 );
-        return canvas.toDataURL();
+  function toFixedPercent(num, decimals){
+    decimals = decimals || 1;
+    var shiftRight = Math.pow(10,(decimals + 2));
+    return Math.floor( num * shiftRight ) / Math.pow(10, decimals);
+  }
+
+    function imgFlexboxFixed(img){
+      var parent = img.parentElement;
+      var w = parent.offsetWidth;
+      var h = parent.offsetHeight;
+      var nw = img.naturalWidth;
+      var nh = img.naturalHeight;
+      if(nw > nh){
+        var resizeW = h / nh * nw;
+        if(resizeW > w){
+          img.style.cssText += "top:0px;left:-" + toFixedPercent((resizeW - w) / 2 / w, 1) + "%;";
+        }else{
+          img.style.cssText += "top:0px;left:" + toFixedPercent((w - resizeW) / 2 / w, 1) + "%;";
+        }
+      }else{
+        var resizeH = w / nw * nh;
+        if(resizeH > h){
+          img.style.cssText += "left:0px;top:-" + toFixedPercent((resizeH - h) / 2 / h, 1) + "%;";
+        }else{
+          img.style.cssText += "left:0px;top:" + toFixedPercent((h - resizeH) / 2 / h, 1) + "%;";
+        }
+      }
     }
 
     function onImageLoad(o){
@@ -53,7 +60,15 @@
       if(o.naturalWidth > o.naturalHeight){
         o.style.cssText += "width: auto; height:100%;";
       }
+
+      if(isSafari()){
+        imgFlexboxFixed(o);
+        window.addEventListener('resize', (function(img){
+          return function(){ imgFlexboxFixed(img); };
+        })(o));
+      }
     }
+    
   </script>
 
 </head>
