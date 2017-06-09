@@ -37,17 +37,17 @@ class User < ApplicationRecord
     data = auth.info
     user = User.where(:email => data["email"]).first
 
-    if user
-      user.set_user_provider_id auth
-      user.save!
-    else
+    if user.blank?
       user = User.create(name: data["name"],
                          email: data["email"],
                          password: Devise.friendly_token[0,20],
                          remote_avatar_url: data['image']
                          )
-      user.set_user_provider_id auth
     end
+    
+      user.set_user_provider_id auth
+      user.skip_confirmation!
+      user.save!
     user
   end
 
