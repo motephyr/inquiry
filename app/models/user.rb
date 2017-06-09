@@ -67,9 +67,9 @@ class User < ApplicationRecord
     User.has_user_info.where("users.id < ?", self.id).last || User.has_user_info.last
   end
 
-  def default_avatar_link
+  def default_avatar_link(options = { size: 64})
     # 'user-default-image.png'
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/64px-Creative-Tail-People-police-man.svg.png'
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Creative-Tail-People-police-man.svg/#{options[:size]}px-Creative-Tail-People-police-man.svg.png"
   end
 
   def avatar_link(options = { size: 64})
@@ -78,7 +78,7 @@ class User < ApplicationRecord
     elsif self.remote_avatar_url.present?
       self.remote_avatar_url + "?height=#{options[:size]}&width=#{options[:size]}"
     else
-      self.default_avatar_link
+      self.default_avatar_link(size: options[:size])
     end
   end
 
