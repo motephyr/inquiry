@@ -148,7 +148,7 @@ module ApplicationHelper
         queryobj["start"] = (time[0] ? time[0].to_i : 0) * 60 + (time[1] ? time[1].to_i : 0)
       end
       querystr = Rack::Utils.build_query(queryobj)
-      content_tag :iframe, '', src: "https://www.youtube.com/embed/#{matches[2]}?#{querystr}#{hashes}", width: '100%', height:'100%', frameborder: '0'
+      content_tag :iframe, '', src: "https://www.youtube.com/embed/#{matches[2]}?#{querystr}#{hashes}", width: '100%', frameborder: '0'
     else
       # content_tag :div, :data => { :remote_url => url }, class: "remote-preview" do
       #   content_tag(:div,'', style: 'background-image:url(' + work.remote_image_url + ')', class: 'preview-image')  +

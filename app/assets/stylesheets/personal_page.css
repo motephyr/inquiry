@@ -223,6 +223,9 @@ transition:all 1s;
 @media (max-width:750px){ .classificationBox .left_worktype{ position: inherit; top: inherit; left: inherit; padding-bottom:30px;}
   .classificationBox .left_worktype ul.worktypeBox{ left: 50%; margin-left: -150px;}
   .classificationBox .WorksList .abox .work_information p.addWorks{ position: inherit; top: inherit; right: 10px; padding-bottom:8px; text-align: right; }
-  .classificationBox .left_worktype p{ text-align: center; }}
+  .classificationBox .left_worktype p{ text-align: center; }
+  .classificationBox .WorksList ul.designerWorksList li .photoBox a.photogo{min-height: 140px;}
+
+  }
 
 /*--2017/06/05-- 新增 END*/
