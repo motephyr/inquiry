@@ -19,9 +19,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= yield :stylesheets %>
 
-  <script>
-    
-  function isSafari(){
+  <script type="text/javascript">
+  function detect_is_safari(){
     return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification); 
   }
 
@@ -61,7 +60,7 @@
         o.style.cssText += "width: auto; height:100%;";
       }
 
-      if(isSafari()){
+      if(detect_is_safari()){
         imgFlexboxFixed(o);
         window.addEventListener('resize', (function(img){
           return function(){ imgFlexboxFixed(img); };
