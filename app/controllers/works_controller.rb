@@ -14,7 +14,7 @@ class WorksController < ApplicationController
   def category_page
     #編輯選擇
     @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable.id} : nil
-    if params[:page] == "newest"
+    if params[:pagekind] == "newest"
       if params[:category_id]
         @works = works(params).where.not(user: @unlike).is_published.order_by_new.page(params[:page])
 
@@ -29,7 +29,7 @@ class WorksController < ApplicationController
         end
         @works = test.is_published.order_by_new.page(params[:page])
       end
-    elsif params[:page] == "favorite"
+    elsif params[:pagekind] == "favorite"
       @works = works(params).where.not(user: @unlike).is_published.order_by_favorite.page(params[:page])
     else
       @works = works(params).where.not(user: @unlike).is_published.is_featured.order_by_new.page(params[:page])
@@ -39,7 +39,7 @@ class WorksController < ApplicationController
   def index
     #編輯選擇
     @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable.id} : nil
-    if params[:page] == "newest"
+    if params[:pagekind] == "newest"
       if params[:category_id]
         @works = works(params).where.not(user: @unlike).is_published.order_by_new.page(params[:page])
 
@@ -54,7 +54,7 @@ class WorksController < ApplicationController
         end
         @works = test.is_published.order_by_new.page(params[:page])
       end
-    elsif params[:page] == "favorite"
+    elsif params[:pagekind] == "favorite"
       @works = works(params).where.not(user: @unlike).is_published.order_by_favorite.page(params[:page])
     else
       @works = works(params).where.not(user: @unlike).is_published.is_featured.order_by_new.page(params[:page])

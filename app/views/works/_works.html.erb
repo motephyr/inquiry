@@ -2,14 +2,14 @@
 <div class="row">
   <div class="col-md-3">
             <%= render_list :class => "nav nav-tabs" do |div|
-              div << link_to("美術設計", request.path_info + "?" + {category_id: 1,page: params[:page]}.to_param)
-              div << link_to("工業設計", request.path_info + "?" + {category_id: 2,page: params[:page]}.to_param)
-              div << link_to("文字編輯", request.path_info + "?" + {category_id: 3,page: params[:page]}.to_param)
-              div << link_to("程式開發", request.path_info + "?" + {category_id: 7,page: params[:page]}.to_param)
-              div << link_to("行銷企畫", request.path_info + "?" + {category_id: 8,page: params[:page]}.to_param)
-              div << link_to("音樂人",  request.path_info + "?" + {category_id: 9,page: params[:page]}.to_param)
-              div << link_to("影像製作", request.path_info + "?" + {category_id: 10,page: params[:page]}.to_param)
-              div << link_to("其他", request.path_info + "?" + {category_id: 12,page: params[:page]}.to_param)
+              div << link_to("美術設計", request.path_info + "?" + {category_id: 1,pagekind: params[:pagekind]}.to_param)
+              div << link_to("工業設計", request.path_info + "?" + {category_id: 2,pagekind: params[:pagekind]}.to_param)
+              div << link_to("文字編輯", request.path_info + "?" + {category_id: 3,pagekind: params[:pagekind]}.to_param)
+              div << link_to("程式開發", request.path_info + "?" + {category_id: 7,pagekind: params[:pagekind]}.to_param)
+              div << link_to("行銷企畫", request.path_info + "?" + {category_id: 8,pagekind: params[:pagekind]}.to_param)
+              div << link_to("音樂人",  request.path_info + "?" + {category_id: 9,pagekind: params[:pagekind]}.to_param)
+              div << link_to("影像製作", request.path_info + "?" + {category_id: 10,pagekind: params[:pagekind]}.to_param)
+              div << link_to("其他", request.path_info + "?" + {category_id: 12,pagekind: params[:pagekind]}.to_param)
             end %>
             <% if current_user %>
             <div class="well">
@@ -25,9 +25,9 @@
           
         
         <%= render_list :class => "nav nav-tabs" do |li|
-            li << link_to('Good Job！', works_path(category_id: params[:category_id], page: ""   ))      
-            li << link_to("最新",works_path(category_id: params[:category_id], page: "newest")   )
-            li << link_to("關注", works_path(category_id: params[:category_id], page: "favorite") )
+            li << link_to('Good Job！', works_path(category_id: params[:category_id], pagekind: ""   ))      
+            li << link_to("最新",works_path(category_id: params[:category_id], pagekind: "newest")   )
+            li << link_to("關注", works_path(category_id: params[:category_id], pagekind: "favorite") )
           if current_user
             li << link_to('新增作品..', new_account_user_info_work_path(current_user), class: 'btn btn-info pull-right')
           end

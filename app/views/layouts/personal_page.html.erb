@@ -21,7 +21,7 @@
 
   <script type="text/javascript">
   function detect_is_safari(){
-    return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification); 
+    return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification) || /iP(ad|hone|od).+Version\/[\d\.]+.*Safari/i.test(navigator.userAgent); 
   }
 
   function toFixedPercent(num, decimals){
