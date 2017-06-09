@@ -162,7 +162,7 @@ transition:all 1s;
 .UserDataBox .WorksList ul.designerWorksList li .photoBox:hover > p{ z-index: 3; }
 
 
-.UserDataBox .WorksList ul.designerWorksList li .the_tools{ width: 100%; padding: 2px 0; min-height: 20px;}
+.UserDataBox .WorksList ul.designerWorksList li .the_tools{ width: 100%; padding: 2px 0; min-height: 23px;}
 .UserDataBox .WorksList ul.designerWorksList li .the_tools p{ float: right; font-size: 12px; line-height: 19px;}
 .UserDataBox .WorksList ul.designerWorksList li .the_tools p a{ line-height: 19px;  padding-left:25px; color: #b2b1b1; display: block; margin-left: 10px;}
 .UserDataBox .WorksList ul.designerWorksList li .the_tools p.link{ float: left; width: 1.2vw; height: 1.2vw; background: url(/images/personal_page/icon_tools_link.png) left center no-repeat; background-size: contain; }
