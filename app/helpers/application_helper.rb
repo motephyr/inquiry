@@ -71,7 +71,7 @@ module ApplicationHelper
     obj = get_resolved_url_obj(url)
     case obj[:type]
     when "image"
-      tag :img, src: "#{url}"
+      tag :img, src: "#{url}", onload: "onImageLoad(this)"
     when "audio"    #compare to 2
       tag :audio, controls: "controls", src: "#{url}", style: "width:100%;"
     when "video"
@@ -110,7 +110,7 @@ module ApplicationHelper
     image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/i.match(file)
     audio_match = /\.(wav|mp3|wma|ogg|midi|aif|aifc|aiff|au|ea)$/i.match(file)
     if image_match.present?
-      tag :img, src: "#{file}"
+      tag :img, src: "#{file}", onload: "onImageLoad(this)"
     elsif audio_match.present?
       content_tag :audio, '', controls: "controls", src: "#{file}"
     end
