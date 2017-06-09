@@ -4,17 +4,17 @@
       <div class="leftBox">
         <div class="fixBox">
           <div class="userBox">
-          <%= link_to '', '#', class: 'contact_me',style: @user_info.user.online? ? 'background-color:green' : '', id: 'chat'  %>
+            <%= link_to '', '#', class: 'contact_me',style: @user_info.user.online? ? 'background-color:green' : '', id: 'chat'  %>
             <div class="photo"><%= tag :img, src: @user_info.user.avatar_link(size: 128), alt: @user_info.nickname %></div>
             <p class="user_name"><%= @user_info.nickname %></p>
             <p class="online"><%= user_status(@user_info.user)  %>  /  <%= @user_info.work_area %></p>
             <ul class="user_info">
-                  <li></li>
-                  <%= li_link_button('諮詢','speak') if @user_info.speak == 1  %>
-                  <%= li_link_button('接案','contract') if @user_info.contract == 1 %>
-                  <%= li_link_button('教學','teach') if @user_info.teach == 1 %>
-                  <%= li_link_button('勞力','labor') if @user_info.labor == 1 %>
-                  <li></li>
+              <li></li>
+              <%= li_link_button('諮詢','speak') if @user_info.speak == 1  %>
+              <%= li_link_button('接案','contract') if @user_info.contract == 1 %>
+              <%= li_link_button('教學','teach') if @user_info.teach == 1 %>
+              <%= li_link_button('勞力','labor') if @user_info.labor == 1 %>
+              <li></li>
             </ul>
             <ul class="skill_list">
               <%= @user_info.skill_list.present? ? @user_info.skill_list.map { |t| li_link_button(t,t, 'btn-link')  }.join('').html_safe : li_link_button(@user_info.category.try(:title),@user_info.category.try(:title), 'btn-link')  %>
@@ -22,83 +22,80 @@
           </div>
         </div>
       </div>
-        <div class="rightBox">
-            <div class="WorksList">
-                <div class="abox">
-                    <div class="topTitle"><h3>作品</h3></div>
-                    <div class="work_information">
-                    <% if current_user == @user_info.user %>
-                        <p class="addWorks"><%= link_to '＋ 新增作品或工作成果', new_account_user_info_work_path(current_user) %></p>
-                    <% end %>
-                        <ul class="designerWorksList clearfix">
-                        <%  @works.each do |w| %>
-                            <li>
-                                <div class="photoBox" id="<%= dom_id(w) %>">
-                                  <%= link_to user_info_work_path(w.user, w), class: "photogo item-wrap",style: 'background-color: ' + work_background_color_personal(w), remote: true do %>
-                                    <%= work_square_personal(w) %>
-                                  <% end %>
-                                  <p><%= w.subject %></p>
-                                </div>
-                                <div class="the_tools clearfix" id="work_info_<%= w.id %>">
-                                    <%= content_tag :p, '',class: 'link' if w.attach_url.present? %>
-                                    <p class="dialog"><a><%= w.work_messages_count %></a></p>
-                                    <p class="eyes"><a><%= w.hits %></a></p>
-                                </div>
-                            </li>
-                        
-                        <% end %>
-    
-
-                                        <%= render 'common/modal'  %>
-
-                        </ul>
-                    </div>
-                    <%#<p class="show_more"><a href="#">顯示全部</a></p> <!-- 超過一個範圍才會顯示這句@@? -->%>
-                </div>
-                <div class="abox">
-                    <div class="topTitle"><h3>相關經歷與作品集連結</h3></div>
-                    <div class="work_information lessBox">
-                        <%= rasf @user_info.typical_work %>
-                    </div>
-                    <%#<p class="show_more"><a href="#">顯示全部</a></p>%>
-                </div>
-                <div class="abox">
-                    <div class="topTitle"><h3>工作內容</h3></div>
-                    <div class="work_information lessBox show_moreBox">
-                    <%= simple_format @user_info.work_content %></div>
-                    <%#<p class="show_more "><a href="#">收起</a></p>%>
-                </div>
-                <div class="abox">
-                    <div class="topTitle"><h3>擅長技能或使用工具</h3></div>
-                    <div class="work_information lessBox">
-                        <%= simple_format @user_info.skill_tool %>
-                    </div>
-                    <%#<p class="show_more"><a href="#">顯示全部</a></p>%>
-                </div>
+      <div class="rightBox">
+        <div class="WorksList">
+          <div class="abox">
+            <div class="topTitle">
+              <h3>作品</h3>
             </div>
-          <p class="user_next"><%= link_to '上一位', user_info_path(@user_info.user.prev) + '/personal_page', class: 'prev'%>| <%= link_to '下一位', user_info_path(@user_info.user.next) + '/personal_page', class: 'next' %></p>
-
-        </div>    </div>
+            <div class="work_information">
+              <% if current_user == @user_info.user %>
+                <p class="addWorks"><%= link_to '＋ 新增作品或工作成果', new_account_user_info_work_path(current_user) %></p>
+              <% end %>
+              <ul class="designerWorksList clearfix">
+                <%  @works.each do |w| %>
+                  <li>
+                    <div class="photoBox" id="<%= dom_id(w) %>">
+                      <%= link_to user_info_work_path(w.user, w), class: "photogo item-wrap",style: 'background-color: ' + work_background_color_personal(w), remote: true do %>
+                        <%= work_square_personal(w) %>
+                      <% end %>
+                      <p><%= w.subject %></p>
+                    </div>
+                    <div class="the_tools clearfix" id="work_info_<%= w.id %>">
+                      <%= content_tag :p, '',class: 'link' if w.attach_url.present? %>
+                      <p class="dialog"><a><%= w.work_messages_count %></a></p>
+                      <p class="eyes"><a><%= w.hits %></a></p>
+                    </div>
+                  </li>
+                <% end %>
+                <%= render 'common/modal'  %>
+              </ul>
+            </div>
+            <%#<p class="show_more"><a href="#">顯示全部</a></p> <!-- 超過一個範圍才會顯示這句@@? -->%>
+          </div>
+          <div class="abox">
+            <div class="topTitle">
+              <h3>相關經歷與作品集連結</h3>
+            </div>
+            <div class="work_information lessBox">
+              <%= rasf @user_info.typical_work %>
+            </div>
+            <%#<p class="show_more"><a href="#">顯示全部</a></p>%>
+          </div>
+          <div class="abox">
+            <div class="topTitle">
+              <h3>工作內容</h3>
+            </div>
+            <div class="work_information lessBox show_moreBox">
+              <%= simple_format @user_info.work_content %></div>
+            <%#<p class="show_more "><a href="#">收起</a></p>%>
+          </div>
+          <div class="abox">
+            <div class="topTitle">
+              <h3>擅長技能或使用工具</h3>
+            </div>
+            <div class="work_information lessBox">
+              <%= simple_format @user_info.skill_tool %>
+            </div>
+            <%#<p class="show_more"><a href="#">顯示全部</a></p>%>
+          </div>
+        </div>
+        <p class="user_next"><%= link_to '上一位', user_info_path(@user_info.user.prev) + '/personal_page', class: 'prev'%>| <%= link_to '下一位', user_info_path(@user_info.user.next) + '/personal_page', class: 'next' %></p>
+      </div>
+    </div>
   </section>
 <% end -%>
 <% content_for :stylesheets do -%>
   <%= stylesheet_link_tag 'account/user_infos' -%>
-    <%= stylesheet_link_tag "works" %>
-  <% if current_user == @user_info.user %>
-  <style type="text/css">
-    .work-item .subject{ width: 90% !important; }
-  </style>
-  <% end %>
-  
+  <%= stylesheet_link_tag "works" %>
 <% end -%>
 <% content_for :javascripts do -%>
   <script>
     $('#chat').click(function(){
-              Gossim.popup('<%= @user_info.user.id %>', '<%= @user_info.nickname %>')
-            })
+      Gossim.popup('<%= @user_info.user.id %>', '<%= @user_info.nickname %>')
+    })
   </script>
-    <%= javascript_include_tag "works_list" %>
+  <%= javascript_include_tag "works_list" %>
   <%= javascript_include_tag "account/user_infos" -%>
-  <% end %>
-
+<% end %>
 <%= render template: "layouts/personal_page" %>

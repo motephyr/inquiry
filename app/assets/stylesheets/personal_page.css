@@ -157,23 +157,72 @@ transition:all 1s;
 }
 .UserDataBox .WorksList ul.designerWorksList li .photoBox img{ display: block; margin: 0 auto; width: 99.8%; position: absolute; }
 .UserDataBox .WorksList ul.designerWorksList li .photoBox a.photogo{ overflow: hidden; position: relative; z-index: 2; }
-.UserDataBox .WorksList ul.designerWorksList li .photoBox > p{ z-index: 1; position: absolute; top: 8%; left: 10%; }
+.UserDataBox .WorksList ul.designerWorksList li .photoBox > p{ z-index: 1; position: absolute; top: 8%; left: 10%; right: 10%;}
 .UserDataBox .WorksList ul.designerWorksList li .photoBox:hover a.photogo{opacity: .15;}
 .UserDataBox .WorksList ul.designerWorksList li .photoBox:hover > p{ z-index: 100; }
 
 
-.UserDataBox .WorksList ul.designerWorksList li .the_tools{ width: 100%; padding: 2px 0;}
-.UserDataBox .WorksList ul.designerWorksList li .the_tools p{ float: right; font-size: 12px; line-height: 20px;}
-.UserDataBox .WorksList ul.designerWorksList li .the_tools p a{ line-height: 20px;  padding-left:25px; color: #b2b1b1; display: block; margin-left: 10px;}
+.UserDataBox .WorksList ul.designerWorksList li .the_tools{ width: 100%; padding: 2px 0; min-height: 20px;}
+.UserDataBox .WorksList ul.designerWorksList li .the_tools p{ float: right; font-size: 12px; line-height: 19px;}
+.UserDataBox .WorksList ul.designerWorksList li .the_tools p a{ line-height: 19px;  padding-left:25px; color: #b2b1b1; display: block; margin-left: 10px;}
 .UserDataBox .WorksList ul.designerWorksList li .the_tools p.link{ float: left; width: 1.2vw; height: 1.2vw; background: url(/images/personal_page/icon_tools_link.png) left center no-repeat; background-size: contain; }
 .UserDataBox .WorksList ul.designerWorksList li .the_tools p.like a{ cursor: pointer; background: url(/images/personal_page/icon_tools_like.png) left center no-repeat; background-size: contain; }
+.UserDataBox .WorksList ul.designerWorksList li .the_tools p.like a.like_in{ background-image: url(/images/personal_page/icon_tools_like_in.png)}
 .UserDataBox .WorksList ul.designerWorksList li .the_tools p.dialog a{ cursor: pointer; background: url(/images/personal_page/icon_tools_dialog.png) left center no-repeat; background-size: contain; }
 .UserDataBox .WorksList ul.designerWorksList li .the_tools p.eyes a{  padding-left:29px; background: url(/images/personal_page/icon_tools_eyes.png) left center no-repeat; background-size: contain; }
 
-
 @media (max-width:1180px){.UserDataBox .rightBox{ width: 70% ;width:-moz-calc(100% - 250px); width:-webkit-calc(100% - 250px); width: calc(100% - 250px);}}
 @media (max-width:1180px){.UserDataBox .WorksList ul.designerWorksList li{ width: 31.33%;}}
-@media (max-width:900px){.UserDataBox .WorksList ul.designerWorksList li{ width: 48%;}}
-@media (max-width:750px){.UserDataBox .leftBox, .UserDataBox .rightBox{ width: 100%; max-width: 100%;float: none; margin: 0 auto; }
+@media (max-width:1100px){.UserDataBox .WorksList ul.designerWorksList li .photoBox a.photogo{font-size: 1.6vw;}}
+@media (max-width:900px){.UserDataBox .WorksList ul.designerWorksList li{ width: 48%;}
+  .UserDataBox .WorksList ul.designerWorksList li .photoBox a.photogo{font-size: 2vw;}}
+@media (max-width:800px){.UserDataBox .WorksList ul.designerWorksList li .photoBox a.photogo{font-size: 2.5vw;}}
+@media (max-width:750px){.UserDataBox .leftBox, .UserDataBox .rightBox{ width: 100%; max-width: 95%; float: none; margin: 0 auto; }
   .UserDataBox .leftBox .fixBox{ max-width: inherit; }
   .UserDataBox .leftBox .userBox a.contact_me{ right: 50%; margin-right: -80px; }}
+@media (max-width:499px){.UserDataBox .WorksList ul.designerWorksList li .the_tools p{font-size: 11px;}
+  .UserDataBox .WorksList ul.designerWorksList li .the_tools p a{ line-height: 14px; padding-top: 3px; padding-left: 25px; margin-left: 6px;}}
+
+/*--2017/06/05-- 新增*/
+.classificationBox .ContentsBox{ padding: 30px 0 40px 0;}
+.classificationBox .work_information { position: relative; padding: 0;}
+.classificationBox .WorksList ul.designerWorksList li{ width: 20%; margin-bottom: 20px;}
+.classificationBox .WorksList ul.designerWorksList li a.userID{ width: 100%; display: block; min-height: 22px;}
+.classificationBox .WorksList ul.designerWorksList li a.userID img{ width: 18px; height: 18px; float: left; margin-right: 5px; border-radius: 20px; display: block; overflow: hidden; }
+.classificationBox .WorksList ul.designerWorksList li a.userID p{ float: left;  font-size: 13px; line-height: 18px; color: #449dd5;  }
+.classificationBox .WorksList ul.designerWorksList li .photoBox a.photogo{min-height: 210.6px;}
+
+.classificationBox .topBanner{ width: 100%; min-height: 170px; margin-top: 50px; background-color: #000; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center}
+.classificationBox .topBanner h2{ font-size: 22px; color: #fff; text-align: center; font-weight: bold; text-shadow: 0 0 10px rgba(0,0,0,.3); letter-spacing: 5px; }
+.classificationBox .br_banner_01{ background: url(/images/personal_page/top_banner.jpg) center center no-repeat; background-size: cover; }
+
+.classificationBox ul.works_time{ width: 100%; text-align: center; padding-bottom: 30px;}
+.classificationBox ul.works_time li{ display: inline-block; width: initial; margin: 0 10px;}
+.classificationBox ul.works_time li p{ text-align: center; position: relative; color:#333; }
+.classificationBox ul.works_time li p a{ color: #888;  padding:6px 0; display:block; }
+.classificationBox ul.works_time li p.btn_in a{color: #555; font-weight: bold;}
+.classificationBox ul.works_time li p.btn_in::after{ position: absolute; bottom: -5px; left: 50%; margin-left: -25px; content: ""; width: 50px; height: 2px; display: block; background-color:#555;  }
+
+.classificationBox .WorksList .abox .work_information p.addWorks{ position: absolute; font-size: 13px; right: 20px; top: 24px; width: inherit; }
+
+.classificationBox .left_worktype{ position: absolute; left: 0; top: 24px; }
+.classificationBox .left_worktype p{text-align:left; font-size: 13px;}
+.classificationBox .left_worktype p span{ cursor: pointer; color: #fff; border-radius: 30px; padding: 5px 18px; padding-right: 30px; background: url(/images/personal_page/arr_w.png) center right no-repeat #333; background-size: contain; }
+.classificationBox .choose_type{ position: relative; }
+
+.classificationBox .left_worktype ul.worktypeBox{ width:300px; position: absolute; left: 0; top: 30px; padding:5px 15px; background-color: #fff; z-index: 5; border-radius: 4px; box-shadow: 0 0 10px rgba(0,0,0,.3);}
+.classificationBox .left_worktype ul.worktypeBox li{ display: block; float: left; margin: 15px 10px ;}
+.classificationBox .left_worktype ul.worktypeBox li { position: relative;}
+.classificationBox .left_worktype ul.worktypeBox li p a{ color: #888; }
+.classificationBox .left_worktype ul.worktypeBox li p.btn_in a{color: #555; font-weight: bold;}
+.classificationBox .left_worktype ul.worktypeBox li p.btn_in::after{ position: absolute; bottom: -10px; left: 50%; margin-left: -15px; content: ""; width: 30px; height: 1px; display: block; background-color:#555;  }
+
+@media (max-width:1180px){.classificationBox .WorksList ul.designerWorksList li{ width: 23%;}}
+@media (max-width:900px){.classificationBox .WorksList ul.designerWorksList li{ width: 31.33%;}}
+@media (max-width:750px){.classificationBox .WorksList ul.designerWorksList li{ width: 48%;}}
+@media (max-width:750px){ .classificationBox .left_worktype{ position: inherit; top: inherit; left: inherit; padding-bottom:30px;}
+  .classificationBox .left_worktype ul.worktypeBox{ left: 50%; margin-left: -150px;}
+  .classificationBox .WorksList .abox .work_information p.addWorks{ position: inherit; top: inherit; right: 10px; padding-bottom:8px; text-align: right; }
+  .classificationBox .left_worktype p{ text-align: center; }}
+
+/*--2017/06/05-- 新增 END*/

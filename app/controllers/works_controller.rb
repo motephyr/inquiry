@@ -16,16 +16,27 @@ class WorksController < ApplicationController
 
   def newest
     #全部最新
-    @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable} : nil
+    @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable.id} : nil
 
-    @works = works(params).where.not(user: @unlike).is_published.order_by_new.page(params[:page])
-    # Work.includes(:user, :cares).from('users AS u').joins('INNER JOIN works AS w ON u.id = w.user_id').order('w.id DESC').select('w.*')
+    if params[:category_id]
+      @works = works(params).where.not(user: @unlike).is_published.order_by_new.page(params[:page])
+
+    else
+      test = works(params).from('works').joins(', (select w.user_id, max(w.created_at) as time from works w left join users u on w.user_id = u.id group by w.user_id) as t')
+      .joins(', users AS u')
+      .where('works.created_at = t.time and works.user_id = u.id')
+      .select('works.*')
+      if @unlike.present?
+        test =  test.where.not("works.user_id in (?)", @unlike)
+      end
+      @works = test.is_published.order_by_new.page(params[:page])
+    end
   end
 
   def favorite
     #照like數排序
     @unlike = current_user ? current_user.votes.down.by_type('User').map{|x| x.votable} : nil
-    
+
     @works = works(params).where.not(user: @unlike).is_published.order_by_favorite.page(params[:page])
   end
 
