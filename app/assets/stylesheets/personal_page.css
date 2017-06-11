@@ -227,5 +227,9 @@ transition:all 1s;
   .classificationBox .WorksList ul.designerWorksList li .photoBox a.photogo{min-height: 140px;}
 
   }
-
 /*--2017/06/05-- 新增 END*/
+
+.UserDataBox .WorksList ul.designerWorksList div.cog{ position: absolute; right: 5%; top: 5%; z-index: 5; }
+.UserDataBox .WorksList ul.designerWorksList div.cog .dropdown-menu > li{width: 100%; padding:5px 0; margin: 0; }
+.UserDataBox .WorksList ul.designerWorksList div.cog .dropdown-menu > li.divider{ padding: 0px;  }
+
