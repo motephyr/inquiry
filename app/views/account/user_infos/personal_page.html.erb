@@ -70,6 +70,9 @@
                     </div>
                     <div class="the_tools clearfix" id="work_info_<%= w.id %>">
                       <%= content_tag :p, '',class: 'link' if w.attach_url.present? %>
+                      <p class="like">
+                        <%= link_to w.cares_count, carers_work_path(w), class: 'like_in' %>
+                      </p>
                       <p class="dialog"><a><%= w.work_messages_count %></a></p>
                       <p class="eyes"><a><%= w.hits %></a></p>
                     </div>
