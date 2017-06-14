@@ -1,7 +1,6 @@
 
-<footer>
-</footer>
 <hr>
+<footer>
 <div class="copyright">
   <div class="container">
     <div class="col-md-6">
@@ -16,7 +15,13 @@
         <li><a href="https://www.facebook.com/ConKweMatch">支持 Conkwe</a></li>
       </ul>
     </div>
+    <div class="col-md-offset-4 col-md-6">
+        <canvas id="myCanvas" width="320" height="320"></canvas>
+    </div>
   </div>
 </div>
+</footer>
+
+<%= javascript_include_tag 'myCanvas' %>
 
 <%= stylesheet_link_tag 'footer' %>
