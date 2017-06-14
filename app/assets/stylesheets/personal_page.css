@@ -106,7 +106,7 @@ transition:all 1s;
 .UserDataBox .leftBox .userBox ul.user_info li p a:hover{text-decoration: underline;}
 
 .UserDataBox .leftBox .userBox ul.skill_list{ width: 100%; text-align: center; padding-top: 20px;}
-.UserDataBox .leftBox .userBox ul.skill_list li{ display: inline-block; width: initial; padding:6px 0;  }
+.UserDataBox .leftBox .userBox ul.skill_list li{ display: inline-block; width: initial; padding:6px 2px;  }
 .UserDataBox .leftBox .userBox ul.skill_list li p{font-size: 13px; text-align: center; /*font-weight: bold;*/}
 .UserDataBox .leftBox .userBox ul.skill_list li p a{ color: #888; padding: 3px 15px ; display: block; border:1px solid #888; border-radius: 30px; }
 .UserDataBox .leftBox .userBox ul.skill_list li p a:hover{background-color: #333; color: #fff;}
@@ -129,7 +129,7 @@ transition:all 1s;
 .UserDataBox .WorksList .abox .work_information p{ font-size: 15px; color: #666; line-height: 28px; text-align: justify;}
 .UserDataBox .WorksList .abox .work_information p a{ color: #449dd5;}
 .UserDataBox .WorksList .abox .work_information p a:hover{text-decoration: underline;}
-.UserDataBox .WorksList .abox .work_information p.addWorks{ width:calc(100% - 15px); text-align: right; font-size: 14px; padding-bottom:20px; }
+.UserDataBox .WorksList .abox .work_information p.addWorks{ width:calc(100% - 15px); font-size: 14px; padding-bottom:20px; }
 .UserDataBox .WorksList .abox .work_information p.addWorks a{ cursor: pointer; color: #8e8e8e; }
 .UserDataBox .WorksList .abox .work_information p.addWorks a:hover{text-decoration: underline;}
 

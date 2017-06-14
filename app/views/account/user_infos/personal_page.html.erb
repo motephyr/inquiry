@@ -25,9 +25,13 @@
       <div class="rightBox">
         <div class="WorksList">
           <div class="abox">
+          
+          <% if @works.size > 0 %>
             <div class="topTitle">
               <h3>作品</h3>
             </div>
+          <% end %>
+          
             <div class="work_information">
               <% if current_user == @user_info.user %>
                 <p class="addWorks"><%= link_to '＋ 新增作品或工作成果', new_account_user_info_work_path(current_user) %></p>
