@@ -159,7 +159,11 @@ class WorksController < ApplicationController
 
   def works(params)
     if params[:category_id]
-      works = Work.includes(:user, :cares).where(category_id: params[:category_id])
+      if params[:category_id] == 'all'
+        works = Work.includes(:user, :cares)
+      else
+        works = Work.includes(:user, :cares).where(category_id: params[:category_id])
+      end
     else
       works = Work.includes(:user, :cares)
     end

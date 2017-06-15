@@ -11,7 +11,7 @@
               <p id="worktypeButton">成果類別：<span><%= category_page_name(params) %></span></p>
               <div id="worktypeBox" style="display:none">
               <%= render_list :class => "worktypeBox clearfix" do |div|
-                                        div << focus_to("全部", request.path_info + "?" + {pagekind: params[:pagekind]}.to_param )
+                                        div << focus_to("全部", request.path_info + "?" + {category_id: 'all', pagekind: params[:pagekind]}.to_param )
                                         div << focus_to("美術設計", request.path_info + "?" + {category_id: 1,pagekind: params[:pagekind]}.to_param)
                                         div << focus_to("工業設計", request.path_info + "?" + {category_id: 2,pagekind: params[:pagekind]}.to_param)
                                         div << focus_to("文字編輯", request.path_info + "?" + {category_id: 3,pagekind: params[:pagekind]}.to_param)
