@@ -1,8 +1,9 @@
 
 
- .copyright { min-height:382px; background-color:#000000;}
+ .copyright { background-color:#000000;}
  .copyright p { text-align:left; color:#FFF; padding:10px 0; margin-bottom:0px;}
  .bottom_ul { list-style-type:none; float:right; margin-bottom:0px;}
  .bottom_ul li { float:left; line-height:40px;}
  .bottom_ul li:after { content:"/"; color:#FFF; margin-right:8px; margin-left:8px;}
  .bottom_ul li a { color:#FFF;  font-size:12px;}
+ .footer-fixed{ width: 100%; position: fixed; bottom: 0px; }
