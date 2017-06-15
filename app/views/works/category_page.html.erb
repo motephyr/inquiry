@@ -11,7 +11,7 @@
               <p id="worktypeButton">成果類別：<span><%= category_page_name(params) %></span></p>
               <div id="worktypeBox" style="display:none">
               <%= render_list :class => "worktypeBox clearfix" do |div|
-                                        div << focus_to("全部", request.path_info + "?" + {pagekind: params[:pagekind]}.to_param )
+                                        div << focus_to("全部", request.path_info + "?" + {category_id: 'all', pagekind: params[:pagekind]}.to_param )
                                         div << focus_to("美術設計", request.path_info + "?" + {category_id: 1,pagekind: params[:pagekind]}.to_param)
                                         div << focus_to("工業設計", request.path_info + "?" + {category_id: 2,pagekind: params[:pagekind]}.to_param)
                                         div << focus_to("文字編輯", request.path_info + "?" + {category_id: 3,pagekind: params[:pagekind]}.to_param)
@@ -25,9 +25,9 @@
             </div>
           </div>
           <%= render_list :class => "works_time" do |li|
-            li << focus_to('Good Job！', category_page_works_path(category_id: params[:category_id], pagekind: ""))       
-            li << focus_to("最新",category_page_works_path(category_id: params[:category_id], pagekind: "newest")   ) 
-            li << focus_to("關注", category_page_works_path(category_id: params[:category_id], pagekind: "favorite") )
+            li << focus_to('Good Job！', works_path(category_id: params[:category_id], pagekind: ""))       
+            li << focus_to("最新", works_path(category_id: params[:category_id], pagekind: "newest")   ) 
+            li << focus_to("關注", works_path(category_id: params[:category_id], pagekind: "favorite") )
         end %>
           <% if current_user %>
             <%= content_tag(:p, link_to('＋ 新增作品或工作成果', new_account_user_info_work_path(current_user)), class: 'addWorks') %>
