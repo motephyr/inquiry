@@ -14,6 +14,7 @@ class Account::UserInfosController < ApplicationController
       never_edit_user_info
     end
     @works = (@user == current_user) ? @user.works.includes(:cares).order("is_published desc").order_by_new : @user.works.includes(:cares).is_published.order_by_new
+    render :personal_page
   end
 
   def personal_page
@@ -23,6 +24,7 @@ class Account::UserInfosController < ApplicationController
       never_edit_user_info
     end
     @works = (@user == current_user) ? @user.works.includes(:cares).order("is_published desc").order_by_new : @user.works.includes(:cares).is_published.order_by_new
+    render :show
   end
 
   def edit_status
@@ -122,9 +124,9 @@ class Account::UserInfosController < ApplicationController
 
   def determine_layout
     if action_name == 'show'
-      "user_info"
-    elsif action_name == 'personal_page'
       "personal_page"
+    elsif action_name == 'personal_page'
+      "user_info"
     elsif action_name == 'edit_status' || action_name == 'edit_info'
       'account'
     end

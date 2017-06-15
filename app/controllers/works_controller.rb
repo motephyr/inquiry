@@ -34,6 +34,10 @@ class WorksController < ApplicationController
     else
       @works = works(params).where.not(user: @unlike).is_published.is_featured.order_by_new.page(params[:page])
     end
+
+    render :index
+
+
   end
 
   def index
@@ -59,6 +63,9 @@ class WorksController < ApplicationController
     else
       @works = works(params).where.not(user: @unlike).is_published.is_featured.order_by_new.page(params[:page])
     end
+
+    render :category_page
+
   end
 
 
@@ -159,7 +166,7 @@ class WorksController < ApplicationController
   end
 
   def determine_layout
-    if action_name == 'category_page'
+    if action_name == 'index'
       "personal_page"
     end
   end
