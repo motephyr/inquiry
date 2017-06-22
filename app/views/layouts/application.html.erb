@@ -35,6 +35,10 @@
 
 <%= render :partial => "common/gossim" %>
 <%= render :partial => "common/facebook_js" %>
+<%= render :partial => "common/peer_client" %>
+
+<button class="btn btn-default" onclick="testcall('1');">Test Call</button>
+
 <%= yield :javascripts %>
 </body>
 </html>

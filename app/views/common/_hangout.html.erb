@@ -1,0 +1,53 @@
+
+<div class="hangout-viewer">
+	<div class="hangout-viewer-header">
+		<span class="icon-lg hangout-close-icon"></span>
+	</div>
+</div>
+
+<style type="text/css">
+	.hangout-viewer{
+		color: #fff;
+	    position: fixed;
+	    z-index: 100;
+	    top: 0;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	    text-align: center;
+	    /*display: none;*/
+	}
+	.hangout-viewer-header{
+		height: 3pc;
+	    left: 0;
+	    position: fixed;
+	    right: 0;
+	    top: 0;
+	    z-index: 40;
+	}
+	.hangout-close-icon{
+		color: rgba(255,255,255,.6);
+	    padding: 9px;
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+	    -webkit-transition-property: -webkit-transform,color;
+	    transition-property: transform,color;
+	    -webkit-transition-duration: 150ms;
+	    transition-duration: 150ms;
+	}
+	.icon-lg{
+		height: 30px;
+	    font-size: 20px;
+	    line-height: 30px;
+	    width: 30px;
+
+	    display: inline-block;
+	    -webkit-font-smoothing: antialiased;
+	    -moz-osx-font-smoothing: grayscale;
+	    font-style: normal;
+	    font-weight: 400;
+	    text-align: center;
+	    text-decoration: none;
+	}
+</style>

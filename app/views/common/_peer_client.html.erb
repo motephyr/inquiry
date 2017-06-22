@@ -1,0 +1,125 @@
+<% if current_user %>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/0.3.14/peer.js"></script>
+<script>
+window.onGossimLoad = function(){
+
+	GossimPeer.init('<%= Setting.gossim %>' || "test", '<%= current_user.id %>');
+
+	// handle the online case first.
+	// params: caller {Object}
+	GossimPeer.on('callee', function(caller){
+
+		// make custom popup
+			// Accept button
+			// Reject button
+		console.log("some body call me");
+		console.log(caller);
+	});
+};
+
+window.testcall = function(targetId){
+	GossimPeer.call(targetId);
+
+
+
+	// target accept
+	GossimPeer.on('accept', function(){
+
+	});
+
+	// target reject
+	GossimPeer.on('reject', function(){
+
+	});
+};
+
+// ==== test code ====
+
+// navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+// if(getParams('id')){
+//     var id = getParams('id');
+//     var peer = new Peer(id, {host: '976a55c6.ngrok.io', port: 443, path: '/'});
+
+//     $(document.body).append("\
+//       <div>\
+//         <input id='peer-caller' type='text' width='50'>\
+//         <button id='callBtn' onclick='peerHandles.peerCalling();'>CALL</button>\
+//         <button id='acceptBtn' onclick='peerAccept();' disabled='true'>Accept</button>\
+//         <button id='hangupBtn' onclick='peerHandles.peerHangup();' disabled='true'>Hang Up</button>\
+//       </div>\
+//       <video id='talkingVideo'></video>");
+
+//     window.peerHandles = {
+//       currentCall: null,
+//       changeBtnStatus: function(status){
+//         var setting = {
+//           "idle": [false, true, true],
+//           "havecall": [true, false, true],
+//           "calling": [true, true, false],
+//           "talking": [true, true, false]
+//         }
+//         var s = setting[status];
+//         $("#callBtn").prop('disabled', s[0]);
+//         $("#acceptBtn").prop('disabled', s[1]);
+//         $("#hangupBtn").prop('disabled', s[2]); 
+//       },
+//       handleStream: function (remoteStream){
+//         peerHandles.changeBtnStatus("talking");
+
+//         var video = document.querySelector('#talkingVideo');
+//         video.srcObject = remoteStream;
+//         video.onloadedmetadata = function(e) {
+//           video.play();
+//         };
+//       },
+//       peerCalling: function (){
+//         var target = $('#peer-caller').val();
+//         var self = this;
+//         navigator.getUserMedia({audio: true, video:false}, function(stream) {
+//           var call = peer.call(target, stream);
+//           self.changeBtnStatus("calling");
+//           call.on('stream', self.handleStream);
+//           self.currentCall = call;
+//         }, function(err) {
+//           console.log('Failed to get local stream' ,err);
+//           self.peerHangup();
+//         });
+//       },
+//       peerHangup: function (){
+//         var self = this;
+//         if(self.currentCall){
+//           self.currentCall.close();
+//           self.currentCall = null;
+//         }
+//         // peer.disconnect();
+//         var video = document.querySelector('#talkingVideo');
+//         video.pause();
+//         this.changeBtnStatus("idle");
+//       }
+//     };
+
+//     peer.on('call', function(calleeObj) {
+//       peerHandles.changeBtnStatus("havecall");
+//       peerHandles.currentCall = calleeObj;
+//       window.peerAccept = (function(call){
+//         return function(){
+//           navigator.getUserMedia({audio: true, video:false}, function(stream) {
+//             call.answer(stream); // Answer the call with an A/V stream.
+//             call.on('stream', peerHandles.handleStream);
+//           }, function(err) {
+//             console.log('Failed to get local stream' ,err);
+//             peerHandles.peerHangup();
+//           });
+//         };
+//       })(calleeObj);
+//     });
+
+//     peerHandles.changeBtnStatus("idle");
+//   }
+</script>
+
+<%= render 'common/hangout' %>
+
+<% end %>
