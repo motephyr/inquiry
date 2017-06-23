@@ -24,6 +24,7 @@ window.ConkweHangout = {
 	CALLEE: 2,
 	ONPHONE: 3,
 	ENDPHONE: 4,
+	_status: 0,
 	_target: null,
 	_opened: false,
 	_el: null,
@@ -51,17 +52,19 @@ window.ConkweHangout = {
 
 		self._seconds = sec;
 	},
-	set _status(state){
+	get state(){ return this._status; },
+	set state(stateConstant){
 		var self = this;
+		self._status = stateConstant;
 		if(self._el){
 			var btnWrap = self._el.querySelector('.hangout-viewer-buttons');
 			var textWrap = self._el.querySelector('.hangout-viewer-text');
 			var timeWrap = self._el.querySelector('.hangout-viewer-time');
-			switch(state){
+			switch(stateConstant){
 				case self.IDLE:
 					btnWrap.innerHTML = '<hr><button class="btn btn-default">YES</button><button class="btn btn-default">NO</button>';
 					btnWrap.children[1].addEventListener('click', function(){ 
-						self._status = self.CALLING;
+						self.state = self.CALLING;
 						// GossimPeer.call(self._target);
 					});
 					btnWrap.children[2].addEventListener('click', function(){ self.close(); });
@@ -70,23 +73,23 @@ window.ConkweHangout = {
 					break;
 				case self.CALLING:
 				// hang up
-					btnWrap.innerHTML = '<hr><button class="btn btn-default">掛斷</button>';
+					btnWrap.innerHTML = '<hr><button class="btn btn-default">取消</button>';
 					btnWrap.children[1].addEventListener('click', function(){ 
-						// GossimPeer.hangup();
-						self._status = self.IDLE;
+						// GossimPeer.cancel();
+						self.close();
 					});
 					textWrap.innerHTML = '<p>正在通話中...</p>';
 					timeWrap.classList.remove('hangout-show');
 
 					// for test
-					setTimeout(function(){ self._status = self.ONPHONE; }, 2000);
+					// setTimeout(function(){ self.state = self.ONPHONE; }, 2000);
 
 					break;
 				case self.CALLEE:
 				// accept or reject
 					btnWrap.innerHTML = '<hr><button class="btn btn-default">好啊</button><button class="btn btn-default">拒絕</button>';
 					btnWrap.children[1].addEventListener('click', function(){ 
-						self._status = self.ONPHONE;
+						self.state = self.ONPHONE;
 						// GossimPeer.accept();
 					});
 					btnWrap.children[2].addEventListener('click', function(){ 
@@ -97,11 +100,10 @@ window.ConkweHangout = {
 					timeWrap.classList.remove('hangout-show');
 					break;
 				case self.ONPHONE:
-				// hang up
-				// show timestamps
+					
 					btnWrap.innerHTML = '<hr><button class="btn btn-default">掛斷</button>';
-					btnWrap.children[1].addEventListener('click', function(){ 
-						self._status = self.ENDPHONE;
+					btnWrap.children[1].addEventListener('click', function(){
+						self.state = self.ENDPHONE;
 						// GossimPeer.hangup();
 					});
 					textWrap.innerHTML = '<p>通話時間</p>';
@@ -114,13 +116,10 @@ window.ConkweHangout = {
 					timeWrap.classList.add('hangout-show');
 					break;
 				case self.ENDPHONE:
+					// GossimPeer.hangup();
 					if(self._interval) clearInterval(self._interval);
 					btnWrap.innerHTML = '<hr><button class="btn btn-default">確認</button>';
-					btnWrap.children[1].addEventListener('click', function(){ 
-						self._status = self.IDLE;
-						// GossimPeer.hangup();
-						self.close();
-					});
+					btnWrap.children[1].addEventListener('click', function(){ self.close(); });
 					textWrap.innerHTML = '<p>您與他通話了...</p>';
 
 					timeWrap.classList.add('hangout-show');
@@ -145,10 +144,7 @@ window.ConkweHangout = {
 				}
 			}
 		};
-		var closeIcon = self._el.querySelector('.hangout-close-icon');
-		closeIcon.addEventListener('click', function(){ self.close(); });
-
-		self._status = self.IDLE;
+		self.state = self.IDLE;
 	},
 	open: function(id, name, image){
 		var self = this;
@@ -173,11 +169,12 @@ window.ConkweHangout = {
 		var self = this;
 		// GossimPeer.off('accept');
 		// GossimPeer.off('reject');
+		if(self._interval) clearInterval(self._interval);
+		if(self.state != self.IDLE) self.state = self.IDLE;
 		self._target = null;
 		self._innerSecondText = null;
 		self._opened = false;
 		self._seconds = 0;
-		if(self._interval) clearInterval(self._interval);
 		self._el.classList.remove('hangout-show');
 	}
 }
