@@ -1,23 +1,50 @@
 
 <div class="hangout-viewer">
+	<div class="hangout-mask"></div>
 	<div class="hangout-viewer-header">
-		<span class="icon-lg hangout-close-icon"></span>
+		<span class="icon-lg hangout-close-icon">&#10006;</span>
+	</div>
+	<div class="hangout-viewer-content">
+		<div class="hangout-viewer-userinfo">
+			<div class="my-pic text-center wow fadeInUp" data-wow-duration="0.5s" data-wow-offset="200">
+				<img class="hangout-info-image" src="" alt="my profile">
+				<br>
+				<br>
+				<p><strong class="hangout-info-name"></strong></p>
+			</div>
+		</div>
+		<div class="hangout-viewer-text"></div>
+		<div class="hangout-viewer-time">
+			<!-- <p> 00:23:12 </p> -->
+		</div>
+		<div class="hangout-viewer-buttons"></div>
 	</div>
 </div>
 
 <style type="text/css">
+
+	.hangout-viewer, .hangout-mask{
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
 	.hangout-viewer{
-		color: #fff;
-	    position: fixed;
-	    z-index: 100;
-	    top: 0;
-	    right: 0;
-	    bottom: 0;
-	    left: 0;
+		/*color: #fff;*/
+	    z-index: 10000;
 	    text-align: center;
-	    /*display: none;*/
+	    background: transparent;
+	    display: none;
+	}
+	.hangout-mask{
+		z-index: 20;
+		opacity: 0.4;
+		background: black;
 	}
 	.hangout-viewer-header{
+
 		height: 3pc;
 	    left: 0;
 	    position: fixed;
@@ -31,16 +58,20 @@
 	    position: absolute;
 	    right: 0;
 	    top: 0;
-	    -webkit-transition-property: -webkit-transform,color;
-	    transition-property: transform,color;
-	    -webkit-transition-duration: 150ms;
-	    transition-duration: 150ms;
+	    -webkit-transition-property:color;
+	    transition-property: color;
+	    -webkit-transition-duration: .5s;
+	    transition-duration: .5s;
+	}
+	.hangout-close-icon:hover{
+		color: rgba(255,255,255,1);
 	}
 	.icon-lg{
-		height: 30px;
-	    font-size: 20px;
+		cursor: pointer;
+		height: inherit;
+	    font-size: 30px;
 	    line-height: 30px;
-	    width: 30px;
+	    width: 50px;
 
 	    display: inline-block;
 	    -webkit-font-smoothing: antialiased;
@@ -50,4 +81,54 @@
 	    text-align: center;
 	    text-decoration: none;
 	}
+
+	.hangout-viewer-content{
+		position: absolute;
+		left:20%;
+		right: 20%;
+		top: 3pc;
+		bottom: 4pc;
+		background: white;
+		z-index: 30;
+		border-radius: 5px;
+	}	
+
+	/*@media (max-width:1180px){.classificationBox .WorksList ul.designerWorksList li{ width: 23%;}}*/
+	@media (max-width:900px){ .hangout-viewer-content{ left: 10%; right: 10%; } }
+	@media (max-width:750px){ .hangout-viewer-content{ left: 5%; right: 5%; } }
+
+	.hangout-viewer-userinfo{
+		height: 50%;
+		/*background: beige;*/
+		padding: 3pc 0;
+	}
+	.hangout-viewer-text{
+		font-weight: 400;
+		font-size: 24px;
+		height: 12%;
+		/*background: antiquewhite;*/
+		padding: .8pc 0;
+	}
+	.hangout-viewer-time{
+		height: 12%;
+		/*background: gainsboro;*/
+		font-size: 28px;
+		padding: .7pc 0;
+		display: none;
+	}
+	.hangout-viewer-buttons{
+		/*height: 18%;*/
+		padding: 1pc 0;
+	}
+
+	.hangout-viewer-buttons .btn:not(:last-child){
+		margin-right: 5%;
+	}
+
+	.hangout-show{
+		display: block !important;
+	}
 </style>
+
+<%= stylesheet_link_tag 'account/user_infos' %>
+

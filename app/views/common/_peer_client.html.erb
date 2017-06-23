@@ -18,20 +18,173 @@ window.onGossimLoad = function(){
 	});
 };
 
+window.ConkweHangout = {
+	IDLE: 0,
+	CALLING: 1,
+	CALLEE: 2,
+	ONPHONE: 3,
+	ENDPHONE: 4,
+	_target: null,
+	_opened: false,
+	_el: null,
+	// cache for speed
+	_innerSecondText: null,
+	_seconds: 0,
+	_interval: null,
+	get counting(){ return this._seconds; },
+	set counting(sec){
+		var self = this;
+		if(!self._innerSecondText) self._innerSecondText = self._el.querySelector('.hangout-viewer-time p');
+		var times = [];
+		var digits = 3;
+		var tmp = sec;
+		while(tmp && times.length < 3){
+			times.push(tmp % 60);
+			tmp = Math.floor(tmp / 60);
+		}
+		var addZeros = digits - times.length;
+		while(addZeros--) times.push(0);
+		self._innerSecondText.textContent = 
+			times.map(function(s){ return s < 10? ("0" + s) : s.toString(); })
+				.reverse()
+				.join(':');
+
+		self._seconds = sec;
+	},
+	set _status(state){
+		var self = this;
+		if(self._el){
+			var btnWrap = self._el.querySelector('.hangout-viewer-buttons');
+			var textWrap = self._el.querySelector('.hangout-viewer-text');
+			var timeWrap = self._el.querySelector('.hangout-viewer-time');
+			switch(state){
+				case self.IDLE:
+					btnWrap.innerHTML = '<hr><button class="btn btn-default">YES</button><button class="btn btn-default">NO</button>';
+					btnWrap.children[1].addEventListener('click', function(){ 
+						self._status = self.CALLING;
+						// GossimPeer.call(self._target);
+					});
+					btnWrap.children[2].addEventListener('click', function(){ self.close(); });
+					textWrap.innerHTML = '<p>是否願意邀請他與您語音通話？</p>';
+					timeWrap.classList.remove('hangout-show');
+					break;
+				case self.CALLING:
+				// hang up
+					btnWrap.innerHTML = '<hr><button class="btn btn-default">掛斷</button>';
+					btnWrap.children[1].addEventListener('click', function(){ 
+						// GossimPeer.hangup();
+						self._status = self.IDLE;
+					});
+					textWrap.innerHTML = '<p>正在通話中...</p>';
+					timeWrap.classList.remove('hangout-show');
+
+					// for test
+					setTimeout(function(){ self._status = self.ONPHONE; }, 2000);
+
+					break;
+				case self.CALLEE:
+				// accept or reject
+					btnWrap.innerHTML = '<hr><button class="btn btn-default">好啊</button><button class="btn btn-default">拒絕</button>';
+					btnWrap.children[1].addEventListener('click', function(){ 
+						self._status = self.ONPHONE;
+						// GossimPeer.accept();
+					});
+					btnWrap.children[2].addEventListener('click', function(){ 
+						// GossimPeer.reject();
+						self.close();
+					});
+					textWrap.innerHTML = '<p>想與您語音通話</p>';
+					timeWrap.classList.remove('hangout-show');
+					break;
+				case self.ONPHONE:
+				// hang up
+				// show timestamps
+					btnWrap.innerHTML = '<hr><button class="btn btn-default">掛斷</button>';
+					btnWrap.children[1].addEventListener('click', function(){ 
+						self._status = self.ENDPHONE;
+						// GossimPeer.hangup();
+					});
+					textWrap.innerHTML = '<p>通話時間</p>';
+					timeWrap.innerHTML = '<p>00:00:00</p>';
+
+					self._interval = setInterval(function(){
+						setTimeout(function(){ self.counting += 1; }, 0);
+					}, 1000);
+					
+					timeWrap.classList.add('hangout-show');
+					break;
+				case self.ENDPHONE:
+					if(self._interval) clearInterval(self._interval);
+					btnWrap.innerHTML = '<hr><button class="btn btn-default">確認</button>';
+					btnWrap.children[1].addEventListener('click', function(){ 
+						self._status = self.IDLE;
+						// GossimPeer.hangup();
+						self.close();
+					});
+					textWrap.innerHTML = '<p>您與他通話了...</p>';
+
+					timeWrap.classList.add('hangout-show');
+					break;	
+			}
+		}
+	},
+	_init: function(){
+		var self = this;
+		self._el = document.querySelector('.hangout-viewer');
+		self._info = {
+			set image(src){
+				if(self._el && src){
+					var img = self._el.querySelector('.hangout-info-image');
+					img.src = src;
+				}
+			},
+			set name(n){
+				if(self._el && n){
+					var name = self._el.querySelector('.hangout-info-name');
+					name.textContent = n;
+				}
+			}
+		};
+		var closeIcon = self._el.querySelector('.hangout-close-icon');
+		closeIcon.addEventListener('click', function(){ self.close(); });
+
+		self._status = self.IDLE;
+	},
+	open: function(id, name, image){
+		var self = this;
+		self._target = id;
+		if(self._target && !self._opened){
+			self._opened = true;
+			if(!self._el) self._init();
+
+			self._info.image = image;
+			self._info.name = name;
+			// target accept
+			// GossimPeer.on('accept', function(){
+			// });
+
+			// target reject
+			// GossimPeer.on('reject', function(){
+			// });
+			self._el.classList.add('hangout-show');
+		}
+	},
+	close: function(){
+		var self = this;
+		// GossimPeer.off('accept');
+		// GossimPeer.off('reject');
+		self._target = null;
+		self._innerSecondText = null;
+		self._opened = false;
+		self._seconds = 0;
+		if(self._interval) clearInterval(self._interval);
+		self._el.classList.remove('hangout-show');
+	}
+}
+
 window.testcall = function(targetId){
 	GossimPeer.call(targetId);
-
-
-
-	// target accept
-	GossimPeer.on('accept', function(){
-
-	});
-
-	// target reject
-	GossimPeer.on('reject', function(){
-
-	});
+	
 };
 
 // ==== test code ====

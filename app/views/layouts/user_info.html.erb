@@ -24,6 +24,7 @@
               </span>
               <span><strong>狀態: </strong><%= user_status(@user_info.user)  %></span>
               <span><%= link_to '私訊給他', '#', class: 'btn btn-success', id: 'chat'  %></span>
+              <span><%= link_to '語音通話', '#', class: 'btn btn-primary', id: 'phone'  %></span>
               <span><strong>工作項目: </strong><%= @user_info.skill_list.present? ? @user_info.skill_list.map { |t| tag_link_button(t,t, 'btn-link')  }.join('').html_safe : tag_link_button(@user_info.category.try(:title),@user_info.category.try(:title), 'btn-link')  %>
               </span>
               <span><strong>所在地區: </strong><%= simple_format @user_info.work_area %></span>
@@ -45,6 +46,9 @@
     $('#chat').click(function(){
               Gossim.popup('<%= @user_info.user.id %>', '<%= @user_info.nickname %>')
             })
+    $('#phone').click(function(){
+      ConkweHangout.open('<%= @user_info.user.id %>', '<%= @user_info.nickname %>', '<%= @user_info.user.avatar_link(size: 128) %>');
+    });
   </script>
 <% end -%>
 <%= render template: "layouts/application" %>
