@@ -36,7 +36,7 @@
             <%  @works.each do |w| %>
               <li>
                 <div class="photoBox" id="<%= dom_id(w) %>">
-                  <%= link_to user_info_work_path(w.user, w), class: "photogo item-wrap",style: 'background-color: ' + work_background_color_personal(w), remote: true do %>
+                  <%= link_to user_info_work_path(w.user, w), class: "photogo item-wrap",style: 'background-color: ' + work_background_color_personal(w), target: '_blank' do %>
                     <%= work_square_personal(w) %>
                     <% if get_resolved_url_obj(w.attach_url)[:type] == "youtube" %>
                     <div class="iframemask"></div>
