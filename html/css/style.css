@@ -206,6 +206,11 @@ transition:all 1s;
 .classificationBox .left_worktype ul.worktypeBox li p.btn_in a{color: #555; font-weight: bold;}
 .classificationBox .left_worktype ul.worktypeBox li p.btn_in::after{ position: absolute; bottom: -10px; left: 50%; margin-left: -15px; content: ""; width: 30px; height: 1px; display: block; background-color:#555;  }
 
+.UserDataBox .WorksList ul.work_step li{ padding:3px 0; padding-left: 20px; position: relative;}
+.UserDataBox .WorksList ul.work_step li i.fa-arrow-right{font-size: 13px; color: #dadada; position: absolute; left: 0; top: 7px; }
+.UserDataBox .WorksList ul.work_step li p.p_info{ line-height: 24px; }
+.UserDataBox .WorksList .abox .work_information  ul.work_step li p.p_info{line-height: 24px; }
+
 @media (max-width:1180px){.classificationBox .WorksList ul.designerWorksList li{ width: 23%;}}
 @media (max-width:900px){.classificationBox .WorksList ul.designerWorksList li{ width: 31.33%;}}
 @media (max-width:750px){.classificationBox .WorksList ul.designerWorksList li{ width: 48%;}}
