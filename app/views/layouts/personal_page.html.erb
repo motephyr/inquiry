@@ -83,14 +83,7 @@
 <%= render_body_tag %>
 <%= render :partial => "common/google_analytics" %>
 <%= render :partial => "common/menu" %>
-<div class="container">
-  <%= notice_message %>
-  <% if has_to_show_welcome %>
-    <%= welcome_message(link_to '第一次來到這裡嗎？如果你不知道Conkwe在做什麼，先看看"關於Conkwe"吧！', welcome_index_path) %>
-    <% cookies['new_viewer'] = 'false' %>
-  <% end %>
 
-</div>
   <%= content_for?(:content) ? yield(:content) : yield %>
 
 <%= render :partial => "common/gossim" %>

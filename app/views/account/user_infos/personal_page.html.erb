@@ -1,5 +1,12 @@
 <% content_for :content do %>
   <section class="UserDataBox">
+  <div class="container" style="margin-top:50px;">
+    <%= notice_message %>
+    <% if has_to_show_welcome %>
+      <%= welcome_message(link_to '第一次來到這裡嗎？如果你不知道Conkwe在做什麼，先看看"關於Conkwe"吧！', welcome_index_path) %>
+      <% cookies['new_viewer'] = 'false' %>
+    <% end %>
+  </div>
     <div class="ContentsBox clearfix">
       <div class="leftBox">
         <div class="fixBox">
