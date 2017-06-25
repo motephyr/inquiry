@@ -31,8 +31,29 @@
       </div>
       <div class="rightBox">
         <div class="WorksList">
+          <% if @user_info.alert.present? %>
+          <%  alertlist = @user_info.alert.split(/[\r\n]+/) %>
           <div class="abox">
+            <div class="topTitle"><h3>發案須知</h3></div>
+            <div class="work_information lessBox show_moreBox">
+                    <ul class="work_step">
+                    <% alertlist.each do |a| %>
+                            <li><p class="p_info"><i class="fa fa-chevron-right" aria-hidden="true"></i><%= a %></p></li>
+                    <% end %>
+                            <%#<li><p class="p_info"><i class="fa fa-chevron-right" aria-hidden="true"></i>寫出User story</p></li>
+                            <li><p class="p_info"><i class="fa fa-chevron-right" aria-hidden="true"></i>畫出 wireframe</p></li>
+                            <li><p class="p_info"><i class="fa fa-chevron-right" aria-hidden="true"></i>設計師做給出mockup，程式開發做資料庫規劃設計師做給出mockup</p></li>
+                            <li><p class="p_info"><i class="fa fa-chevron-right" aria-hidden="true"></i>留整個專案的時程1/4的時間debug</p></li>
+                            <li><p class="p_info"><i class="fa fa-chevron-right" aria-hidden="true"></i>讓我測試如果很長的話，會是什麼樣子呢？？？讓我測試如果很長的話，會是什麼樣子呢？？？讓我測試如果很長的話，會是什麼樣子呢？？？</p></li>
+                            <li><p class="p_info"><i class="fa fa-chevron-right" aria-hidden="true"></i>依專案和業務執行狀況進行下一輪迭代開發</p></li>%>
+                    </ul>
+            </div>
+                <%#<p class="show_more "><a href="#">收起</a></p>%>
+          </div>
+          <% end %>
           
+          <div class="abox">
+
           <% if @works.size > 0 %>
             <div class="topTitle">
               <h3>作品</h3>

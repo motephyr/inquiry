@@ -85,7 +85,7 @@ transition:all 1s;
 /*--go--*/
 
 .UserDataBox{ width: 100%; background-color: #fafafa;}
-.UserDataBox .ContentsBox{ width: 95%; max-width: 1170px; margin: 0 auto; padding: 70px 0 60px 0;}
+.UserDataBox .ContentsBox{ width: 95%; max-width: 1170px; margin: 0 auto; padding: 30px 0 60px 0;}
 
 /*leftBox*/
 .UserDataBox .leftBox{ float: left; width: 100%; max-width: 230px; }

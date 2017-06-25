@@ -119,7 +119,7 @@ class Account::UserInfosController < ApplicationController
     skill_list = params.require(:user_info)[:skill_list].split(' ').compact.join(',')
 
 
-    params.require(:user_info).permit(:user_id,:name, :work_content, :work_area, :typical_work, :teach, :speak, :labor, :contract, :category_id, :skill_tool).merge(skill_list: skill_list, state_list: state_list)
+    params.require(:user_info).permit(:user_id,:name, :work_content, :work_area, :typical_work, :teach, :speak, :labor, :contract, :category_id, :skill_tool, :alert).merge(skill_list: skill_list, state_list: state_list)
   end
 
   def determine_layout
