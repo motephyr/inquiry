@@ -14,6 +14,7 @@ class Account::UserInfosController < ApplicationController
       never_edit_user_info
     end
     @works = (@user == current_user) ? @user.works.includes(:cares).order("is_published desc").order_by_new : @user.works.includes(:cares).is_published.order_by_new
+
     render :personal_page
   end
 
@@ -23,6 +24,17 @@ class Account::UserInfosController < ApplicationController
     else
       never_edit_user_info
     end
+
+    if @user.fb_id && session[:token]
+      graph = Koala::Facebook::API.new(session[:token])
+      begin
+        context_id = graph.get_object("/#{@user.fb_id}",{fields:"context.fields(all_mutual_friends.limit(100))"})["context"]["id"]
+        @all_mutual_friends = graph.get_object("/#{context_id}/all_mutual_friends")
+      rescue
+        @all_mutual_friends = nil
+      end
+    end
+
     @works = (@user == current_user) ? @user.works.includes(:cares).order("is_published desc").order_by_new : @user.works.includes(:cares).is_published.order_by_new
     render :show
   end

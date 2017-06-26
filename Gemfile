@@ -59,7 +59,7 @@ gem 'acts-as-taggable-on', '~> 4.0'
 gem 'kaminari'
 gem 'twilio-ruby'
 
-
+gem "koala"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
