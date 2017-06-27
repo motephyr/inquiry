@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'works#index'
 
-  resources :users, only: [] do
+  resources :users, only: [:show] do
     collection do
       get 'edit_password'
       patch 'update_password'

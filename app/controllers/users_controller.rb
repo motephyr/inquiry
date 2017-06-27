@@ -1,7 +1,14 @@
 class UsersController < ApplicationController
 
-  before_action :login_required
+  before_action :login_required,except: [:show]
 
+  def show
+    @user = User.find(params[:id])
+    @user.email = nil
+    respond_to do |format|
+      format.json { render :json => @user }
+    end
+  end
 
   def edit_password
     @user = User.find(current_user.id)
