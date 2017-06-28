@@ -25,12 +25,20 @@
 </footer>
 <script type="text/javascript">
   if(window.conkweFixFooter){
-    var f = document.querySelector("footer");
+    // var f = document.querySelector("footer");
     var databox = document.querySelector(".UserDataBox");
     var nav = document.querySelector('div.navbar');
-    f.className = "footer-fixed";
-    if(databox){
-      databox.style.cssText = "height:" + (window.innerHeight - 42 - (nav? nav.offsetHeight : 0)) + "px;";
+    var strNewHeight = "height:" + (window.innerHeight - 42 - (nav? nav.offsetHeight : 0)) + "px;";
+    // f.className = "footer-fixed";
+    if(databox) databox.style.cssText = strNewHeight;
+    else{
+      var containers = document.querySelectorAll('.container');
+      for(var i = 0, len = containers.length; i < len; i++){
+        if(containers[i].parentNode == document.body){
+          containers[i].style.cssText = strNewHeight;
+          break;
+        }
+      }
     }
   }
 </script>
