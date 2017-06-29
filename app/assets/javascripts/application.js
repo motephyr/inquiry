@@ -16,6 +16,7 @@
 //= require cable
 //= require bootstrap-notify
 //= require lib/date-fns
+//= require layout
 
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()

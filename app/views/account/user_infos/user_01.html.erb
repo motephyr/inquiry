@@ -28,7 +28,7 @@
 <meta name="MobileOptimized" content="width">
 <meta name="HandheldFriendly" content="true">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<%= javascript_include_tag "jquery" %>
+  <%= javascript_include_tag "application" %>
   <%= stylesheet_link_tag "user_01" %>
 
 
@@ -56,7 +56,7 @@
                         <ul class="designerWorksList clearfix">
                             <% @works.each do |w| %>
                             <li>
-                                <a class="photogo" href="<%= user_info_work_path(w.user, w) %>">
+                                <a class="photogo" href="<%= user_info_work_path(w.user, w) %>" style="overflow: hidden;">
                                     <%#<div class="thisBox">
                                         <div class="the_tools">
                                             <p class="like like_in">546</p>
