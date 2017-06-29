@@ -18,6 +18,17 @@ class Account::UserInfosController < ApplicationController
     render :personal_page
   end
 
+  def unique
+    if current_user == User.friendly.find_by_slug!(params[:id])
+      never_edit_my_info
+    else
+      never_edit_user_info
+    end
+    @works = (@user == current_user) ? @user.works.includes(:cares).order("is_published desc").order_by_new : @user.works.includes(:cares).is_published.order_by_new
+
+    render :user_01
+  end
+
   def personal_page
     if current_user == User.friendly.find_by_slug!(params[:id])
       never_edit_my_info
@@ -141,6 +152,8 @@ class Account::UserInfosController < ApplicationController
       "user_info"
     elsif action_name == 'edit_status' || action_name == 'edit_info'
       'account'
+    elsif action_name == "unique"
+      "blank"
     end
   end
 end

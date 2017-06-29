@@ -1,0 +1,163 @@
+﻿@charset "utf-8";
+/* CSS Document */s
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote { margin:0;	padding:0;}
+fieldset, img {	border:0;}
+ol, ul {list-style:none;}
+abbr, acronym { border:0;}
+.CLEAR{ clear:both; height: 0; font-size: 0px; line-height: 0;}
+.clearfix:after {content: "."; display: block; clear: both; visibility: hidden;	line-height: 0;	height: 0;}
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+
+blockquote, q { quotes:none;}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;}
+
+* {-webkit-text-size-adjust:none;}
+
+a{text-decoration:none;}
+em{/*font-style:normal;*/}
+fieldset, img {	border:0;}
+ol, ul { list-style:none;}
+abbr, acronym {	border:0;}
+.CLEAR{	clear:both; height: 0; font-size: 0px; line-height: 0;}
+
+/**
+ * Markup free clearing
+ * Details: http://perishablepress.com/press/2009/12/06/new-clearfix-hack
+ */
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;}
+/* IE6 */
+* html .clearfix {height: 1%;}
+/* IE7 */
+*:first-child + html .clearfix {
+  min-height: 1%;}
+
+body, h1, h2, h3, h4, h5, h6, p { font-family:'Noto Sans TC',Arial,"微軟正黑體","新細明體", sans-serif; font-weight: normal; color: #333;}
+p{ font-size:16px;}
+a{  text-decoration:none; outline: none; /* for Firefox */  hlbr:expression(this.onFocus=this.blur()); 
+transition:width 2s;
+-moz-transition:all 2s; /* Firefox 4 */
+-ms-transition: all 1s;  
+-webkit-transition:all 2s; /* Safari and Chrome */
+-o-transition:all 2s; /* Opera */}
+a:hover{ text-decoration:none;}
+select, input, textarea, button {  font-family:'Noto Sans TC',Arial,"微軟正黑體","新細明體", sans-serif;
+transition:all 1s;
+-moz-transition:all 1s; /* Firefox 4 */
+-ms-transition: all 1s;  
+-webkit-transition:all 1s; /* Safari and Chrome */
+-o-transition:all 1s; /* Opera */}
+*:link, *:visited, *:hover, *:active, *:focus , * {border: none;outline: none; hlbr:expression(this.onFocus=this.blur()); /* for IE */}
+ 
+@media screen and ( max-width:750px) {}
+
+/*--go--*/
+
+.style_templet{ width: 100%; background-color: #fafafa;}
+.style_templet .ContentsBox{ width: 100%; /*max-width: 1170px;*/ margin: 0 auto;}
+
+.style_templet .userBox { padding: 20px 0; position: relative; margin: 0 auto;}
+.style_templet .userBox .photo{  width: 140px; height: 140px; display: block; overflow: hidden; background-color: #dfdada; border-radius: 150px; border:5px solid #fff; margin: 0 auto; margin-top: -128px; box-shadow: 0px 0px 10px rgba(155,155,155,.5);}
+.style_templet .userBox a.contact_me{ cursor: pointer; position: absolute; left: 50%; top: -25px; margin-left: 45px; width: 45px; height: 45px; border-radius: 45px; display: block; background: url(../images/icon_contact.png) center center no-repeat #303030; background-size: contain;}
+.style_templet .userBox a.contact_me:hover{ background-color: #00a148; }
+
+.style_templet .userBox p.user_name{ text-align: center; padding: 15px 0; }
+.style_templet .userBox p.online{ text-align: center; font-size: 13px; color: #838383; padding-bottom: 20px;}
+.style_templet .userBox p.online span.green{ color: #00a148; }
+
+.style_templet .topBanner{ position: relative; width: 100%; min-height: 270px; background-color: #d0d6e2; }
+.style_templet .work_information { position: relative; padding: 0;}
+
+.style_templet ul.user_info{ position: absolute; bottom: 20px; left: 20px;}
+.style_templet ul.user_info li { display: inline-block; width: initial;}
+.style_templet ul.user_info li p{color: #333; font-size: 13px;}
+.style_templet ul.user_info li p a{ color: #fff; padding: 3px 15px ; background-color: #333; display: block; border:1px solid #333; border-radius: 30px; }
+.style_templet ul.user_info li p a:hover{ opacity: .8; }
+
+@media (max-width:800px){.style_templet ul.user_info{ bottom: inherit; top: 20px; }
+  .style_templet .topBanner{ min-height: 170px; }}
+
+.style_templet .userBox ul.skill_list{ width: 100%; text-align: center; padding-top: 20px;}
+.style_templet .userBox ul.skill_list li{ display: inline-block; width: initial; padding:6px 0;  }
+.style_templet .userBox ul.skill_list li p{font-size: 13px; text-align: center;}
+.style_templet .userBox ul.skill_list li p a{ color: #333; padding: 3px 15px ; display: block; border:1px solid #333; border-radius: 30px; }
+.style_templet .userBox ul.skill_list li p a:hover{background-color: #333; color: #fff;}
+
+.style_templet .WorksList{ width: 100%;}
+.style_templet .WorksList .work_information{ margin-bottom: 15px;}
+.style_templet .WorksList .work_information p.p_info{ font-size: 15px; color: #666; line-height: 28px; text-align: justify;}
+.style_templet .WorksList .work_information p.p_info a{ color: #449dd5;}
+.style_templet .WorksList .work_information p.p_info a:hover{text-decoration: underline;}
+
+.style_templet .WorksList ul.designerWorksList{ width: 100%; }
+.style_templet .WorksList ul.designerWorksList li{ margin: 0 3px; width: calc(100vw / 8 - 10px);display: inline-block;  float: left; margin-bottom: 5px; position: relative;}
+.style_templet .WorksList ul.designerWorksList li:hover{opacity: .9;}
+.style_templet .WorksList ul.designerWorksList li a.look_competence{ cursor: pointer; position: absolute; width: 15px; height: 15px; top: 5px; right: 5px;  background:url(../images/icon_lock.png); background-size: contain; z-index: 10;}
+.style_templet .WorksList ul.designerWorksList li a.look_open{ cursor: pointer; position: absolute; width: 15px; height: 15px; top: 5px; right: 5px; background:url(../images/icon_open.png); background-size: contain;  z-index: 10;}
+
+.style_templet .WorksList ul.designerWorksList li a.photogo{ width: calc(100vw / 8 - 10px); height: calc(100vw / 8 - 10px); display: block; position: relative; }
+
+.style_templet .WorksList ul.designerWorksList li a.addWorks{ width: 100%; margin: 0 auto; font-size: 13px; background:url(../images/icon_add_photo.png) center center no-repeat #f2f2f2; background-size: contain; display: block; height:calc(100vw / 8 - 10px); }
+
+
+.style_templet .WorksList ul.designerWorksList li .onThePhoto{ position: absolute; width: 100%; left: 0; top: 0; height: 100%; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center;}
+.style_templet .WorksList ul.designerWorksList li .onThePhoto p{ font-size: inherit; text-align: center; max-width: 90%;}
+
+.style_templet .WorksList ul.designerWorksList li .thisBox{ position: absolute; width: 100%; height: 100%;  background-color: #7a8593; top: 0; left: 0; opacity: 0;  display: block;  z-index: 10; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center;}
+.style_templet .WorksList ul.designerWorksList li:hover .thisBox{opacity: 1;}
+.style_templet .WorksList ul.designerWorksList li .the_tools{ width: 100%; text-align: center;}
+.style_templet .WorksList ul.designerWorksList li .the_tools p{ font-size: 12px; line-height: 19px;  padding-left:25px; color: #fff; display: inline-block; margin: 0 5px;}
+.style_templet .WorksList ul.designerWorksList li .the_tools p.like{ cursor: pointer; background: url(../images/icon_tools_like_w.png) left center no-repeat; background-size: contain; }
+.style_templet .WorksList ul.designerWorksList li .the_tools p.like_in{ background-image: url(../images/icon_tools_like_in.png)}
+.style_templet .WorksList ul.designerWorksList li .the_tools p.dialog{ cursor: pointer; background: url(../images/icon_tools_dialog_w.png) left center no-repeat; background-size: contain; }
+.style_templet .WorksList ul.designerWorksList li .the_tools p.eyes{  padding-left:29px; background: url(../images/icon_tools_eyes_w.png) left center no-repeat; background-size: contain; }
+
+@media (max-width:1400px){.style_templet .WorksList ul.designerWorksList li{ width: calc(100vw / 6 - 10px);}
+  .style_templet .WorksList ul.designerWorksList li a.photogo{ width: calc(100vw / 6 - 10px); height: calc(100vw / 6 - 10px);}
+  .style_templet .WorksList ul.designerWorksList li a.addWorks{height: calc(100vw / 6 - 10px);}}
+@media (max-width:1200px){.style_templet .WorksList ul.designerWorksList li{ width: calc(100vw / 5 - 10px);}
+  .style_templet .WorksList ul.designerWorksList li a.photogo{ width: calc(100vw / 5 - 10px); height: calc(100vw / 5 - 10px);}
+  .style_templet .WorksList ul.designerWorksList li a.addWorks{height: calc(100vw / 5 - 10px);}}
+@media (max-width:1050px){.style_templet .WorksList ul.designerWorksList li{ width: calc(100vw / 4 - 11px);}
+  .style_templet .WorksList ul.designerWorksList li a.photogo{ width: calc(100vw / 4 - 11px); height: calc(100vw / 4 - 11px);}
+  .style_templet .WorksList ul.designerWorksList li a.addWorks{height: calc(100vw / 4 - 11px);}}
+@media (max-width:750px){.style_templet .WorksList ul.designerWorksList li{ width: calc(100vw / 3 - 12px);}
+  .style_templet .WorksList ul.designerWorksList li a.photogo{ width: calc(100vw / 3 - 12px); height: calc(100vw / 3 - 12px);}
+  .style_templet .WorksList ul.designerWorksList li a.addWorks{height: calc(100vw / 3 - 12px);}}
+@media (max-width:700px){.style_templet .WorksList ul.designerWorksList li{ width: calc(100vw / 2 - 15px);}
+  .style_templet .WorksList ul.designerWorksList li a.photogo{ width: calc(100vw / 2 - 15px); height: calc(100vw / 2 - 15px);}
+  .style_templet .WorksList ul.designerWorksList li a.addWorks{height: calc(100vw / 2 - 15px);}}
+@media (max-device-width:704px){.style_templet .WorksList ul.designerWorksList li{ width: calc(100vw /2 - 6px);}
+  .style_templet .WorksList ul.designerWorksList li a.photogo{ width: calc(100vw / 2 - 6px); height: calc(100vw / 2 - 6px);}
+  .style_templet .WorksList ul.designerWorksList li a.addWorks{height: calc(100vw / 2 - 6px);}}

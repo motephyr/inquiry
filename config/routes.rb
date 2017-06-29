@@ -49,6 +49,7 @@ Rails.application.routes.draw do
         patch 'update_info'
       end
       member do
+        get 'unique'
         get 'personal_page'
         get 'sip'
       end
