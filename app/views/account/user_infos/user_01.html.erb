@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name='description' content=""/>
+<meta name='keywords' content=""/>
+<meta property="og:image" content="images/share_pic.jpg"/>
+<meta property="og:title" content=""/>
+<meta property="og:url" content="#"/>
+<meta property="og:description" content=""/>
+<meta property="og:type" content="website"/>
+
+<!-- Share image -->
+<link rel="image_src" href="images/share_pic.jpg">
+<!--Icon image  -->
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="images/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="167x167" href="images/apple-touch-icon-167x167.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-180x180.png">
+<link rel="icon" sizes="192x192" href="images/icon-hires.png">
+<link rel="icon" sizes="128x128" href="images/icon-normal.png">
+<link rel="icon" type="image/png" href="images/favicon_16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="images/favicon_32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="images/favicon_96x96.png" sizes="96x96">
+
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<%= javascript_include_tag "jquery" %>
+  <%= stylesheet_link_tag "user_01" %>
+
+
+</head>
+
+<body>
+
+<!-------- 中間內容從這邊開始 -------->
+<section class="style_templet">
+    <div class="topBanner" style="background: url(<%= image_path('top_banner_01.jpg') %>) center center no-repeat; background-size: cover;"></div>
+    <div class="userBox">
+<a class="contact_me" style="background-color:green" id="chat" href="#"></a>
+        <div class="photo"><%= tag :img, src: @user_info.user.avatar_link(size: 128), alt: 'my profile' %>
+</div>
+        <p class="user_name"><%= @user_info.nickname %></p>
+        <p class="online">狀態：<span class="green"> <%= user_status(@user_info.user)  %></span>&nbsp;&nbsp;|&nbsp;&nbsp;所在地區：<%= @user_info.work_area %></p>
+        <ul class="skill_list">
+              <%= @user_info.skill_list.present? ? @user_info.skill_list.map { |t| li_link_button(t,t, 'btn-link')  }.join('').html_safe : li_link_button(@user_info.category.try(:title),@user_info.category.try(:title), 'btn-link')  %>
+        </ul> 
+    </div>
+
+    <div class="ContentsBox clearfix">
+            <div class="WorksList">
+                    <div class="work_information">
+                        <ul class="designerWorksList clearfix">
+                            <% @works.each do |w| %>
+                            <li>
+                                <a class="photogo" href="<%= user_info_work_path(w.user, w) %>">
+                                    <%#<div class="thisBox">
+                                        <div class="the_tools">
+                                            <p class="like like_in">546</p>
+                                            <p class="dialog">38</p>
+                                            <p class="eyes">459</p>
+                                        </div>
+                                    </div>%>
+                               <%= work_square_unique(w) %>
+                                </a>
+                            </li>
+                            <% end %>
+                            
+
+                        </ul>
+                    </div>
+            </div>
+    </div>
+</section>
+<%= render :partial => "common/gossim" %>
+
+  <script>
+    $('#chat').click(function(){
+      Gossim.popup('<%= @user_info.user.id %>', '<%= @user_info.nickname %>')
+    })
+  </script>
+</body>
+</html>
+
+
