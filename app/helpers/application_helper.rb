@@ -106,11 +106,11 @@ module ApplicationHelper
     end
   end
 
-  def render_avatar_file(file)
+  def render_avatar_file(file, width = '')
     image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/i.match(file)
     audio_match = /\.(wav|mp3|wma|ogg|midi|aif|aifc|aiff|au|ea)$/i.match(file)
     if image_match.present?
-      tag :img, src: "#{file}", onload: "onImageLoad(this)", width: "100%"
+      tag :img, src: "#{file}", onload: "onImageLoad(this)", width: width
     elsif audio_match.present?
       content_tag :audio, '', controls: "controls", src: "#{file}"
     end
@@ -207,7 +207,7 @@ module ApplicationHelper
 
   def work_square_unique(w)
     if w.attach_avatar.present?
-      render_avatar_file(w.attach_avatar.square_large.url)
+      render_avatar_file(w.attach_avatar.square_large.url, "100%")
     elsif w.attach_url.present?
       # render_resolve_url(w)
       render_resolve_url_personal(w)

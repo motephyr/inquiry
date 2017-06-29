@@ -30,7 +30,7 @@
     // var f = document.querySelector("footer");
     var databox = document.querySelector(".UserDataBox");
     var nav = document.querySelector('div.navbar');
-    var strNewHeight = "height:" + (window.innerHeight - 42 - (nav? nav.offsetHeight : 0)) + "px;";
+    var strNewHeight = "min-height:" + (window.innerHeight - 42 - (nav? nav.offsetHeight : 0)) + "px;";
     // f.className = "footer-fixed";
     if(databox) databox.style.cssText = strNewHeight;
     else{
