@@ -213,7 +213,7 @@ module ApplicationHelper
       render_resolve_url_personal(w)
     elsif w.attach_content.present?
 
-      raw('<div class="onThePhoto" style="background-color: ' + work_text_color_personal(w) + '"><p style="color: #000">' + w.subject + '</p></div>')
+      raw('<div class="onThePhoto" style="background-color: ' + work_background_color_personal(w) + '"><p style="color:'+  work_text_color_personal(w) +'">' + w.subject + '</p></div>')
 
     else
     end
@@ -223,13 +223,13 @@ module ApplicationHelper
     url = w.attach_url
     time = w.created_at.to_i
     obj = get_resolved_url_obj(url)
-    colors = ["#6dc6d0;", "#e4ddd3;", "#333;"]
+    colors = ["#9f81a6;", "#333;", "#fea61b;", "#ac83cf;", "#46c576;", "#6dc6d0;", "#e4ddd3;"]
     res = ""
     case obj[:type]
     when "video", "audio", "youtube"
       res = '#ececec'
     when "image", "others"
-      res = colors[time % 3]
+      res = colors[time % 7]
     end
     res
   end
@@ -238,8 +238,9 @@ module ApplicationHelper
     url = w.attach_url
     time = w.created_at.to_i
     obj = get_resolved_url_obj(url)
-    colors = ["#fff;", "#6b5e5e;", "#9f81a6;"]
-    colors[time % 3]
+    # colors = ["#fff;", "#6b5e5e;", "#9f81a6;"]
+    # colors[time % 3]
+    "#fff;"
   end
 
   def work_square_all(w)
