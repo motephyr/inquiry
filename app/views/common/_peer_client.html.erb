@@ -11,7 +11,14 @@ window.onGossimLoad = function(){
 	GossimPeer.on('callee', function(caller){
 		if(caller && window.ConkweHangout){
 			var ch = window.ConkweHangout;
-			ch.open(caller.id, caller.username, caller.image, ch.CALLEE);
+			$.getJSON('/users/' + caller.id + '.json', function(conkweUser){
+				var o = {};
+				o.state = ch.CALLEE;
+				o.id = caller.id
+				o.name = conkweUser.name;
+				o.image = conkweUser.image.circle_128.url || '<% @user.default_avatar_link %>';
+				ch.open(o);
+			});
 		}
 	});
 
@@ -152,20 +159,29 @@ window.ConkweHangout = {
 		};
 		self.state = self.IDLE;
 	},
-	open: function(id, name, image, state){
-		var self = this;
+	open: function(o){
+		var self = this,
+			id = o.id,
+			name = o.name,
+			image = o.image,
+			state = o.state;
 		self._target = id;
 		if(self._target && !self._opened){
 			self._opened = true;
 			if(!self._el) self._init();
 
-			self._info.image = image;
-			self._info.name = name;
-			
+			self.setInfo(o);
 			if(state) self.state = state;
 
 			self._el.classList.add('hangout-show');
 		}
+	},
+	setInfo: function(o){
+		var self = this,
+			image = o.image,
+			name = o.name;
+		if(image) self._info.image = image;
+		if(name) self._info.name = name;
 	},
 	close: function(){
 		var self = this;

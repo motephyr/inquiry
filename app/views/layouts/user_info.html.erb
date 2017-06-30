@@ -49,7 +49,11 @@
               Gossim.popup('<%= @user_info.user.id %>', '<%= @user_info.nickname %>')
             })
     $('#phone').click(function(){
-      ConkweHangout.open('<%= @user_info.user.id %>', '<%= @user_info.nickname %>', '<%= @user_info.user.avatar_link(size: 128) %>');
+      ConkweHangout.open({
+        id: '<%= @user_info.user.id %>',
+        name: '<%= @user_info.nickname %>',
+        image: '<%= @user_info.user.avatar_link(size: 128) %>'
+      });
     });
   </script>
 <% end -%>
