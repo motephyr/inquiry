@@ -205,7 +205,7 @@ module ApplicationHelper
     end
   end
 
-  def work_square_unique(w)
+  def work_square_unique(w,i)
     if w.attach_avatar.present?
       render_avatar_file(w.attach_avatar.square_large.url, "100%")
     elsif w.attach_url.present?
@@ -213,23 +213,23 @@ module ApplicationHelper
       render_resolve_url_personal(w)
     elsif w.attach_content.present?
 
-      raw('<div class="onThePhoto" style="background-color: ' + work_background_color_personal(w) + '"><p style="color:'+  work_text_color_personal(w) +'">' + w.subject + '</p></div>')
+      raw('<div class="onThePhoto" style="background-color: ' + work_background_color_personal(w,i) + '"><p style="color:'+  work_text_color_personal(w) +'">' + w.subject + '</p></div>')
 
     else
     end
   end
 
-  def work_background_color_personal(w)
+  def work_background_color_personal(w,i)
     url = w.attach_url
-    time = w.created_at.to_i
+    # time = w.created_at.to_i
     obj = get_resolved_url_obj(url)
-    colors = ["#9f81a6;", "#333;", "#fea61b;", "#ac83cf;", "#46c576;", "#6dc6d0;", "#e4ddd3;"]
+    colors = ["#9f81a6;", "#333;", "#fea61b;", "#ac83cf;", "#46c576;", "#6dc6d0;"]
     res = ""
     case obj[:type]
     when "video", "audio", "youtube"
       res = '#ececec'
     when "image", "others"
-      res = colors[time % 7]
+      res = colors[i.divmod(6)[0] % 4]
     end
     res
   end

@@ -65,10 +65,10 @@
                 <p class="addWorks"><%= link_to '＋ 新增作品或工作成果', new_account_user_info_work_path(current_user) %></p>
               <% end %>
               <ul class="designerWorksList clearfix">
-                <%  @works.each do |w| %>
+                <%  @works.each_with_index do |w, i| %>
                   <li>
                     <div class="photoBox" id="<%= dom_id(w) %>">
-                      <%= link_to user_info_work_path(w.user, w), class: "photogo item-wrap",style: 'background-color: ' + work_background_color_personal(w), remote: true do %>
+                      <%= link_to user_info_work_path(w.user, w), class: "photogo item-wrap",style: 'background-color: ' + work_background_color_personal(w, i), remote: true do %>
                         <%= work_square_personal(w) %>
                         <% if get_resolved_url_obj(w.attach_url)[:type] == "youtube" %>
                         <div class="iframemask"></div>
