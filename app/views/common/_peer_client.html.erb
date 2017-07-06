@@ -16,7 +16,7 @@ window.onGossimLoad = function(){
 				o.state = ch.CALLEE;
 				o.id = caller.id
 				o.name = conkweUser.name;
-				o.image = conkweUser.image.circle_128.url || '<% @user.default_avatar_link %>';
+				o.image = conkweUser.image.circle_128.url || '<%= current_user.default_avatar_link %>';
 				ch.open(o);
 			});
 		}
