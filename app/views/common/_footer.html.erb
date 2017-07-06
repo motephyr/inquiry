@@ -1,11 +1,9 @@
 
 <script type="text/javascript">
-  if(window.innerHeight - 42 > document.body.clientHeight){
-    window.conkweFixFooter = true;
-  }
+
 </script>
 <%= stylesheet_link_tag 'footer' %>
-<footer>
+<footer style="display:none">
 <div class="copyright">
   <div class="container">
     <div class="col-md-6">
@@ -24,11 +22,15 @@
 </div>
 </footer>
 <script type="text/javascript">
+ $(function(){
+  if(window.innerHeight - 42 > document.body.clientHeight){
+    window.conkweFixFooter = true;
+  }
   if(window.conkweFixFooter){
     // var f = document.querySelector("footer");
     var databox = document.querySelector(".UserDataBox");
     var nav = document.querySelector('div.navbar');
-    var strNewHeight = "height:" + (window.innerHeight - 42 - (nav? nav.offsetHeight : 0)) + "px;";
+    var strNewHeight = "min-height:" + (window.innerHeight - 42 - (nav? nav.offsetHeight : 0)) + "px;";
     // f.className = "footer-fixed";
     if(databox) databox.style.cssText = strNewHeight;
     else{
@@ -41,4 +43,6 @@
       }
     }
   }
+  $('footer').show()
+  })
 </script>

@@ -106,11 +106,11 @@ module ApplicationHelper
     end
   end
 
-  def render_avatar_file(file)
+  def render_avatar_file(file, width = '')
     image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/i.match(file)
     audio_match = /\.(wav|mp3|wma|ogg|midi|aif|aifc|aiff|au|ea)$/i.match(file)
     if image_match.present?
-      tag :img, src: "#{file}", onload: "onImageLoad(this)", width: "100%"
+      tag :img, src: "#{file}", onload: "onImageLoad(this)", width: width
     elsif audio_match.present?
       content_tag :audio, '', controls: "controls", src: "#{file}"
     end
@@ -205,31 +205,31 @@ module ApplicationHelper
     end
   end
 
-  def work_square_unique(w)
+  def work_square_unique(w,i)
     if w.attach_avatar.present?
-      render_avatar_file(w.attach_avatar.square_large.url)
+      render_avatar_file(w.attach_avatar.square_large.url, "100%")
     elsif w.attach_url.present?
       # render_resolve_url(w)
       render_resolve_url_personal(w)
     elsif w.attach_content.present?
 
-      raw('<div class="onThePhoto" style="background-color: ' + work_text_color_personal(w) + '"><p style="color: #000">' + w.subject + '</p></div>')
+      raw('<div class="onThePhoto" style="background-color: ' + work_background_color_personal(w,i) + '"><p style="color:'+  work_text_color_personal(w) +'">' + w.subject + '</p></div>')
 
     else
     end
   end
 
-  def work_background_color_personal(w)
+  def work_background_color_personal(w,i)
     url = w.attach_url
-    time = w.created_at.to_i
+    # time = w.created_at.to_i
     obj = get_resolved_url_obj(url)
-    colors = ["#6dc6d0;", "#e4ddd3;", "#333;"]
+    colors = ["#9f81a6;", "#333;", "#fea61b;", "#ac83cf;", "#46c576;", "#6dc6d0;"]
     res = ""
     case obj[:type]
     when "video", "audio", "youtube"
       res = '#ececec'
     when "image", "others"
-      res = colors[time % 3]
+      res = colors[i.divmod(6)[0] % 4]
     end
     res
   end
@@ -238,8 +238,9 @@ module ApplicationHelper
     url = w.attach_url
     time = w.created_at.to_i
     obj = get_resolved_url_obj(url)
-    colors = ["#fff;", "#6b5e5e;", "#9f81a6;"]
-    colors[time % 3]
+    # colors = ["#fff;", "#6b5e5e;", "#9f81a6;"]
+    # colors[time % 3]
+    "#fff;"
   end
 
   def work_square_all(w)

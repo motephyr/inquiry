@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get '/user_infos/:id', to: 'account/user_infos#show', as: :user_info
   get '/user_infos/:user_info_id/works/:id', to: 'account/works#show', as: :user_info_work
   get '/user_infos/:id/personal_page', to: 'account/user_infos#personal_page', as: :personal_page
+  get '/user_infos/:id/unique', to: 'account/user_infos#unique', as: :unique_page
 
   namespace :account do
     get 'donates/donor'

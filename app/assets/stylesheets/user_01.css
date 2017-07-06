@@ -89,7 +89,7 @@ transition:all 1s;
 
 .style_templet .userBox { padding: 20px 0; position: relative; margin: 0 auto;}
 .style_templet .userBox .photo{  width: 140px; height: 140px; display: block; overflow: hidden; background-color: #dfdada; border-radius: 150px; border:5px solid #fff; margin: 0 auto; margin-top: -128px; box-shadow: 0px 0px 10px rgba(155,155,155,.5);}
-.style_templet .userBox a.contact_me{ cursor: pointer; position: absolute; left: 50%; top: -25px; margin-left: 45px; width: 45px; height: 45px; border-radius: 45px; display: block; background: url(../images/icon_contact.png) center center no-repeat #303030; background-size: contain;}
+.style_templet .userBox a.contact_me{ cursor: pointer; position: absolute; left: 50%; top: -25px; margin-left: 45px; width: 45px; height: 45px; border-radius: 45px; display: block; background: url(/images/icon_contact.png) center center no-repeat #303030; background-size: contain;}
 .style_templet .userBox a.contact_me:hover{ background-color: #00a148; }
 
 .style_templet .userBox p.user_name{ text-align: center; padding: 15px 0; }
@@ -123,12 +123,12 @@ transition:all 1s;
 .style_templet .WorksList ul.designerWorksList{ width: 100%; }
 .style_templet .WorksList ul.designerWorksList li{ margin: 0 3px; width: calc(100vw / 8 - 10px);display: inline-block;  float: left; margin-bottom: 5px; position: relative;}
 .style_templet .WorksList ul.designerWorksList li:hover{opacity: .9;}
-.style_templet .WorksList ul.designerWorksList li a.look_competence{ cursor: pointer; position: absolute; width: 15px; height: 15px; top: 5px; right: 5px;  background:url(../images/icon_lock.png); background-size: contain; z-index: 10;}
-.style_templet .WorksList ul.designerWorksList li a.look_open{ cursor: pointer; position: absolute; width: 15px; height: 15px; top: 5px; right: 5px; background:url(../images/icon_open.png); background-size: contain;  z-index: 10;}
+.style_templet .WorksList ul.designerWorksList li a.look_competence{ cursor: pointer; position: absolute; width: 15px; height: 15px; top: 5px; right: 5px;  background:url(/images/icon_lock.png); background-size: contain; z-index: 10;}
+.style_templet .WorksList ul.designerWorksList li a.look_open{ cursor: pointer; position: absolute; width: 15px; height: 15px; top: 5px; right: 5px; background:url(/images/icon_open.png); background-size: contain;  z-index: 10;}
 
 .style_templet .WorksList ul.designerWorksList li a.photogo{ width: calc(100vw / 8 - 10px); height: calc(100vw / 8 - 10px); display: block; position: relative; }
 
-.style_templet .WorksList ul.designerWorksList li a.addWorks{ width: 100%; margin: 0 auto; font-size: 13px; background:url(../images/icon_add_photo.png) center center no-repeat #f2f2f2; background-size: contain; display: block; height:calc(100vw / 8 - 10px); }
+.style_templet .WorksList ul.designerWorksList li a.addWorks{ width: 100%; margin: 0 auto; font-size: 13px; background:url(/images/icon_add_photo.png) center center no-repeat #f2f2f2; background-size: contain; display: block; height:calc(100vw / 8 - 10px); }
 
 
 .style_templet .WorksList ul.designerWorksList li .onThePhoto{ position: absolute; width: 100%; left: 0; top: 0; height: 100%; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center;}
@@ -138,10 +138,10 @@ transition:all 1s;
 .style_templet .WorksList ul.designerWorksList li:hover .thisBox{opacity: 1;}
 .style_templet .WorksList ul.designerWorksList li .the_tools{ width: 100%; text-align: center;}
 .style_templet .WorksList ul.designerWorksList li .the_tools p{ font-size: 12px; line-height: 19px;  padding-left:25px; color: #fff; display: inline-block; margin: 0 5px;}
-.style_templet .WorksList ul.designerWorksList li .the_tools p.like{ cursor: pointer; background: url(../images/icon_tools_like_w.png) left center no-repeat; background-size: contain; }
-.style_templet .WorksList ul.designerWorksList li .the_tools p.like_in{ background-image: url(../images/icon_tools_like_in.png)}
-.style_templet .WorksList ul.designerWorksList li .the_tools p.dialog{ cursor: pointer; background: url(../images/icon_tools_dialog_w.png) left center no-repeat; background-size: contain; }
-.style_templet .WorksList ul.designerWorksList li .the_tools p.eyes{  padding-left:29px; background: url(../images/icon_tools_eyes_w.png) left center no-repeat; background-size: contain; }
+.style_templet .WorksList ul.designerWorksList li .the_tools p.like{ cursor: pointer; background: url(/images/icon_tools_like_w.png) left center no-repeat; background-size: contain; }
+.style_templet .WorksList ul.designerWorksList li .the_tools p.like_in{ background-image: url(/images/icon_tools_like_in.png)}
+.style_templet .WorksList ul.designerWorksList li .the_tools p.dialog{ cursor: pointer; background: url(/images/icon_tools_dialog_w.png) left center no-repeat; background-size: contain; }
+.style_templet .WorksList ul.designerWorksList li .the_tools p.eyes{  padding-left:29px; background: url(/images/icon_tools_eyes_w.png) left center no-repeat; background-size: contain; }
 
 @media (max-width:1400px){.style_templet .WorksList ul.designerWorksList li{ width: calc(100vw / 6 - 10px);}
   .style_templet .WorksList ul.designerWorksList li a.photogo{ width: calc(100vw / 6 - 10px); height: calc(100vw / 6 - 10px);}
