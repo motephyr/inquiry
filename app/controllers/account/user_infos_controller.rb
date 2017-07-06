@@ -54,6 +54,22 @@ class Account::UserInfosController < ApplicationController
     never_edit_my_info
   end
 
+  def edit_communication
+    never_edit_my_info
+    @user_phone = current_user.user_phone || current_user.build_user_phone
+  end
+
+  def update_communication
+    @user_phone = current_user.user_phone.present? ? current_user.user_phone : current_user.build_user_phone
+
+    if @user_phone.update(user_phone_params)
+
+      redirect_to edit_communication_account_user_infos_path
+    else
+      render :edit_communication
+    end
+  end
+
   def edit_info
     @user_info = current_user.user_info
 
@@ -71,9 +87,9 @@ class Account::UserInfosController < ApplicationController
 
     if @user_info.update(user_info_params)
 
-      redirect_to account_user_info_path(current_user)
+      redirect_to edit_status_account_user_infos_path
     else
-      render :edit
+      render :edit_info
     end
   end
 
@@ -145,12 +161,16 @@ class Account::UserInfosController < ApplicationController
     params.require(:user_info).permit(:user_id,:name, :work_content, :work_area, :typical_work, :teach, :speak, :labor, :contract, :category_id, :skill_tool, :alert).merge(skill_list: skill_list, state_list: state_list)
   end
 
+  def user_phone_params
+    params.require(:user_phone).permit(:minute_rate, :phone_number)
+  end
+
   def determine_layout
     if action_name == 'show'
       "personal_page"
     elsif action_name == 'personal_page'
       "user_info"
-    elsif action_name == 'edit_status' || action_name == 'edit_info'
+    elsif action_name == 'edit_status' || action_name == 'edit_info' || action_name == 'edit_communication'
       'account'
     elsif action_name == "unique"
       "blank"

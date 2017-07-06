@@ -18,6 +18,8 @@ class User < ApplicationRecord
   has_many :bedonor_donates, foreign_key: :bedonor_id, :class_name => "Donate"
 
   has_one :user_info, dependent: :destroy
+  has_one :user_phone, dependent: :destroy
+
   scope :has_user_info, ->{ joins(:user_info).where('user_infos.id is NOT NULL') }
   has_many :works, dependent: :destroy
   has_many :work_messages, dependent: :destroy
