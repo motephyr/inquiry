@@ -1,0 +1,17 @@
+<%= simple_form_for @user_phone, :url => { :action => "update_communication" }, :method => :patch  do |f| -%>
+  <%= render '/common/error_messages', object: f.object %>
+  <h4>通訊方式</h4>
+  <p>當有人希望與你聯絡時，我們會透過簡訊通知您(Conkwe不會以任何形式洩露您所留的電話號碼)</p>
+  <p>您可以使用Chrome,Firefox或最新版的IE edge與對方在Conkwe線上通話。</p>
+  <p>(---Conkwe收費方式---)</p>
+
+  <div class="form-inputs">
+    <div class="form-group">
+      <%= f.label '線上通訊' %>
+      您的電話號碼<%= f.input_field :phone_number, class: 'form-control' %>費率每分鐘<%= f.input_field :minute_rate, class: 'form-control' %>元
+    </div>
+  </div>
+  <div class="form-actions">
+    <p><%= f.button :submit, '送出' %> <%= link_to "取消修改", :back, class: 'btn btn-link' %></p>
+  </div>
+<% end %>
