@@ -35,6 +35,13 @@ window.onGossimLoad = function(){
 			ch.state = ch.ENDPHONE;
 		}
 	});
+
+	GossimPeer.on('reject', function(){
+		if(window.ConkweHangout){
+			var ch = window.ConkweHangout;
+			ch.state = ch.REJECTED;
+		}
+	});
 };
 
 window.ConkweHangout = {
@@ -43,6 +50,7 @@ window.ConkweHangout = {
 	CALLEE: 2,
 	ONPHONE: 3,
 	ENDPHONE: 4,
+	REJECTED: 5,
 	_status: 0,
 	_target: null,
 	_opened: false,
@@ -137,6 +145,12 @@ window.ConkweHangout = {
 
 					timeWrap.classList.add('hangout-show');
 					break;	
+				case self.REJECTED:
+					btnWrap.innerHTML = '<hr><button class="btn btn-default">確認</button>';
+					btnWrap.children[1].addEventListener('click', function(){ self.close(); });
+					textWrap.innerHTML = '<p>Oops! 對方拒絕通話。</p>';
+					timeWrap.classList.remove('hangout-show');
+					break;
 			}
 		}
 	},
