@@ -2,7 +2,8 @@
 <script type="text/javascript" src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/0.3.14/peer.js"></script>
 <script>
-window.onGossimLoad = function(){
+
+window.addEventListener('gossimload', function(){
 
 	GossimPeer.init('<%= Setting.gossim %>' || "test", '<%= current_user.id %>', document.querySelector('.hangout-viewer .hangout-streamer'));
 
@@ -42,7 +43,7 @@ window.onGossimLoad = function(){
 			ch.state = ch.REJECTED;
 		}
 	});
-};
+});
 
 window.ConkweHangout = {
 	IDLE: 0,
