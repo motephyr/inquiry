@@ -66,7 +66,7 @@ module ApplicationHelper
     end
   end
 
-  def render_resolve_url(work)
+  def render_resolve_url(work, show_youtube_iframe=false)
     url = work.attach_url
     obj = get_resolved_url_obj(url)
     case obj[:type]
@@ -78,26 +78,30 @@ module ApplicationHelper
       tag :video, controls: "controls", src: "#{url}", width: "100%", height: "100%"
     when "youtube"
       matches = obj[:match_object]
-      queryobj = {}
-      queryobj["rel"] = 0
-      hashes = ""
-      overrides = Rack::Utils.parse_query(URI.parse(matches[0]).query)
-      overrides.delete("v")
-      queryobj = queryobj.merge(overrides)
-      if matches[4] != nil
-        splits = matches[4].split('#')
-        if splits.length > 1
-          hashes += "#" + splits[1]
+      if show_youtube_iframe
+        queryobj = {}
+        queryobj["rel"] = 0
+        hashes = ""
+        overrides = Rack::Utils.parse_query(URI.parse(matches[0]).query)
+        overrides.delete("v")
+        queryobj = queryobj.merge(overrides)
+        if matches[4] != nil
+          splits = matches[4].split('#')
+          if splits.length > 1
+            hashes += "#" + splits[1]
+          end
         end
+        queryobj["enablejsapi"] = 1;
+        if queryobj["t"].present?
+          timeRe = /((?<min>\d+)[m])?((?<sec>\d+)[s])?/
+          time = queryobj["t"].scan(timeRe)[0]
+          queryobj["start"] = (time[0] ? time[0].to_i : 0) * 60 + (time[1] ? time[1].to_i : 0)
+        end
+        querystr = Rack::Utils.build_query(queryobj)
+        content_tag :iframe, '', src: "https://www.youtube.com/embed/#{matches[2]}?#{querystr}#{hashes}", width: '100%', height:'100%', frameborder: '0'
+      else
+        tag :img, src: "https://i.ytimg.com/vi/#{matches[2]}/hqdefault.jpg", onload: "onImageLoad(this)"
       end
-      queryobj["enablejsapi"] = 1;
-      if queryobj["t"].present?
-        timeRe = /((?<min>\d+)[m])?((?<sec>\d+)[s])?/
-        time = queryobj["t"].scan(timeRe)[0]
-        queryobj["start"] = (time[0] ? time[0].to_i : 0) * 60 + (time[1] ? time[1].to_i : 0)
-      end
-      querystr = Rack::Utils.build_query(queryobj)
-      content_tag :iframe, '', src: "https://www.youtube.com/embed/#{matches[2]}?#{querystr}#{hashes}", width: '100%', height:'100%', frameborder: '0'
     else
       content_tag :div, :data => { :remote_url => url }, class: "remote-preview" do
         content_tag(:div,'', style: 'background-image:url(' + work.remote_image_url + ')', class: 'preview-image')  +
@@ -117,7 +121,7 @@ module ApplicationHelper
   end
 
   # for new layout test
-  def render_resolve_url_personal(work)
+  def render_resolve_url_personal(work, show_youtube_iframe=false)
     url = work.attach_url
     obj = get_resolved_url_obj(url)
     case obj[:type]
@@ -129,26 +133,30 @@ module ApplicationHelper
       tag :video, controls: "controls", src: "#{url}", width: "100%", height: "100%"
     when "youtube"
       matches = obj[:match_object]
-      queryobj = {}
-      queryobj["rel"] = 0
-      hashes = ""
-      overrides = Rack::Utils.parse_query(URI.parse(matches[0]).query)
-      overrides.delete("v")
-      queryobj = queryobj.merge(overrides)
-      if matches[4] != nil
-        splits = matches[4].split('#')
-        if splits.length > 1
-          hashes += "#" + splits[1]
+      if show_youtube_iframe
+        queryobj = {}
+        queryobj["rel"] = 0
+        hashes = ""
+        overrides = Rack::Utils.parse_query(URI.parse(matches[0]).query)
+        overrides.delete("v")
+        queryobj = queryobj.merge(overrides)
+        if matches[4] != nil
+          splits = matches[4].split('#')
+          if splits.length > 1
+            hashes += "#" + splits[1]
+          end
         end
+        queryobj["enablejsapi"] = 1;
+        if queryobj["t"].present?
+          timeRe = /((?<min>\d+)[m])?((?<sec>\d+)[s])?/
+          time = queryobj["t"].scan(timeRe)[0]
+          queryobj["start"] = (time[0] ? time[0].to_i : 0) * 60 + (time[1] ? time[1].to_i : 0)
+        end
+        querystr = Rack::Utils.build_query(queryobj)
+        content_tag :iframe, '', src: "https://www.youtube.com/embed/#{matches[2]}?#{querystr}#{hashes}", width: '100%', frameborder: '0', height: '100%'
+      else
+        tag :img, src: "https://i.ytimg.com/vi/#{matches[2]}/hqdefault.jpg", onload: "onImageLoad(this)"
       end
-      queryobj["enablejsapi"] = 1;
-      if queryobj["t"].present?
-        timeRe = /((?<min>\d+)[m])?((?<sec>\d+)[s])?/
-        time = queryobj["t"].scan(timeRe)[0]
-        queryobj["start"] = (time[0] ? time[0].to_i : 0) * 60 + (time[1] ? time[1].to_i : 0)
-      end
-      querystr = Rack::Utils.build_query(queryobj)
-      content_tag :iframe, '', src: "https://www.youtube.com/embed/#{matches[2]}?#{querystr}#{hashes}", width: '100%', frameborder: '0', height: '100%'
     else
       # content_tag :div, :data => { :remote_url => url }, class: "remote-preview" do
       #   content_tag(:div,'', style: 'background-image:url(' + work.remote_image_url + ')', class: 'preview-image')  +
@@ -252,7 +260,7 @@ module ApplicationHelper
       if w.attach_avatar.present?
         subject += render_avatar_file(w.attach_avatar.square_limit.url)
       elsif w.attach_url.present?
-        subject += render_resolve_url(w)
+        subject += render_resolve_url(w, true)
       end
     end
     if w.attach_content.present?
