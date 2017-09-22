@@ -146,6 +146,8 @@
           </div>
         </div>
         <p class="user_next"><%= link_to '上一位', user_info_path(@user_info.user.prev), class: 'prev'%>| <%= link_to '下一位', user_info_path(@user_info.user.next), class: 'next' %></p>
+        <br />
+        <%= render 'common/googleAd' %>
       </div>
     </div>
   </section>
