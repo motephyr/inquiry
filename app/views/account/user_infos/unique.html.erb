@@ -29,7 +29,7 @@
 <meta name="HandheldFriendly" content="true">
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= javascript_include_tag "application" %>
-  <%= stylesheet_link_tag "user_01" %>
+  <%= stylesheet_link_tag "unique" %>
 
 
 </head>
@@ -38,7 +38,7 @@
 
 <!-------- 中間內容從這邊開始 -------->
 <section class="style_templet">
-    <div class="topBanner" style="background: url(<%= image_path('top_banner_01.jpg') %>) center center no-repeat; background-size: cover;"></div>
+    <div class="topBanner" style="background: url(<%= @main_image_url %>) center center no-repeat; background-size: cover;"></div>
     <div class="userBox">
 <a class="contact_me" style="background-color:green" id="chat" href="#"></a>
         <div class="photo"><%= tag :img, src: @user_info.user.avatar_link(size: 128), alt: 'my profile' %>
