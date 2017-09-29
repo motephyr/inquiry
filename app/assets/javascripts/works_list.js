@@ -12,6 +12,10 @@ function onHeartClick(ostr){
     el.toggleClass('glyphicon glyphicon-heart').toggleClass('glyphicon glyphicon-heart text-danger');
 }
 
+/*
+ * 2017-09-29 Deprecated the pushState/PopState with modal view.
+ */
+/*
 window.pathReg = new RegExp("/user_infos/[^/]+/works/.*");
 window.fromDismissEvent = false;
 window.fromStateChangeEvent = false;
@@ -70,3 +74,4 @@ window.addEventListener('popstate', function(e){
   console.log(history.state);
   if(history.state) console.log(history.state.url);
 });
+*/
