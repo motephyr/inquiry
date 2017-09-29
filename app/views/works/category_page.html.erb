@@ -43,7 +43,7 @@
             <%  @works.each_with_index do |w, i| %>
               <li>
                 <div class="photoBox" id="<%= dom_id(w) %>">
-                  <%= link_to user_info_work_path(w.user, w), class: "photogo item-wrap",style: "background-color: #{work_background_color_personal(w, i)}", target: '_blank' do %>
+                  <%= link_to user_info_work_path(w.user, w), class: "photogo item-wrap",style: "background-color: #{work_background_color_personal(w, i)}", target: 'conkwe_work_detail' do %>
                     <%= work_square_personal(w) %>
                     <% if get_resolved_url_obj(w.attach_url)[:type] == "youtube" %>
                     <div class="iframemask"></div>
