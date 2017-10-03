@@ -6,4 +6,11 @@ class AcitvityMailer < ApplicationMailer
     @content  = content
     roadie_mail(to: @user.email, subject: 'Conkwe 動態')
   end
+
+  def works_notification(user, works)
+  	# ...
+  	@user = user
+    @works = works
+    roadie_mail(to: @user.email, subject: 'Conkwe 動態')
+  end
 end
