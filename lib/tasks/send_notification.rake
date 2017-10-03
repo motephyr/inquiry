@@ -24,8 +24,8 @@ namespace :send_notification do
     # end
   end
 
-  desc "send_works_notification"
-  task :works => :environment do
+  desc "send_newworks_notification"
+  task :newworks => :environment do
     send_to_users = User.where('current_sign_in_at < ?', 2.days.ago) # 超過兩天沒登入的人。
     send_to_users.each do |user|
       # 取得 除了自己之外的人 最近一週的新作品 並隨機取 10 個
@@ -34,7 +34,7 @@ namespace :send_notification do
         puts "send_works_notification: " + user.email
         # ...
         # AcitvityMailer.works_notification(user, content).deliver_now!
-        AcitvityMailer.works_notification(user, workslist).deliver_now!
+        NewworksMailer.newworks_notification(user, workslist).deliver_now!
       end
     end
   end
