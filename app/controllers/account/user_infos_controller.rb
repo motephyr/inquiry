@@ -26,7 +26,7 @@ class Account::UserInfosController < ApplicationController
     end
     @works = (@user == current_user) ? @user.works.includes(:cares).order("is_published desc").order_by_new : @user.works.includes(:cares).is_published.order_by_new
     filter_works = @works.select{|x| x.attach_avatar.present?}
-    @main_image_url = filter_works[rand(0...filter_works.length)].attach_avatar.url
+    @main_image_url = filter_works.length > 0 ? filter_works[rand(0...filter_works.length)].attach_avatar.url : ActionController::Base.helpers.asset_path('top_banner.jpg')
   end
 
   def personal_page
