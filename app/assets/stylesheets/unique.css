@@ -121,14 +121,13 @@ transition:all 1s;
 .style_templet .WorksList .work_information p.p_info a:hover{text-decoration: underline;}
 
 .style_templet .WorksList ul.designerWorksList{ width: 100%; }
-.style_templet .WorksList ul.designerWorksList li{ margin: 0 3px; width: calc(100vw / 8 - 10px);display: inline-block;  float: left; margin-bottom: 5px; position: relative;}
 .style_templet .WorksList ul.designerWorksList li:hover{opacity: .9;}
 .style_templet .WorksList ul.designerWorksList li a.look_competence{ cursor: pointer; position: absolute; width: 15px; height: 15px; top: 5px; right: 5px;  background:url(/images/icon_lock.png); background-size: contain; z-index: 10;}
 .style_templet .WorksList ul.designerWorksList li a.look_open{ cursor: pointer; position: absolute; width: 15px; height: 15px; top: 5px; right: 5px; background:url(/images/icon_open.png); background-size: contain;  z-index: 10;}
 
-.style_templet .WorksList ul.designerWorksList li a.photogo{ width: calc(100vw / 8 - 10px); height: calc(100vw / 8 - 10px); display: block; position: relative; }
-
-.style_templet .WorksList ul.designerWorksList li a.addWorks{ width: 100%; margin: 0 auto; font-size: 13px; background:url(/images/icon_add_photo.png) center center no-repeat #f2f2f2; background-size: contain; display: block; height:calc(100vw / 8 - 10px); }
+.style_templet .WorksList ul.designerWorksList li{ margin: 0 3px; width: calc(100vw / 5 - 10px);display: inline-block;  float: left; margin-bottom: 5px; position: relative;}
+.style_templet .WorksList ul.designerWorksList li a.photogo{ width: calc(100vw / 5 - 10px); height: calc(100vw / 5 - 10px); display: block; position: relative; }
+.style_templet .WorksList ul.designerWorksList li a.addWorks{ width: 100%; margin: 0 auto; font-size: 13px; background:url(/images/icon_add_photo.png) center center no-repeat #f2f2f2; background-size: contain; display: block; height:calc(100vw / 5 - 10px); }
 
 
 .style_templet .WorksList ul.designerWorksList li .onThePhoto{ position: absolute; width: 100%; left: 0; top: 0; height: 100%; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center;}
@@ -143,12 +142,12 @@ transition:all 1s;
 .style_templet .WorksList ul.designerWorksList li .the_tools p.dialog{ cursor: pointer; background: url(/images/icon_tools_dialog_w.png) left center no-repeat; background-size: contain; }
 .style_templet .WorksList ul.designerWorksList li .the_tools p.eyes{  padding-left:29px; background: url(/images/icon_tools_eyes_w.png) left center no-repeat; background-size: contain; }
 
-@media (max-width:1400px){.style_templet .WorksList ul.designerWorksList li{ width: calc(100vw / 6 - 10px);}
+/* @media (max-width:1400px){.style_templet .WorksList ul.designerWorksList li{ width: calc(100vw / 6 - 10px);}
   .style_templet .WorksList ul.designerWorksList li a.photogo{ width: calc(100vw / 6 - 10px); height: calc(100vw / 6 - 10px);}
   .style_templet .WorksList ul.designerWorksList li a.addWorks{height: calc(100vw / 6 - 10px);}}
 @media (max-width:1200px){.style_templet .WorksList ul.designerWorksList li{ width: calc(100vw / 5 - 10px);}
   .style_templet .WorksList ul.designerWorksList li a.photogo{ width: calc(100vw / 5 - 10px); height: calc(100vw / 5 - 10px);}
-  .style_templet .WorksList ul.designerWorksList li a.addWorks{height: calc(100vw / 5 - 10px);}}
+  .style_templet .WorksList ul.designerWorksList li a.addWorks{height: calc(100vw / 5 - 10px);}} */
 @media (max-width:1050px){.style_templet .WorksList ul.designerWorksList li{ width: calc(100vw / 4 - 11px);}
   .style_templet .WorksList ul.designerWorksList li a.photogo{ width: calc(100vw / 4 - 11px); height: calc(100vw / 4 - 11px);}
   .style_templet .WorksList ul.designerWorksList li a.addWorks{height: calc(100vw / 4 - 11px);}}
