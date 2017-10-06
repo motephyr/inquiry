@@ -43,7 +43,7 @@
       // Off the event
       o.onload = null;
       if(o.naturalWidth > o.naturalHeight){
-        o.style.cssText += "width: auto; height:100%;";
+        o.style.cssText += "width: auto; height: auto;";
       }
 
       if(detect_is_safari()){
