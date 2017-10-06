@@ -1,6 +1,6 @@
 class Account::UserInfosController < ApplicationController
 
-  before_action :login_required, except: [:show, :search, :tag]
+  before_action :login_required, except: [:show, :search, :tag, :unique]
   layout :determine_layout
 
   def sip
