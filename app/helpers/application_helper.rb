@@ -251,7 +251,7 @@ module ApplicationHelper
       end
     else
       # text content
-      raw('<div class="onThePhoto"><p style="color:#000;">' + w.content + '</p></div>')
+      raw('<div class="onThePhoto"><p style="color:#000;">' + w.attach_content + '</p></div>')
     end
   end
 
