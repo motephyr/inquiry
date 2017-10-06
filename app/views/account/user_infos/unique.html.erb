@@ -30,7 +30,7 @@
 <a class="contact_me" style="background-color:green" id="chat" href="#"></a>
         <div class="photo"><%= tag :img, src: @user_info.user.avatar_link(size: 128), alt: 'my profile' %>
 </div>
-        <p class="user_name"><%= @user_info.nickname %></p>
+        <p class="user_name"><%= link_to @user_info.nickname, user_info_path(@user_info.user) %></p>
         <p class="online">狀態：<span class="green"> <%= user_status(@user_info.user)  %></span>&nbsp;&nbsp;|&nbsp;&nbsp;所在地區：<%= @user_info.work_area %></p>
         <ul class="skill_list">
               <%= @user_info.skill_list.present? ? @user_info.skill_list.map { |t| li_link_button(t,t, 'btn-link')  }.join('').html_safe : li_link_button(@user_info.category.try(:title),@user_info.category.try(:title), 'btn-link')  %>
