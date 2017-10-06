@@ -88,7 +88,7 @@ transition:all 1s;
 .style_templet .ContentsBox{ width: 100%; /*max-width: 1170px;*/ margin: 0 auto;}
 
 .style_templet .userBox { padding: 20px 0; position: relative; margin: 0 auto;}
-.style_templet .userBox .photo{  width: 140px; height: 140px; display: block; overflow: hidden; background-color: #dfdada; border-radius: 150px; border:5px solid #fff; margin: 0 auto; margin-top: -128px; box-shadow: 0px 0px 10px rgba(155,155,155,.5);}
+.style_templet .userBox .photo{  width: 128px; height: 128px; display: block; overflow: hidden; background-color: #dfdada; border-radius: 150px; border:5px solid #fff; margin: 0 auto; margin-top: -128px; box-shadow: 0px 0px 10px rgba(155,155,155,.5);}
 .style_templet .userBox a.contact_me{ cursor: pointer; position: absolute; left: 50%; top: -25px; margin-left: 45px; width: 45px; height: 45px; border-radius: 45px; display: block; background: url(/images/icon_contact.png) center center no-repeat #303030; background-size: contain;}
 .style_templet .userBox a.contact_me:hover{ background-color: #00a148; }
 
