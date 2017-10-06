@@ -227,6 +227,34 @@ module ApplicationHelper
     end
   end
 
+  def work_square_mail(w)
+    url = nil
+    if w.attach_avatar.present?
+      url = w.attach_avatar.square_large.url
+    elsif w.attach_url.present?
+      url = w.attach_url
+    end
+    if url
+      obj = get_resolved_url_obj(url)
+      case obj[:type]
+      when "image"
+        tag :img, src: "#{url}", height: "100%", width: "auto"
+      when "audio"
+        tag :audio, controls: "controls", src: "#{url}", style: "width:100%;"
+      when "video"
+        tag :video, controls: "controls", src: "#{url}", width: "100%", height: "100%"
+      when "youtube"
+        matches = obj[:match_object]
+        tag :img, src: "https://i.ytimg.com/vi/#{matches[2]}/hqdefault.jpg", height: "100%", width: "auto"
+      else
+        tag :img, src: "#{w.attach_avatar.square_limit}", height: "100%", width: "auto"
+      end
+    else
+      # text content
+      raw('<div class="onThePhoto"><p style="color:#000;">' + w.content + '</p></div>')
+    end
+  end
+
   def work_background_color_personal(w,i)
     url = w.attach_url
     # time = w.created_at.to_i
