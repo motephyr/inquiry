@@ -207,7 +207,7 @@ module ApplicationHelper
       render_resolve_url_personal(w)
     elsif w.attach_content.present?
 
-      raw('<p class="onThePhoto" style="color: ' + work_text_color_personal(w) + '">' + w.subject + '</p>')
+      raw('<p class="onThePhoto">' + w.subject + '</p>')
 
     else
     end
@@ -228,18 +228,19 @@ module ApplicationHelper
   end
 
   def work_background_color_personal(w,i)
-    url = w.attach_url
-    # time = w.created_at.to_i
-    obj = get_resolved_url_obj(url)
-    colors = ["#9f81a6;", "#333;", "#fea61b;", "#ac83cf;", "#46c576;", "#6dc6d0;"]
-    res = ""
-    case obj[:type]
-    when "video", "audio", "youtube"
-      res = '#ececec'
-    when "image", "others"
-      res = colors[i.divmod(6)[0] % 4]
-    end
-    res
+    "rgb(250, 250, 250)"
+    # url = w.attach_url
+    # # time = w.created_at.to_i
+    # obj = get_resolved_url_obj(url)
+    # colors = ["#9f81a6;", "#333;", "#fea61b;", "#ac83cf;", "#46c576;", "#6dc6d0;"]
+    # res = ""
+    # case obj[:type]
+    # when "video", "audio", "youtube"
+    #   res = '#ececec'
+    # when "image", "others"
+    #   res = colors[i.divmod(6)[0] % 4]
+    # end
+    # res
   end
 
   def work_text_color_personal(w)
