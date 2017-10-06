@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <style>
+    	body, h1, h2, h3, h4, h5, h6, p { font-family:'Noto Sans TC',Arial,"微軟正黑體","新細明體", sans-serif; font-weight: normal; color: #333;}
+    	hr{margin-top: 20px;margin-bottom: 20px;border: 0;border-top: 1px solid #eeeeee;}
+    	body{ background: url(<%= root_url %>/images/bg.jpg); }
+    .total-wrap{ display: table; clear: both; }
+    a.userID{ width: 100%; display: block; min-height: 36px; margin-top: 5px;}
+		a.userID img{ width: 36px; height: 36px; float: left; margin-right: 5px; border-radius: 20px; display: block; overflow: hidden; }
+		a.userID p{ float: left;  font-size: 16px; line-height: 32px; color: #449dd5; margin: 0; }
+
+		.photoBox{ display: block; width: 200px; height: 200px; position: relative; }
+		.photoBox a.photogo{ display: block; width: 100%; height: 100%; font-size: 1.1vw; line-height: 150%; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center}
+
+		.photoBox a{text-decoration: none;}
+		.photoBox img{ display: block; margin: 0 auto; position: absolute; }
+		.photoBox a.photogo{ overflow: hidden; position: relative; z-index: 3; }
+		.photoBox > p{ z-index: 2; position: absolute; top: 8%; left: 10%; right: 10%;}
+		.photoBox:hover a.photogo{opacity: .15;}
+		.photoBox:hover > p{ z-index: 4; }
+		.photoBox a.photogo .iframemask{ position: absolute; width: 100%; height: 100%; left: 0px; top: 0px; z-index: 1; background: url(<%= root_url %>images/youtube_icon.png) no-repeat; background-size: 48px; background-position: right 5px bottom 5px; /* IE 8 */ -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE 5-7 */ filter: alpha(opacity=50); /* Netscape */ -moz-opacity: 0.5; /* Safari 1.x */ -khtml-opacity: 0.5; /* Good browsers */ opacity: 0.5;}
+
+		.photoWrap{display: inline-block; float: left; width: 200px; padding:12px; margin: 10px; padding-top: 10px;  border-radius: 10px; background-color: #fafafa;}
+		.photoWrap p{ text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+		.photoWrap p.subject{ margin-bottom: 8px; margin-top: 5px; display: none;}
+
+		.photoBox:hover p.subject{ display: block !important; }
+
+		.link-wrap{ text-align: center; }
+		.link-wrap a{
+			color: white;
+	    border: 1px solid #96d1f8;
+			background: #65a9d7;
+      padding: 10px 20px;
+    	text-decoration: none;
+    	border-radius: 5px;
+		}
+		.link-wrap a:visited{ color: white; }
+
+    </style>
+  </head>
+  <body>
+		<h3>Hi, <%= @user.nickname %>！</h3>
+		<p>你有多久沒來 Conkwe 看看了呢？ 上面又多了些精彩的作品：</p>
+		<hr/>
+		<div class="total-wrap">
+			<% @works.each do |w| %>
+				<!-- 要另外render 別用現有的 -->
+				<div class="photoWrap">
+					<div class="photoBox" id="<%= dom_id(w) %>">
+		        <%= link_to user_info_work_url(w.user, w), class: "photogo item-wrap", target: "conkwe-page" do %>
+		          <%= work_square_mail(w) %>
+		          <% if get_resolved_url_obj(w.attach_url)[:type] == "youtube" %>
+		          <div class="iframemask"></div>
+		          <% end %>
+		        <% end %>
+		        <p class="subject"><%= w.subject %></p>
+		      </div>
+		      <%= link_to user_info_url(w.user), class: 'userID clearfix', target: "conkwe-page" do %>
+		        <% #tag :img, src: w.user.avatar_link(size: 64), alt: 'my profile', width:"100%" %>
+		        <%= tag :img, src: "https://conkwe.s3.amazonaws.com/uploads/user/image/83/circle_64_6f60dc1d16e380bf1b9656b310967a.jpg", alt: 'my profile', width:"100%" %>
+		        <p class="name"><%= w.user.nickname %></p>
+		      <% end %>	
+				</div>
+			<% end %>
+		</div>
+		
+		<p class="link-wrap"><a target="conkwe-page" href="<%= root_url %>works?category_id=all&pagekind=newest">查看更多</a></p>
+
+		<hr/>
+		<p>歡迎上來跟大家分享你最近的工作內容哦 ^_^</p>
+		
+		<h5>
+		Conkwe自由工作者平台敬上。&nbsp;&nbsp;<a href="<%= root_url %>"><%= root_url %></a>
+		</h5> 
+		
+  </body>
+</html>

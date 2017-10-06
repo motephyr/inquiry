@@ -12,6 +12,10 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def show
+        content = ApplicationController.renderer.new.render(Work.where('works.id = 4 or works.id = 3'))
+        AcitvityMailer.works_notification(User.find(1), content).deliver_now!
+  end
 
     
 end

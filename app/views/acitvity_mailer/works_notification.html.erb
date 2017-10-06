@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <style>
+    </style>
+  </head>
+  <body>
+		<h3><%= @user.nickname %> 你好！</h3>
+		<p>您關注Conkwe的動態有以下的訊息：</p>
+		<%= @content %>
+
+		<p>工作上有任何新進展嗎？跟我們分享一下吧。</p>
+
+		<p>Conkwe自由工作者平台敬上。</p> 
+		<%= ckeditor_content(@user) %>
+
+		aaa 	
+  </body>
+</html>
