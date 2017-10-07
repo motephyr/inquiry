@@ -251,7 +251,13 @@ module ApplicationHelper
       end
     else
       # text content
-      raw('<div class="onThePhoto"><p style="color:#000;">' + w.attach_content + '</p></div>')
+      content = ""
+      if w.attach_content.present?
+        content = w.attach_content
+      elsif w.content.present?
+        content = w.content
+      end
+      raw('<div class="onThePhoto"><p style="color:#000;">' + content + '</p></div>')
     end
   end
 

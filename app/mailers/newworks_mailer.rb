@@ -5,6 +5,6 @@ class NewworksMailer < ApplicationMailer
   def newworks_notification(user, works)
     @user = user
     @works = works
-    roadie_mail(to: @user.email, subject: 'Hi, ' + user.nickname + ' 又有新的作品在 Conkwe 發表了，快來看看吧')
+    roadie_mail(to: @user.email, subject: '[動態] ' + user.nickname + '，有其他人新的工作成果在 Conkwe 發表了，快來看看吧')
   end
 end

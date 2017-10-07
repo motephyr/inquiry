@@ -26,16 +26,18 @@ namespace :send_notification do
 
   desc "send_newworks_notification"
   task :newworks => :environment do
-    send_to_users = User.where('current_sign_in_at < ?', 5.days.ago) # 超過五天沒登入的人。
+    send_to_users = User.where('current_sign_in_at < ?', 4.days.ago) # 超過四天沒登入的人。
     # send_to_users = User.where('email IN (?)', ["miecowbai@gmail.com","motephyr@gmail.com"]) # 白名單 for test
-    send_to_users.each do |user|
-      # 取得 除了自己之外的人 最近 20 天內的新作品 並隨機取 8 個
-      workslist = Work.where('user_id != ? and created_at >= ?', user.id, 20.days.ago).order("RANDOM()").limit(8)
-      if workslist.present?
-        puts "send_works_notification: " + user.email
-        # ...
-        # AcitvityMailer.works_notification(user, content).deliver_now!
-        NewworksMailer.newworks_notification(user, workslist).deliver_now!
+    if send_to_users.present?
+      send_to_users.each do |user|
+        # 取得 除了自己之外的人 最近 20 天內的新作品 並隨機取 8 個
+        workslist = Work.where('user_id != ? and created_at >= ?', user.id, 20.days.ago).order("RANDOM()").limit(8)
+        if workslist.present?
+          puts "send_works_notification: " + user.email
+          # ...
+          # AcitvityMailer.works_notification(user, content).deliver_now!
+          NewworksMailer.newworks_notification(user, workslist).deliver_now!
+        end
       end
     end
   end
