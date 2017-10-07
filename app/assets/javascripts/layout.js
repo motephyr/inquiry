@@ -42,8 +42,16 @@
     function onImageLoad(o){
       // Off the event
       o.onload = null;
-      if(o.naturalWidth > o.naturalHeight){
-        o.style.cssText += "width: auto; height: auto;";
+
+      // find parent two times, and has to tune width/height ratio only in photoBox elements.
+      var times = 2, p = o.parentElement, toTune;
+      while(times--){
+        if(toTune = p.classList.contains("photoBox")) break;
+        p = p.parentElement;
+      }
+      
+      if(toTune && o.naturalWidth > o.naturalHeight){
+        o.style.cssText += "width: auto; height: 100%;";
       }
 
       if(detect_is_safari()){

@@ -155,7 +155,7 @@ transition:all 1s;
   -webkit-transition:all .4s; /* Safari and Chrome */
   -o-transition:all .4s; /* Opera */
 }
-.UserDataBox .WorksList ul.designerWorksList li .photoBox img{ display: block; margin: 0 auto; width: 100%; position: absolute; }
+.UserDataBox .WorksList ul.designerWorksList li .photoBox img{ display: block; margin: 0 auto; width: 100%; height: auto; position: absolute; }
 .UserDataBox .WorksList ul.designerWorksList li .photoBox a.photogo{ overflow: hidden; position: relative; z-index: 3; }
 .UserDataBox .WorksList ul.designerWorksList li .photoBox > p{ z-index: 2; position: absolute; top: 8%; left: 10%; right: 10%;}
 .UserDataBox .WorksList ul.designerWorksList li .photoBox:hover a.photogo{opacity: .15;}

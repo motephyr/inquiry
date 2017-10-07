@@ -110,11 +110,11 @@ module ApplicationHelper
     end
   end
 
-  def render_avatar_file(file, width = '')
+  def render_avatar_file(file)
     image_match = /\.(jpg|jpeg|tiff|png|gif|bmp)$/i.match(file)
     audio_match = /\.(wav|mp3|wma|ogg|midi|aif|aifc|aiff|au|ea)$/i.match(file)
     if image_match.present?
-      tag :img, src: "#{file}", onload: "onImageLoad(this)", width: width
+      tag :img, src: "#{file}", onload: "onImageLoad(this)"
     elsif audio_match.present?
       content_tag :audio, '', controls: "controls", src: "#{file}"
     end
@@ -126,7 +126,7 @@ module ApplicationHelper
     obj = get_resolved_url_obj(url)
     case obj[:type]
     when "image"
-      tag :img, src: "#{url}", onload: "onImageLoad(this)", width: "100%"
+      tag :img, src: "#{url}", onload: "onImageLoad(this)"
     when "audio"    #compare to 2
       tag :audio, controls: "controls", src: "#{url}", style: "width:100%;"
     when "video"
@@ -162,7 +162,7 @@ module ApplicationHelper
       #   content_tag(:div,'', style: 'background-image:url(' + work.remote_image_url + ')', class: 'preview-image')  +
       #     content_tag(:p, work.remote_description,  class: 'preview-description')
       # end
-      tag :img, src: "#{work.remote_image_url}", onload: "onImageLoad(this)", width: "100%"
+      tag :img, src: "#{work.remote_image_url}", onload: "onImageLoad(this)"
     end
   end
 
@@ -215,7 +215,7 @@ module ApplicationHelper
 
   def work_square_unique(w,i)
     if w.attach_avatar.present?
-      render_avatar_file(w.attach_avatar.square_large.url, "100%")
+      render_avatar_file(w.attach_avatar.square_large.url)
     elsif w.attach_url.present?
       # render_resolve_url(w)
       render_resolve_url_personal(w)
