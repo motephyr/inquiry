@@ -247,7 +247,7 @@ module ApplicationHelper
         matches = obj[:match_object]
         tag :img, src: "https://i.ytimg.com/vi/#{matches[2]}/hqdefault.jpg", height: "100%", width: "auto"
       else
-        tag :img, src: "#{w.attach_avatar.square_limit}", height: "100%", width: "auto"
+        tag :img, src: "#{w.remote_image_url}", height: "100%", width: "auto"
       end
     else
       # text content
@@ -257,7 +257,7 @@ module ApplicationHelper
       elsif w.content.present?
         content = w.content
       end
-      raw('<div class="onThePhoto"><p style="color:#000;">' + content + '</p></div>')
+      raw('<div class="onThePhoto"><p style="color:#000;">' + sanitize(content, :tags=>['p']) + '</p></div>')
     end
   end
 
