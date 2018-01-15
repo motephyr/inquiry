@@ -26,7 +26,7 @@ if @environment == "production"
     rake "send_notification:unlogin"
   end
 
-  every :monday, :at => '3:30am', :roles => [:app] do # Use any day of the week or :weekend, :weekday
-    rake "send_notification:newworks"
-  end
+  # every :monday, :at => '3:30am', :roles => [:app] do # Use any day of the week or :weekend, :weekday
+  #   rake "send_notification:newworks"
+  # end
 end
