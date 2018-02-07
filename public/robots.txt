@@ -4,4 +4,4 @@
 # User-agent: *
 # Disallow: /
 Disallow: /admin
-Sitemap: https://beta.conkwe.com/sitemap.xml.gz
+Sitemap: https://conkwe.gossmatch.com/sitemap.xml.gz
